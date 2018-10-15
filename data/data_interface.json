@@ -3,20 +3,48 @@ var data_interface = {
   "hauteur" : 600,
   "largeuricone" : 50,
   "image" : {
+      "fond" : {
+        "_x" : 0,
+        "_y" : 0,
+        "largeur" : window.innerWidth,
+        "hauteur" : window.innerHeight,
+        "couleur" : "grey"
+      },
       "lonono" : {
-        "_x" : 50,
-        "_y" : 100,
-        "largeur" : 70,
-        "hauteur" : 70,
+        "_x" : window.innerWidth/2-window.innerWidth/20,
+        "_y" : window.innerHeight/2-window.innerHeight/20,
+        "largeur" : window.innerWidth/10,
+        "hauteur" : window.innerHeight/10,
         "couleur" : "green"
       },
       "village" : {
-        "_x" : 200,
+        "_x" : window.innerWidth-window.innerWidth/10,
         "_y" : 0,
-        "largeur" : 80,
-        "hauteur" : 80,
+        "largeur" : window.innerWidth/10,
+        "hauteur" : window.innerHeight/10,
         "couleur" : "blue"
-                }
+      },
+      "port" : {
+        "_x" : 0,
+        "_y" :  window.innerHeight- window.innerHeight/10,
+        "largeur" : window.innerWidth/10,
+        "hauteur" : window.innerHeight/10,
+        "couleur" : "yellow"
+                },
+        "foret" : {
+        "_x" : 0,
+        "_y" : 0,
+        "largeur" : window.innerWidth/10,
+        "hauteur" : window.innerHeight/10,
+        "couleur" : "orange"
+                  },
+          "jardin" : {
+          "_x" : window.innerWidth-window.innerWidth/10,
+          "_y" : window.innerHeight- window.innerHeight/10,
+          "largeur" : window.innerWidth/10,
+          "hauteur" : window.innerHeight/10,
+          "couleur" : "pink"
+                    }
             }
 
 }
