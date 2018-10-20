@@ -1,0 +1,10 @@
+var data_image_chargement = {
+"cherry" : "./image/001-cherry.png",
+"peanut" : "./image/003-peanut.png",
+"apple" : "./image/040-apple.png",
+"tomato" : "./image/006-tomato.png",
+"mango" : "./image/014-mango.png",
+"kiwi" : "./image/019-kiwi.png",
+"carrot" : "./image/029-carrot.png",
+"pumpkin" : "./image/046-pumpkin.png",
+}
