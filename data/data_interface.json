@@ -2,48 +2,131 @@ var data_interface = {
   "largeur" : 300,
   "hauteur" : 600,
   "largeuricone" : 50,
+  "introduction" : {
+    "maxWidth_text" : 2*window.innerWidth/3,
+    "lineHeight" : window.innerHeight/30,
+    "elements" : {
+        "titre" : {
+        "_x" : 20,
+        "_y" : window.innerHeight/15,
+        "nature" : "text",
+        "couleur" : "#333",
+        "police" : "23pt Calibri",
+        "text" : "lonnono warrior challenge maxi troll 2"
+      },
+      "texte" : {
+        "_x" : 20,
+        "_y" : window.innerHeight/3,
+        "nature" : "text",
+        "couleur" : "#333",
+        "police" : "16pt Calibri",
+        "text" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+      },
+      "fond" : {
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : window.innerWidth,
+        "_height" : window.innerHeight,
+        "nature" : "image",
+        "lien" : "non",
+        "ordre" : 1,
+        "loc" : "peanut"
+
+      },
+      "image" : {
+        "_x" : 50,
+        "_y" : 100,
+        "_width" : 50,
+        "_height" : 50,
+        "nature" : "image",
+        "lien" : "non",
+        "ordre" : 2,
+        "loc" : "cherry"
+      },
+      "bouton" : {
+        "_x" : (window.innerWidth/2)-(window.innerWidth/10),
+        "_y" : 3*window.innerHeight/4,
+        "_width" : (window.innerWidth/3),
+        "_height" : window.innerHeight/10,
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : "apple",
+        "dir" : "setup2"
+      }
+    }
+  },
   "image" : {
       "fond" : {
         "_x" : 0,
         "_y" : 0,
         "largeur" : window.innerWidth,
         "hauteur" : window.innerHeight,
-        "couleur" : "grey"
+        "couleur" : "grey",
+        "nature" : "image",
+        "lien" : "non",
+        "ordre" : 1,
+        "loc" : "apple"
       },
       "lonono" : {
-        "_x" : window.innerWidth/2-window.innerWidth/20,
-        "_y" : window.innerHeight/2-window.innerHeight/20,
-        "largeur" : window.innerWidth/10,
-        "hauteur" : window.innerHeight/10,
-        "couleur" : "green"
+        "_x" : window.innerWidth/2-window.innerWidth/10,
+        "_y" : window.innerHeight/2-window.innerHeight/10,
+        "largeur" : window.innerWidth/5,
+        "hauteur" : window.innerHeight/5,
+        "couleur" : "green",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : "tomato",
+        "dir" : "setup3"
       },
       "village" : {
         "_x" : window.innerWidth-window.innerWidth/10,
         "_y" : 0,
         "largeur" : window.innerWidth/10,
         "hauteur" : window.innerHeight/10,
-        "couleur" : "blue"
+        "couleur" : "blue",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : "mango",
+        "dir" : "setup4"
       },
       "port" : {
         "_x" : 0,
         "_y" :  window.innerHeight- window.innerHeight/10,
         "largeur" : window.innerWidth/10,
         "hauteur" : window.innerHeight/10,
-        "couleur" : "yellow"
+        "couleur" : "yellow",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : "kiwi",
+        "dir" : "setup5"
                 },
         "foret" : {
         "_x" : 0,
         "_y" : 0,
         "largeur" : window.innerWidth/10,
         "hauteur" : window.innerHeight/10,
-        "couleur" : "orange"
+        "couleur" : "orange",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : "carrot",
+        "dir" : "setup6"
                   },
           "jardin" : {
           "_x" : window.innerWidth-window.innerWidth/10,
           "_y" : window.innerHeight- window.innerHeight/10,
           "largeur" : window.innerWidth/10,
           "hauteur" : window.innerHeight/10,
-          "couleur" : "pink"
+          "couleur" : "pink",
+          "nature" : "image",
+          "lien" : "oui",
+          "ordre" : 2,
+          "loc" : "pumpkin",
+          "dir" : "setup7"
                     }
             }
 

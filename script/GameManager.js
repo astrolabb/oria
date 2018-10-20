@@ -1,30 +1,111 @@
-function GameManager(monCanvas, data_interface, data_equilibrage)
+/**
+construit les données/évènements pour la gestion du jeu
+exemple : positionnement image / écouteurs des clicks /
+@constructor
+
+@param monCanvas context à afficher au joueur
+@param data_interface Object données d'interface provenant de data_interface.json
+@param data_equilibrage Object données d'équilibrage provenant de equilibrage_url
+@param monCanvas_clic context pour gérer les clics
+@param data_image_chargee Object contenant tous les contextes des images chargées
+
+*/
+
+function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee)
 {
     console.log("fonction GameManager");
 
     this.monCanvas = monCanvas;
+    this.monCanvas_click = monCanvas_clic;
+    this.data_interface = data_interface;
+    this.data_image_chargee = data_image_chargee;
     this.arrayOfGameObjects = [];
+    this.arrayOfGameObjects2 = [];
+    this.arrayOfClickObjects = {};
     this.map = {};
     this.pos_x = 0;
     this.pos_y = 0;
 
 }
+/**
+ * Introduction du jeu
+ *
+ * @return {[type]} [description]
+ */
+ GameManager.prototype.setup = function ()
+ {
+
+   this.arrayOfClickObjects = {};
+   this.monCanvas.clearRect(0,0, window.innerWidth, window.innerHeight);
+   console.log("GamaManager : Introduction");
+   this.monCanvas.beginPath();
+   this.intro = new Intro(this.monCanvas,this, data_interface);
+   this.affichage_intro();
+   this.click_canvas();
+   this.affichage_curseur();
+   this.monCanvas.closePath();
+
+   this.monCanvas_click.clearRect(0,0, window.innerWidth, window.innerHeight);
+   this.monCanvas_click.beginPath();
+   this.canvas_hit = new Gameplay(this.monCanvas_click, this, this.data_interface.introduction.elements);
+   this.affichage_click_zone();
+   this.monCanvas_click.closePath();
+
+ }
+ /**
+  * Mise en place de la zone à clicker
+  *
+  * @return {[type]} [description]
+  */
+  GameManager.prototype.affichage_click_zone = function ()
+   {
+     console.log("affichage_click_zone");
+     console.log("arrayOfGameObjects2 : "+JSON.stringify(this.arrayOfGameObjects2));
+       for (var i in this.arrayOfGameObjects2) {
+           this.canvas_hit[this.arrayOfGameObjects2[i]].draw(this.monCanvas_click);
+       }
+   }
+
+
+ /**
+  * Affichage de l introduction
+  *
+  * @return {[type]} [description]
+  */
+ GameManager.prototype.affichage_intro = function ()
+  {
+    console.log("affichage_intro");
+    console.log("arrayOfGameObjects : "+JSON.stringify(this.arrayOfGameObjects));
+      for (var i in this.arrayOfGameObjects) {
+          if(this.arrayOfGameObjects[i][1]=="text"){
+            this.intro[this.arrayOfGameObjects[i][0]].centrage();
+          }else if(this.arrayOfGameObjects[i][1]=="image"){
+            this.intro[this.arrayOfGameObjects[i][0]].affichage();
+          }
+      }
+
+  }
 
 /**
  * Init du jeu
  *
  * @return {[type]} [description]
  */
-GameManager.prototype.setup = function ()
+GameManager.prototype.setup2 = function ()
 {
   var self = this;
+  this.arrayOfGameObjects = [];
+  this.arrayOfGameObjects2 = [];
+  this.arrayOfClickObjects = {};
+
   this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
   this.monCanvas.beginPath();
   this.map = new Map(this.monCanvas, self, data_interface),
   this.affichage_map();
   this.click_canvas();
-  this.affichage_curseur();
   this.monCanvas.closePath();
+
+  this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
 }
 
 /**
@@ -78,8 +159,16 @@ GameManager.prototype.setup = function ()
         var self = this;
         $("#monCanvas").click(function(e){
           self.position_curseur(e);
-          $("#monCanvas").off('click');
-          self.setup();
+          console.log("pos_x "+self.pos_x+" pos_y "+self.pos_y);
+          self.affichage_curseur();
+          var resultat = self.canvas_hit.direction(self.pos_x, self.pos_y, self.arrayOfClickObjects);
+          console.log("mon resultat "+resultat);
+
+          if(resultat){
+            $("#monCanvas").off('click');
+            self[resultat]();
+          }
+
         });
 
      }
