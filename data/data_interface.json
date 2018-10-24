@@ -44,7 +44,7 @@ var data_interface = {
         "loc" : "cherry"
       },
       "bouton" : {
-        "_x" : (window.innerWidth/2)-(window.innerWidth/10),
+        "_x" : (window.innerWidth/2)-(window.innerWidth/6),
         "_y" : 3*window.innerHeight/4,
         "_width" : (window.innerWidth/3),
         "_height" : window.innerHeight/10,
@@ -60,74 +60,84 @@ var data_interface = {
       "fond" : {
         "_x" : 0,
         "_y" : 0,
-        "largeur" : window.innerWidth,
-        "hauteur" : window.innerHeight,
+        "_width" : window.innerWidth,
+        "_height" : window.innerHeight,
         "couleur" : "grey",
         "nature" : "image",
         "lien" : "non",
         "ordre" : 1,
-        "loc" : "apple"
+        "loc" : ["apple","cherry"]
       },
       "lonono" : {
         "_x" : window.innerWidth/2-window.innerWidth/10,
         "_y" : window.innerHeight/2-window.innerHeight/10,
-        "largeur" : window.innerWidth/5,
-        "hauteur" : window.innerHeight/5,
+        "_width" : window.innerWidth/5,
+        "_height" : window.innerHeight/5,
         "couleur" : "green",
         "nature" : "image",
         "lien" : "oui",
         "ordre" : 2,
-        "loc" : "tomato",
+        "loc" : ["tomato","apple"],
         "dir" : "setup3"
       },
       "village" : {
         "_x" : window.innerWidth-window.innerWidth/10,
         "_y" : 0,
-        "largeur" : window.innerWidth/10,
-        "hauteur" : window.innerHeight/10,
+        "_width" : window.innerWidth/10,
+        "_height" : window.innerHeight/10,
         "couleur" : "blue",
         "nature" : "image",
         "lien" : "oui",
         "ordre" : 2,
-        "loc" : "mango",
+        "loc" : ["tomato","mango"],
         "dir" : "setup4"
       },
       "port" : {
         "_x" : 0,
         "_y" :  window.innerHeight- window.innerHeight/10,
-        "largeur" : window.innerWidth/10,
-        "hauteur" : window.innerHeight/10,
+        "_width" : window.innerWidth/10,
+        "_height" : window.innerHeight/10,
         "couleur" : "yellow",
         "nature" : "image",
         "lien" : "oui",
         "ordre" : 2,
-        "loc" : "kiwi",
+        "loc" : ["kiwi","mango"],
         "dir" : "setup5"
                 },
         "foret" : {
         "_x" : 0,
         "_y" : 0,
-        "largeur" : window.innerWidth/10,
-        "hauteur" : window.innerHeight/10,
+        "_width" : window.innerWidth/10,
+        "_height" : window.innerHeight/10,
         "couleur" : "orange",
         "nature" : "image",
         "lien" : "oui",
         "ordre" : 2,
-        "loc" : "carrot",
+        "loc" : ["carrot","mango"],
         "dir" : "setup6"
                   },
-          "jardin" : {
-          "_x" : window.innerWidth-window.innerWidth/10,
-          "_y" : window.innerHeight- window.innerHeight/10,
-          "largeur" : window.innerWidth/10,
-          "hauteur" : window.innerHeight/10,
-          "couleur" : "pink",
-          "nature" : "image",
-          "lien" : "oui",
-          "ordre" : 2,
-          "loc" : "pumpkin",
-          "dir" : "setup7"
-                    }
+        "jardin" : {
+        "_x" : window.innerWidth-window.innerWidth/10,
+        "_y" : window.innerHeight- window.innerHeight/10,
+        "_width" : window.innerWidth/10,
+        "_height" : window.innerHeight/10,
+        "couleur" : "pink",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : ["pumpkin","mango"],
+        "dir" : "setup7"
+                    },
+        "or" : {
+        "_x" : window.innerWidth/2-window.innerWidth/30,
+        "_y" : window.innerHeight- window.innerHeight/30,
+        "_width" : window.innerWidth/30,
+        "_height" : window.innerHeight/30,
+        "couleur" : "red",
+        "nature" : "image",
+        "lien" : "non",
+        "ordre" : 2,
+        "loc" : ["acorn"]
             }
-
+        }
 }

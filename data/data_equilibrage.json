@@ -1,5 +1,157 @@
 {
+  "ressource" : {
+      "herbe" : {
+        "origin" : "foret",
+        "niv" : 1,
+        "loc" : "herbe",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "branche" : {
+        "origin" : "foret",
+        "niv" : 1,
+        "loc" : "branche",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "billette" : {
+        "origin" : "foret",
+        "niv" : 2,
+        "loc" : "billette",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "rondin" : {
+        "origin" : "foret",
+        "niv" : 2,
+        "loc" : "rondin",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "planche" : {
+        "origin" : "foret",
+        "niv" : 3,
+        "loc" : "planche",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "bois_sculpte" : {
+        "origin" : "foret",
+        "niv" : 3,
+        "loc" : "bois_sculpte",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "licorne" : {
+        "origin" : "foret",
+        "niv" : 3,
+        "loc" : "licorne",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "plante" : {
+        "origin" : "jardin",
+        "niv" : 1,
+        "loc" : "plante",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "limace" : {
+        "origin" : "jardin",
+        "niv" : 1,
+        "loc" : "limace",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "cereales" : {
+        "origin" : "jardin",
+        "niv" : 2,
+        "loc" : "cereales",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "fleur" : {
+        "origin" : "jardin",
+        "niv" : 2,
+        "loc" : "fleur",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "legumes" : {
+        "origin" : "jardin",
+        "niv" : 3,
+        "loc" : "legumes",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "fruit" : {
+        "origin" : "jardin",
+        "niv" : 3,
+        "loc" : "fruit",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "graine_magique" : {
+        "origin" : "jardin",
+        "niv" : 3,
+        "loc" : "graine_magique",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "eau" : {
+        "origin" : "lac",
+        "niv" : 1,
+        "loc" : "eau",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "poisson" : {
+        "origin" : "lac",
+        "niv" : 1,
+        "loc" : "poisson",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "crevette" : {
+        "origin" : "lac",
+        "niv" : 2,
+        "loc" : "crevette",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "crabe" : {
+        "origin" : "lac",
+        "niv" : 2,
+        "loc" : "crabe",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "homard" : {
+        "origin" : "lac",
+        "niv" : 3,
+        "loc" : "homard",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "pieuvre" : {
+        "origin" : "lac",
+        "niv" : 3,
+        "loc" : "pieuvre",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      },
+      "sirene" : {
+        "origin" : "lac",
+        "niv" : 3,
+        "loc" : "sirene",
+        "lien" : "oui",
+        "dir" : "ressource_gestion"
+      }
+
+  },
+  ressource_demarrage : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  or : 0
 
 
-  
+
 }

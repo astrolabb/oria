@@ -23,10 +23,63 @@ function Main(data_interface, data_equilibrage, data_image_chargee){
   monCanvas_clic.canvas.width  = window.innerWidth;
   monCanvas_clic.canvas.height = window.innerHeight;
 
+  // gestionnaire du joueur : niveaux, ressources...
+  var mon_Player = new Player();
+  // initialisation du joueur
+  mon_Player.setup(data_equilibrage);
   // démarrage du gestionnaire de jeu : images/click
-  var mon_GameManager = new GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee);
+  var mon_GameManager = new GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player);
   // lancement du menu d'accueil : prototype : setup
   mon_GameManager.setup();
-
-
 }
+
+/**
+fonction grey_scale : met le contexte envoyé en nuance de gris
+@param self : context le contexte à modifier
+@return mes_donnees_image : obje ImageData : pixel modifiés en nuance de gris
+*/
+function grey_scale(self){
+
+       console.log("fonction grey_scale");
+       var mes_donnees_image = self.monCanvas.getImageData(0,0,window.innerWidth,window.innerHeight);
+       var mes_pixels = mes_donnees_image.data;
+       for(var i=0 ; i<mes_pixels.length ; i+=4){
+
+         var mon_gris = mes_pixels[i]*0.33 + mes_pixels[i+1]*0.61 + mes_pixels[i+2]*0.06;
+         mes_pixels[i] = mon_gris;
+         mes_pixels[i+1] = mon_gris;
+         mes_pixels[i+2] = mon_gris;
+       // pixel i+3 représence l'alpha
+       //  mes_pixels[i+3]
+       }
+    return mes_donnees_image;
+  }
+/**
+fonction fadein
+
+
+*/
+function fadein (self, i, nb){
+  console.log("fonction fadein");
+   if(i>nb){
+     clearInterval(self.mon_Interval2);
+   }
+   self.monCanvas.beginPath();
+  self.monCanvas.globalAlpha = 0.1;
+  self.monCanvas.fillStyle = "FFFFFF";
+  self.monCanvas.fillRect(0, 0, window.innerWidth, window.innerHeight);
+   self.monCanvas.closePath();
+    }
+
+    /**
+
+    */
+    function getColorRandom(){
+        var r = Math.round(Math.random()*255);
+        var g = Math.round(Math.random()*255);
+        var b = Math.round(Math.random()*255);
+
+        var result = 'rgb('+r+','+g+','+b+')';
+            console.log("couleur retournée "+result);
+        return result;
+    }

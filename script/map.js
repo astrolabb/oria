@@ -12,14 +12,13 @@ var Map = function(monCanvas, _target, data_interface){
 
 
 };
-
 var Icone = function(myCanvasContext, data_image, nom, _target){
   this._target = _target;
   this.monCanvas = myCanvasContext;
   this.nom = nom;
   this.data_image = data_image;
-  this._width = data_image.largeur;
-  this._height = data_image.hauteur;
+  this._width = data_image._width;
+  this._height = data_image._height;
   this._x = data_image._x;
   this._y = data_image._y;
   this.couleur = data_image.couleur;
@@ -30,7 +29,7 @@ Icone.prototype.draw = function(myCanvasContext){
 //  myCanvasContext.fillStyle = this.couleur;
 //  myCanvasContext.fillRect(this._x, this._y, this.largeur, this.hauteur);
     var self = this;
-    self.monCanvas.drawImage(this._target.data_image_chargee[this.loc],self._x,self._y,self._width,self._height);
+    self.monCanvas.drawImage(this._target.data_image_chargee[this.loc[Math.floor(Math.random()*this.loc.length)]],self._x,self._y,self._width,self._height);
 
 
 }

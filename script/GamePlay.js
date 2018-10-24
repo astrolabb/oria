@@ -47,13 +47,3 @@ Rectangle.prototype.draw = function(myCanvasContext){
   myCanvasContext.fillStyle = this.color;
   myCanvasContext.fillRect(this._x, this._y, this._width, this._height);
 }
-
-function getColorRandom(){
-    var r = Math.round(Math.random()*255);
-    var g = Math.round(Math.random()*255);
-    var b = Math.round(Math.random()*255);
-
-    var result = 'rgb('+r+','+g+','+b+')';
-        console.log("couleur retournée "+result);
-    return result;
-}

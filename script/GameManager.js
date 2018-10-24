@@ -28,26 +28,36 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
 
 }
 /**
- * Introduction du jeu
+ * prototype de lancement :
+ de la page d'accueil
  *
- * @return {[type]} [description]
+ *
  */
  GameManager.prototype.setup = function ()
  {
 
+   // tableau des contextes des éléments à cliquer : mise à 0
    this.arrayOfClickObjects = {};
+   // canvas vu par le joueur vidé
    this.monCanvas.clearRect(0,0, window.innerWidth, window.innerHeight);
    console.log("GamaManager : Introduction");
-   this.monCanvas.beginPath();
-   this.intro = new Intro(this.monCanvas,this, data_interface);
-   this.affichage_intro();
-   this.click_canvas();
-   this.affichage_curseur();
-   this.monCanvas.closePath();
+   // Mise en place des images et des boutons de la page d'accueil
+     this.monCanvas.beginPath();
+     // mise place des images et des boutons par le contructeur Intro
+     this.intro = new Intro(this.monCanvas,this, data_interface);
+     // affichage des images et des boutons
+     this.affichage_intro();
+     // recupération position click, lien vers destination souhaitée
+     this.click_canvas();
+     // affichage du click
+     this.monCanvas.closePath();
 
+   // canvas des zone de click vidé
    this.monCanvas_click.clearRect(0,0, window.innerWidth, window.innerHeight);
    this.monCanvas_click.beginPath();
+   // mise en place des zones à cliquer
    this.canvas_hit = new Gameplay(this.monCanvas_click, this, this.data_interface.introduction.elements);
+   // affichage des zones à cliquer
    this.affichage_click_zone();
    this.monCanvas_click.closePath();
 
@@ -93,7 +103,9 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
  */
 GameManager.prototype.setup2 = function ()
 {
+
   var self = this;
+
   this.arrayOfGameObjects = [];
   this.arrayOfGameObjects2 = [];
   this.arrayOfClickObjects = {};
@@ -106,7 +118,36 @@ GameManager.prototype.setup2 = function ()
   this.monCanvas.closePath();
 
   this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  this.monCanvas_click.beginPath();
+  // mise en place des zones à cliquer
+  this.canvas_hit = new Gameplay(this.monCanvas_click, this, this.data_interface.image);
+  // affichage des zones à cliquer
+  this.affichage_click_zone();
+  this.monCanvas_click.closePath();
+
+    if(!this.mon_Interval){
+      this.mon_Interval = setInterval( function() {self.reload();}, 1000);
+    }
 }
+/**
+ * rechargement de la map
+ *
+ * @return {[type]} [description]
+ */
+ GameManager.prototype.reload = function ()
+  {
+    console.log("reload");
+      this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    for (var i in this.arrayOfGameObjects) {
+          console.log("image "+i);
+          this.map[this.arrayOfGameObjects[i]].draw(this.monCanvas);
+      }
+
+
+  }
+
+
 
 /**
  * Affichage map
@@ -171,4 +212,65 @@ GameManager.prototype.setup2 = function ()
 
         });
 
+     }
+ /**
+  * Affichage map
+  *
+  * @return {[type]} [description]
+  */
+  GameManager.prototype.setup3 = function ()
+   {
+this.setup();
+   }
+  /**
+  * Affichage map
+  *
+  * @return {[type]} [description]
+  */
+  GameManager.prototype.setup4 = function ()
+   {
+     if(this.mon_Interval){
+         clearInterval(this.mon_Interval);
+     }
+     this.monCanvas.putImageData(grey_scale(this), 0, 0);
+     this.fadein(10);
+   }
+
+   /**
+   * Affichage map
+   *
+   * @return {[type]} [description]
+   */
+   GameManager.prototype.setup5 = function ()
+    {
+this.setup();
+    }
+    /**
+    * Affichage map
+    *
+    * @return {[type]} [description]
+    */
+    GameManager.prototype.setup6 = function ()
+     {
+this.setup();
+     }
+     /**
+     * Affichage map
+     *
+     * @return {[type]} [description]
+     */
+     GameManager.prototype.setup7 = function ()
+      {
+this.setup();
+      }
+  /**
+  * blanchi le canvas vu par le joueur
+  *
+  *
+  */
+  GameManager.prototype.fadein = function (nb)
+     {
+       self = this;
+       var mon_compte = 0;
+       this.mon_Interval2 = setInterval(function(){mon_compte++; fadein(self, mon_compte, nb)} , 400);
      }
