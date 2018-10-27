@@ -11,10 +11,10 @@ exemple : positionnement image / écouteurs des clicks /
 
 */
 
-function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee)
+function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player)
 {
     console.log("fonction GameManager");
-
+    console.log("test chargement : or "+mon_Player.or);
     this.monCanvas = monCanvas;
     this.monCanvas_click = monCanvas_clic;
     this.data_interface = data_interface;
@@ -25,6 +25,8 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
     this.map = {};
     this.pos_x = 0;
     this.pos_y = 0;
+    this.mon_Player = mon_Player;
+    this.data_equilibrage = data_equilibrage;
 
 }
 /**
@@ -40,7 +42,7 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
    this.arrayOfClickObjects = {};
    // canvas vu par le joueur vidé
    this.monCanvas.clearRect(0,0, window.innerWidth, window.innerHeight);
-   console.log("GamaManager : Introduction");
+   console.log("GameManager : Introduction");
    // Mise en place des images et des boutons de la page d'accueil
      this.monCanvas.beginPath();
      // mise place des images et des boutons par le contructeur Intro
@@ -101,7 +103,7 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
  *
  * @return {[type]} [description]
  */
-GameManager.prototype.setup2 = function ()
+GameManager.prototype.setup2 = function (bouton)
 {
 
   var self = this;
@@ -112,7 +114,10 @@ GameManager.prototype.setup2 = function ()
 
   this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
   this.monCanvas.beginPath();
-  this.map = new Map(this.monCanvas, self, data_interface),
+  this.map = new Map(this.monCanvas, self, this.data_interface.carte);
+  console.log("mes_niveaux "+this.mon_Player);
+  this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
+
   this.affichage_map();
   this.click_canvas();
   this.monCanvas.closePath();
@@ -120,15 +125,17 @@ GameManager.prototype.setup2 = function ()
   this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
   this.monCanvas_click.beginPath();
   // mise en place des zones à cliquer
-  this.canvas_hit = new Gameplay(this.monCanvas_click, this, this.data_interface.image);
+  this.canvas_hit = new Gameplay(this.monCanvas_click, this, this.data_interface.carte.elements);
   // affichage des zones à cliquer
   this.affichage_click_zone();
   this.monCanvas_click.closePath();
 
     if(!this.mon_Interval){
-      this.mon_Interval = setInterval( function() {self.reload();}, 1000);
+      this.mon_Interval = setInterval( function() {self.reload();}, 3000);
     }
+
 }
+
 /**
  * rechargement de la map
  *
@@ -141,7 +148,11 @@ GameManager.prototype.setup2 = function ()
 
     for (var i in this.arrayOfGameObjects) {
           console.log("image "+i);
-          this.map[this.arrayOfGameObjects[i]].draw(this.monCanvas);
+          if(this.arrayOfGameObjects[i][1]=="text"){
+            this.map[this.arrayOfGameObjects[i][0]].setup(this.mon_Player.or);
+          }else if(this.arrayOfGameObjects[i][1]=="image"){
+            this.map[this.arrayOfGameObjects[i][0]].draw(this.monCanvas);
+          }
       }
 
 
@@ -157,9 +168,16 @@ GameManager.prototype.setup2 = function ()
  GameManager.prototype.affichage_map = function ()
   {
     console.log("affichage_map : affichage des icones");
+
       for (var i in this.arrayOfGameObjects) {
-          this.map[this.arrayOfGameObjects[i]].draw(this.monCanvas);
+          if(this.arrayOfGameObjects[i][1]=="text"){
+            this.map[this.arrayOfGameObjects[i][0]].setup(this.mon_Player.or);
+          }else if(this.arrayOfGameObjects[i][1]=="image"){
+            this.map[this.arrayOfGameObjects[i][0]].draw(this.monCanvas);
+          }
       }
+
+
   }
   /**
    * position curseur
@@ -207,33 +225,45 @@ GameManager.prototype.setup2 = function ()
 
           if(resultat){
             $("#monCanvas").off('click');
-            self[resultat]();
+            console.log("click_canvas "+JSON.stringify(resultat));
+            self[resultat[1]](resultat[0]);
           }
 
         });
 
      }
  /**
-  * Affichage map
+  * comportement lors d'un click sur le lonono
   *
   * @return {[type]} [description]
   */
-  GameManager.prototype.setup3 = function ()
+  GameManager.prototype.setup3 = function (key)
    {
-this.setup();
+//this.setup();
+this.mon_Player.or +=1;
+this.setup2();
    }
   /**
   * Affichage map
   *
   * @return {[type]} [description]
+    @todo enlever les fonctions fadein en js qui sont commentées
   */
-  GameManager.prototype.setup4 = function ()
+  GameManager.prototype.setup4 = function (key)
    {
+     console.log("village");
+     self = this;
      if(this.mon_Interval){
          clearInterval(this.mon_Interval);
      }
-     this.monCanvas.putImageData(grey_scale(this), 0, 0);
-     this.fadein(10);
+     $("#monCanvas").addClass("niveau_de_gris mon_fadein");
+     $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+          $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
+          self.contructor_village();
+
+     });
+//     this.monCanvas.putImageData(grey_scale(this), 0, 0);
+//     this.fadein(20);
    }
 
    /**
@@ -241,36 +271,80 @@ this.setup();
    *
    * @return {[type]} [description]
    */
-   GameManager.prototype.setup5 = function ()
+   GameManager.prototype.setup5 = function (key)
     {
 this.setup();
     }
     /**
-    * Affichage map
+    * comportement lors de click sur la foret
     *
     * @return {[type]} [description]
     */
-    GameManager.prototype.setup6 = function ()
+    GameManager.prototype.setup6 = function (key)
      {
-this.setup();
+       console.log("setup6 "+key)
+        this.mon_Player.changement_niv(key);
+        this.setup2();
      }
      /**
      * Affichage map
      *
      * @return {[type]} [description]
      */
-     GameManager.prototype.setup7 = function ()
+     GameManager.prototype.setup7 = function (key)
       {
 this.setup();
       }
   /**
-  * blanchi le canvas vu par le joueur
+  * blanchi le canvas vu par le joueur en js
+  @todo supprimer cette fonction si ne sert pas
   *
   *
   */
   GameManager.prototype.fadein = function (nb)
      {
        self = this;
-       var mon_compte = 0;
-       this.mon_Interval2 = setInterval(function(){mon_compte++; fadein(self, mon_compte, nb)} , 400);
+       mon_compte = 0;
+       this.mon_Interval2 = setInterval(function(){
+         mon_compte++;
+         fadein(self, mon_compte, nb);
+       } , 400);
      }
+  GameManager.prototype.contructor_village = function(){
+    var self = this;
+    this.arrayOfGameObjects = [];
+    this.arrayOfGameObjects2 = [];
+    this.arrayOfClickObjects = {};
+
+    this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    this.monCanvas.beginPath();
+    this.village = new Mon_Village(this.monCanvas, self, this.data_equilibrage.plats, this.data_interface.village);
+
+    this.affichage_village();
+    this.click_canvas();
+    this.monCanvas.closePath();
+
+    this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    this.monCanvas_click.beginPath();
+    // mise en place des zones à cliquer
+    this.canvas_hit = new Gameplay(this.monCanvas_click, this, this.data_equilibrage.plats);
+    // affichage des zones à cliquer
+    this.affichage_click_zone();
+    this.monCanvas_click.closePath();
+      if(!this.mon_Interval){
+          this.mon_Interval = setInterval( function() {self.reload();}, 3000);
+      }
+  }
+  GameManager.prototype.affichage_village = function()
+  {
+    console.log("affichage_village");
+
+      for (var i in this.arrayOfGameObjects) {
+          if(this.arrayOfGameObjects[i][1]=="text"){
+            this.village[this.arrayOfGameObjects[i][0]].setup(this.mon_Player.or);
+          }else if(this.arrayOfGameObjects[i][1]=="image"){
+            this.village[this.arrayOfGameObjects[i][0]].draw(this.monCanvas);
+          }
+      }
+
+  }

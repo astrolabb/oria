@@ -149,9 +149,239 @@
       }
 
   },
-  ressource_demarrage : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  or : 0
-
-
-
+  "ressource_demarrage" : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  "or" : 0,
+  "niveau" : {
+    "lonono" : 1,
+    "village" : 1,
+    "lac" : 1,
+    "foret" : 1,
+    "jardin" : 1,
+    "fond" : 1,
+    "or_icone" : 1,
+    "cereale_soufflee" : 1
+  },
+  "max_niveau" : 3,
+  "plats" : {
+    "cereale_soufflee" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
+      "dir" : "vente",
+      "or" : 1
+    },
+    "caviar" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "acorn",
+      "dir" : "vente",
+      "or" : 1
+    },
+    "huile" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "pumpkin",
+      "dir" : "vente",
+      "or" : 2
+    },
+    "jus_de_fruit" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "carrot",
+      "dir" : "vente",
+      "or" : 3
+    },
+    "riz" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "kiwi",
+      "dir" : "vente",
+      "or" : 2
+    },
+    "bouillon" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "mango",
+      "dir" : "vente",
+      "or" : 2
+    },
+    "sushi" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "tomato",
+      "dir" : "vente",
+      "or" : 3
+    },
+    "frite" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "apple",
+      "dir" : "vente",
+      "or" : 3
+    },
+    "saumon_citronne" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "peanut",
+      "dir" : "vente",
+      "or" : 3
+    },
+    "miel" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "cherry",
+      "dir" : "vente",
+      "or" : 2
+    },
+    "pop_corn_caramelise" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "onion",
+      "dir" : "vente",
+      "or" : 3
+    },
+    "crabe_marine" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "acorn",
+      "dir" : "vente",
+      "or" : 3
+    },
+    "sauce" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "pumpkin",
+      "dir" : "vente",
+      "or" : 3
+    },
+    "the" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "carrot",
+      "dir" : "vente",
+      "or" : 4
+    },
+    "maki" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "kiwi",
+      "dir" : "vente",
+      "or" : 5
+    },
+    "salade_de_fruit" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "mango",
+      "dir" : "vente",
+      "or" : 5
+    },
+    "crevette_sautee" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "mango",
+      "dir" : "vente",
+      "or" : 10
+    },
+    "homard_royal" : {
+      "_x" : 0,
+      "_y" : 0,
+      "_width" : 10,
+      "_height" : 10,
+      "nature" : "image",
+      "lien" : "oui",
+      "ordre" : 2,
+      "loc" : "tomato",
+      "dir" : "vente",
+      "or" : 5
+      }
+  }
 }

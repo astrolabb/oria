@@ -12,7 +12,8 @@ var data_interface = {
         "nature" : "text",
         "couleur" : "#333",
         "police" : "23pt Calibri",
-        "text" : "lonnono warrior challenge maxi troll 2"
+        "text" : "lonnono warrior challenge maxi troll 2",
+        "alignement" : "centrage"
       },
       "texte" : {
         "_x" : 20,
@@ -20,7 +21,8 @@ var data_interface = {
         "nature" : "text",
         "couleur" : "#333",
         "police" : "16pt Calibri",
-        "text" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+        "text" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+        "alignement" : "centrage"
       },
       "fond" : {
         "_x" : 0,
@@ -56,7 +58,10 @@ var data_interface = {
       }
     }
   },
-  "image" : {
+  "carte" : {
+    "maxWidth_text" : 2*window.innerWidth/3,
+    "lineHeight" : window.innerHeight/30,
+    "elements" : {
       "fond" : {
         "_x" : 0,
         "_y" : 0,
@@ -66,7 +71,11 @@ var data_interface = {
         "nature" : "image",
         "lien" : "non",
         "ordre" : 1,
-        "loc" : ["apple","cherry"]
+        "loc" : {
+          "niv1" :["apple","cherry"],
+          "niv2" :["cherry","cherry"],
+          "niv3" :["cherry","cherry"]
+        }
       },
       "lonono" : {
         "_x" : window.innerWidth/2-window.innerWidth/10,
@@ -77,7 +86,11 @@ var data_interface = {
         "nature" : "image",
         "lien" : "oui",
         "ordre" : 2,
-        "loc" : ["tomato","apple"],
+        "loc" : {
+          "niv1" :["apple","cherry"],
+          "niv2" :["tomato","tomato"],
+          "niv3" :["tomato","tomato"]
+        },
         "dir" : "setup3"
       },
       "village" : {
@@ -89,10 +102,14 @@ var data_interface = {
         "nature" : "image",
         "lien" : "oui",
         "ordre" : 2,
-        "loc" : ["tomato","mango"],
+        "loc" : {
+          "niv1" :["apple","cherry"],
+          "niv2" :["mango","mango"],
+          "niv3" :["mango","mango"]
+        },
         "dir" : "setup4"
       },
-      "port" : {
+      "lac" : {
         "_x" : 0,
         "_y" :  window.innerHeight- window.innerHeight/10,
         "_width" : window.innerWidth/10,
@@ -101,10 +118,14 @@ var data_interface = {
         "nature" : "image",
         "lien" : "oui",
         "ordre" : 2,
-        "loc" : ["kiwi","mango"],
+        "loc" : {
+          "niv1" :["apple","cherry"],
+          "niv2" :["pumpkin","pumpkin"],
+          "niv3" :["pumpkin","pumpkin"]
+        },
         "dir" : "setup5"
                 },
-        "foret" : {
+      "foret" : {
         "_x" : 0,
         "_y" : 0,
         "_width" : window.innerWidth/10,
@@ -113,10 +134,14 @@ var data_interface = {
         "nature" : "image",
         "lien" : "oui",
         "ordre" : 2,
-        "loc" : ["carrot","mango"],
+        "loc" : {
+          "niv1" :["apple","cherry"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["tomato","tomato"]
+        },
         "dir" : "setup6"
                   },
-        "jardin" : {
+      "jardin" : {
         "_x" : window.innerWidth-window.innerWidth/10,
         "_y" : window.innerHeight- window.innerHeight/10,
         "_width" : window.innerWidth/10,
@@ -125,10 +150,14 @@ var data_interface = {
         "nature" : "image",
         "lien" : "oui",
         "ordre" : 2,
-        "loc" : ["pumpkin","mango"],
+        "loc" : {
+          "niv1" :["apple","cherry"],
+          "niv2" :["cherry","cherry"],
+          "niv3" :["cherry","cherry"]
+        },
         "dir" : "setup7"
                     },
-        "or" : {
+      "or_icone" : {
         "_x" : window.innerWidth/2-window.innerWidth/30,
         "_y" : window.innerHeight- window.innerHeight/30,
         "_width" : window.innerWidth/30,
@@ -137,7 +166,51 @@ var data_interface = {
         "nature" : "image",
         "lien" : "non",
         "ordre" : 2,
-        "loc" : ["acorn"]
+        "loc" : {
+          "niv1" :["acorn","acorn"],
+          "niv2" :["acorn","acorn"],
+          "niv3" :["acorn","acorn"]
+        }
+            },
+      "or_text" : {
+          "_x" : window.innerWidth/2,
+          "_y" : window.innerHeight- window.innerHeight/30,
+          "nature" : "text",
+          "couleur" : "#333",
+          "police" : "23pt Calibri",
+          "text" : "",
+          "alignement" : "relative"
+                }
+            }
+        },
+        "village" : {
+          "maxWidth_text" : 2*window.innerWidth/3,
+          "lineHeight" : window.innerHeight/30,
+          "elements" : {
+              "fond" : {
+                "_x" : 0,
+                "_y" : 0,
+                "_width" : window.innerWidth,
+                "_height" : window.innerHeight,
+                "couleur" : "grey",
+                "nature" : "image",
+                "lien" : "non",
+                "ordre" : 1,
+                "loc" : {
+                  "niv1" :["kiwi","kiwi"],
+                  "niv2" :["tomato","tomato"],
+                  "niv3" :["cherry","cherry"]
+                  }
+              },
+              "titre" : {
+              "_x" : 20,
+              "_y" : window.innerHeight/15,
+              "nature" : "text",
+              "couleur" : "#333",
+              "police" : "23pt Calibri",
+              "text" : "lonnono warrior challenge maxi troll 2",
+              "alignement" : "centrage"
             }
         }
+    }
 }

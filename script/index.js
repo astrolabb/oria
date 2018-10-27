@@ -17,11 +17,12 @@ utilisation d'un HttpRequest pour laisser choix entre local et distant
           var type = recup_equilibrage.getResponseHeader('Content-Type');
           var data_equilibrage = recup_equilibrage.response;
           console.log("Equilibrage :"+$.parseJSON(JSON.stringify(data_equilibrage)));
+          console.log("Equilibrage2 :"+JSON.parse(data_equilibrage).or);
           console.log("Interface :"+JSON.stringify(data_interface));
           // quand le json d'euilibrage chargé on charge les images
           loadImages(data_image_chargement, function(images) {
               // quand les images sont chargées, on charge le jeu
-              Main(data_interface,data_equilibrage,images);
+              Main(data_interface,JSON.parse(data_equilibrage),images);
                   });
 
   };

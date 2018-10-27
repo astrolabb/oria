@@ -3,3 +3,18 @@ html, body {
   height: 100%;
   margin: 0px;
 }
+.niveau_de_gris {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+.mon_fadein { -webkit-animation: fadein 2s linear 1s; } @-webkit-keyframes fadein { from { opacity: 1; } to { opacity: 0; } }
+
+
+}
+/* canvas { filter: grayscale(100%); }   */
+/*
+.mon_animation { animation: fadein 2s; } @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+canvas: canvas.classList.add("mon_animation");
+canvas.classList.remove("mon_animation");
+*/

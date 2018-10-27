@@ -7,5 +7,7 @@ var data_image_chargement = {
 "kiwi" : "./image/019-kiwi.png",
 "carrot" : "./image/029-carrot.png",
 "pumpkin" : "./image/046-pumpkin.png",
-"acorn" : "./image/047-acorn.png"
+"acorn" : "./image/047-acorn.png",
+"onion" : "./image/005-onion.png"
+
 }

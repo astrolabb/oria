@@ -10,12 +10,13 @@ var Gameplay = function(monCanvas, _parent, data){
        if(data[key].nature == "image" && data[key].lien == "oui"){
          console.log("bouton trouvé");
           self[key] = new Rectangle(monCanvas, data[key], key);
-          _parent.arrayOfGameObjects2.push(key);
+           _parent.arrayOfGameObjects2.push(key);
           while(true) {
                var colorKey = getColorRandom();
                if (!_parent.arrayOfClickObjects[colorKey]) {
+
                   self[key].color = colorKey;
-                  _parent.arrayOfClickObjects[colorKey] = data[key].dir;
+                  _parent.arrayOfClickObjects[colorKey] = [key, data[key].dir];
                   return;
                }
             }

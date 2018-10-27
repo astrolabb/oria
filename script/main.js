@@ -30,10 +30,13 @@ function Main(data_interface, data_equilibrage, data_image_chargee){
   // démarrage du gestionnaire de jeu : images/click
   var mon_GameManager = new GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player);
   // lancement du menu d'accueil : prototype : setup
-  mon_GameManager.setup();
+  mon_GameManager.setup2();
+
+
 }
 
 /**
+@todo supprimer cette fonction si n'est pas utilisé
 fonction grey_scale : met le contexte envoyé en nuance de gris
 @param self : context le contexte à modifier
 @return mes_donnees_image : obje ImageData : pixel modifiés en nuance de gris
@@ -56,6 +59,7 @@ function grey_scale(self){
   }
 /**
 fonction fadein
+@todo supprimer cette fonction si n'est pas utilisé
 
 
 */
