@@ -90,7 +90,7 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
     console.log("arrayOfGameObjects : "+JSON.stringify(this.arrayOfGameObjects));
       for (var i in this.arrayOfGameObjects) {
           if(this.arrayOfGameObjects[i][1]=="text"){
-            this.intro[this.arrayOfGameObjects[i][0]].centrage();
+            this.intro[this.arrayOfGameObjects[i][0]].setup("");
           }else if(this.arrayOfGameObjects[i][1]=="image"){
             this.intro[this.arrayOfGameObjects[i][0]].affichage();
           }
@@ -131,7 +131,7 @@ GameManager.prototype.setup2 = function (bouton)
   this.monCanvas_click.closePath();
 
     if(!this.mon_Interval){
-      this.mon_Interval = setInterval( function() {self.reload();}, 3000);
+      this.mon_Interval = setInterval( function() {self.reload(self.map);}, 3000);
     }
 
 }
@@ -141,7 +141,7 @@ GameManager.prototype.setup2 = function (bouton)
  *
  * @return {[type]} [description]
  */
- GameManager.prototype.reload = function ()
+ GameManager.prototype.reload = function (_target)
   {
     console.log("reload");
       this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
@@ -149,9 +149,9 @@ GameManager.prototype.setup2 = function (bouton)
     for (var i in this.arrayOfGameObjects) {
           console.log("image "+i);
           if(this.arrayOfGameObjects[i][1]=="text"){
-            this.map[this.arrayOfGameObjects[i][0]].setup(this.mon_Player.or);
+            _target[this.arrayOfGameObjects[i][0]].setup(this.mon_Player.or);
           }else if(this.arrayOfGameObjects[i][1]=="image"){
-            this.map[this.arrayOfGameObjects[i][0]].draw(this.monCanvas);
+            _target[this.arrayOfGameObjects[i][0]].draw(this.monCanvas);
           }
       }
 
@@ -319,7 +319,7 @@ this.setup();
     this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
     this.monCanvas.beginPath();
     this.village = new Mon_Village(this.monCanvas, self, this.data_equilibrage.plats, this.data_interface.village);
-
+    this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
     this.affichage_village();
     this.click_canvas();
     this.monCanvas.closePath();
@@ -332,7 +332,7 @@ this.setup();
     this.affichage_click_zone();
     this.monCanvas_click.closePath();
       if(!this.mon_Interval){
-          this.mon_Interval = setInterval( function() {self.reload();}, 3000);
+  //        this.mon_Interval = setInterval( function() {self.reload(self.village);}, 3000);
       }
   }
   GameManager.prototype.affichage_village = function()
@@ -341,7 +341,7 @@ this.setup();
 
       for (var i in this.arrayOfGameObjects) {
           if(this.arrayOfGameObjects[i][1]=="text"){
-            this.village[this.arrayOfGameObjects[i][0]].setup(this.mon_Player.or);
+            this.village[this.arrayOfGameObjects[i][0]].setup("");
           }else if(this.arrayOfGameObjects[i][1]=="image"){
             this.village[this.arrayOfGameObjects[i][0]].draw(this.monCanvas);
           }

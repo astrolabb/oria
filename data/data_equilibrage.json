@@ -159,7 +159,24 @@
     "jardin" : 1,
     "fond" : 1,
     "or_icone" : 1,
-    "cereale_soufflee" : 1
+    "cereale_soufflee" : 1,
+    "caviar" : 1,
+    "huile" : 1,
+    "jus_de_fruit" : 1,
+    "riz" : 1,
+    "bouillon" : 1,
+    "sushi" : 1,
+    "frite" : 1,
+    "saumon_citronne" : 1,
+    "miel" : 1,
+    "pop_corn_caramelise" : 1,
+    "crabe_marine" : 1,
+    "sauce" : 1,
+    "the" : 1,
+    "maki" : 1,
+    "salade_de_fruit" : 1,
+    "crevette_sautee" : 1,
+    "homard_royal" : 1
   },
   "max_niveau" : 3,
   "plats" : {
@@ -187,7 +204,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "acorn",
+      "loc" : {
+        "niv1" :["carrot","carrot"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 1
     },
@@ -199,7 +220,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "pumpkin",
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 2
     },
@@ -211,7 +236,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "carrot",
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 3
     },
@@ -223,7 +252,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "kiwi",
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 2
     },
@@ -235,7 +268,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "mango",
+      "loc" : {
+        "niv1" :["carrot","carrot"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 2
     },
@@ -247,7 +284,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "tomato",
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 3
     },
@@ -259,7 +300,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "apple",
+      "loc" : {
+        "niv1" :["carrot","carrot"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 3
     },
@@ -271,7 +316,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "peanut",
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 3
     },
@@ -283,7 +332,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "cherry",
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 2
     },
@@ -295,7 +348,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "onion",
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 3
     },
@@ -307,7 +364,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "acorn",
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 3
     },
@@ -319,7 +380,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "pumpkin",
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 3
     },
@@ -331,7 +396,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "carrot",
+      "loc" : {
+        "niv1" :["carrot","carrot"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 4
     },
@@ -343,7 +412,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "kiwi",
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 5
     },
@@ -355,7 +428,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "mango",
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 5
     },
@@ -367,7 +444,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "mango",
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 10
     },
@@ -379,7 +460,11 @@
       "nature" : "image",
       "lien" : "oui",
       "ordre" : 2,
-      "loc" : "tomato",
+      "loc" : {
+        "niv1" :["onion","onion"],
+        "niv2" :["onion","onion"],
+        "niv3" :["onion","onion"]
+        },
       "dir" : "vente",
       "or" : 5
       }

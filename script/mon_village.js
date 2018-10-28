@@ -3,7 +3,7 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface)
     var self = this;
     _target.arrayOfGameObjects = [];
     // mise à l'échelle des images pour les disposer à l'ecran
-    data_equilibrage = this.mise_echelle(data_equilibrage);
+    data_equilibrage = this.mise_echelle(data_equilibrage, data_interface.marge_gauche, data_interface.marge_haut);
 
     Object.keys(data_interface.elements).forEach(function(key) {
         console.log(key+" "+data_interface.elements[key]);
@@ -12,7 +12,7 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface)
           _target.arrayOfGameObjects.push([key,"image"]);
         }
     });
-
+    // boucle de création des icones du marché représentant les plats
     Object.keys(data_equilibrage).forEach(function(key) {
         console.log(key+" "+data_equilibrage[key]);
         if(data_equilibrage[key].nature == "image"){
@@ -36,26 +36,27 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface)
     });
 
 }
-Mon_Village.prototype.mise_echelle = function(data_equilibrage){
+Mon_Village.prototype.mise_echelle = function(data_equilibrage, left, up){
 
-  var marge_gauche = window.innerWidth/20;
-  var marge_haut = window.innerWidth/6;
-  var nb_image_ligne = Math.ceil(Math.sqrt(data_equilibrage.length));
-
-  var largeur_image = (window.innerWidth/2 - 2*marge_gauche)/(Math.ceil(Math.sqrt(data_equilibrage.length)));
-  var hauteur_image = (window.innerHeight/2 - 2*marge_haut)/(Math.ceil(Math.sqrt(data_equilibrage.length)));
+  var marge_gauche = left;
+  var marge_haut = up;
+  var nb_image_ligne = Math.ceil(Math.sqrt(Object.keys(data_equilibrage).length));
+  console.log("data_equilibrage longueur "+Object.keys(data_equilibrage).length);
+  console.log("nb_image_ligne "+nb_image_ligne);
+  var largeur_image = (window.innerWidth/2 - 2*marge_gauche)/nb_image_ligne;
+  var hauteur_image = (window.innerHeight - 2*marge_haut)/nb_image_ligne;
   largeur_image = largeur_image>hauteur_image ? hauteur_image : largeur_image;
   hauteur_image = largeur_image>hauteur_image ? hauteur_image : largeur_image;
   var compteur = 0;
   var compteur2 = 0;
   Object.keys(data_equilibrage).forEach(function(key) {
       if(data_equilibrage[key].nature == "image"){
-        compteur2 = compteur > nb_image_ligne ? compteur2+1 : compteur2;
-        compteur = compteur > nb_image_ligne ? 0 : compteur;
-        data_equilibrage._x = marge_gauche + compteur*largeur_image;
-        data_equilibrage._y = marge_haut + compteur2*hauteur_image;
-        data_equilibrage._width = largeur_image;
-        data_equilibrage._height = hauteur_image;
+        compteur2 = compteur >= nb_image_ligne ? compteur2+1 : compteur2;
+        compteur = compteur >= nb_image_ligne ? 0 : compteur;
+        data_equilibrage[key]._x = marge_gauche + compteur*largeur_image;
+        data_equilibrage[key]._y = marge_haut + compteur2*hauteur_image;
+        data_equilibrage[key]._width = largeur_image;
+        data_equilibrage[key]._height = hauteur_image;
         compteur++;
       }
   });

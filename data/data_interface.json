@@ -13,7 +13,7 @@ var data_interface = {
         "couleur" : "#333",
         "police" : "23pt Calibri",
         "text" : "lonnono warrior challenge maxi troll 2",
-        "alignement" : "centrage"
+        "alignement" : "centrage2"
       },
       "texte" : {
         "_x" : 20,
@@ -186,6 +186,8 @@ var data_interface = {
         "village" : {
           "maxWidth_text" : 2*window.innerWidth/3,
           "lineHeight" : window.innerHeight/30,
+          "marge_gauche" : window.innerHeight/20,
+          "marge_haut" : window.innerHeight/8,
           "elements" : {
               "fond" : {
                 "_x" : 0,
@@ -204,13 +206,31 @@ var data_interface = {
               },
               "titre" : {
               "_x" : 20,
-              "_y" : window.innerHeight/15,
+              "_y" : window.innerHeight/20,
               "nature" : "text",
               "couleur" : "#333",
               "police" : "23pt Calibri",
-              "text" : "lonnono warrior challenge maxi troll 2",
-              "alignement" : "centrage"
-            }
+              "text" : "Le Marché",
+              "alignement" : "centrage2"
+            },
+            "sous_titre_gauche" : {
+            "_x" : 20,
+            "_y" : window.innerHeight/13,
+            "nature" : "text",
+            "couleur" : "#333",
+            "police" : "20pt Calibri",
+            "text" : "Vendre vos plats",
+            "alignement" : "left"
+          },
+          "sous_titre_droit" : {
+          "_x" : 20,
+          "_y" : window.innerHeight/15,
+          "nature" : "text",
+          "couleur" : "#333",
+          "police" : "20pt Calibri",
+          "text" : "Acheter des ressources",
+          "alignement" : "end"
+        }
         }
     }
 }
