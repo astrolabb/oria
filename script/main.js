@@ -41,10 +41,10 @@ fonction grey_scale : met le contexte envoyé en nuance de gris
 @param self : context le contexte à modifier
 @return mes_donnees_image : obje ImageData : pixel modifiés en nuance de gris
 */
-function grey_scale(self){
+function grey_scale(monCanvas,_x, _y, _width, _height){
 
        console.log("fonction grey_scale");
-       var mes_donnees_image = self.monCanvas.getImageData(0,0,window.innerWidth,window.innerHeight);
+       var mes_donnees_image = monCanvas.getImageData(_x,_y,_width,_height);
        var mes_pixels = mes_donnees_image.data;
        for(var i=0 ; i<mes_pixels.length ; i+=4){
 

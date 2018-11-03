@@ -3,6 +3,7 @@ var Text_affichage = function(monCanvas, data_texte, nom, maxWidth, lineHeight){
   this._x = data_texte._x;
   this._y = data_texte._y + lineHeight;
   this.text = data_texte.text;
+  this.valeur_a_afficher = data_texte.valeur_a_afficher;
   this.maxWidth = maxWidth;
   this.lineHeight = lineHeight;
   this.font = data_texte.police;
@@ -16,9 +17,13 @@ Text_affichage.prototype.setup = function(text){
     var _y = this._y;
     this.text_alignement(text,"center", _x, _y);
   }else if(this.alignement=="left"){
-    var _x = window.innerWidth/20;
+    var _x = this._x;
     var _y = this._y;
     this.text_alignement(text,"left", _x, _y);
+  }else if(this.alignement=="centrage3"){
+    var _x = this._x;
+    var _y = this._y;
+    this.text_alignement(text,"center", _x, _y);
   }else if(this.alignement=="end"){
     var _x = window.innerWidth - window.innerWidth/20;
     var _y = this._y;
@@ -51,7 +56,7 @@ permet d'aligner un texte (un seule ligne) en fonction de l'attribut :  textAlig
 */
 Text_affichage.prototype.text_alignement = function (text, choix, _x, _y){
   this.monCanvas.textAlign=choix;
-  this.affichage2(this.text, _x, _y);
+  this.affichage2(text, _x, _y);
 
 }
 /**

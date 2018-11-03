@@ -1,3 +1,10 @@
+/**
+@constructor Gameplay
+gestion des clicks
+stockage des données dans :
+@return arrayOfClickObjects Object String"couleur calque invisible" : Array[Object: icone cliquée, String: nom de la fonction à lancer lors du click, Object: données de l'image cliquée]
+@return arrayOfGameObjects2 Array tableau contenant les images clickables
+*/
 var Gameplay = function(monCanvas, _parent, data){
   this.monCanvas = monCanvas;
   this._parent = _parent;
@@ -16,7 +23,7 @@ var Gameplay = function(monCanvas, _parent, data){
                if (!_parent.arrayOfClickObjects[colorKey]) {
 
                   self[key].color = colorKey;
-                  _parent.arrayOfClickObjects[colorKey] = [key, data[key].dir];
+                  _parent.arrayOfClickObjects[colorKey] = [key, data[key].dir, data[key]];
                   return;
                }
             }

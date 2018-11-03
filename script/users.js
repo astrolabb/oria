@@ -9,6 +9,7 @@ Player.prototype.setup = function (data_equilibrage)
 {
   console.log("test 1 "+data_equilibrage.or);
   this.or = Number(data_equilibrage.or);
+  this.plat = data_equilibrage.plat_demarrage;
   this.niveau = data_equilibrage.niveau;
   this.niveau_max = data_equilibrage.max_niveau;
 
@@ -28,7 +29,6 @@ Player.prototype.changement_niv = function(nom){
 
 /**
 initialisation des niveaux
-
 @return Object niveau structure "nom_image" -> "niveau"
 */
 Player.prototype.niveau_init = function (arrayOfGameObjects){
@@ -40,5 +40,24 @@ Player.prototype.niveau_init = function (arrayOfGameObjects){
       }
   }
   return mon_niveau;
+}
+/**
+vente ou achat d'un article
+@param key : Object article vendu ou acheté
+@param nb_unit_key : Number nb_article vendus
+@param ref : String monnaie de référence
+@return Boolean true si l'échange si fait, false si il ne se fait pas
+
+*/
+Player.prototype.echange = function(key, nb_unit_key, ref, data){
+  // si on vend un plat et qu'il y en a en stock
+  if(nb_unit_key>0 && this.plat[key]>0){
+    this.plat[key]--;
+    this[ref]+=data[ref];
+    return true;
+  }else{
+    return false;
+  }
+
 
 }

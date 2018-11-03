@@ -90,7 +90,8 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
     console.log("arrayOfGameObjects : "+JSON.stringify(this.arrayOfGameObjects));
       for (var i in this.arrayOfGameObjects) {
           if(this.arrayOfGameObjects[i][1]=="text"){
-            this.intro[this.arrayOfGameObjects[i][0]].setup("");
+
+            this.intro[this.arrayOfGameObjects[i][0]].setup((this.intro[this.arrayOfGameObjects[i][0]].text=="" ? this.mon_Player[this.intro[this.arrayOfGameObjects[i][0]].valeur_a_afficher] : this.intro[this.arrayOfGameObjects[i][0]].text));
           }else if(this.arrayOfGameObjects[i][1]=="image"){
             this.intro[this.arrayOfGameObjects[i][0]].affichage();
           }
@@ -103,7 +104,7 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
  *
  * @return {[type]} [description]
  */
-GameManager.prototype.setup2 = function (bouton)
+GameManager.prototype.setup2 = function (bouton, data)
 {
 
   var self = this;
@@ -149,9 +150,13 @@ GameManager.prototype.setup2 = function (bouton)
     for (var i in this.arrayOfGameObjects) {
           console.log("image "+i);
           if(this.arrayOfGameObjects[i][1]=="text"){
-            _target[this.arrayOfGameObjects[i][0]].setup(this.mon_Player.or);
+            // affichage du Texte
+            // si texte defini par défaut dans data_interface est egal à "" alors affichage de la valeur stockée dans this.mon_Player.(...)
+            _target[this.arrayOfGameObjects[i][0]].setup((_target[this.arrayOfGameObjects[i][0]].text=="" ? this.mon_Player[_target[this.arrayOfGameObjects[i][0]].valeur_a_afficher] : _target[this.arrayOfGameObjects[i][0]].text));
+        //    _target[this.arrayOfGameObjects[i][0]].setup(this.mon_Player.or);
           }else if(this.arrayOfGameObjects[i][1]=="image"){
-            _target[this.arrayOfGameObjects[i][0]].draw(this.monCanvas);
+            _target[this.arrayOfGameObjects[i][0]][_target[this.arrayOfGameObjects[i][0]].ombre](this.monCanvas);
+      //      _target[this.arrayOfGameObjects[i][0]].draw(this.monCanvas);
           }
       }
 
@@ -226,7 +231,7 @@ GameManager.prototype.setup2 = function (bouton)
           if(resultat){
             $("#monCanvas").off('click');
             console.log("click_canvas "+JSON.stringify(resultat));
-            self[resultat[1]](resultat[0]);
+            self[resultat[1]](resultat[0], resultat[2]);
           }
 
         });
@@ -237,7 +242,7 @@ GameManager.prototype.setup2 = function (bouton)
   *
   * @return {[type]} [description]
   */
-  GameManager.prototype.setup3 = function (key)
+  GameManager.prototype.setup3 = function (key, data)
    {
 //this.setup();
 this.mon_Player.or +=1;
@@ -249,7 +254,7 @@ this.setup2();
   * @return {[type]} [description]
     @todo enlever les fonctions fadein en js qui sont commentées
   */
-  GameManager.prototype.setup4 = function (key)
+  GameManager.prototype.setup4 = function (key, data)
    {
      console.log("village");
      self = this;
@@ -271,7 +276,7 @@ this.setup2();
    *
    * @return {[type]} [description]
    */
-   GameManager.prototype.setup5 = function (key)
+   GameManager.prototype.setup5 = function (key, data)
     {
 this.setup();
     }
@@ -280,7 +285,7 @@ this.setup();
     *
     * @return {[type]} [description]
     */
-    GameManager.prototype.setup6 = function (key)
+    GameManager.prototype.setup6 = function (key, data)
      {
        console.log("setup6 "+key)
         this.mon_Player.changement_niv(key);
@@ -291,7 +296,7 @@ this.setup();
      *
      * @return {[type]} [description]
      */
-     GameManager.prototype.setup7 = function (key)
+     GameManager.prototype.setup7 = function (key, data)
       {
 this.setup();
       }
@@ -332,7 +337,7 @@ this.setup();
     this.affichage_click_zone();
     this.monCanvas_click.closePath();
       if(!this.mon_Interval){
-  //        this.mon_Interval = setInterval( function() {self.reload(self.village);}, 3000);
+          this.mon_Interval = setInterval( function() {self.reload(self.village);}, 3000);
       }
   }
   GameManager.prototype.affichage_village = function()
@@ -341,10 +346,49 @@ this.setup();
 
       for (var i in this.arrayOfGameObjects) {
           if(this.arrayOfGameObjects[i][1]=="text"){
-            this.village[this.arrayOfGameObjects[i][0]].setup("");
+            console.log("valeur a afficher "+this.village[this.arrayOfGameObjects[i][0]].valeur_a_afficher);
+            console.log("valeur a afficher2 "+this.mon_Player[this.village[this.arrayOfGameObjects[i][0]].valeur_a_afficher]);
+            console.log("valeur a afficher3 "+(this.village[this.arrayOfGameObjects[i][0]].text=="" ? this.mon_Player[this.village[this.arrayOfGameObjects[i][0]].valeur_a_afficher] : this.village[this.arrayOfGameObjects[i][0]].text));
+          // affichage du Texte
+          // si texte defini par défaut dans data_interface est egal à "" alors affichage de la valeur stockée dans this.mon_Player.(...)
+            this.village[this.arrayOfGameObjects[i][0]].setup((this.village[this.arrayOfGameObjects[i][0]].text=="" ? this.mon_Player[this.village[this.arrayOfGameObjects[i][0]].valeur_a_afficher] : this.village[this.arrayOfGameObjects[i][0]].text));
           }else if(this.arrayOfGameObjects[i][1]=="image"){
-            this.village[this.arrayOfGameObjects[i][0]].draw(this.monCanvas);
+
+            this.village[this.arrayOfGameObjects[i][0]][this.village[this.arrayOfGameObjects[i][0]].ombre](this.data_interface.village.alpha_);
+
           }
       }
+
+  }
+  GameManager.prototype.vente = function(key, data)
+  {
+    if(this.mon_Player.echange(key, 1, "or", data)){
+    this.popup("contructor_village");
+  }
+
+  }
+  GameManager.prototype.popup = function(target){
+    var self = this;
+    console.log("popup");
+    self = this;
+    if(this.mon_Interval){
+        clearInterval(this.mon_Interval);
+    }
+    this.popup = new Popup(this.monCanvas, self, this.data_equilibrage.plats, this.data_interface.popup);
+    this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
+    this.affichage_popup();
+
+
+  }
+  GameManager.prototype.affichage_popup = function(){
+    console.log("fonction affichage_popup");
+    self = this;
+    $("#monCanvas").addClass("mon_fadein2");
+    $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+         $("#monCanvas").removeClass("mon_fadein2");
+         self.contructor_village();
+
+    });
+
 
   }
