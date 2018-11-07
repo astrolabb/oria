@@ -10,6 +10,7 @@ Player.prototype.setup = function (data_equilibrage)
   console.log("test 1 "+data_equilibrage.or);
   this.or = Number(data_equilibrage.or);
   this.plat = data_equilibrage.plat_demarrage;
+  this.ressource = data_equilibrage.ressource_demarrage;
   this.niveau = data_equilibrage.niveau;
   this.niveau_max = data_equilibrage.max_niveau;
 
@@ -54,6 +55,10 @@ Player.prototype.echange = function(key, nb_unit_key, ref, data){
   if(nb_unit_key>0 && this.plat[key]>0){
     this.plat[key]--;
     this[ref]+=data[ref];
+    return true;
+  }else if(nb_unit_key<0 && this[ref]>=-nb_unit_key){
+    this.ressource[key]++;
+    this[ref]-=-data[ref];
     return true;
   }else{
     return false;

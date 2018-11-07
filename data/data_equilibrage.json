@@ -3,153 +3,426 @@
       "herbe" : {
         "origin" : "foret",
         "niv" : 1,
-        "loc" : "herbe",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "branche" : {
         "origin" : "foret",
         "niv" : 1,
-        "loc" : "branche",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "billette" : {
         "origin" : "foret",
         "niv" : 2,
-        "loc" : "billette",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "rondin" : {
         "origin" : "foret",
         "niv" : 2,
-        "loc" : "rondin",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "planche" : {
         "origin" : "foret",
         "niv" : 3,
-        "loc" : "planche",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "bois_sculpte" : {
         "origin" : "foret",
         "niv" : 3,
-        "loc" : "bois_sculpte",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "licorne" : {
         "origin" : "foret",
         "niv" : 3,
-        "loc" : "licorne",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "plante" : {
         "origin" : "jardin",
         "niv" : 1,
-        "loc" : "plante",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "limace" : {
         "origin" : "jardin",
         "niv" : 1,
-        "loc" : "limace",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "cereales" : {
         "origin" : "jardin",
         "niv" : 2,
-        "loc" : "cereales",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "fleur" : {
         "origin" : "jardin",
         "niv" : 2,
-        "loc" : "fleur",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "legumes" : {
         "origin" : "jardin",
         "niv" : 3,
-        "loc" : "legumes",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "fruit" : {
         "origin" : "jardin",
         "niv" : 3,
-        "loc" : "fruit",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "graine_magique" : {
         "origin" : "jardin",
         "niv" : 3,
-        "loc" : "graine_magique",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "eau" : {
         "origin" : "lac",
         "niv" : 1,
-        "loc" : "eau",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "poisson" : {
         "origin" : "lac",
         "niv" : 1,
-        "loc" : "poisson",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "crevette" : {
         "origin" : "lac",
         "niv" : 2,
-        "loc" : "crevette",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "crabe" : {
         "origin" : "lac",
         "niv" : 2,
-        "loc" : "crabe",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "homard" : {
         "origin" : "lac",
         "niv" : 3,
-        "loc" : "homard",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "pieuvre" : {
         "origin" : "lac",
         "niv" : 3,
-        "loc" : "pieuvre",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       },
       "sirene" : {
         "origin" : "lac",
         "niv" : 3,
-        "loc" : "sirene",
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
         "lien" : "oui",
-        "dir" : "ressource_gestion"
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+          },
+        "dir" : "vente",
+        "or" : -1
       }
 
   },
-  "ressource_demarrage" : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  "ressource_demarrage" : {
+    "herbe" : 0,
+    "branche" : 0,
+    "billette" : 0,
+    "rondin" : 11,
+    "planche" : 51,
+    "bois_sculpte" : 0,
+    "licorne" : 0,
+    "plante" : 0,
+    "limace" : 0,
+    "cereales" : 0,
+    "fleur" : 0,
+    "legumes" : 0,
+    "fruit" : 0,
+    "graine_magique" : 0,
+    "eau" : 0,
+    "poisson" : 0,
+    "crevette" : 0,
+    "crabe" : 0,
+    "homard" : 0,
+    "pieuvre" : 0,
+    "sirene" : 0},
   "plat_demarrage" : {
     "cereale_soufflee" : 5,
     "caviar" : 0,
@@ -168,7 +441,8 @@
     "maki" : 8,
     "salade_de_fruit" : 0,
     "crevette_sautee" : 0,
-    "homard_royal" : 0
+    "homard_royal" : 0,
+    "nb_objet" : 0
     },
   "or" : 0,
   "niveau" : {
@@ -196,7 +470,87 @@
     "maki" : 1,
     "salade_de_fruit" : 1,
     "crevette_sautee" : 1,
-    "homard_royal" : 1
+    "homard_royal" : 1,
+    "herbe" : 1,
+    "branche" : 1,
+    "billette" : 1,
+    "rondin" : 1,
+    "planche" : 1,
+    "bois_sculpte" : 1,
+    "licorne" : 1,
+    "plante" : 1,
+    "limace" : 1,
+    "cereales" : 1,
+    "fleur": 1,
+    "legumes": 1,
+    "fruit": 1,
+    "graine_magique" : 1,
+    "eau" : 1,
+    "poisson" : 1,
+    "crevette" : 1,
+    "crabe" : 1,
+    "homard" : 1,
+    "pieuvre" : 1,
+    "sirene" : 1,
+    "retour" : 1
+  },
+  "bareme_niveau" : {
+      "village" : {
+        "2" : {
+            "planche" : 50,
+            "rondin" : 10
+          },
+        "3" : {
+            "pierre" : 100,
+            "sceau" : 1,
+            "bois_sculpte" : 6,
+            "planche" : 100
+            }
+          },
+      "foret" : {
+        "2" : {
+            "branche" : 50,
+            "paille" : 10
+          },
+        "3" : {
+            "planche" : 150,
+            "rondin" : 10,
+            "scie" : 2,
+            "roue" : 8
+          }
+        },
+      "jardin" : {
+          "2" : {
+            "ex______" :50,
+            "paille" : 50
+          },
+          "3" : {
+            "engrais" : 100,
+            "verre" : 50,
+            "graine" : 50,
+            "planche" : 10
+          }
+      },
+      "lac" : {
+          "2" : {
+            "planche" : 50,
+            "vers_de_terre" : 10
+          },
+          "3" : {
+            "bois_sculpte" : 100,
+            "verre" : 50,
+            "graine" : 50,
+            "planche" : 10
+          }
+      },
+      "lonono" : {
+          "2" : {
+            "nb_objet" : 10
+          },
+          "3" : {
+            "nb_objet" : 20
+          }
+      }
   },
   "max_niveau" : 3,
   "plats" : {

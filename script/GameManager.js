@@ -74,6 +74,7 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
      console.log("affichage_click_zone");
      console.log("arrayOfGameObjects2 : "+JSON.stringify(this.arrayOfGameObjects2));
        for (var i in this.arrayOfGameObjects2) {
+         console.log("object_fusionne2 "+this.arrayOfGameObjects2[i]);
            this.canvas_hit[this.arrayOfGameObjects2[i]].draw(this.monCanvas_click);
        }
    }
@@ -109,6 +110,8 @@ GameManager.prototype.setup2 = function (bouton, data)
 
   var self = this;
 
+  // tableau contenant les objects affichés à l'écran : (fond, bouton navigation, score)
+  // structure [key, categorie String("image ou "texte)]
   this.arrayOfGameObjects = [];
   this.arrayOfGameObjects2 = [];
   this.arrayOfClickObjects = {};
@@ -119,20 +122,30 @@ GameManager.prototype.setup2 = function (bouton, data)
   console.log("mes_niveaux "+this.mon_Player);
   this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
 
+  /**
+  affichage des boutons de changement de niveaux
+  */
+  this.bouton_niveau = new BoutonNiveau(this.monCanvas, self, this.data_interface.bouton_niveau.elements, this.data_equilibrage.bareme_niveau, this.map, this.mon_Player,this.data_interface.bouton_niveau.decalage_x,this.data_interface.bouton_niveau.decalage_y);
+
   this.affichage_map();
   this.click_canvas();
   this.monCanvas.closePath();
 
   this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
   this.monCanvas_click.beginPath();
+
+  var object_fusionne = {};
+  $.extend( object_fusionne, this.data_interface.carte.elements);
+  $.extend( object_fusionne, this.bouton_niveau.monObject);
+console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
   // mise en place des zones à cliquer
-  this.canvas_hit = new Gameplay(this.monCanvas_click, this, this.data_interface.carte.elements);
+  this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne);
   // affichage des zones à cliquer
   this.affichage_click_zone();
   this.monCanvas_click.closePath();
 
     if(!this.mon_Interval){
-      this.mon_Interval = setInterval( function() {self.reload(self.map);}, 3000);
+      this.mon_Interval = setInterval( function() {self.reload();}, 3000);
     }
 
 }
@@ -142,7 +155,7 @@ GameManager.prototype.setup2 = function (bouton, data)
  *
  * @return {[type]} [description]
  */
- GameManager.prototype.reload = function (_target)
+ GameManager.prototype.reload = function ()
   {
     console.log("reload");
       this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
@@ -152,10 +165,10 @@ GameManager.prototype.setup2 = function (bouton, data)
           if(this.arrayOfGameObjects[i][1]=="text"){
             // affichage du Texte
             // si texte defini par défaut dans data_interface est egal à "" alors affichage de la valeur stockée dans this.mon_Player.(...)
-            _target[this.arrayOfGameObjects[i][0]].setup((_target[this.arrayOfGameObjects[i][0]].text=="" ? this.mon_Player[_target[this.arrayOfGameObjects[i][0]].valeur_a_afficher] : _target[this.arrayOfGameObjects[i][0]].text));
+            this.arrayOfGameObjects[i][2].setup((this.arrayOfGameObjects[i][2].text=="" ? this.mon_Player[this.arrayOfGameObjects[i][2].valeur_a_afficher] : this.arrayOfGameObjects[i][2].text));
         //    _target[this.arrayOfGameObjects[i][0]].setup(this.mon_Player.or);
           }else if(this.arrayOfGameObjects[i][1]=="image"){
-            _target[this.arrayOfGameObjects[i][0]][_target[this.arrayOfGameObjects[i][0]].ombre](this.monCanvas);
+            this.arrayOfGameObjects[i][2][this.arrayOfGameObjects[i][2].ombre](this.monCanvas);
       //      _target[this.arrayOfGameObjects[i][0]].draw(this.monCanvas);
           }
       }
@@ -176,9 +189,9 @@ GameManager.prototype.setup2 = function (bouton, data)
 
       for (var i in this.arrayOfGameObjects) {
           if(this.arrayOfGameObjects[i][1]=="text"){
-            this.map[this.arrayOfGameObjects[i][0]].setup(this.mon_Player.or);
+            this.arrayOfGameObjects[i][2].setup(this.mon_Player.or);
           }else if(this.arrayOfGameObjects[i][1]=="image"){
-            this.map[this.arrayOfGameObjects[i][0]].draw(this.monCanvas);
+            this.arrayOfGameObjects[i][2].draw(this.monCanvas);
           }
       }
 
@@ -323,7 +336,7 @@ this.setup();
 
     this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
     this.monCanvas.beginPath();
-    this.village = new Mon_Village(this.monCanvas, self, this.data_equilibrage.plats, this.data_interface.village);
+    this.village = new Mon_Village(this.monCanvas, self, this.data_equilibrage.plats, this.data_interface.village, this.data_equilibrage.ressource);
     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
     this.affichage_village();
     this.click_canvas();
@@ -331,13 +344,19 @@ this.setup();
 
     this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
     this.monCanvas_click.beginPath();
+    var object_fusionne = {};
+    $.extend( object_fusionne, this.data_equilibrage.plats);
+    $.extend( object_fusionne, this.data_equilibrage.ressource);
+    object_fusionne["retour"]= this.data_interface.village.elements.retour;
+
+    console.log("object_fusionne2 "+JSON.stringify(object_fusionne));
     // mise en place des zones à cliquer
-    this.canvas_hit = new Gameplay(this.monCanvas_click, this, this.data_equilibrage.plats);
+    this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne);
     // affichage des zones à cliquer
     this.affichage_click_zone();
     this.monCanvas_click.closePath();
       if(!this.mon_Interval){
-          this.mon_Interval = setInterval( function() {self.reload(self.village);}, 3000);
+    //      this.mon_Interval = setInterval( function() {self.reload();}, 3000);
       }
   }
   GameManager.prototype.affichage_village = function()
@@ -362,9 +381,12 @@ this.setup();
   }
   GameManager.prototype.vente = function(key, data)
   {
-    if(this.mon_Player.echange(key, 1, "or", data)){
-    this.popup("contructor_village");
-  }
+    console.log("debut de la vente");
+    if(this.mon_Player.echange(key, data.or, "or", data)){
+      this.popup("contructor_village");
+    }else{
+      this.contructor_village();
+    }
 
   }
   GameManager.prototype.popup = function(target){
@@ -374,7 +396,7 @@ this.setup();
     if(this.mon_Interval){
         clearInterval(this.mon_Interval);
     }
-    this.popup = new Popup(this.monCanvas, self, this.data_equilibrage.plats, this.data_interface.popup);
+    this.mon_popup = new Popup(this.monCanvas, self, this.data_equilibrage.plats, this.data_interface.popup);
     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
     this.affichage_popup();
 
@@ -390,5 +412,15 @@ this.setup();
 
     });
 
+  }
+  GameManager.prototype.niveau_up = function(key, data){
+      console.log("click sur le changement de niveau "+key+" data "+JSON.stringify(data));
+      self = this;
+      console.log("click sur le changement de niveau "+this.bouton_niveau+" "+JSON.stringify(this.bouton_niveau.echange_ressource[data.nom])+" "+data.nom);
+      this.mon_Player.niveau[data.nom] = this.mon_Player.niveau[data.nom]+1;
+      this.bouton_niveau.echange_ressource[data.nom].forEach(function(e){
+          self.mon_Player.ressource[e[0]] = e[1] - e[2];
 
+      });
+      self.popup("setup2");
   }

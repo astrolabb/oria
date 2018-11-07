@@ -285,7 +285,24 @@ var data_interface = {
           "text" : "",
           "valeur_a_afficher" : "",
           "alignement" : "centrage3"
-            }
+            },
+          "retour" : {
+          "_x" : 0,
+          "_y" : window.innerHeight- window.innerHeight/10,
+          "_width" : window.innerWidth/3,
+          "_height" : window.innerHeight/10,
+          "ombre" : "draw",
+          "couleur" : "red",
+          "nature" : "image",
+          "lien" : "oui",
+          "ordre" : 2,
+          "loc" : {
+          "niv1" :["kiwi","kiwi"],
+          "niv2" :["kiwi","kiwi"],
+          "niv3" :["kiwi","kiwi"]
+                },
+          "dir" : "setup2"
+              }
         }
     },
     "popup" : {
@@ -313,5 +330,26 @@ var data_interface = {
            }
         }
 
+    },
+    "bouton_niveau" : {
+      decalage_x : 0,
+      decalage_y : 100,
+      elements : {
+          "_x" : 0,
+          "_y" : 0,
+          "_width" : window.innerWidth/10,
+          "_height" : window.innerHeight/10,
+          "ombre" : "draw",
+          "couleur" : "red",
+          "nature" : "image",
+          "lien" : "oui",
+          "ordre" : 2,
+          "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["onion","onion"],
+          "niv3" :["apple","apple"]
+          },
+          "dir" : "niveau_up"
+        }
     }
 }

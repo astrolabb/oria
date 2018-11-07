@@ -30,7 +30,7 @@ function Main(data_interface, data_equilibrage, data_image_chargee){
   // démarrage du gestionnaire de jeu : images/click
   var mon_GameManager = new GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player);
   // lancement du menu d'accueil : prototype : setup
-  mon_GameManager.contructor_village();
+  mon_GameManager.setup2();
 
 
 }

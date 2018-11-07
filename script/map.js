@@ -5,14 +5,14 @@ var Map = function(monCanvas, _target, data_interface){
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "image"){
         self[key] = new Icone(monCanvas, data_interface.elements[key], key, _target);
-        _target.arrayOfGameObjects.push([key,"image"]);
+        _target.arrayOfGameObjects.push([key,"image",self[key]]);
       }
   });
   Object.keys(data_interface.elements).forEach(function(key) {
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "text"){
           self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight);
-          _target.arrayOfGameObjects.push([key,"text"]);
+          _target.arrayOfGameObjects.push([key,"text",self[key]]);
       }
   });
 
@@ -31,7 +31,6 @@ var Icone = function(myCanvasContext, data_image, nom, _target){
   this.couleur = data_image.couleur;
   this.loc = data_image.loc;
   this.lien = data_image.lien;
-
 }
 Icone.prototype.draw_ombre = function(mon_alpha)
 {
@@ -48,17 +47,30 @@ Icone.prototype.draw_ombre = function(mon_alpha)
   this.monCanvas.shadowBlur = 0;
   this.monCanvas.shadowOffsetX = 0;
   this.monCanvas.shadowOffsetY = 0;
-  var test = this.isgrey(this._target.mon_Player.plat[this.nom],"inf0");
+
+  var object_fusionne = {};
+  $.extend( object_fusionne, this._target.mon_Player.plat);
+  $.extend( object_fusionne, this._target.mon_Player.ressource);
+
+  console.log("object_fusionne "+JSON.stringify(object_fusionne));
+  console.log("this.data_image "+JSON.stringify(this.data_image));
+
+  if(this.data_image.or<0){
+  var test = this.isgrey(this._target.mon_Player.or, -(this.data_image.or), this.data_image.or);
+
+  }else if(this.data_image.or>0){
+  var test = this.isgrey(object_fusionne[this.nom],0, this.data_image.or);
+  }
   if(test){
       console.log("mettre en gris");
       this.monCanvas.putImageData(grey_scale(this.monCanvas,this._x,this._y, this._width, this._height), this._x, this._y);
   }
 
-console.log("valeur_a_afficher du texte sur icone "+this._target.mon_Player.plat[this.nom]);
+console.log("valeur_a_afficher du texte sur icone "+object_fusionne[this.nom]);
   var data_texte = {
     "_x" : self._x + (self._width/2),
     "_y" : self._y + (self._height/2),
-    "text" : this._target.mon_Player.plat[this.nom],
+    "text" : object_fusionne[this.nom],
     "valeur_a_afficher" : this.nom,
     "police" : this._target.data_interface.village.elements.texte_icone.police,
     "couleur" : this._target.data_interface.village.elements.texte_icone.couleur,
@@ -86,16 +98,65 @@ prototype isgrey :
 renvoie true si l'icone doit être en noir et blanc et false si doit être en couleur
 @param Number value to check
 @param String test à effectuer
+@param Number ref this.data_image.or permet de différencier vente et achat
 
 @return boolean true icone en noir et blanc false icone en couleur
 */
-Icone.prototype.isgrey = function(valeur, test)
+Icone.prototype.isgrey = function(valeur, test, ref)
 {
   console.log("valeur isgrey "+valeur);
-  if(test=="inf0" && valeur<=0){
+  if(ref>0 && valeur<=test){
+    return true;
+  }else if(ref<0 && valeur<test){
     return true;
   }else{
     return false;
   }
 
+}
+var BoutonNiveau = function(monCanvas, _target, bouton_niveau, bareme_niveau, map, mon_Player, decalage_x, decalage_y){
+  self = this;
+  this.monObject = {};
+  this.echange_ressource = {};
+  Object.keys(bareme_niveau).forEach(function(key) {
+    if(self.testaffichage(bareme_niveau[key], mon_Player, key)){
+        self[key] = new Icone(monCanvas, bouton_niveau, key, _target);
+        self[key]._x = map[key]._x+self.choix_decalage(map[key]._x, decalage_x, window.innerWidth, self[key]._width);
+        self[key]._y = map[key]._y+self.choix_decalage(map[key]._y, decalage_y, window.innerHeight, self[key]._height);
+
+        _target.arrayOfGameObjects.push([key,"image", self[key]]);
+        self.monObject["button"+key] = bouton_niveau;
+        self.monObject["button"+key]._x = map[key]._x;
+        self.monObject["button"+key]._y = map[key]._y+decalage_y;
+        self.monObject["button"+key].nom = key;
+      }
+  });
+}
+BoutonNiveau.prototype.choix_decalage = function(pos, decalage, taille_ecran, hauteur){
+  if(pos+decalage+hauteur>taille_ecran){
+    return -decalage;
+  }else{
+    return decalage;
+  }
+}
+BoutonNiveau.prototype.testaffichage = function(bareme, mon_Player, key) {
+  var mon_test = true;
+  self = this;
+  Object.keys(bareme).forEach(function(niveau) {
+    console.log("niveau "+niveau);
+    console.log("mon_Player.niveau[key] "+mon_Player.niveau[key]);
+
+    if(mon_Player.niveau[key] + 1 == Number(niveau)){
+      self.echange_ressource[key] = [];
+          Object.keys(bareme[niveau]).forEach(function(key_niv) {
+              if(!mon_Player.ressource[key_niv] || mon_Player.ressource[key_niv] <= bareme[niveau][key_niv] ){
+                  mon_test = false;
+              }else{
+                console.log("condition dépasssée "+key_niv+ "mon_Player.ressource[key_niv] "+mon_Player.ressource[key_niv]+" bareme[niveau][key_niv] "+bareme[niveau][key_niv]);
+                self.echange_ressource[key].push([key_niv, mon_Player.ressource[key_niv], bareme[niveau][key_niv]]);
+              }
+          });
+      }
+  });
+return mon_test;
 }
