@@ -16,8 +16,8 @@ animation: fadein 2s linear 1s;
 keyframes fadein { from { opacity: 1; } to { opacity: 0; } }
 
 
-.mon_fadein2 { -webkit-animation: fadein2 1s linear 0s;
-animation: fadein2 1s linear 0s;
+.mon_fadein2 { -webkit-animation: fadein2 1s linear 1s;
+animation: fadein2 1s linear 1s;
  }
 @-webkit-keyframes fadein2 { from { opacity: 1; } to { opacity: 0; } }
 keyframes fadein2 { from { opacity: 1; } to { opacity: 0; } }

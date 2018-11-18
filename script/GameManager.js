@@ -8,10 +8,11 @@ exemple : positionnement image / écouteurs des clicks /
 @param data_equilibrage Object données d'équilibrage provenant de equilibrage_url
 @param monCanvas_clic context pour gérer les clics
 @param data_image_chargee Object contenant tous les contextes des images chargées
-
+@param mon_Player Object classe contenant les paramètres du joueur : score, ressources
+@param data_texte Object contenant les textes à afficher dans les popups
 */
 
-function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player)
+function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player, data_texte)
 {
     console.log("fonction GameManager");
     console.log("test chargement : or "+mon_Player.or);
@@ -27,6 +28,7 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
     this.pos_y = 0;
     this.mon_Player = mon_Player;
     this.data_equilibrage = data_equilibrage;
+    this.data_texte = data_texte;
 
 }
 /**
@@ -58,7 +60,7 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
    this.monCanvas_click.clearRect(0,0, window.innerWidth, window.innerHeight);
    this.monCanvas_click.beginPath();
    // mise en place des zones à cliquer
-   this.canvas_hit = new Gameplay(this.monCanvas_click, this, this.data_interface.introduction.elements);
+   this.canvas_hit = new Gameplay(this.monCanvas_click, this, this.data_interface.introduction.elements, "intro");
    // affichage des zones à cliquer
    this.affichage_click_zone();
    this.monCanvas_click.closePath();
@@ -105,10 +107,15 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
  *
  * @return {[type]} [description]
  */
-GameManager.prototype.setup2 = function (bouton, data)
+GameManager.prototype.setup2 = function (bouton, data, scene)
 {
 
   var self = this;
+  // si un timer est en cours d'exécution, on l'arrète.
+  if(this.mon_Interval){
+      clearInterval(this.mon_Interval);
+      this.mon_Interval = false;
+  }
 
   // tableau contenant les objects affichés à l'écran : (fond, bouton navigation, score)
   // structure [key, categorie String("image ou "texte)]
@@ -116,6 +123,9 @@ GameManager.prototype.setup2 = function (bouton, data)
   this.arrayOfGameObjects2 = [];
   this.arrayOfClickObjects = {};
 
+  // mise à jour de la propriété nb_objet : nombre d'objets découverts pour la gestion des niveaux du lonono
+  this.mon_Player.ressource.nb_objet = this.mon_Player.update_nb_objet(this.data_equilibrage.bareme_niveau.lonono, "nb_objet" , "lonono");
+  console.log("affichage nombre objets découverts "+this.mon_Player.ressource.nb_objet);
   this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
   this.monCanvas.beginPath();
   this.map = new Map(this.monCanvas, self, this.data_interface.carte);
@@ -139,44 +149,16 @@ GameManager.prototype.setup2 = function (bouton, data)
   $.extend( object_fusionne, this.bouton_niveau.monObject);
 console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
   // mise en place des zones à cliquer
-  this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne);
+  this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne, "map");
   // affichage des zones à cliquer
   this.affichage_click_zone();
   this.monCanvas_click.closePath();
 
     if(!this.mon_Interval){
-      this.mon_Interval = setInterval( function() {self.reload();}, 3000);
+      this.mon_Interval = setInterval( function() {self.affichage_map();}, 3000);
     }
 
 }
-
-/**
- * rechargement de la map
- *
- * @return {[type]} [description]
- */
- GameManager.prototype.reload = function ()
-  {
-    console.log("reload");
-      this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-    for (var i in this.arrayOfGameObjects) {
-          console.log("image "+i);
-          if(this.arrayOfGameObjects[i][1]=="text"){
-            // affichage du Texte
-            // si texte defini par défaut dans data_interface est egal à "" alors affichage de la valeur stockée dans this.mon_Player.(...)
-            this.arrayOfGameObjects[i][2].setup((this.arrayOfGameObjects[i][2].text=="" ? this.mon_Player[this.arrayOfGameObjects[i][2].valeur_a_afficher] : this.arrayOfGameObjects[i][2].text));
-        //    _target[this.arrayOfGameObjects[i][0]].setup(this.mon_Player.or);
-          }else if(this.arrayOfGameObjects[i][1]=="image"){
-            this.arrayOfGameObjects[i][2][this.arrayOfGameObjects[i][2].ombre](this.monCanvas);
-      //      _target[this.arrayOfGameObjects[i][0]].draw(this.monCanvas);
-          }
-      }
-
-
-  }
-
-
 
 /**
  * Affichage map
@@ -186,12 +168,13 @@ console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
  GameManager.prototype.affichage_map = function ()
   {
     console.log("affichage_map : affichage des icones");
+    this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
       for (var i in this.arrayOfGameObjects) {
           if(this.arrayOfGameObjects[i][1]=="text"){
-            this.arrayOfGameObjects[i][2].setup(this.mon_Player.or);
+            this.arrayOfGameObjects[i][2].setup((this.arrayOfGameObjects[i][2].text=="" ? this.mon_Player[this.arrayOfGameObjects[i][2].valeur_a_afficher] : this.arrayOfGameObjects[i][2].text));
           }else if(this.arrayOfGameObjects[i][1]=="image"){
-            this.arrayOfGameObjects[i][2].draw(this.monCanvas);
+            this.arrayOfGameObjects[i][2][this.arrayOfGameObjects[i][2].ombre](this.monCanvas);
           }
       }
 
@@ -244,7 +227,7 @@ console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
           if(resultat){
             $("#monCanvas").off('click');
             console.log("click_canvas "+JSON.stringify(resultat));
-            self[resultat[1]](resultat[0], resultat[2]);
+            self[resultat[1]](resultat[0], resultat[2], resultat[3]);
           }
 
         });
@@ -252,24 +235,12 @@ console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
      }
  /**
   * comportement lors d'un click sur le lonono
+    lancement d'une transition
   *
-  * @return {[type]} [description]
   */
-  GameManager.prototype.setup3 = function (key, data)
+  GameManager.prototype.setup3 = function (key, data, scene)
    {
-//this.setup();
-this.mon_Player.or +=1;
-this.setup2();
-   }
-  /**
-  * Affichage map
-  *
-  * @return {[type]} [description]
-    @todo enlever les fonctions fadein en js qui sont commentées
-  */
-  GameManager.prototype.setup4 = function (key, data)
-   {
-     console.log("village");
+     console.log("lonono");
      self = this;
      if(this.mon_Interval){
          clearInterval(this.mon_Interval);
@@ -277,7 +248,28 @@ this.setup2();
      $("#monCanvas").addClass("niveau_de_gris mon_fadein");
      $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
           $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
-          self.contructor_village();
+          self.lonono(key, data);
+
+     });
+   }
+  /**
+  * Affichage map
+  *
+  * @return {[type]} [description]
+    @todo enlever les fonctions fadein en js qui sont commentées
+  */
+  GameManager.prototype.setup4 = function (key, data, scene)
+   {
+     console.log("village");
+     self = this;
+     if(this.mon_Interval){
+         clearInterval(this.mon_Interval);
+         this.mon_Interval = false;
+     }
+     $("#monCanvas").addClass("niveau_de_gris mon_fadein");
+     $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+          $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
+          self.contructor_village(key, data);
 
      });
 //     this.monCanvas.putImageData(grey_scale(this), 0, 0);
@@ -328,8 +320,12 @@ this.setup();
          fadein(self, mon_compte, nb);
        } , 400);
      }
-  GameManager.prototype.contructor_village = function(){
+  GameManager.prototype.contructor_village = function(key, data){
     var self = this;
+    if(this.mon_Interval){
+        clearInterval(this.mon_Interval);
+        this.mon_Interval = false;
+    }
     this.arrayOfGameObjects = [];
     this.arrayOfGameObjects2 = [];
     this.arrayOfClickObjects = {};
@@ -338,7 +334,7 @@ this.setup();
     this.monCanvas.beginPath();
     this.village = new Mon_Village(this.monCanvas, self, this.data_equilibrage.plats, this.data_interface.village, this.data_equilibrage.ressource);
     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
-    this.affichage_village();
+    this.affichage_village(key, data);
     this.click_canvas();
     this.monCanvas.closePath();
 
@@ -351,15 +347,15 @@ this.setup();
 
     console.log("object_fusionne2 "+JSON.stringify(object_fusionne));
     // mise en place des zones à cliquer
-    this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne);
+    this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne, "village");
     // affichage des zones à cliquer
     this.affichage_click_zone();
     this.monCanvas_click.closePath();
       if(!this.mon_Interval){
-    //      this.mon_Interval = setInterval( function() {self.reload();}, 3000);
+          this.mon_Interval = setInterval( function() {self.affichage_village(key, data);}, 3000);
       }
   }
-  GameManager.prototype.affichage_village = function()
+  GameManager.prototype.affichage_village = function(key, data)
   {
     console.log("affichage_village");
 
@@ -373,54 +369,249 @@ this.setup();
             this.village[this.arrayOfGameObjects[i][0]].setup((this.village[this.arrayOfGameObjects[i][0]].text=="" ? this.mon_Player[this.village[this.arrayOfGameObjects[i][0]].valeur_a_afficher] : this.village[this.arrayOfGameObjects[i][0]].text));
           }else if(this.arrayOfGameObjects[i][1]=="image"){
 
-            this.village[this.arrayOfGameObjects[i][0]][this.village[this.arrayOfGameObjects[i][0]].ombre](this.data_interface.village.alpha_);
+            this.village[this.arrayOfGameObjects[i][0]][this.village[this.arrayOfGameObjects[i][0]].ombre](this.data_interface.village.alpha_, key);
 
           }
       }
 
   }
-  GameManager.prototype.vente = function(key, data)
+  GameManager.prototype.vente = function(key, data, scene)
   {
-    console.log("debut de la vente");
-    if(this.mon_Player.echange(key, data.or, "or", data)){
-      this.popup("contructor_village");
-    }else{
-      this.contructor_village();
-    }
+    if(scene == "lonono"){
+        console.log("fabrication plats ou synthèse nouvelles ressources");
+        console.log("scene "+scene);
+        console.log("clé "+key);
+        console.log("data "+JSON.stringify(data));
 
+        // si dans la section lonono, on a cliqué sur une ressource pour créer un nouvelle ressource
+          if(data.action=="ressource" && this.mon_Player[data.cat][data.nom2]>0){
+              var var_tempo = mix_ressources(this.array_mix_ressource, this.array_mix_ressource2, this.mon_Player.niveau.lonono, data.nom2, data.cat);
+              this.array_mix_ressource = var_tempo[0];
+              this.array_mix_ressource2 = var_tempo[1];
+
+                  // si on a pas encore sélectionné suffisemment de plat : il se passe rien
+                  if(this.array_mix_ressource<this.mon_Player.niveau.lonono){
+                    // on affiche au prochain tour la partie mix déjà choisi en bas de l'ecran
+                    this.mon_Player.lonono_mix_ressource = affichage_ressource(this.array_mix_ressource, this.array_mix_ressource2, this.data_equilibrage);
+                    this.popup("lonono", "", "", "lonono", "nb_ressource_insuffisant");
+                  }else{
+                    var mon_affichage = mix_reussite(this.array_mix_ressource, this.data_equilibrage.lonono_algo, this.mon_Player.niveau.lonono);
+                    if(mon_affichage.length==0){
+                        this.mon_Player.echange2(this.array_mix_ressource, this.array_mix_ressource2, "ex______", 1, this.mon_lonono["ex______"].cat, this.mon_lonono);
+                        var a_afficher = "echec_recette";
+                        var a_afficher2 = 1;
+                        var a_afficher3 = affichage_ressource(this.array_mix_ressource, this.array_mix_ressource2, this.data_equilibrage);
+                        this.mon_Player.niveau["lonono_icone"] = 3;
+                        this.mon_Player.objet_debloque["ex______"] = this.mon_Player.objet_debloque["ex______"] + 1;
+                    }else{
+                        this.mon_Player.echange2(this.array_mix_ressource, this.array_mix_ressource2, mon_affichage[0], mon_affichage[1], data.action, this.mon_lonono);
+                        var a_afficher = "reussite";
+                        var a_afficher2 = mon_affichage[1];
+                        // merci NathalieOria !!
+                        var a_afficher3 = (a_afficher2>1 ? String(this.data_equilibrage.ressource[mon_affichage[0]].nom+"s") : this.data_equilibrage.ressource[mon_affichage[0]].nom);
+                        this.mon_Player.niveau["lonono_icone"] = 2;
+                        this.mon_Player.objet_debloque[this.data_equilibrage.ressource[mon_affichage[0]].nom] = this.mon_Player.objet_debloque[this.data_equilibrage.ressource[mon_affichage[0]].nom] + mon_affichage[1];
+                    }
+                    this.mon_Player.lonono_mix_ressource = "";
+                    this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher);
+                  }
+
+          // si dans la section lonono, on a cliqué sur une ressource pour créer un plat
+        }else if(data.action=="plat" && this.mon_Player[data.cat][data.nom2]>0){
+
+                var var_tempo = mix_ressources(this.array_mix_plat, this.array_mix_plat2, this.mon_Player.niveau.lonono, data.nom2, data.cat);
+                this.array_mix_plat = var_tempo[0];
+                this.array_mix_plat2 = var_tempo[1];
+
+                // si on a pas encore sélectionné suffisemment de plat : il se passe rien
+                if(this.array_mix_plat<this.mon_Player.niveau.lonono){
+                  this.mon_Player.lonono_mix_plat = affichage_ressource(this.array_mix_plat, this.array_mix_plat2, this.data_equilibrage);
+                  this.popup("lonono", "", "", "lonono", "nb_ressource_insuffisant");
+                }else{
+                    console.log("array_mix_plat "+JSON.stringify(this.array_mix_plat));
+                  var mon_affichage = mix_reussite(this.array_mix_plat, this.data_equilibrage.lonono_algo2, this.mon_Player.niveau.lonono);
+                  console.log("mon_affichage "+mon_affichage);
+                  if(mon_affichage.length==0){
+                      this.mon_Player.echange2(this.array_mix_plat, this.array_mix_plat2, "ex______", 1, this.mon_lonono["ex______"].cat, this.mon_lonono);
+                      var a_afficher = "echec_recette";
+                      var a_afficher2 = 1;
+                      var a_afficher3 = affichage_ressource(this.array_mix_plat, this.array_mix_plat2, this.data_equilibrage);
+                      this.mon_Player.niveau["lonono_icone"] = 3;
+                  }else{
+                      this.mon_Player.echange2(this.array_mix_plat, this.array_mix_plat2, mon_affichage[0], mon_affichage[1], data.action, this.mon_lonono);
+                      var a_afficher = "reussite";
+                      var a_afficher2 = mon_affichage[1];
+                      // merci NathalieOria !!
+                      var a_afficher3 = (a_afficher2>1 ? String(this.data_equilibrage.plats[mon_affichage[0]].nom+"s") : this.data_equilibrage.plats[mon_affichage[0]].nom);
+                      this.mon_Player.niveau["lonono_icone"] = 2;
+                  }
+                  this.mon_Player.lonono_mix_plat = "";
+                  this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher);
+                }
+          }else{
+            this.lonono(key, data, scene);
+          }
+      }else if(scene == "village"){
+        console.log("debut de la vente");
+        if(this.mon_Player.echange(key, data.or, "or", data)){
+          if(data.or>0){
+              this.popup("contructor_village", this.data_equilibrage.plats[key].nom, "", "village", "plat");
+          }else{
+              this.mon_Player.objet_debloque[this.data_equilibrage.ressource[key].nom] = this.mon_Player.objet_debloque[this.data_equilibrage.ressource[key].nom] + 1;
+              this.popup("contructor_village", this.data_equilibrage.ressource[key].nom, "", "village", "achat");
+          }
+
+        }else{
+          this.contructor_village(key, data, scene);
+        }
+    }
   }
-  GameManager.prototype.popup = function(target){
+  /**
+  prototype popup
+  contruction des objets du popup
+
+  @param target canevas où doit s'afficher le popup
+  @param var1 string : variable complémentaire à afficher en fin de texte
+  @param var2 string variable complémentaire à afficher en fin de texte
+  @param frame string scène où est affiché le popup : va servir d'attribut à rechercher le texte dans le fichier data_texte
+  @param element string attribu de frame dans le fichier texte_data
+
+  */
+  GameManager.prototype.popup = function(target, var1, var2, frame, element){
     var self = this;
     console.log("popup");
     self = this;
     if(this.mon_Interval){
         clearInterval(this.mon_Interval);
     }
+    this.arrayOfGameObjects = [];
     this.mon_popup = new Popup(this.monCanvas, self, this.data_equilibrage.plats, this.data_interface.popup);
     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
-    this.affichage_popup();
+    this.affichage_popup(var1, var2, frame, element, target);
 
 
   }
-  GameManager.prototype.affichage_popup = function(){
+  /**
+  prototype d'affichage du popup
+
+  @param var1 string : variable complémentaire à afficher en fin de texte
+  @param var2 string variable complémentaire à afficher en fin de texte
+  @param frame string scène où est affiché le popup : va servir d'attribut à rechercher le texte dans le fichier data_texte
+  @param element string attribu de frame dans le fichier texte_data
+  @param target canevas où doit s'afficher le popup
+
+  */
+  GameManager.prototype.affichage_popup = function(var1, var2, frame, element, target){
     console.log("fonction affichage_popup");
     self = this;
+    for (var i in this.arrayOfGameObjects) {
+        if(this.arrayOfGameObjects[i][1]=="text"){
+            this.arrayOfGameObjects[i][2].setup(this.data_texte[frame][element]+": "+var1+" "+var2);
+        }else if(this.arrayOfGameObjects[i][1]=="image"){
+          console.log("affichage_popup "+this.arrayOfGameObjects[i][0]);
+            this.arrayOfGameObjects[i][2].draw(this.monCanvas);
+        }
+    }
     $("#monCanvas").addClass("mon_fadein2");
     $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
          $("#monCanvas").removeClass("mon_fadein2");
-         self.contructor_village();
+         self[target](frame,"", frame);
 
     });
 
   }
-  GameManager.prototype.niveau_up = function(key, data){
+  GameManager.prototype.niveau_up = function(key, data, scene){
       console.log("click sur le changement de niveau "+key+" data "+JSON.stringify(data));
       self = this;
-      console.log("click sur le changement de niveau "+this.bouton_niveau+" "+JSON.stringify(this.bouton_niveau.echange_ressource[data.nom])+" "+data.nom);
-      this.mon_Player.niveau[data.nom] = this.mon_Player.niveau[data.nom]+1;
-      this.bouton_niveau.echange_ressource[data.nom].forEach(function(e){
+      console.log("click sur le changement de niveau "+this.bouton_niveau+" "+JSON.stringify(this.bouton_niveau.echange_ressource[data.key])+" "+data.key);
+      this.mon_Player.niveau[data.key] = this.mon_Player.niveau[data.key]+1;
+      this.bouton_niveau.echange_ressource[data.key].forEach(function(e){
+        console.log("valeur ressource avant "+self.mon_Player.ressource[e[0]]);
+        console.log("valeur ressource e[1] "+e[1]);
+        console.log("valeur ressource e[2] "+e[2]);
           self.mon_Player.ressource[e[0]] = e[1] - e[2];
-
+        console.log("valeur ressource avant "+self.mon_Player.ressource[e[0]]);
       });
-      self.popup("setup2");
+      self.popup("setup2", data.key, this.mon_Player.niveau[data.key], "map", "niveau");
+  }
+  /**
+  classe de gestion du lonono
+
+
+  */
+  GameManager.prototype.lonono = function(key, data, scene){
+      if(this.mon_Interval){
+          clearInterval(this.mon_Interval);
+          this.mon_Interval = false;
+      }
+
+      var self = this;
+      this.arrayOfGameObjects = [];
+      this.arrayOfGameObjects3 = {};
+      this.arrayOfGameObjects2 = [];
+      this.arrayOfClickObjects = {};
+      // tableau représentant l'association des ressources ---> synthèse nouvelle ressource
+      this.array_mix_ressource = [];
+      // tableau représentant la catégorie des ressources présentent dans array_mix_ressource
+      this.array_mix_ressource2 = [];
+      // tableau représentant l'association des ressources --> synthèse plat
+      this.array_mix_plat = [];
+      // tableau représentant  la catégorie des ressources présentent dans array_mix_plat
+      this.array_mix_plat2 = [];
+
+      this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      this.monCanvas.beginPath();
+      this.mon_lonono = new Mon_lonono(this.monCanvas, self, this.data_equilibrage.plats, this.data_interface.lonono, this.data_equilibrage.ressource, this.data_equilibrage.lonono_algo, this.data_equilibrage.lonono_algo2);
+      this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
+      this.affichage_lonono(key, data);
+      this.click_canvas();
+      this.monCanvas.closePath();
+
+      this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      this.monCanvas_click.beginPath();
+      var object_fusionne = {};
+//      $.extend( object_fusionne, this.data_equilibrage.plats);
+//      $.extend( object_fusionne, this.data_equilibrage.ressource);
+//      object_fusionne["retour"]= this.data_interface.village.elements.retour;
+
+      this.arrayOfGameObjects3["retour"]= this.data_interface.village.elements.retour;
+      console.log("object_fusionne2 "+JSON.stringify(object_fusionne));
+      // mise en place des zones à cliquer
+      this.canvas_hit = new Gameplay(this.monCanvas_click, this, this.arrayOfGameObjects3, "lonono");
+      // affichage des zones à cliquer
+      this.affichage_click_zone();
+      this.monCanvas_click.closePath();
+        if(!this.mon_Interval){
+          console.log("debut fonction setInterval lonono ");
+
+          this.mon_Interval = setInterval( function() {
+              console.log("setInterval lonono "+key);
+              self.mon_Player.niveau.lonono_icone = 1;
+              self.niveau = self.mon_Player.niveau_init(self.arrayOfGameObjects);
+              self.affichage_lonono(key, data, scene);}, 3000);
+        }
+
+  }
+  GameManager.prototype.affichage_lonono = function(key, data, scene)
+  {
+    console.log("affichage_lonono");
+    this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+
+      for (var i in this.arrayOfGameObjects) {
+          if(this.arrayOfGameObjects[i][1]=="text"){
+            console.log("valeur a afficher "+this.mon_lonono[this.arrayOfGameObjects[i][2]].valeur_a_afficher);
+            console.log("valeur a afficher2 "+this.mon_Player[this.mon_lonono[this.arrayOfGameObjects[i][2]].valeur_a_afficher]);
+            console.log("valeur a afficher3 "+(this.mon_lonono[this.arrayOfGameObjects[i][2]].text=="" ? this.mon_Player[this.mon_lonono[this.arrayOfGameObjects[i][2]].valeur_a_afficher] : this.mon_lonono[this.arrayOfGameObjects[i][2]].text));
+          // affichage du Texte
+          // si texte defini par défaut dans data_interface est egal à "" alors affichage de la valeur stockée dans this.mon_Player.(...)
+            this.mon_lonono[this.arrayOfGameObjects[i][2]].setup((this.mon_lonono[this.arrayOfGameObjects[i][2]].text=="" ? this.mon_Player[this.mon_lonono[this.arrayOfGameObjects[i][2]].valeur_a_afficher] : this.mon_lonono[this.arrayOfGameObjects[i][2]].text));
+          }else if(this.arrayOfGameObjects[i][1]=="image"){
+            console.log("valeur a afficher4 "+this.arrayOfGameObjects[i][2]);
+            console.log("valeur a afficher41 "+this.mon_lonono[this.arrayOfGameObjects[i][2]]._x);
+            this.mon_lonono[this.arrayOfGameObjects[i][2]][this.mon_lonono[this.arrayOfGameObjects[i][2]].ombre](this.data_interface.lonono.alpha_, key);
+
+          }
+      }
+
   }

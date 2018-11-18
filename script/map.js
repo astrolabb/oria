@@ -18,10 +18,11 @@ var Map = function(monCanvas, _target, data_interface){
 
 
 };
-var Icone = function(myCanvasContext, data_image, nom, _target){
+var Icone = function(myCanvasContext, data_image, key, _target){
   this._target = _target;
   this.monCanvas = myCanvasContext;
-  this.nom = nom;
+  this.key = key;
+  this.nom = data_image.nom;
   this.data_image = data_image;
   this._width = data_image._width;
   this._height = data_image._height;
@@ -31,8 +32,9 @@ var Icone = function(myCanvasContext, data_image, nom, _target){
   this.couleur = data_image.couleur;
   this.loc = data_image.loc;
   this.lien = data_image.lien;
+  this.cat = data_image.cat;
 }
-Icone.prototype.draw_ombre = function(mon_alpha)
+Icone.prototype.draw_ombre = function(mon_alpha, key)
 {
   // pour ktr55
     var self = this;
@@ -41,8 +43,9 @@ Icone.prototype.draw_ombre = function(mon_alpha)
   this.monCanvas.shadowOffsetX = 15;
   this.monCanvas.shadowOffsetY = 15;
   this.monCanvas.shadowBlur = 25;
-
-  this.monCanvas.drawImage(this._target.data_image_chargee[this.loc[this._target.niveau[this.nom]][Math.floor(Math.random()*this.loc[this._target.niveau[this.nom]].length)]],self._x,self._y,self._width,self._height);
+  console.log("erreur draw_ombre "+this.key);
+  console.log("erreur draw_ombre2 "+this._target.niveau[this.key]);
+  this.monCanvas.drawImage(this._target.data_image_chargee[this.loc[this._target.niveau[this.key]][Math.floor(Math.random()*this.loc[this._target.niveau[this.key]].length)]],self._x,self._y,self._width,self._height);
 
   this.monCanvas.shadowBlur = 0;
   this.monCanvas.shadowOffsetX = 0;
@@ -55,23 +58,32 @@ Icone.prototype.draw_ombre = function(mon_alpha)
   console.log("object_fusionne "+JSON.stringify(object_fusionne));
   console.log("this.data_image "+JSON.stringify(this.data_image));
 
-  if(this.data_image.or<0){
-  var test = this.isgrey(this._target.mon_Player.or, -(this.data_image.or), this.data_image.or);
+  console.log("ma clé "+key);
 
-  }else if(this.data_image.or>0){
-  var test = this.isgrey(object_fusionne[this.nom],0, this.data_image.or);
+  if(key == "lonono"){
+    var test = false;
+    if(this._target.mon_Player.ressource[this.key] <= 0){
+        var test = true;
+    }
+  }else{
+    if(this.data_image.or<0){
+    var test = this.isgrey(this._target.mon_Player.or, -(this.data_image.or), this.data_image.or);
+
+    }else if(this.data_image.or>0){
+    var test = this.isgrey(object_fusionne[this.key],0, this.data_image.or);
+    }
   }
   if(test){
-      console.log("mettre en gris");
-      this.monCanvas.putImageData(grey_scale(this.monCanvas,this._x,this._y, this._width, this._height), this._x, this._y);
+        console.log("mettre en gris");
+        this.monCanvas.putImageData(grey_scale(this.monCanvas,this._x,this._y, this._width, this._height), this._x, this._y);
   }
 
-console.log("valeur_a_afficher du texte sur icone "+object_fusionne[this.nom]);
+console.log("valeur_a_afficher du texte sur icone "+object_fusionne[this.key]);
   var data_texte = {
     "_x" : self._x + (self._width/2),
     "_y" : self._y + (self._height/2),
-    "text" : object_fusionne[this.nom],
-    "valeur_a_afficher" : this.nom,
+    "text" : object_fusionne[this.key],
+    "valeur_a_afficher" : this.key,
     "police" : this._target.data_interface.village.elements.texte_icone.police,
     "couleur" : this._target.data_interface.village.elements.texte_icone.couleur,
     "alignement" : this._target.data_interface.village.elements.texte_icone.alignement
@@ -80,18 +92,18 @@ console.log("valeur_a_afficher du texte sur icone "+object_fusionne[this.nom]);
   this.texte_dessus = new Text_affichage(this.monCanvas, data_texte, "", 0, 0);
   this.texte_dessus.setup(data_texte.text);
 }
-Icone.prototype.draw = function(myCanvasContext){
+Icone.prototype.draw = function(mon_alpha, key){
 //  myCanvasContext.fillStyle = this.couleur;
 //  myCanvasContext.fillRect(this._x, this._y, this.largeur, this.hauteur);
  console.log("niveau : "+JSON.stringify(this._target.niveau));
- console.log("nom : "+JSON.stringify(this.nom));
- console.log("images : "+JSON.stringify(this._target.niveau[this.nom]));
-console.log("loc : "+JSON.stringify(this.loc[this._target.niveau[this.nom]]));
+ console.log("key : "+JSON.stringify(this.key));
+ console.log("images : "+JSON.stringify(this._target.niveau[this.key]));
+console.log("loc : "+JSON.stringify(this.loc[this._target.niveau[this.key]]));
 
- //this.loc[this._target.niveau[this.nom]
+ //this.loc[this._target.niveau[this.key]
 
     var self = this;
-   self.monCanvas.drawImage(this._target.data_image_chargee[this.loc[this._target.niveau[this.nom]][Math.floor(Math.random()*this.loc[this._target.niveau[this.nom]].length)]],self._x,self._y,self._width,self._height);
+   self.monCanvas.drawImage(this._target.data_image_chargee[this.loc[this._target.niveau[this.key]][Math.floor(Math.random()*this.loc[this._target.niveau[this.key]].length)]],self._x,self._y,self._width,self._height);
 }
 /**
 prototype isgrey :
@@ -114,6 +126,8 @@ Icone.prototype.isgrey = function(valeur, test, ref)
   }
 
 }
+
+
 var BoutonNiveau = function(monCanvas, _target, bouton_niveau, bareme_niveau, map, mon_Player, decalage_x, decalage_y){
   self = this;
   this.monObject = {};
@@ -128,7 +142,7 @@ var BoutonNiveau = function(monCanvas, _target, bouton_niveau, bareme_niveau, ma
         self.monObject["button"+key] = bouton_niveau;
         self.monObject["button"+key]._x = map[key]._x;
         self.monObject["button"+key]._y = map[key]._y+decalage_y;
-        self.monObject["button"+key].nom = key;
+        self.monObject["button"+key].key = key;
       }
   });
 }

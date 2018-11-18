@@ -4,8 +4,13 @@ gestion des clicks
 stockage des données dans :
 @return arrayOfClickObjects Object String"couleur calque invisible" : Array[Object: icone cliquée, String: nom de la fonction à lancer lors du click, Object: données de l'image cliquée]
 @return arrayOfGameObjects2 Array tableau contenant les images clickables
+
+@param monCanvas context sur lequel on va dessiner les zones de clicks ici ce context est invisible : monCanvas_click
+@param _parent classe appelant le constructeur
+@param data essemble des icones necessitant un lien : la zone de click sera affichée si l'icone apparait à l'ecran
+@param scene string nom de la scène actuelle du joueur
 */
-var Gameplay = function(monCanvas, _parent, data){
+var Gameplay = function(monCanvas, _parent, data, scene){
   this.monCanvas = monCanvas;
   this._parent = _parent;
   _parent.arrayOfGameObjects2 = [];
@@ -23,7 +28,7 @@ var Gameplay = function(monCanvas, _parent, data){
                if (!_parent.arrayOfClickObjects[colorKey]) {
 
                   self[key].color = colorKey;
-                  _parent.arrayOfClickObjects[colorKey] = [key, data[key].dir, data[key]];
+                  _parent.arrayOfClickObjects[colorKey] = [key, data[key].dir, data[key], scene];
                   return;
                }
             }

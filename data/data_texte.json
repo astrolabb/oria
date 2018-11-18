@@ -1,0 +1,15 @@
+var data_texte = {
+  "map" : {
+      "niveau" : "Vous avez débloqué un nouveau niveau"
+      },
+  "village" : {
+      "achat" : "ressource achetée",
+      "plat" : "plat vendu"
+    },
+  "lonono" : {
+    "nb_ressource_insuffisant" : "Vous n'avez pas encore sélectionné sufisamment de ressources pour qu'il se passe quelque chose",
+    "echec_recette" : "Votre association est un echec :",
+    "reussite" : "Vous avez obtenu :",
+    "plat" : "plat vendu"
+  }
+}

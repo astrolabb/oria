@@ -324,10 +324,21 @@ var data_interface = {
             "ordre" : 1,
             "loc" : {
               "niv1" :["cherry","cherry"],
-              "niv2" :["tomato","tomato"],
+              "niv2" :["pumpkin","pumpkin"],
               "niv3" :["pumpkin","pumpkin"]
               }
-           }
+           },
+         "titre" : {
+             "_x" : window.innerWidth/3,
+             "_y" : window.innerHeight/2,
+             "nature" : "text",
+             "couleur" : "#333",
+             "police" : "30pt Calibri",
+             "text" : "",
+             "valeur_a_afficher" : "or",
+             "alignement" : "centrage2"
+
+               }
         }
 
     },
@@ -350,6 +361,135 @@ var data_interface = {
           "niv3" :["apple","apple"]
           },
           "dir" : "niveau_up"
+        }
+    },
+    "lonono" : {
+      "maxWidth_text" : 2*window.innerWidth/3,
+      "lineHeight" : window.innerHeight/30,
+      "marge_gauche" : window.innerWidth/20,
+      "marge_haut" : window.innerHeight/5,
+      "alpha_" : 0.5,
+      "elements" : {
+          "fond" : {
+            "_x" : 0,
+            "_y" : 0,
+            "_width" : window.innerWidth,
+            "_height" : window.innerHeight,
+            "ombre" : "draw",
+            "couleur" : "grey",
+            "nature" : "image",
+            "lien" : "non",
+            "ordre" : 1,
+            "loc" : {
+              "niv1" :["kiwi","kiwi"],
+              "niv2" :["tomato","tomato"],
+              "niv3" :["cherry","cherry"]
+              }
+            },
+            "titre" : {
+              "_x" : 20,
+              "_y" : window.innerHeight/20,
+              "nature" : "text",
+              "couleur" : "#333",
+              "police" : "23pt Calibri",
+              "text" : "Le lonono",
+              "valeur_a_afficher" : "",
+              "alignement" : "centrage2"
+            },
+            "titre2" : {
+              "_x" : 20,
+              "_y" : window.innerHeight/12,
+              "nature" : "text",
+              "couleur" : "#333",
+              "police" : "23pt Calibri",
+              "text" : "Choisir des ressources à donner au lonono",
+              "valeur_a_afficher" : "",
+              "alignement" : "centrage2"
+            },
+            "sous_titre_gauche" : {
+            "_x" : window.innerWidth/20,
+            "_y" : window.innerHeight/8,
+            "nature" : "text",
+            "couleur" : "#333",
+            "police" : "20pt Calibri",
+            "text" : "Pour trouver de nouvelles ressources",
+            "valeur_a_afficher" : "",
+            "alignement" : "left"
+            },
+            "sous_titre_droite" : {
+            "_x" : window.innerWidth/20,
+            "_y" : window.innerHeight/8,
+            "nature" : "text",
+            "couleur" : "#333",
+            "police" : "20pt Calibri",
+            "text" : "Pour la fabrication de plats",
+            "valeur_a_afficher" : "",
+            "alignement" : "end"
+            },
+            "texte_icone" : {
+            "_x" : 10,
+            "_y" : 10,
+            "nature" : "",
+            "couleur" : "#333",
+            "police" : "30pt Calibri",
+            "text" : "",
+            "valeur_a_afficher" : "",
+            "alignement" : "centrage3"
+              },
+            "retour" : {
+            "_x" : 0,
+            "_y" : window.innerHeight- window.innerHeight/10,
+            "_width" : window.innerWidth/3,
+            "_height" : window.innerHeight/10,
+            "ombre" : "draw",
+            "couleur" : "red",
+            "nature" : "image",
+            "lien" : "oui",
+            "ordre" : 2,
+            "loc" : {
+            "niv1" :["kiwi","kiwi"],
+            "niv2" :["kiwi","kiwi"],
+            "niv3" :["kiwi","kiwi"]
+                  },
+            "dir" : "setup2"
+            },
+            "lonono_icone" : {
+              "_x" : window.innerWidth/2-window.innerWidth/6,
+              "_y" : window.innerHeight/2-window.innerHeight/6,
+              "_width" : window.innerWidth/3,
+              "_height" : window.innerHeight/3,
+              "ombre" : "draw",
+              "couleur" : "green",
+              "nature" : "image",
+              "lien" : "non",
+              "ordre" : 2,
+              "loc" : {
+                "niv1" :["apple","cherry"],
+                "niv2" :["mango","tomato"],
+                "niv3" :["onion","pumpkin"]
+              }
+            },
+            "mix_gauche" : {
+                "_x" : window.innerWidth/20,
+                "_y" : window.innerHeight- window.innerHeight/5,
+                "nature" : "text",
+                "couleur" : "#333",
+                "police" : "23pt Calibri",
+                "text" : "",
+                "valeur_a_afficher" : "lonono_mix_ressource",
+                "alignement" : "left"
+
+            },
+            "mix_droite" : {
+                "_x" : window.innerWidth/2,
+                "_y" : window.innerHeight- window.innerHeight/5,
+                "nature" : "text",
+                "couleur" : "#333",
+                "police" : "23pt Calibri",
+                "text" : "",
+                "valeur_a_afficher" : "lonono_mix_plat",
+                "alignement" : "end"
+              }
         }
     }
 }

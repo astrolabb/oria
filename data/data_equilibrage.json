@@ -1,7 +1,65 @@
 {
+  "lonono_algo":{
+    "1" : {
+      "paille" : [["herbe"], 1],
+      "planche" : [["rondin"], 5],
+      "limace" : [["ver_de_terre"], 1],
+      "cereales" : [["graine"], 1]
+    },
+    "2" : {
+      "bois_sculpte" : [["billette", "billette"], 1],
+      "engrais" : [["ex______", "plante"], 1],
+      "pierre" : [["herbe", "plante"], 1],
+      "paille" : [["paille", "paille"], 1],
+      "sceau" : [["bois_sculpte", "corde"], 1],
+      "metal" : [["pierre", "pierre"], 1],
+      "fil" : [["fleur", "fleur"], 1],
+      "roue" : [["planche", "bois_sculpte"], 1],
+      "scie" : [["roue", "metal"], 1],
+      "sable" : [["pierre", "eau"], 1],
+      "haricot_magique" : [["legumes", "graine_magique"], 1]
+    },
+    "3" : {
+      "verre" : [["sable","eau", "metal"], 1],
+      "appat" : [["limace", "cereales", "poisson"], 1],
+      "femme" : [["sirene", "pieuvre", "graine_magique"], 1],
+      "arc_en_ciel" : [["licorne", "graine_magique", "fruit"], 1],
+      "pays_imaginaire" : [["licorne", "sirene", "graine_magique"], 1]
+
+      }
+  },
+  "lonono_algo2" : {
+      "1" : {
+        "cereale_soufflee" : [["rondin"], 1],
+        "caviar" : [["poisson"], 1]
+      },
+      "2" : {
+        "huile" : [["eau", "fleur"], 1],
+        "jus_de_fruit" : [["eau", "fruit"], 1],
+        "riz" : [["eau", "cereales"], 1],
+        "bouillon" : [["eau", "legumes"], 1],
+        "sushi" : [["riz", "poisson"], 1],
+        "frite" : [["huile", "legumes"], 1],
+        "saumon_citronne" : [["poisson", "fruit"], 1],
+        "miel" : [["fleur", "fruit"], 1],
+        "pop_corn_caramelise" : [["cereale_soufflee", "miel"], 1],
+        "crabe_marine" : [["crabe", "bouillon"], 1],
+        "sauce" : [["bouillon", "poisson"], 1]
+      },
+      "3" : {
+        "the" : [["eau", "fleur", "fruit"], 1],
+        "maki" : [["riz", "legumes", "poisson"], 1],
+        "salade_de_fruit" : [["fruit", "fruit", "fruit"], 1],
+        "crevette_sautee" : [["crevette", "huile", "sauce"], 1],
+        "homard_royal" : [["homard", "legumes", "caviar"], 1]
+      }
+  },
   "ressource" : {
       "herbe" : {
-        "origin" : "foret",
+        "origin" : {
+          "foret" : 1
+        },
+        "nom" : "herbe",
         "niv" : 1,
         "_x" : 0,
         "_y" : 0,
@@ -12,15 +70,19 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["onion","kiwi"],
+          "niv2" :["onion","kiwi"],
+          "niv3" :["onion","kiwi"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "branche" : {
-        "origin" : "foret",
+        "origin" : {
+          "foret" : 1
+        },
+        "nom" : "branche",
         "niv" : 1,
         "_x" : 0,
         "_y" : 0,
@@ -36,10 +98,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "billette" : {
-        "origin" : "foret",
+        "origin" : {
+          "foret" : 2
+        },
+        "nom" : "billette",
         "niv" : 2,
         "_x" : 0,
         "_y" : 0,
@@ -55,10 +121,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "rondin" : {
-        "origin" : "foret",
+        "origin" : {
+          "foret" : 2
+        },
+        "nom" : "rondin",
         "niv" : 2,
         "_x" : 0,
         "_y" : 0,
@@ -69,15 +139,20 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["onion","kiwi"],
+          "niv2" :["onion","kiwi"],
+          "niv3" :["onion","kiwi"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "planche" : {
-        "origin" : "foret",
+        "origin" : {
+          "foret" : 3,
+          "lonono" : 1
+        },
+        "nom" : "planche",
         "niv" : 3,
         "_x" : 0,
         "_y" : 0,
@@ -93,10 +168,15 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "bois_sculpte" : {
-        "origin" : "foret",
+        "origin" : {
+          "foret" : 3,
+          "lonono" : 2
+        },
+        "nom" : "bois sculpté",
         "niv" : 3,
         "_x" : 0,
         "_y" : 0,
@@ -112,10 +192,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "licorne" : {
-        "origin" : "foret",
+        "origin" : {
+          "foret" : 3
+        },
+        "nom" : "licorne",
         "niv" : 3,
         "_x" : 0,
         "_y" : 0,
@@ -131,10 +215,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "plante" : {
-        "origin" : "jardin",
+        "origin" : {
+          "jardin" : 1
+        },
+        "nom" : "plante",
         "niv" : 1,
         "_x" : 0,
         "_y" : 0,
@@ -150,10 +238,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "limace" : {
-        "origin" : "jardin",
+        "origin" : {
+          "jardin" : 2
+        },
+        "nom" : "limace",
         "niv" : 1,
         "_x" : 0,
         "_y" : 0,
@@ -169,10 +261,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "cereales" : {
-        "origin" : "jardin",
+        "origin" : {
+          "jardin" : 2
+        },
+        "nom" : "cereales",
         "niv" : 2,
         "_x" : 0,
         "_y" : 0,
@@ -188,10 +284,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "fleur" : {
-        "origin" : "jardin",
+        "origin" : {
+          "jardin" : 2
+        },
+        "nom" : "fleur",
         "niv" : 2,
         "_x" : 0,
         "_y" : 0,
@@ -207,10 +307,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "legumes" : {
-        "origin" : "jardin",
+        "origin" : {
+          "jardin" : 3
+        },
+        "nom" : "legumes",
         "niv" : 3,
         "_x" : 0,
         "_y" : 0,
@@ -226,10 +330,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "fruit" : {
-        "origin" : "jardin",
+        "origin" : {
+          "jardin" : 3
+        },
+        "nom" : "fruit",
         "niv" : 3,
         "_x" : 0,
         "_y" : 0,
@@ -245,10 +353,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "graine_magique" : {
-        "origin" : "jardin",
+        "origin" : {
+          "jardin" : 3
+        },
+        "nom" : "graine magique",
         "niv" : 3,
         "_x" : 0,
         "_y" : 0,
@@ -264,10 +376,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "eau" : {
-        "origin" : "lac",
+        "origin" : {
+          "lac" : 1
+        },
+        "nom" : "eau",
         "niv" : 1,
         "_x" : 0,
         "_y" : 0,
@@ -283,10 +399,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "poisson" : {
-        "origin" : "lac",
+        "origin" : {
+          "lac" : 1
+        },
+        "nom" : "poisson",
         "niv" : 1,
         "_x" : 0,
         "_y" : 0,
@@ -302,10 +422,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "crevette" : {
-        "origin" : "lac",
+        "origin" : {
+          "lac" : 2
+        },
+        "nom" : "crevette",
         "niv" : 2,
         "_x" : 0,
         "_y" : 0,
@@ -321,10 +445,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "crabe" : {
-        "origin" : "lac",
+        "origin" : {
+          "lac" : 2
+        },
+        "nom" : "crabe",
         "niv" : 2,
         "_x" : 0,
         "_y" : 0,
@@ -340,10 +468,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "homard" : {
-        "origin" : "lac",
+        "origin" : {
+          "lac" : 3
+        },
+        "nom" : "homard",
         "niv" : 3,
         "_x" : 0,
         "_y" : 0,
@@ -359,10 +491,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "pieuvre" : {
-        "origin" : "lac",
+        "origin" : {
+          "lac" : 3
+        },
+        "nom" : "pieuvre",
         "niv" : 3,
         "_x" : 0,
         "_y" : 0,
@@ -378,10 +514,14 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
       },
       "sirene" : {
-        "origin" : "lac",
+        "origin" : {
+          "lac" : 3
+        },
+        "nom" : "sirène",
         "niv" : 3,
         "_x" : 0,
         "_y" : 0,
@@ -397,14 +537,429 @@
           "niv3" :["onion","onion"]
           },
         "dir" : "vente",
-        "or" : -1
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "paille" : {
+        "origin" : {
+          "lonono" : 1
+          },
+        "nom" : "paille",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "ver_de_terre" : {
+        "origin" : {
+          "lonono" : 1
+          },
+        "nom" : "ver de terre",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "ex______" : {
+        "origin" : {
+          "lonono" : 1
+          },
+        "nom" : "ex______",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "graine" : {
+        "origin" : {
+          "lonono" : 1
+          },
+        "nom" : "graine",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "engrais" : {
+        "origin" : {
+          "lonono" : 2
+          },
+        "nom" : "engrais",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "pierre" : {
+        "origin" : {
+          "lonono" : 2
+          },
+        "nom" : "pierre",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "corde" : {
+        "origin" : {
+          "lonono" : 2
+          },
+        "nom" : "corde",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "metal" : {
+        "origin" : {
+          "lonono" : 2
+          },
+        "nom" : "metal",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "fil" : {
+        "origin" : {
+          "lonono" : 2
+          },
+        "nom" : "fil",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "roue" : {
+        "origin" : {
+          "lonono" : 2
+          },
+        "nom" : "roue",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "scie" : {
+        "origin" : {
+          "lonono" : 2
+          },
+        "nom" : "scie",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "sable" : {
+        "origin" : {
+          "lonono" : 2
+          },
+        "nom" : "sable",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "haricot_magique" : {
+        "origin" : {
+          "lonono" : 2
+          },
+        "nom" : "haricot magique",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "verre" : {
+        "origin" : {
+          "lonono" : 3
+          },
+        "nom" : "verre",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "appat" : {
+        "origin" : {
+          "lonono" : 3
+          },
+        "nom" : "appat",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "femme" : {
+        "origin" : {
+          "lonono" : 3
+          },
+        "nom" : "femme",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "arc_en_ciel" : {
+        "origin" : {
+          "lonono" : 3
+          },
+        "nom" : "arc en ciel",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
+      "pays_imaginaire" : {
+        "origin" : {
+          "lonono" : 3
+          },
+        "nom" : "pays imaginaire",
+        "niv" : 3,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["carrot","carrot"],
+          "niv2" :["carrot","carrot"],
+          "niv3" :["carrot","carrot"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
       }
 
   },
   "ressource_demarrage" : {
-    "herbe" : 0,
-    "branche" : 0,
-    "billette" : 0,
+    "herbe" : 2,
+    "branche" : 1,
+    "billette" : 3,
     "rondin" : 11,
     "planche" : 51,
     "bois_sculpte" : 0,
@@ -422,7 +977,27 @@
     "crabe" : 0,
     "homard" : 0,
     "pieuvre" : 0,
-    "sirene" : 0},
+    "sirene" : 0,
+    "paille" : 0,
+    "ver_de_terre" : 5,
+    "ex______" : 0,
+    "graine" : 0,
+    "engrais" : 0,
+    "pierre" : 0,
+    "corde" : 0,
+    "metal" : 0,
+    "fil" : 0,
+    "roue" : 0,
+    "scie" : 0,
+    "sable" : 0,
+    "haricot_magique" : 0,
+    "verre" : 0,
+    "appat" : 0,
+    "femme" : 0,
+    "arc_en_ciel" : 0,
+    "pays_imaginaire" : 0,
+    "nb_objet" : 0
+  },
   "plat_demarrage" : {
     "cereale_soufflee" : 5,
     "caviar" : 0,
@@ -441,8 +1016,7 @@
     "maki" : 8,
     "salade_de_fruit" : 0,
     "crevette_sautee" : 0,
-    "homard_royal" : 0,
-    "nb_objet" : 0
+    "homard_royal" : 0
     },
   "or" : 0,
   "niveau" : {
@@ -492,7 +1066,26 @@
     "homard" : 1,
     "pieuvre" : 1,
     "sirene" : 1,
-    "retour" : 1
+    "paille" : 1,
+    "ver_de_terre" : 1,
+    "ex______" : 1,
+    "graine" : 1,
+    "engrais" : 1,
+    "pierre" : 1,
+    "corde" : 1,
+    "metal" : 1,
+    "fil" : 1,
+    "roue" : 1,
+    "scie" : 1,
+    "sable" : 1,
+    "haricot_magique" : 1,
+    "verre" : 1,
+    "appat" : 1,
+    "femme" : 1,
+    "arc_en_ciel" : 1,
+    "pays_imaginaire" : 1,
+    "retour" : 1,
+    "lonono_icone" : 1
   },
   "bareme_niveau" : {
       "village" : {
@@ -534,7 +1127,7 @@
       "lac" : {
           "2" : {
             "planche" : 50,
-            "vers_de_terre" : 10
+            "ver_de_terre" : 10
           },
           "3" : {
             "bois_sculpte" : 100,
@@ -545,7 +1138,7 @@
       },
       "lonono" : {
           "2" : {
-            "nb_objet" : 10
+            "nb_objet" : 3
           },
           "3" : {
             "nb_objet" : 20
@@ -555,6 +1148,7 @@
   "max_niveau" : 3,
   "plats" : {
     "cereale_soufflee" : {
+      "nom" : "céréale soufflée",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -569,9 +1163,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 1
+      "or" : 1,
+      "cat" : "plat"
     },
     "caviar" : {
+      "nom" : "caviar",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -586,9 +1182,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 1
+      "or" : 1,
+      "cat" : "plat"
     },
     "huile" : {
+      "nom" : "huile",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -603,9 +1201,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 2
+      "or" : 2,
+      "cat" : "plat"
     },
     "jus_de_fruit" : {
+      "nom" : "jus de fruit",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -620,9 +1220,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 3
+      "or" : 3,
+      "cat" : "plat"
     },
     "riz" : {
+      "nom" : "riz",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -637,9 +1239,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 2
+      "or" : 2,
+      "cat" : "plat"
     },
     "bouillon" : {
+      "nom" : "bouillon",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -654,9 +1258,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 2
+      "or" : 2,
+      "cat" : "plat"
     },
     "sushi" : {
+      "nom" : "sushi",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -671,9 +1277,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 3
+      "or" : 3,
+      "cat" : "plat"
     },
     "frite" : {
+      "nom" : "frite",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -688,9 +1296,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 3
+      "or" : 3,
+      "cat" : "plat"
     },
     "saumon_citronne" : {
+      "nom" : "saumon citronné",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -705,9 +1315,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 3
+      "or" : 3,
+      "cat" : "plat"
     },
     "miel" : {
+      "nom" : "miel",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -722,9 +1334,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 2
+      "or" : 2,
+      "cat" : "plat"
     },
     "pop_corn_caramelise" : {
+      "nom" : "pop-corn caramelisé",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -739,9 +1353,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 3
+      "or" : 3,
+      "cat" : "plat"
     },
     "crabe_marine" : {
+      "nom" : "crabe mariné",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -756,9 +1372,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 3
+      "or" : 3,
+      "cat" : "plat"
     },
     "sauce" : {
+      "nom" : "sauce",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -773,9 +1391,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 3
+      "or" : 3,
+      "cat" : "plat"
     },
     "the" : {
+      "nom" : "the",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -790,9 +1410,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 4
+      "or" : 4,
+      "cat" : "plat"
     },
     "maki" : {
+      "nom" : "maki",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -807,9 +1429,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 5
+      "or" : 5,
+      "cat" : "plat"
     },
     "salade_de_fruit" : {
+      "nom" : "salade de fruits",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -824,9 +1448,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 5
+      "or" : 5,
+      "cat" : "plat"
     },
     "crevette_sautee" : {
+      "nom" : "crevette sautée",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -841,9 +1467,11 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 10
+      "or" : 10,
+      "cat" : "plat"
     },
     "homard_royal" : {
+      "nom" : "homard royal",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,
@@ -858,7 +1486,8 @@
         "niv3" :["onion","onion"]
         },
       "dir" : "vente",
-      "or" : 5
+      "or" : 5,
+      "cat" : "plat"
       }
   }
 }

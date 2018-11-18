@@ -16,8 +16,8 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface,
 
 
     // mise à l'échelle des images pour les disposer à l'ecran
-    data_equilibrage = this.mise_echelle(data_equilibrage, data_interface.marge_gauche, data_interface.marge_haut, 0);
-    data_ressources = this.mise_echelle(data_ressources, data_interface.marge_gauche, data_interface.marge_haut, window.innerWidth/2);
+    data_equilibrage = mise_echelle(data_equilibrage, data_interface.marge_gauche, data_interface.marge_haut, 0, window.innerWidth/2);
+    data_ressources = mise_echelle(data_ressources, data_interface.marge_gauche, data_interface.marge_haut, window.innerWidth/2, window.innerWidth/2);
 
     console.log("data_ressources "+JSON.stringify(data_equilibrage));
 
@@ -67,35 +67,4 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface,
         }
     });
 
-}
-Mon_Village.prototype.mise_echelle = function(data_equilibrage, left, up, ref){
-
-  var marge_gauche = left;
-  var marge_haut = up;
-  var nb_image_ligne = Math.ceil(Math.sqrt(Object.keys(data_equilibrage).length));
-  console.log("data_equilibrage longueur "+Object.keys(data_equilibrage).length);
-  console.log("nb_image_ligne "+nb_image_ligne);
-  console.log("largeur ecran "+window.innerWidth);
-  console.log("hauteur ecran "+window.innerHeight);
-  var largeur_image = (window.innerWidth/2 - 2*marge_gauche - (nb_image_ligne*5))/nb_image_ligne;
-  console.log("largeur_image "+largeur_image);
-  var hauteur_image = (window.innerHeight - 1.2*marge_haut - (nb_image_ligne*5))/nb_image_ligne;
-  console.log("hauteur_image "+hauteur_image);
-  largeur_image = largeur_image>hauteur_image ? hauteur_image : largeur_image;
-  hauteur_image = largeur_image>hauteur_image ? hauteur_image : largeur_image;
-  var compteur = 0;
-  var compteur2 = 0;
-  Object.keys(data_equilibrage).forEach(function(key) {
-      if(data_equilibrage[key].nature == "image"){
-        compteur2 = compteur >= nb_image_ligne ? compteur2+1 : compteur2;
-        compteur = compteur >= nb_image_ligne ? 0 : compteur;
-        data_equilibrage[key]._x = ref + marge_gauche + compteur*(largeur_image+5);
-        data_equilibrage[key]._y = marge_haut + compteur2*(hauteur_image+5);
-        data_equilibrage[key]._width = largeur_image;
-        data_equilibrage[key]._height = hauteur_image;
-        compteur++;
-      }
-  });
-
-  return data_equilibrage;
 }
