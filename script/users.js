@@ -8,7 +8,10 @@ var Player = function (){
   this.niveau_max = 0;
   // objet_debloque : Object répertorie tous les objets débloqués
   this.objet_debloque = {};
-
+  // propriete servant à stocker la date du dernier lancé de la roue de la chance
+  this.jardin_date_lance_roue = 0;
+  // propriete poubelle : malus utilisé dans la section jardin pour les chances de gagner à la roue de la fortune
+  this.jardin_poubelle = 0;
 }
 
 Player.prototype.setup = function (data_equilibrage)

@@ -30,6 +30,17 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
     this.data_equilibrage = data_equilibrage;
     this.data_texte = data_texte;
 
+    // iinitialisation des variables utilisées dans la partie lonono
+    // tableau représentant l'association des ressources ---> synthèse nouvelle ressource
+    this.array_mix_ressource = [];
+    // tableau représentant la catégorie des ressources présentent dans array_mix_ressource
+    this.array_mix_ressource2 = [];
+    // tableau représentant l'association des ressources --> synthèse plat
+    this.array_mix_plat = [];
+    // tableau représentant  la catégorie des ressources présentent dans array_mix_plat
+    this.array_mix_plat2 = [];
+
+
 }
 /**
  * prototype de lancement :
@@ -248,7 +259,7 @@ console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
      $("#monCanvas").addClass("niveau_de_gris mon_fadein");
      $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
           $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
-          self.lonono(key, data);
+          self.lonono(key, data, scene);
 
      });
    }
@@ -297,13 +308,26 @@ this.setup();
         this.setup2();
      }
      /**
-     * Affichage map
+     * fonction setup7
+     comportement lors click sur le jardin
+     fondu de l'image avant de faire apparaitre la roue de la chance
      *
-     * @return {[type]} [description]
+     * @param key String nom de l'icone clickée
+      @param data
      */
-     GameManager.prototype.setup7 = function (key, data)
+     GameManager.prototype.setup7 = function (key, data, scene)
       {
-this.setup();
+        console.log("jardin");
+        self = this;
+        if(this.mon_Interval){
+            clearInterval(this.mon_Interval);
+        }
+        $("#monCanvas").addClass("niveau_de_gris mon_fadein");
+        $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+             $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
+             self.jardin(key, data, scene);
+
+        });
       }
   /**
   * blanchi le canvas vu par le joueur en js
@@ -390,19 +414,21 @@ this.setup();
               this.array_mix_ressource2 = var_tempo[1];
 
                   // si on a pas encore sélectionné suffisemment de plat : il se passe rien
-                  if(this.array_mix_ressource<this.mon_Player.niveau.lonono){
+                  if(this.array_mix_ressource.length<this.mon_Player.niveau.lonono){
                     // on affiche au prochain tour la partie mix déjà choisi en bas de l'ecran
                     this.mon_Player.lonono_mix_ressource = affichage_ressource(this.array_mix_ressource, this.array_mix_ressource2, this.data_equilibrage);
                     this.popup("lonono", "", "", "lonono", "nb_ressource_insuffisant");
                   }else{
                     var mon_affichage = mix_reussite(this.array_mix_ressource, this.data_equilibrage.lonono_algo, this.mon_Player.niveau.lonono);
                     if(mon_affichage.length==0){
-                        this.mon_Player.echange2(this.array_mix_ressource, this.array_mix_ressource2, "ex______", 1, this.mon_lonono["ex______"].cat, this.mon_lonono);
+                        this.mon_Player.echange2(this.array_mix_ressource, this.array_mix_ressource2, "ex______", 1, "ressource", this.mon_lonono);
                         var a_afficher = "echec_recette";
-                        var a_afficher2 = 1;
+                        var a_afficher2 = "";
                         var a_afficher3 = affichage_ressource(this.array_mix_ressource, this.array_mix_ressource2, this.data_equilibrage);
                         this.mon_Player.niveau["lonono_icone"] = 3;
                         this.mon_Player.objet_debloque["ex______"] = this.mon_Player.objet_debloque["ex______"] + 1;
+
+
                     }else{
                         this.mon_Player.echange2(this.array_mix_ressource, this.array_mix_ressource2, mon_affichage[0], mon_affichage[1], data.action, this.mon_lonono);
                         var a_afficher = "reussite";
@@ -413,7 +439,13 @@ this.setup();
                         this.mon_Player.objet_debloque[this.data_equilibrage.ressource[mon_affichage[0]].nom] = this.mon_Player.objet_debloque[this.data_equilibrage.ressource[mon_affichage[0]].nom] + mon_affichage[1];
                     }
                     this.mon_Player.lonono_mix_ressource = "";
+                    // initialisation des variables
+                    // tableau représentant l'association des ressources ---> synthèse nouvelle ressource
+                    this.array_mix_ressource = [];
+                    // tableau représentant la catégorie des ressources présentent dans array_mix_ressource
+                    this.array_mix_ressource2 = [];
                     this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher);
+
                   }
 
           // si dans la section lonono, on a cliqué sur une ressource pour créer un plat
@@ -424,7 +456,7 @@ this.setup();
                 this.array_mix_plat2 = var_tempo[1];
 
                 // si on a pas encore sélectionné suffisemment de plat : il se passe rien
-                if(this.array_mix_plat<this.mon_Player.niveau.lonono){
+                if(this.array_mix_plat.length<this.mon_Player.niveau.lonono){
                   this.mon_Player.lonono_mix_plat = affichage_ressource(this.array_mix_plat, this.array_mix_plat2, this.data_equilibrage);
                   this.popup("lonono", "", "", "lonono", "nb_ressource_insuffisant");
                 }else{
@@ -432,9 +464,9 @@ this.setup();
                   var mon_affichage = mix_reussite(this.array_mix_plat, this.data_equilibrage.lonono_algo2, this.mon_Player.niveau.lonono);
                   console.log("mon_affichage "+mon_affichage);
                   if(mon_affichage.length==0){
-                      this.mon_Player.echange2(this.array_mix_plat, this.array_mix_plat2, "ex______", 1, this.mon_lonono["ex______"].cat, this.mon_lonono);
+                      this.mon_Player.echange2(this.array_mix_plat, this.array_mix_plat2, "ex______", 1, "ressource", this.mon_lonono);
                       var a_afficher = "echec_recette";
-                      var a_afficher2 = 1;
+                      var a_afficher2 = "";
                       var a_afficher3 = affichage_ressource(this.array_mix_plat, this.array_mix_plat2, this.data_equilibrage);
                       this.mon_Player.niveau["lonono_icone"] = 3;
                   }else{
@@ -446,6 +478,10 @@ this.setup();
                       this.mon_Player.niveau["lonono_icone"] = 2;
                   }
                   this.mon_Player.lonono_mix_plat = "";
+                  // tableau représentant l'association des ressources --> synthèse plat
+                  this.array_mix_plat = [];
+                  // tableau représentant  la catégorie des ressources présentent dans array_mix_plat
+                  this.array_mix_plat2 = [];
                   this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher);
                 }
           }else{
@@ -550,14 +586,6 @@ this.setup();
       this.arrayOfGameObjects3 = {};
       this.arrayOfGameObjects2 = [];
       this.arrayOfClickObjects = {};
-      // tableau représentant l'association des ressources ---> synthèse nouvelle ressource
-      this.array_mix_ressource = [];
-      // tableau représentant la catégorie des ressources présentent dans array_mix_ressource
-      this.array_mix_ressource2 = [];
-      // tableau représentant l'association des ressources --> synthèse plat
-      this.array_mix_plat = [];
-      // tableau représentant  la catégorie des ressources présentent dans array_mix_plat
-      this.array_mix_plat2 = [];
 
       this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
       this.monCanvas.beginPath();
@@ -614,4 +642,61 @@ this.setup();
           }
       }
 
+  }
+  GameManager.prototype.jardin = function(key, data, scene){
+    var self = this;
+    if(this.mon_Interval){
+        clearInterval(this.mon_Interval);
+        this.mon_Interval = false;
+    }
+      // tableau contenant les objects affichés à l'écran : (fond, bouton navigation, score)
+      // structure [key, categorie String("image ou "texte)]
+      this.arrayOfGameObjects = [];
+      this.arrayOfGameObjects2 = [];
+      this.arrayOfClickObjects = {};
+
+    this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    this.monCanvas.beginPath();
+    this.mon_jardin = new Jardin(this.monCanvas, self, this.data_interface.jardin);
+
+    this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
+
+    this.affichage_jardin(key, data, scene);
+    this.click_canvas();
+    this.monCanvas.closePath();
+
+    this.ma_roue = new Roue(this.monCanvas, self, this.data_interface.couleur_roue, this.data_equilibrage.ressource, this.data_interface.jardin, this.data_image_chargee, this.data_equilibrage.jardin_algo);
+
+    $("#monCanvas").click(function(e){
+        $("#monCanvas").off('click');
+        self.ma_roue.mon_timer()
+
+    });
+
+    this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    this.monCanvas_click.beginPath();
+
+    var object_fusionne = {};
+    $.extend( object_fusionne, this.data_interface.jardin.elements);
+    console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
+    // mise en place des zones à cliquer
+    this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne, "map");
+    // affichage des zones à cliquer
+    this.affichage_click_zone();
+    this.monCanvas_click.closePath();
+  }
+  /**
+  prototype affichage_jardin
+
+  */
+  GameManager.prototype.affichage_jardin = function(key, data, scene){
+    console.log("affichage_jardin : affichage des icones");
+    this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      for (var i in this.arrayOfGameObjects) {
+          if(this.arrayOfGameObjects[i][1]=="text"){
+            this.arrayOfGameObjects[i][2].setup((this.arrayOfGameObjects[i][2].text=="" ? this.mon_Player[this.arrayOfGameObjects[i][2].valeur_a_afficher] : this.arrayOfGameObjects[i][2].text));
+          }else if(this.arrayOfGameObjects[i][1]=="image"){
+            this.arrayOfGameObjects[i][2][this.arrayOfGameObjects[i][2].ombre](this.monCanvas);
+          }
+      }
   }

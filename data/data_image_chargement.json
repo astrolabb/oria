@@ -8,6 +8,12 @@ var data_image_chargement = {
 "carrot" : "./image/029-carrot.png",
 "pumpkin" : "./image/046-pumpkin.png",
 "acorn" : "./image/047-acorn.png",
-"onion" : "./image/005-onion.png"
-
+"onion" : "./image/005-onion.png",
+"fond_gris" : "./image/fond_gris.jpg",
+"fond_vert" : "./image/fond_vert.jpg",
+"village" : "./image/village3.png",
+"jardin" : "./image/jardin3.png",
+"lonono" : "./image/lonono3.png",
+"lac" : "./image/lac3.png",
+"foret" : "./image/foret3.png"
 }

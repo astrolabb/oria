@@ -1,4 +1,9 @@
 {
+  "jardin_algo" : {
+    "1" : ["plante", "limace", "herbe", "ver_de_terre", "graine"],
+    "2" : ["plante", "limace", "herbe", "ver_de_terre", "graine", "cereales", "fleur"],
+    "3" : ["plante", "limace", "herbe", "ver_de_terre", "graine", "cereales", "fleur", "legumes", "fruit", "graine_magique"]
+  },
   "lonono_algo":{
     "1" : {
       "paille" : [["herbe"], 1],
@@ -601,8 +606,8 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
+          "niv1" :["kiwi","kiwi"],
+          "niv2" :["kiwi","kiwi"],
           "niv3" :["carrot","carrot"]
           },
         "dir" : "vente",

@@ -185,3 +185,76 @@ function fadein (self, i, nb){
       return affichage;
 
     }
+    /**
+    fonction object_to_array
+    convertie un Objet en tableau
+
+    @param mon_Object : Object à convertir
+    @return mon_array : array à renvoyer
+
+    function object_to_array(mon_Object){
+      var mon_array = [];
+      Object.keys(mon_Object).forEach(function(key) {
+          mon_array.push(key);
+      });
+      return mon_array;
+    }
+    */
+
+    /**
+    fonction object_to_array
+    convertie un Objet en tableau
+
+    @param mon_Object : Object à convertir
+    @return mon_array : array à renvoyer
+    */
+    function object_to_array(mon_Object, key_poubelle, date_dernier_lance, malus, malus_max){
+
+      var ma_date = new Date().getTime();
+      var bonus = Math.floor((ma_date-date_dernier_lance)/60000);
+      var mon_malus = malus - bonus;
+      if(mon_malus<0){
+        mon_malus = 0;
+      }else if(mon_malus>malus_max){
+        mon_malus = malus_max;
+      }
+      var ma_chance = 1-(mon_malus/malus_max);
+
+      var mon_array = [];
+      Object.keys(mon_Object).forEach(function(key) {
+          if(Math.random()<ma_chance){
+            mon_array.push(key);
+          }else{
+            mon_array.push(key_poubelle);
+          }
+      });
+      return mon_array;
+    }
+    /**
+    fonction tri_ressource_jardin
+    tri dans l'object ressource, les propietés dont les clés sont dans le tableau
+    jardin_algo : en fonction du niveau du joueur
+
+    @param ressource Object cf data_equilibrage
+    @param jardin_algo Object cf data_equilibrage
+    @param niveau Number niveau du joueur pour le jardin
+
+    */
+    function tri_ressource_jardin(ressource, jardin_algo, niveau){
+  //      console.log("niveau "+niveau);
+  //      console.log("jardin_algo "+JSON.stringify(jardin_algo));
+  //      console.log("ressource "+JSON.stringify(ressource));
+
+
+
+        var mon_object = {};
+          jardin_algo[String(niveau)].forEach(function(e, index){
+            Object.keys(ressource).forEach(function(key) {
+                  if(e == key ){
+                    console.log("e "+e+" key "+key);
+                    mon_object[key] = ressource[key];
+                  }
+              });
+          });
+          return mon_object;
+    }

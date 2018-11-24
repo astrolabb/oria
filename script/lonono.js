@@ -22,7 +22,7 @@ var Mon_lonono = function(monCanvas, _target, data_plat, data_interface, data_re
   Object.keys(lonono_algo).forEach(function(niveau) {
     if(niveau == String(_target.mon_Player.niveau.lonono)){
         Object.keys(lonono_algo[niveau]).forEach(function(resultat) {
-              lonono_algo[niveau][resultat].forEach(function(e,index) {
+              lonono_algo[niveau][resultat][0].forEach(function(e,index) {
                   console.log("resultat "+e);
                     if(data_ressources[e]){
                       object_trie[e] = data_ressources[e];
@@ -37,7 +37,7 @@ var Mon_lonono = function(monCanvas, _target, data_plat, data_interface, data_re
   Object.keys(lonono_algo2).forEach(function(niveau) {
     if(niveau == String(_target.mon_Player.niveau.lonono)){
         Object.keys(lonono_algo2[niveau]).forEach(function(resultat) {
-              lonono_algo2[niveau][resultat].forEach(function(e,index) {
+              lonono_algo2[niveau][resultat][0].forEach(function(e,index) {
                   console.log("resultat "+e);
                     if(data_ressources[e]){
                       object_trie2[e] = data_ressources[e];
