@@ -258,3 +258,161 @@ function fadein (self, i, nb){
           });
           return mon_object;
     }
+    /**
+    function random_case
+    utilisée dans foret.js
+    retourne un tableau qui représente la structure de chaque case d'une manière aléatoire après avoir choisi des couleurs dans un tableau prédéfini
+
+    @param nb_ligne : Number nombre de ligne du carrelage
+    @param nb_colonne : Number nombre de colonne du carrelage
+    @param array_couleur : Array tableau représentant toutes les couleurs utilisées dans le carrelage
+
+    @return mon_Array tableau tableau contenant des object sur les couleurs de chaque case
+    */
+    function random_case(nb_ligne, nb_colonne, array_couleur){
+      var mon_Array = [];
+        for(i=0; i<nb_ligne; i++){
+            mon_Array[i] = [];
+            for(j=0; j<nb_colonne; j++){
+                mon_Array[i][j]={"couleur" : random_couleur(array_couleur), "decalage" : 0};
+        //        console.log("i "+i+" j "+j+" array "+mon_Array[i][j]);
+            }
+        }
+      return mon_Array;
+    }
+    /**
+    function random_couleur
+    utilisé dans random_case (main.js)
+    retourne une couleur au hasard
+
+    @param array_couleur tableau dans lequel se trouve la liste des couleurs
+    @return une couleur en hexa au hasard
+
+    */
+    function random_couleur(array_couleur){
+        return array_couleur[Math.floor(Math.random()*array_couleur.length)];
+    }
+    /**
+    fonction liaison_couleur_image
+    utilisée dans foret.js
+    crée un object qui lie une couleur à une image
+
+    @param ressource Object Object dont les propriétés sont l'ensemble des ressource du jeu
+    @param color_array array : tableau repésentant les couleurs utilisées dans le carrelage
+
+    @return tableau_liaison Object structure {"couleur hexa" : "string nom de la propriété"}
+    */
+    function liaison_couleur_image(ressource, color_array){
+      var tableau_ressource = [];
+      var tableau_liaison = {};
+      var index_ressource;
+      Object.keys(ressource).forEach(function(key) {
+        tableau_ressource.push(key);
+      });
+      for(i=0; i<color_array.length; i++){
+        index_ressource = Math.floor(Math.random()*tableau_ressource.length);
+        tableau_liaison[color_array[i]] = tableau_ressource[index_ressource];
+        tableau_ressource.splice(index_ressource, 1);
+      }
+      return tableau_liaison;
+    }
+    /**
+
+
+    */
+    function hauteur_case(nb, top_y){
+      return (window.innerHeight-(2*top_y))/nb;
+    }
+    /**
+
+
+    */
+    function largeur_case(nb, marge_x){
+      return (window.innerWidth-(2*marge_x))/nb;
+    }
+    /**
+    fonction ordonnee_case
+    permet de déterminer l'odonnée d'un case en fonction de son numero de ligne
+    @param i Number numero de ligne
+    @param top number marge en haut
+    @param _height number hauteur d'une case
+
+    @return number ordonnée de la case en pixel
+
+    */
+    function ordonnee_case(i, top, _height){
+      return top+(i*_height);
+    }
+    /**
+    fonction recherche_numero_case_ordo
+    détermine le numero de la ligne de la case cliquée
+    @param _y Number ordonnée du click
+    @param top number marge en haut
+    @param _height number hauteur d'une case
+
+    @return i Number numero de la ligne si click sur une case et -1 sinon
+
+    */
+    function recherche_numero_case_ordo(_y, top, _height, nb){
+        if(Math.floor((_y-top)/_height)>=0 && Math.floor((_y-top)/_height)<nb){
+          return Math.floor((_y-top)/_height);
+        }else{
+          return -1;
+        }
+     }
+
+     /**
+     fonction recherche_numero_case_abs
+     détermine le numero de la colonne de la case cliquée
+     @param _x Number abscisse du click
+     @param left number marge à gauche
+     @param _width number largeur d'une case
+
+     @return i Number numero de la colonne si click sur une case et -1 sinon
+
+     */
+     function recherche_numero_case_abs(_x, left, _width, nb, _centre_x){
+       console.log("total "+Math.ceil(-(_x-_centre_x+((nb/2)*_width))/_width)+" _x "+_x+" left "+left+" _width "+_width+" nb "+nb+" _centre_x "+_centre_x);
+         if(Math.floor((_x-_centre_x+((nb/2)*_width))/_width)>=0  && Math.floor((_x-_centre_x+((nb/2)*_width))/_width)<nb){
+           return Math.floor((_x-_centre_x+((nb/2)*_width))/_width);
+         }else{
+           return -1;
+         }
+      }
+
+    /**
+
+
+    */
+    function abscisse_case(j, _centre_x, _marge_x, case_width, nb_case_largeur){
+      var mon_abscisse;
+      mon_abscisse = _centre_x-((nb_case_largeur/2)-j)*case_width;
+      return mon_abscisse;
+    }
+    /**
+    fonction decalage_case
+    calcule la postion d'une case en prenant en compte les animations de décalage
+
+    @param mon_array Number position en pixel de la case sous la forme d'un tableau [_x, _y]
+    @param sens Number sens de décalage 0 pour decalage vers le bas, 1 pour decalage vers le haut, 2 decalage de gauche à droite, 3 decalage de droite à gauche
+    @param decalage Number nombre de case à décaler
+    @param duree_tot Number duere de l'animation en seconde
+    @param pos_duree Number temps écoulé depuis le début de l'animation
+    @param case_width Number largeur de la case en pixel
+    @param case_height Number hauteur de la case en pixel
+
+    @return  mon_array Number position en pixel de la case sous la forme d'un tableau [_x, _y]
+    */
+    function decalage_case(mon_array, sens, decalage, duree_tot, pos_duree, case_width, case_height){
+      if(sens == 0 && decalage>0){
+        mon_array[1] = mon_array[1] + decalage*(pos_duree/duree_tot)*case_height;
+      }else if(sens == 1 && decalage>0){
+        mon_array[1] = mon_array[1] - decalage*(pos_duree/duree_tot)*case_height;
+      }else if(sens == 2 && decalage>0){
+        mon_array[0] = mon_array[0] + decalage*(pos_duree/duree_tot)*case_width;
+      }else if(sens == 3 && decalage>0){
+        mon_array[0] = mon_array[0] - decalage*(pos_duree/duree_tot)*case_width;
+      }
+      return mon_array;
+
+    }

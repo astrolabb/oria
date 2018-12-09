@@ -20,7 +20,7 @@ var Gameplay = function(monCanvas, _parent, data, scene){
   Object.keys(data).forEach(function(key) {
       console.log(key+" "+data[key]);
        if(data[key].nature == "image" && data[key].lien == "oui"){
-         console.log("bouton trouvé");
+         console.log("bouton trouvé "+key+" data "+data[key]._x);
           self[key] = new Rectangle(monCanvas, data[key], key);
            _parent.arrayOfGameObjects2.push(key);
           while(true) {
@@ -55,6 +55,7 @@ var Rectangle = function(monCanvas, data_image, nom){
       this._height = data_image._height;
       this.lien = data_image.lien;
       this.color = "rgb(120,255,0)";
+      console.log("coordonnées bouton _x "+this._x+" _y "+this._y+" nom "+nom);
 }
 Rectangle.prototype.draw = function(myCanvasContext){
   myCanvasContext.fillStyle = this.color;

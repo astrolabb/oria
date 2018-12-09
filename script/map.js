@@ -126,25 +126,35 @@ Icone.prototype.isgrey = function(valeur, test, ref)
   }
 
 }
+/**
+constructor BoutonNiveau
 
+*/
 
 var BoutonNiveau = function(monCanvas, _target, bouton_niveau, bareme_niveau, map, mon_Player, decalage_x, decalage_y){
   self = this;
   this.monObject = {};
   this.echange_ressource = {};
+
   Object.keys(bareme_niveau).forEach(function(key) {
     if(self.testaffichage(bareme_niveau[key], mon_Player, key)){
         self[key] = new Icone(monCanvas, bouton_niveau, key, _target);
         self[key]._x = map[key]._x+self.choix_decalage(map[key]._x, decalage_x, window.innerWidth, self[key]._width);
         self[key]._y = map[key]._y+self.choix_decalage(map[key]._y, decalage_y, window.innerHeight, self[key]._height);
 
-        _target.arrayOfGameObjects.push([key,"image", self[key]]);
-        self.monObject["button"+key] = bouton_niveau;
-        self.monObject["button"+key]._x = map[key]._x;
-        self.monObject["button"+key]._y = map[key]._y+decalage_y;
+        _target.arrayOfGameObjects.push(["button"+key,"image", self[key]]);
+
+        self.monObject["button"+key] = JSON.parse(JSON.stringify(bouton_niveau));
+        console.log("carte object_fusionne "+map[key]._x+" key "+"button"+key);
+        self.monObject["button"+key]._x = self[key]._x;
+        self.monObject["button"+key]._y = self[key]._y;
         self.monObject["button"+key].key = key;
+        console.log("carte object_fusionne "+JSON.stringify(self.monObject));
+
       }
   });
+  console.log("carte object_fusionne "+JSON.stringify(this.monObject));
+
 }
 BoutonNiveau.prototype.choix_decalage = function(pos, decalage, taille_ecran, hauteur){
   if(pos+decalage+hauteur>taille_ecran){
@@ -155,12 +165,15 @@ BoutonNiveau.prototype.choix_decalage = function(pos, decalage, taille_ecran, ha
 }
 BoutonNiveau.prototype.testaffichage = function(bareme, mon_Player, key) {
   var mon_test = true;
+  var test_nb_niveau = 0
   self = this;
   Object.keys(bareme).forEach(function(niveau) {
+    (Number(niveau)>test_nb_niveau) ? test_nb_niveau=niveau : test_nb_niveau=test_nb_niveau;
     console.log("niveau "+niveau);
     console.log("mon_Player.niveau[key] "+mon_Player.niveau[key]);
 
-    if(mon_Player.niveau[key] + 1 == Number(niveau)){
+    if(String(Number(mon_Player.niveau[key] + 1)) == niveau){
+      console.log(String(Number(mon_Player.niveau[key] + 1))+" versus "+niveau);
       self.echange_ressource[key] = [];
           Object.keys(bareme[niveau]).forEach(function(key_niv) {
               if(!mon_Player.ressource[key_niv] || mon_Player.ressource[key_niv] <= bareme[niveau][key_niv] ){
@@ -172,5 +185,8 @@ BoutonNiveau.prototype.testaffichage = function(bareme, mon_Player, key) {
           });
       }
   });
+  if(test_nb_niveau==mon_Player.niveau[key]){
+   mon_test = false;
+  }
 return mon_test;
 }

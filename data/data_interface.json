@@ -94,9 +94,9 @@ var data_interface = {
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["lonono","lonono"],
-          "niv2" :["tomato","tomato"],
-          "niv3" :["tomato","tomato"]
+          "niv1" :["lonono1","lonono1"],
+          "niv2" :["lonono2","lonono2"],
+          "niv3" :["lonono3","lonono3"]
         },
         "dir" : "setup3"
       },
@@ -111,9 +111,9 @@ var data_interface = {
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["village","village"],
-          "niv2" :["tomato","village"],
-          "niv3" :["village","tomato"]
+          "niv1" :["village1","village1"],
+          "niv2" :["village2","village2"],
+          "niv3" :["village3","village3"]
         },
         "dir" : "setup4"
       },
@@ -128,9 +128,9 @@ var data_interface = {
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["lac","lac"],
-          "niv2" :["pumpkin","pumpkin"],
-          "niv3" :["pumpkin","pumpkin"]
+          "niv1" :["lac1","lac1"],
+          "niv2" :["lac2","lac2"],
+          "niv3" :["lac3","lac3"]
         },
         "dir" : "setup5"
                 },
@@ -145,9 +145,9 @@ var data_interface = {
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["foret","foret"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["tomato","tomato"]
+          "niv1" :["foret1","foret1"],
+          "niv2" :["foret2","foret2"],
+          "niv3" :["foret3","foret3"]
         },
         "dir" : "setup6"
                   },
@@ -162,9 +162,9 @@ var data_interface = {
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["jardin","jardin"],
-          "niv2" :["jardin","jardin"],
-          "niv3" :["cherry","cherry"]
+          "niv1" :["jardin1","jardin1"],
+          "niv2" :["jardin2","jardin2"],
+          "niv3" :["jardin3","jardin3"]
         },
         "dir" : "setup7"
                     },
@@ -524,7 +524,7 @@ var data_interface = {
                 "_width" : window.innerWidth,
                 "_height" : window.innerHeight,
                 "ombre" : "draw",
-                "couleur" : "grey",
+                "couleur" : "vert",
                 "nature" : "image",
                 "lien" : "non",
                 "ordre" : 1,
@@ -536,7 +536,7 @@ var data_interface = {
                 },
                 "titre" : {
                   "_x" : 20,
-                  "_y" : window.innerHeight/20,
+                  "_y" : window.innerHeight/40,
                   "nature" : "text",
                   "couleur" : "#333",
                   "police" : "23pt Calibri",
@@ -546,5 +546,50 @@ var data_interface = {
                 }
           }
     },
-    "couleur_roue" : ["#0015D5", "#00D52B", "#D500B9", "#ED0037", "#E5ED00", "#00EDE5"]
+    "foret" : {
+      "maxWidth_text" : 2*window.innerWidth/3,
+      "lineHeight" : window.innerHeight/30,
+      "marge_gauche" : window.innerWidth/20,
+      "marge_haut" : window.innerHeight/5,
+      "colonne" : 7,
+      "ligne" : 7,
+      "couleur_case_clickee" : "#000000",
+      "centrage_carrelage_x" : window.innerWidth/2,
+      "top_carrelage_y" : window.innerHeight/6,
+      "duree_animation" : 20,
+      "nb_case_succes" : 3,
+      "couleur_ligne_groupe" : "#000000",
+      "duree_affichage_trait" : 1000,
+      "elements" : {
+          "fond_foret" : {
+            "_x" : 0,
+            "_y" : 0,
+            "_width" : window.innerWidth,
+            "_height" : window.innerHeight,
+            "ombre" : "draw",
+            "couleur" : "vert",
+            "nature" : "image",
+            "lien" : "non",
+            "ordre" : 1,
+            "loc" : {
+              "niv1" :["fond_vert","fond_vert"],
+              "niv2" :["tomato","tomato"],
+              "niv3" :["cherry","cherry"]
+              }
+            },
+            "titre" : {
+              "_x" : 20,
+              "_y" : window.innerHeight/40,
+              "nature" : "text",
+              "couleur" : "#333",
+              "police" : "23pt Calibri",
+              "text" : "La forêt",
+              "valeur_a_afficher" : "",
+              "alignement" : "centrage2"
+            }
+      }
+
+    },
+    "couleur_roue" : ["#0015D5", "#00D52B", "#D500B9", "#ED0037", "#E5ED00", "#00EDE5"],
+    "couleur_carrelage" : ["#0015D5", "#00D52B", "#D500B9", "#ED0037", "#E5ED00", "#00EDE5"]
 }

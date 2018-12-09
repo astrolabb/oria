@@ -147,7 +147,6 @@ GameManager.prototype.setup2 = function (bouton, data, scene)
   affichage des boutons de changement de niveaux
   */
   this.bouton_niveau = new BoutonNiveau(this.monCanvas, self, this.data_interface.bouton_niveau.elements, this.data_equilibrage.bareme_niveau, this.map, this.mon_Player,this.data_interface.bouton_niveau.decalage_x,this.data_interface.bouton_niveau.decalage_y);
-
   this.affichage_map();
   this.click_canvas();
   this.monCanvas.closePath();
@@ -158,7 +157,7 @@ GameManager.prototype.setup2 = function (bouton, data, scene)
   var object_fusionne = {};
   $.extend( object_fusionne, this.data_interface.carte.elements);
   $.extend( object_fusionne, this.bouton_niveau.monObject);
-console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
+console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject));
   // mise en place des zones à cliquer
   this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne, "map");
   // affichage des zones à cliquer
@@ -166,7 +165,7 @@ console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
   this.monCanvas_click.closePath();
 
     if(!this.mon_Interval){
-      this.mon_Interval = setInterval( function() {self.affichage_map();}, 3000);
+  //    this.mon_Interval = setInterval( function() {self.affichage_map();}, 3000);
     }
 
 }
@@ -211,6 +210,7 @@ console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
     {
       console.log("affichage position curseur");
       this.monCanvas.fillStyle = "orange";
+      this.monCanvas.lineWidth=2;
       this.monCanvas.rect(this.pos_x-1, 0, 2,  window.innerHeight);
       this.monCanvas.stroke();
       this.monCanvas.rect(0, this.pos_y-1, window.innerWidth,  2);
@@ -301,11 +301,19 @@ this.setup();
     *
     * @return {[type]} [description]
     */
-    GameManager.prototype.setup6 = function (key, data)
+    GameManager.prototype.setup6 = function (key, data, scene)
      {
-       console.log("setup6 "+key)
-        this.mon_Player.changement_niv(key);
-        this.setup2();
+       console.log("foret");
+       self = this;
+       if(this.mon_Interval){
+           clearInterval(this.mon_Interval);
+       }
+       $("#monCanvas").addClass("niveau_de_gris mon_fadein");
+       $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+            $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
+            self.foret(key, data, scene);
+
+       });
      }
      /**
      * fonction setup7
@@ -690,6 +698,72 @@ this.setup();
 
   */
   GameManager.prototype.affichage_jardin = function(key, data, scene){
+    console.log("affichage_jardin : affichage des icones");
+    this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      for (var i in this.arrayOfGameObjects) {
+          if(this.arrayOfGameObjects[i][1]=="text"){
+            this.arrayOfGameObjects[i][2].setup((this.arrayOfGameObjects[i][2].text=="" ? this.mon_Player[this.arrayOfGameObjects[i][2].valeur_a_afficher] : this.arrayOfGameObjects[i][2].text));
+          }else if(this.arrayOfGameObjects[i][1]=="image"){
+            this.arrayOfGameObjects[i][2][this.arrayOfGameObjects[i][2].ombre](this.monCanvas);
+          }
+      }
+  }
+  /**
+
+
+  */
+  GameManager.prototype.foret = function(key, data, scene){
+    var self = this;
+    if(this.mon_Interval){
+        clearInterval(this.mon_Interval);
+        this.mon_Interval = false;
+    }
+      // tableau contenant les objects affichés à l'écran : (fond, bouton navigation, score)
+      // structure [key, categorie String("image ou "texte)]
+      this.arrayOfGameObjects = [];
+      this.arrayOfGameObjects2 = [];
+      this.arrayOfClickObjects = {};
+
+    this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    this.monCanvas.beginPath();
+    this.mon_jardin = new Foret(this.monCanvas, self, this.data_interface.foret);
+
+    this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
+
+    this.affichage_foret(key, data, scene);
+    this.click_canvas();
+    this.monCanvas.closePath();
+
+    this.mon_carrelage = new Carrelage(this.monCanvas, self, this.data_interface.couleur_carrelage, this.data_equilibrage.ressource, this.data_interface.foret, this.data_image_chargee, this.data_equilibrage.foret_algo);
+    // la fonction refresh permet d'afficher les lignes représentant les groupes de cases de la même couleur_roue
+    // ainsi que de synchroniser l'animation de chute des cases et le remplacement des cases disparues
+    this.mon_carrelage.refresh();
+
+    // fonction timer-like de js
+    this.mon_carrelage.mon_timer = window.requestAnimationFrame(function(){self.mon_carrelage.fonction_timer();});
+    $("#monCanvas").click(function(e){
+    //    $("#monCanvas").off('click');
+        self.mon_carrelage.click(self.pos_x, self.pos_y)
+
+    });
+
+    this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    this.monCanvas_click.beginPath();
+
+    var object_fusionne = {};
+    $.extend( object_fusionne, this.data_interface.foret.elements);
+    console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
+    // mise en place des zones à cliquer
+    this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne, "foret");
+    // affichage des zones à cliquer
+    this.affichage_click_zone();
+    this.monCanvas_click.closePath();
+  }
+  /**
+  prototype affichage_jardin
+
+  */
+  GameManager.prototype.affichage_foret = function(key, data, scene){
     console.log("affichage_jardin : affichage des icones");
     this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
       for (var i in this.arrayOfGameObjects) {
