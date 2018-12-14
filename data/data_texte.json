@@ -12,5 +12,9 @@ var data_texte = {
     "echec_recette" : "Votre association est un echec :",
     "reussite" : "Vous avez obtenu :",
     "plat" : "plat vendu"
+  },
+  "foret" : {
+    "echec" : "Votre score ne vous permet pas d'obtenir une ressource",
+    "reussite" : "Félicitations : Vous avez obtenu : "
   }
 }

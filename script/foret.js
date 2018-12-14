@@ -39,7 +39,7 @@ classe de création du carrelage du jeu ainsi que ses prototypes commandant les 
 @param jardin_algo Object : algorithme de gestion des gains du jeu de carrelage
 
 */
-var Carrelage = function(monCanvas, _target, color_array, ressource, data_interface, images, jardin_algo){
+var Carrelage = function(monCanvas, _target, color_array, ressource, data_interface, images, foret_algo){
 
   this._target = _target;
   this.monCanvas = monCanvas;
@@ -48,6 +48,11 @@ var Carrelage = function(monCanvas, _target, color_array, ressource, data_interf
   this.color_case = color_array;
   this.images = images;
   this.ressource = ressource;
+  this.data_interface = data_interface;
+  console.log("this.foret_algo "+JSON.stringify(foret_algo));
+  console.log("this.foret_algo2 "+JSON.stringify(foret_algo[String(this._target.mon_Player.niveau["foret"])]));
+  console.log("this.foret_algo3 "+this._target.mon_Player.niveau["foret"]);
+  this.foret_algo = foret_algo[String(this._target.mon_Player.niveau["foret"])];
   this.cases = random_case(this.ligne, this.colonne, this.color_case);
   this.table_couleur_image = liaison_couleur_image(ressource, color_array);
   console.log("this.table_couleur_image "+JSON.stringify(this.table_couleur_image));
@@ -56,7 +61,7 @@ var Carrelage = function(monCanvas, _target, color_array, ressource, data_interf
   this.marge_x = data_interface.marge_gauche;
   this.couleur_click = data_interface.couleur_case_clickee;
   // this.sens_decalage Number 0 pour decalage vers le bas, 1 pour decalage vers le haut, 2 decalage de gauche à droite, 3 decalage de droite à gauche
-  this.sens_decalage = 0;
+  this.sens_decalage = 2;
   // this.duree_animation Number durée en frame de l'animation de affichage trait + décalage des cases
   this.duree_animation = data_interface.duree_animation;
   // this.pos_animation Number durée en frame depuis le début de l'animation affichage trait + décalage des cases
@@ -64,7 +69,13 @@ var Carrelage = function(monCanvas, _target, color_array, ressource, data_interf
   // this.duree_affichage_trait temps pendant lequel un trait est affiché représentant un groupe de case de même couleur
   this.duree_affichage_trait = data_interface.duree_affichage_trait;
   // this.nb_case_succes Number nombre de cases alignés considéré comme un succès par le programme
-  this.nb_case_succes = data_interface.nb_case_succes;
+  this.nb_case_succes = foret_algo[String(this._target.mon_Player.niveau["foret"])].nb_case_succes;
+  this.score = 0;
+  this.gain = foret_algo[String(this._target.mon_Player.niveau["foret"])].gain;
+  console.log("this.gain "+JSON.stringify(this.gain));
+  this.date_debut = new Date().getTime();
+  this.duree = foret_algo[String(this._target.mon_Player.niveau["foret"])].duree;
+  this.point_par_case = foret_algo[String(this._target.mon_Player.niveau["foret"])].point_par_case;
   // this.couleur_ligne_groupe color hex : couleur des lignes montrant les groupes de cases de la même couleur
   this.couleur_ligne_groupe = data_interface.couleur_ligne_groupe;
   // this.animation : Number une animation est-elle en cours ? 0 non, 1 oui
@@ -76,6 +87,9 @@ var Carrelage = function(monCanvas, _target, color_array, ressource, data_interf
   this.case_width = case_width;
   // hauteur de chaque case
   this.case_height = case_height;
+  // affichage du décors du jeu
+  this.decors();
+
 
 }
 /**
@@ -89,8 +103,9 @@ Carrelage.prototype.fonction_timer = function(){
 
     // fonction timer-like de js
 
-    this.mon_timer=window.requestAnimationFrame(function(){ self.fonction_timer();});
+  this.mon_timer=window.requestAnimationFrame(function(){ self.fonction_timer();});
 
+  this.affiche_score();
   if(this.animation == 1){
     console.log("refresh");
     this.pos_animation++;
@@ -106,27 +121,117 @@ Carrelage.prototype.affichage_carrelage = function(){
     var coordonnees_case;
     var coordonnees_case_masque;
     var self = this;
-    for(i=this.ligne-1; i>=0; i--){
-      for(j=0; j<this.colonne; j++){
-        console.log("couleur "+this.cases[i][j].couleur);
-        if(this.animation == 0 || this.animation == 1 && this.cases[i][j].decalage>0){
-          coordonnees_case = this.coord_case(i,j, this.cases[i][j].decalage, true);
-          if(i==0 && this.animation == 1 && this.cases[i][j].decalage>0){
-          coordonnees_case_masque = this.coord_case(i,j, this.cases[i][j].decalage, false);
-          this.dessine_case(i, j, this.couleur_click,coordonnees_case_masque);
-          }
-          this.dessine_case(i, j, this.cases[i][j].couleur,coordonnees_case);
+    if(this.sens_decalage == 0 || this.sens_decalage == 1){
+        for(i=this.ligne-1; i>=0; i--){
+          for(j=0; j<this.colonne; j++){
+            k = this.conversion_sens_glissement("ligne", i, this.ligne-1);
+            l = this.conversion_sens_glissement("colonne", j, this.colonne-1);
+            console.log("couleur "+this.cases[k][l].couleur);
+            if(this.animation == 0 || this.animation == 1 && this.cases[k][l].decalage>0){
+              coordonnees_case = this.coord_case(k,l, this.cases[k][l].decalage, true);
+              if(k==0 && this.animation == 1 && this.cases[k][l].decalage>0){
+              coordonnees_case_masque = this.coord_case(k,l, this.cases[k][l].decalage, false);
+              this.dessine_case(k, l, this.couleur_click,coordonnees_case_masque);
+              }
+              this.dessine_case(k, l, this.cases[k][l].couleur,coordonnees_case);
 
-        }else if( this.cases[i][j].decalage<0){
-            coordonnees_case = this.coord_case(i,j, this.cases[i][j].decalage, false);
-            this.dessine_case(i, j, this.couleur_click,coordonnees_case);
+            }else if( this.cases[k][l].decalage<0){
+                coordonnees_case = this.coord_case(k,l, this.cases[k][l].decalage, false);
+                this.dessine_case(k, l, this.couleur_click,coordonnees_case);
+            }
+          }
+        }
+    }else if(this.sens_decalage == 2 || this.sens_decalage == 3){
+      for(j=this.colonne-1; j>=0; j--){
+        for(i=0; i<this.ligne; i++){
+          k = this.conversion_sens_glissement("ligne", i, this.ligne-1);
+          l = this.conversion_sens_glissement("colonne", j, this.colonne-1);
+          console.log("couleur "+this.cases[k][l].couleur);
+          if(this.animation == 0 || this.animation == 1 && this.cases[k][l].decalage>0){
+            coordonnees_case = this.coord_case(k,l, this.cases[k][l].decalage, true);
+            if(k==0 && this.animation == 1 && this.cases[k][l].decalage>0){
+            coordonnees_case_masque = this.coord_case(k,l, this.cases[k][l].decalage, false);
+            this.dessine_case(k, l, this.couleur_click,coordonnees_case_masque);
+            }
+            this.dessine_case(k, l, this.cases[k][l].couleur,coordonnees_case);
+
+          }else if( this.cases[k][l].decalage<0){
+              coordonnees_case = this.coord_case(k,l, this.cases[k][l].decalage, false);
+              this.dessine_case(k, l, this.couleur_click,coordonnees_case);
+          }
         }
       }
     }
+
+
     if(this.animation == 1 &&   this.pos_animation>this.duree_animation){
       this.fin_animation();
     }
+
   }
+/**
+prototype decors
+met en place le décors de du jeu. Partie fix
+par exemple le cadre autour du carrelage
+
+
+*/
+Carrelage.prototype.decors = function(){
+  // cadre autour du carrelage
+  this.monCanvas.beginPath();
+  this.monCanvas.fillStyle = this.data_interface.couleur_cartouche;
+  this.monCanvas.fillRect(this.centrage_x-(this.case_width*this.colonne/2)-this.data_interface.epaisseur_trait, this.top_y-this.data_interface.epaisseur_trait, (this.case_width*this.colonne)+2*this.data_interface.epaisseur_trait, (this.case_height*this.ligne)+2*this.data_interface.epaisseur_trait);
+  this.monCanvas.closePath();
+
+  // légende timer
+  var largeur_panneau = this.centrage_x-(this.case_width*this.colonne/2)-this.data_interface.epaisseur_trait - 2* this.data_interface._x_score;
+  var hauteur_panneau = this.data_interface._height_score;
+  texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, "Timer", this.data_interface._x_score,  this.data_interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_legende);
+  // légende score
+  var position_x_panneau_score = 3*this.data_interface._x_score + largeur_panneau + this.case_width*this.colonne + 2*this.data_interface.epaisseur_trait;
+  texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, "Score", position_x_panneau_score,  this.data_interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_legende);
+
+}
+/**
+
+*/
+Carrelage.prototype.affiche_score = function(){
+  var self=this;
+
+  var mon_timer = new Date().getTime();
+  if(mon_timer - this.date_debut < this.duree*1000){
+    var texte_afficher = Math.floor(this.duree-(mon_timer - this.date_debut)/1000);
+    var largeur_panneau = this.centrage_x-(this.case_width*this.colonne/2)-this.data_interface.epaisseur_trait - 2* this.data_interface._x_score;
+    var hauteur_panneau = this.data_interface._height_score;
+    texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, texte_afficher, this.data_interface._x_score,  this.data_interface._y_score, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_cartouche);
+    var position_x_panneau_score = 3*this.data_interface._x_score + largeur_panneau + this.case_width*this.colonne + 2*this.data_interface.epaisseur_trait;
+    texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, this.score, position_x_panneau_score,  this.data_interface._y_score, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_cartouche);
+
+  }else{
+    var mon_resultat=0;
+    var pallier = 0;
+    var ma_quantite = 0;
+    Object.keys(this.gain).forEach(function(key) {
+        console.log(key+" "+JSON.stringify(self.gain[key]));
+        if(self.score >= self.gain[key][1] && self.gain[key][1]>pallier){
+          pallier = self.gain[key][1];
+          mon_resultat = key;
+          ma_quantite = self.gain[key][0];
+        }
+    });
+    this._target.mon_Player.ressource[mon_resultat] += ma_quantite;
+    this._target.stop_animation();
+    if(mon_resultat == 0){
+      this._target.popup("setup2", "", "", "foret", "echec");
+    }else{
+      this._target.popup("setup2", mon_resultat, ma_quantite, "foret", "reussite");
+    }
+
+  }
+
+
+
+}
 /**
 Prototype fin_animation
 fonction appelée à la fin de l'animation de placement des cases
@@ -139,37 +244,107 @@ Carrelage.prototype.fin_animation = function(){
   var decalage_couleur;
   var decalage_case;
   var trouve;
-  // j : on boucle sur le numero de colonne
-  for(j=0; j<this.colonne; j++){
-     decalage_couleur = 0;
-      // i : on boucle sur le numero de ligne
-      for(i=this.ligne-1; i>=0; i--){
-        if(this.cases[i][j].decalage == -1){
-          decalage_couleur++;
-        }
-        if(i<decalage_couleur && decalage_couleur!=0){
-            this.cases[i][j].couleur = random_couleur(this.color_case);
-        }else{
+  var k,l,m;
 
-            decalage_case = 0;
-            trouve = false;
-            for(k=i-1; k>=0; k--){
-              if(this.cases[k][j].decalage != -1){
-                  decalage_case++;
-                  if(!trouve && decalage_couleur == decalage_case){
-                      trouve = true;
-                      this.cases[i][j].couleur = this.cases[k][j].couleur;
-                  //    this.cases[k][j].decalage = -1;
+  if(this.sens_decalage == 0 || this.sens_decalage == 1){
+    // j : on boucle sur le numero de colonne
+    for(j=0; j<this.colonne; j++){
+       decalage_couleur = 0;
+        // i : on boucle sur le numero de ligne
+        for(i=this.ligne-1; i>=0; i--){
+          k = this.conversion_sens_glissement("ligne", i, this.ligne-1);
+          l = this.conversion_sens_glissement("colonne", j, this.colonne-1);
+          if(this.cases[k][l].decalage == -1){
+            decalage_couleur++;
+          }
+          if(this.test_sens_glissement(k, decalage_couleur) && decalage_couleur!=0){
+              this.cases[k][l].couleur = random_couleur(this.color_case);
+          }else{
+
+              decalage_case = 0;
+              trouve = false;
+              if(this.sens_decalage == 0){
+                for(m=k-1; m>=0; m--){
+                  if(this.cases[m][l].decalage != -1){
+                      decalage_case++;
+                      if(!trouve && decalage_couleur == decalage_case){
+                          trouve = true;
+                          this.cases[k][l].couleur = this.cases[m][l].couleur;
+                      //    this.cases[k][j].decalage = -1;
+                      }
                   }
+                }
+              }else if(this.sens_decalage == 1){
+                for(m=k+1; m<=this.ligne-1; m++){
+                  if(this.cases[m][l].decalage != -1){
+                      decalage_case++;
+                      if(!trouve && decalage_couleur == decalage_case){
+                          trouve = true;
+                          this.cases[k][l].couleur = this.cases[m][l].couleur;
+                      //    this.cases[k][j].decalage = -1;
+                      }
+                  }
+                }
+              }
+
+              if(decalage_case<decalage_couleur && this.cases[k][l].decalage == -1){
+                this.cases[k][l].couleur = random_couleur(this.color_case);
+
               }
             }
-            if(decalage_case<decalage_couleur && this.cases[i][j].decalage == -1){
-              this.cases[i][j].couleur = random_couleur(this.color_case);
 
-            }
+          this.cases[k][l].decalage = 0;
+      }
+    }
+  }else if(this.sens_decalage == 2 || this.sens_decalage == 3){
+    // j : on boucle sur le numero de ligne
+    for(i=0; i<this.ligne; i++){
+       decalage_couleur = 0;
+        // i : on boucle sur le numero de colonne
+        for(j=this.colonne-1; j>=0; j--){
+          k = this.conversion_sens_glissement("ligne", i, this.ligne-1);
+          l = this.conversion_sens_glissement("colonne", j, this.colonne-1);
+          if(this.cases[k][l].decalage == -1){
+            decalage_couleur++;
           }
+          if(this.test_sens_glissement(l, decalage_couleur) && decalage_couleur!=0){
+              this.cases[k][l].couleur = random_couleur(this.color_case);
+          }else{
 
-        this.cases[i][j].decalage = 0;
+              decalage_case = 0;
+              trouve = false;
+              if(this.sens_decalage == 2){
+                for(m=l-1; m>=0; m--){
+                  if(this.cases[k][m].decalage != -1){
+                      decalage_case++;
+                      if(!trouve && decalage_couleur == decalage_case){
+                          trouve = true;
+                          this.cases[k][l].couleur = this.cases[k][m].couleur;
+                      //    this.cases[k][j].decalage = -1;
+                      }
+                  }
+                }
+              }else if(this.sens_decalage == 3){
+                for(m=l+1; m<=this.colonne-1; m++){
+                  if(this.cases[k][m].decalage != -1){
+                      decalage_case++;
+                      if(!trouve && decalage_couleur == decalage_case){
+                          trouve = true;
+                          this.cases[k][l].couleur = this.cases[k][m].couleur;
+                      //    this.cases[k][j].decalage = -1;
+                      }
+                  }
+                }
+              }
+
+              if(decalage_case<decalage_couleur && this.cases[k][l].decalage == -1){
+                this.cases[k][l].couleur = random_couleur(this.color_case);
+
+              }
+            }
+
+          this.cases[k][l].decalage = 0;
+      }
     }
   }
   this.affichage_carrelage();
@@ -191,7 +366,7 @@ Carrelage.prototype.dessine_case = function(i, j, couleur, coordonnees_case){
   this.monCanvas.fillStyle = couleur;
   console.log("case_x "+coordonnees_case[0]+" case_y "+coordonnees_case[1]+" case_width "+this.case_width+" case_height"+this.case_height);
   this.monCanvas.fillRect(coordonnees_case[0], coordonnees_case[1], this.case_width, this.case_height );
-  if(couleur != this.couleur_click){
+  if(couleur != this.couleur_click && this.animation == 0){
     this.monCanvas.drawImage(this.images[this.ressource[this.table_couleur_image[couleur]].loc["niv"+this._target.mon_Player.niveau["foret"]][Math.floor(Math.random()*this.ressource[this.table_couleur_image[couleur]].loc["niv"+this._target.mon_Player.niveau["foret"]].length)]],coordonnees_case[0],coordonnees_case[1],this.case_width,this.case_height);
   }
 }
@@ -219,10 +394,23 @@ Carrelage.prototype.coord_case = function(i, j, decalage, choix_decalage){
 /**
 
 */
+Carrelage.prototype.calcul_sens = function(valeur){
+  console.log("this.foret_algo "+JSON.stringify(this.foret_algo));
+  if(valeur<=this.foret_algo.prob_sens){
+      return Math.floor(Math.random()*4);
+  }else{
+    return 0;
+  }
+
+}
+/**
+
+*/
 Carrelage.prototype.click = function(_x, _y){
       console.log("click : x "+_x+" y "+_y);
       // on ne peut clicker que si il n'y a pas d'animation en cours
       if(this.animation == 0){
+        this.sens_decalage = this.calcul_sens(Math.floor(Math.random()*100));
         this.animation = 1;
         this.pos_animation = 0;
         var i = this.trouve_la_case(_x, _y)["ord"];
@@ -240,22 +428,100 @@ calcule le décalage à effectuer pour chaque case
 
 */
 Carrelage.prototype.calcul_decalage = function(click_y, click_x){
-  // si les cases tombent de haut en bas
-  if(this.sens_decalage == 0){
+  // si les cases tombent de haut en bas ou de bas en haut
+    if(this.sens_decalage == 0 || this.sens_decalage == 1){
+      var k;
       var mon_decalage;
       for(j=0; j<this.colonne; j++){
         mon_decalage = 0;
         for(i=this.ligne-1; i>=0; i--){
-          if(this.cases[i][j].decalage != -1){
-
-            this.cases[i][j].decalage = mon_decalage;
+          k = this.conversion_sens_glissement("ligne", i, this.ligne-1);
+          l = this.conversion_sens_glissement("colonne", j, this.colonne-1);
+          if(this.cases[k][l].decalage != -1){
+            this.cases[k][l].decalage = mon_decalage;
           }else{
             console.log("trou détecté");
             mon_decalage++;
           }
         }
       }
+    // si les cases vont de gauche à droite ou de droite à gauche
+  }else if(this.sens_decalage == 2 || this.sens_decalage == 3){
+      var k;
+      var mon_decalage;
+      for(i=0; i<this.ligne; i++){
+        mon_decalage = 0;
+        for(j=this.colonne-1; j>=0; j--){
+          k = this.conversion_sens_glissement("ligne", i, this.ligne-1);
+          l = this.conversion_sens_glissement("colonne", j, this.colonne-1);
+          if(this.cases[k][l].decalage != -1){
+            this.cases[k][l].decalage = mon_decalage;
+          }else{
+            console.log("trou détecté");
+            mon_decalage++;
+          }
+        }
+      }
+    }
   }
+/**
+
+*/
+Carrelage.prototype.test_sens_glissement = function(i, decalage_couleur){
+  // si le sens de déplacement est de haut vers le bas
+  if(this.sens_decalage == 0 || this.sens_decalage == 2){
+    if( i<decalage_couleur ){
+      return true;
+    }else{
+      return false;
+    }
+  // si le sens de déplacement est de bas vers le haut
+}else if(this.sens_decalage == 1){
+    if( (this.ligne-1)-i<decalage_couleur ){
+      return true;
+    }else{
+      return false;
+    }
+  }else if(this.sens_decalage == 3){
+      if( (this.colonne-1)-i<decalage_couleur ){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+}
+
+/**
+
+*/
+Carrelage.prototype.conversion_sens_glissement = function(choix, i, nb){
+  if(choix == "ligne"){
+    // sens de haut en bas
+    if(this.sens_decalage == 0){
+      return i;
+    // sens de bas en haut
+    }else if(this.sens_decalage == 1){
+      return Math.abs(i-nb);
+    }else if(this.sens_decalage == 2){
+      return i;
+    }else if(this.sens_decalage == 3){
+      return i;
+    }
+  }else if(choix == "colonne"){
+    // sens de haut en bas
+    if(this.sens_decalage == 0){
+      return i;
+    }else if(this.sens_decalage == 1){
+      return i;
+    }else if(this.sens_decalage == 2){
+      return i;
+    }else if(this.sens_decalage == 3){
+      return Math.abs(i-nb);
+    }
+
+  }
+
 
 }
 /**
@@ -341,6 +607,8 @@ Carrelage.prototype.groupe_succes = function(){
 
   return groupes;
 }
+
+
 /**
 @prototype coord_affich_groupe : permet de trouver les coordonnées des lignes à tracer pour mettre en évidence les groupes de cases dont les couleurs sont les mêmes
 
@@ -414,19 +682,24 @@ modifie son état et sa couleur pour procéder à l'animation de chute des briqu
 */
 Carrelage.prototype.recherche_case_groupe = function(groupes){
 console.log("les groupes "+JSON.stringify(groupes));
+var couleur_a_rechercher;
   for(i=0; i<groupes.length; i++){
     console.log("les groupes- "+groupes[i][2]);
     for(j=0; j<groupes[i][2]; j++){
       if(groupes[i][3]==1){
+          couleur_a_rechercher = this.cases[groupes[i][0]-j][groupes[i][1]].couleur;
           this.cases[groupes[i][0]-j][groupes[i][1]].couleur=this.couleur_click;
           this.cases[groupes[i][0]-j][groupes[i][1]].decalage=-1;
+          this.score += this.point_par_case;
           console.log("les groupes3- i "+Number(groupes[i][0]-j)+" j "+groupes[i][1]);
-
+          this.complement_groupe(groupes[i][0]-j, groupes[i][1], 1, couleur_a_rechercher);
       }else if(groupes[i][3]==0){
+          couleur_a_rechercher = this.cases[groupes[i][0]][groupes[i][1]-j].couleur;
           this.cases[groupes[i][0]][groupes[i][1]-j].couleur=this.couleur_click;
           this.cases[groupes[i][0]][groupes[i][1]-j].decalage=-1;
+          this.score += this.point_par_case;
           console.log("les groupes3- i "+groupes[i][0]+" j "+Number(groupes[i][1]-j));
-
+            this.complement_groupe(groupes[i][0], groupes[i][1]-j, 0, couleur_a_rechercher);
       }
     }
   }
@@ -436,5 +709,65 @@ console.log("les groupes "+JSON.stringify(groupes));
     this.pos_animation = 0;
   }
   this.affichage_carrelage();
+
+}
+/**
+prototype complement_groupe
+
+@param i Number numero de ligne de la case pour laquelle il faut vérifier les cases adjacentes
+@param j Number numero de colonne de la case pour laquelle il faut vérifier les cases adjacentes
+@param sens number orientation du groupe dont fait partie la case : 0 pour horizontal 1 pour vertical
+@param couleur color hex couleur du groupe
+
+*/
+Carrelage.prototype.complement_groupe = function(i, j, sens, couleur){
+var k = i;
+var l = j;
+var condition = true;
+  while(condition){
+      if(sens == 0){
+        k++;
+      }else if(sens == 1){
+        l++;
+      }
+      // si les valeurs de k et de l sont dans le carrelage
+      if(k>=0 && k<=this.ligne-1 && l>=0 && l<= this.colonne-1){
+        // si la case adjacente est de la bonne couleur
+        if(this.cases[k][l].couleur == couleur){
+          this.cases[k][l].couleur = this.couleur_click;
+          this.cases[k][l].decalage = -1;
+          this.score += this.point_par_case;
+          this.complement_groupe(k, l, (sens==0 ? 1:0), couleur);
+        }else{
+          condition = false;
+        }
+      }else{
+        condition = false;
+      }
+  }
+  k = i;
+  l = j;
+  condition = true;
+  while(condition){
+      if(sens == 0){
+        k=k-1;
+      }else if(sens == 1){
+        l=l-1;
+      }
+      // si les valeurs de k et de l sont dans le carrelage
+      if(k>=0 && k<=this.ligne-1 && l>=0 && l<= this.colonne-1){
+        // si la case adjacente est de la bonne couleur
+        if(this.cases[k][l].couleur == couleur){
+          this.cases[k][l].couleur = this.couleur_click;
+          this.cases[k][l].decalage = -1;
+          this.score += this.point_par_case;
+          this.complement_groupe(k, l, (sens==0 ? 1:0), couleur);
+        }else{
+          condition = false;
+        }
+      }else{
+        condition = false;
+      }
+  }
 
 }

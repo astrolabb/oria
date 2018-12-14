@@ -1,6 +1,42 @@
 {
   "foret_algo" : {
-
+    "1" : {
+      "prob_sens" : 0,
+      "nb_case_succes" : 3,
+      "duree" : 30,
+      "point_par_case" : 2,
+      "gain" : {
+        "herbe" : [1,25],
+        "branche" : [1,50]
+      }
+    },
+    "2" : {
+      "prob_sens" : 50,
+      "nb_case_succes" : 4,
+      "duree" : 300,
+      "point_par_case" : 4,
+      "gain" : {
+        "herbe" : [1,50],
+        "branche" : [1,100],
+        "billette" : [1,300],
+        "rondin" : [1,400]
+      }
+    },
+    "3" : {
+      "prob_sens" : 100,
+      "nb_case_succes" : 4,
+      "duree" : 300,
+      "point_par_case" : 5,
+      "gain" : {
+        "herbe" : [1,50],
+        "branche" : [1,100],
+        "billette" : [1,200],
+        "rondin" : [1,300],
+        "planche" : [1,400],
+        "bois_sculpte" : [1,500],
+        "licorne" : [1,600]
+      }
+    }
   },
   "jardin_algo" : {
     "1" : ["plante", "limace", "herbe", "ver_de_terre", "graine"],

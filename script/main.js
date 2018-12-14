@@ -416,3 +416,30 @@ function fadein (self, i, nb){
       return mon_array;
 
     }
+    /**
+    fonction texte_sur_panneau
+    dispose un texte en premier plan sur un panneau de couleur uni afin de mettre en évidence le texte
+    le texte est centré par rapport au panneau
+
+    @param monCanvas context sur lequel doit apparaitre le texte
+    @param texte_color color hex couleur du texte
+    @param texte String texte à afficher
+    @param panneau_x Number coordonnée en abscisse du panneau
+    @param panneau_y Number coordonnée en ordonnée du panneau
+    @param panneau_width Number largeur du panneau
+    @param panneau_height Number hauteur du panneau
+    @param panneau_color color hex couleur du panneau
+
+
+    */
+    function texte_sur_panneau(monCanvas, texte_color, texte, panneau_x, panneau_y, panneau_width, panneau_heigth, panneau_color){
+
+      monCanvas.beginPath();
+      monCanvas.fillStyle = panneau_color;
+      monCanvas.fillRect(panneau_x, panneau_y, panneau_width, panneau_heigth);
+      monCanvas.closePath();
+      monCanvas.fillStyle = texte_color;
+      monCanvas.fillText(texte, panneau_x + panneau_width/2, panneau_y + panneau_heigth/2 );
+
+
+    }

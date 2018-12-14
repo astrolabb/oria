@@ -208,6 +208,7 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
     */
     GameManager.prototype.affichage_curseur = function()
     {
+/**
       console.log("affichage position curseur");
       this.monCanvas.fillStyle = "orange";
       this.monCanvas.lineWidth=2;
@@ -218,6 +219,7 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
       this.monCanvas.arc(this.pos_x,this.pos_y,10,0,2*Math.PI, false);
       this.monCanvas.stroke();
 
+*/
     }
     /**
      * click sur le canvas
@@ -773,4 +775,29 @@ this.setup();
             this.arrayOfGameObjects[i][2][this.arrayOfGameObjects[i][2].ombre](this.monCanvas);
           }
       }
+  }
+  /**
+  prototype du comportement du bouton retour dans la partie foret
+
+  @param key String nom du bouton cliqué pour arriver là
+  @param data Object Object et propriété du bouton cliqué
+  @param scene String partie du jeu où se trouve le joueur avant d'arriver sur cette fonction
+  */
+  GameManager.prototype.foret_supr = function(key, data, scene){
+    console.log("module de supression animation foret");
+    this.stop_animation();
+    this.setup2(key, data, scene);
+  }
+  /**
+  prototype de suppression des animation de la foret
+
+  */
+  GameManager.prototype.stop_animation = function(){
+    if(this.mon_carrelage){
+      cancelAnimationFrame(this.mon_carrelage.mon_timer);
+    }
+    if(this.mon_Interval){
+        clearInterval(this.mon_Interval);
+    }
+
   }

@@ -557,9 +557,20 @@ var data_interface = {
       "centrage_carrelage_x" : window.innerWidth/2,
       "top_carrelage_y" : window.innerHeight/6,
       "duree_animation" : 20,
-      "nb_case_succes" : 3,
       "couleur_ligne_groupe" : "#000000",
       "duree_affichage_trait" : 1000,
+      "epaisseur_trait" : 8,
+      "_x_score" : window.innerWidth/10,
+      "_width_score" : window.innerWidth/4,
+      "_height_score" : window.innerWidth/20,
+      "_y_score" : window.innerHeight/2,
+      "couleur_trait" : "#FFFFFF",
+      "couleur_texte" : "green",
+      "couleur_cartouche" : "white",
+      "couleur_legende" : "yellow",
+      "police_texte" : "2em Arial",
+      // 1em = 16px : faire la conversion
+      "taille_police" : 2,
       "elements" : {
           "fond_foret" : {
             "_x" : 0,
@@ -586,7 +597,24 @@ var data_interface = {
               "text" : "La forêt",
               "valeur_a_afficher" : "",
               "alignement" : "centrage2"
-            }
+            },
+            "retour" : {
+              "_x" : 0,
+              "_y" : window.innerHeight- window.innerHeight/10,
+              "_width" : window.innerWidth/3,
+              "_height" : window.innerHeight/10,
+              "ombre" : "draw",
+              "couleur" : "red",
+              "nature" : "image",
+              "lien" : "oui",
+              "ordre" : 2,
+              "loc" : {
+              "niv1" :["kiwi","kiwi"],
+              "niv2" :["kiwi","kiwi"],
+              "niv3" :["kiwi","kiwi"]
+                    },
+              "dir" : "foret_supr"
+              }
       }
 
     },
