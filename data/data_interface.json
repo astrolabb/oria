@@ -368,6 +368,7 @@ var data_interface = {
       "lineHeight" : window.innerHeight/30,
       "marge_gauche" : window.innerWidth/20,
       "marge_haut" : window.innerHeight/5,
+      "couleur_selection" : "blue",
       "alpha_" : 0.5,
       "elements" : {
           "fond" : {
@@ -436,7 +437,41 @@ var data_interface = {
             "valeur_a_afficher" : "",
             "alignement" : "centrage3"
               },
-            "retour" : {
+            "validation_recette" : {
+            "_x" : window.innerWidth/2-window.innerWidth/6,
+            "_y" : (window.innerHeight*7/8)-window.innerHeight/6,
+            "_width" : window.innerWidth/3,
+            "_height" : window.innerHeight/6,
+            "ombre" : "draw",
+            "couleur" : "blue",
+            "nature" : "image",
+            "lien" : "oui",
+            "ordre" : 2,
+            "loc" : {
+            "niv1" :["apple","tomato"],
+            "niv2" :["tomato","apple"],
+            "niv3" :["apple","tomato"]
+                  },
+            "dir" : "valid_lonono"
+              },
+            "recette_zero" : {
+            "_x" : window.innerWidth-window.innerWidth/3,
+            "_y" : (window.innerHeight)-window.innerHeight/10,
+            "_width" : window.innerWidth/3,
+            "_height" : window.innerHeight/10,
+            "ombre" : "draw",
+            "couleur" : "blue",
+            "nature" : "image",
+            "lien" : "oui",
+            "ordre" : 2,
+            "loc" : {
+            "niv1" :["apple","tomato"],
+            "niv2" :["tomato","apple"],
+            "niv3" :["apple","tomato"]
+                  },
+            "dir" : "recette_zero"
+              },
+            "retour_lonono" : {
             "_x" : 0,
             "_y" : window.innerHeight- window.innerHeight/10,
             "_width" : window.innerWidth/3,
@@ -451,7 +486,7 @@ var data_interface = {
             "niv2" :["kiwi","kiwi"],
             "niv3" :["kiwi","kiwi"]
                   },
-            "dir" : "setup2"
+            "dir" : "retour_lonono"
             },
             "lonono_icone" : {
               "_x" : window.innerWidth/2-window.innerWidth/6,
@@ -553,6 +588,7 @@ var data_interface = {
       "marge_haut" : window.innerHeight/5,
       "colonne" : 7,
       "ligne" : 7,
+      "taille_groupe_max" : 30,
       "couleur_case_clickee" : "#000000",
       "centrage_carrelage_x" : window.innerWidth/2,
       "top_carrelage_y" : window.innerHeight/6,
@@ -618,6 +654,91 @@ var data_interface = {
       }
 
     },
+      "lac" : {
+            "maxWidth_text" : 2*window.innerWidth/3,
+            "lineHeight" : window.innerHeight/30,
+            "marge_gauche" : window.innerWidth/20,
+            "marge_haut" : window.innerHeight/8,
+            "nombre_colonne" : 7,
+            "ressource_a_afficher" : ["eau", "poisson", "crevette", "crabe", "homard", "pieuvre", "sirene"],
+            "largeur_colonne" : window.innerWidth/20,
+            "hauteur_colonne" : window.innerHeight*4/7,
+            "hauteur_bouton" : window.innerWidth/10,
+            "couleur_colonne" : ["orange","magenta","blue","green","yellow"],
+            "fondu_colonne" : 0.5,
+            "couleur_bouton_actif" : "red",
+            "couleur_bouton_click" : "white",
+            "temps_entre_refresh" : 30,
+            "_x_score" : window.innerWidth/10,
+            "_width_score" : window.innerWidth/4,
+            "_height_score" : window.innerWidth/20,
+            "_y_score" : window.innerHeight/2,
+            "couleur_texte" : "green",
+            "couleur_cartouche" : "white",
+            "couleur_legende" : "yellow",
+            "elements" : {
+                "fond" : {
+                  "_x" : 0,
+                  "_y" : 0,
+                  "_width" : window.innerWidth,
+                  "_height" : window.innerHeight,
+                  "ombre" : "draw",
+                  "couleur" : "vert",
+                  "nature" : "image",
+                  "lien" : "non",
+                  "ordre" : 1,
+                  "loc" : {
+                    "niv1" :["fond_gris","fond_gris"],
+                    "niv2" :["tomato","tomato"],
+                    "niv3" :["cherry","cherry"]
+                    }
+                  },
+                  "titre" : {
+                    "_x" : 20,
+                    "_y" : window.innerHeight/40,
+                    "nature" : "text",
+                    "couleur" : "#333",
+                    "police" : "23pt Calibri",
+                    "text" : "Le lac",
+                    "valeur_a_afficher" : "",
+                    "alignement" : "centrage2"
+                  },
+                  "retour_lac" : {
+                    "_x" : 0,
+                    "_y" : window.innerHeight- window.innerHeight/10,
+                    "_width" : window.innerWidth/3,
+                    "_height" : window.innerHeight/10,
+                    "ombre" : "draw",
+                    "couleur" : "red",
+                    "nature" : "image",
+                    "lien" : "oui",
+                    "ordre" : 2,
+                    "loc" : {
+                    "niv1" :["kiwi","kiwi"],
+                    "niv2" :["kiwi","kiwi"],
+                    "niv3" :["kiwi","kiwi"]
+                          },
+                    "dir" : "foret_supr"
+                  },
+                  "bouton_lac" :{
+                    "_x" : 0,
+                    "_y" : 0,
+                    "_width" : 0,
+                    "_height" : 0,
+                    "ombre" : "draw",
+                    "couleur" : "blue",
+                    "nature" : "icone",
+                    "lien" : "oui",
+                    "ordre" : 2,
+                    "loc" : {
+                    "niv1" :["kiwi","kiwi"],
+                    "niv2" :["kiwi","kiwi"],
+                    "niv3" :["kiwi","kiwi"]
+                          },
+                    "dir" : "setup2"
+                  }
+            }
+      },
     "couleur_roue" : ["#0015D5", "#00D52B", "#D500B9", "#ED0037", "#E5ED00", "#00EDE5"],
     "couleur_carrelage" : ["#0015D5", "#00D52B", "#D500B9", "#ED0037", "#E5ED00", "#00EDE5"]
-}
+  }

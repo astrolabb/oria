@@ -8,13 +8,23 @@ var data_texte = {
       "plat" : "plat vendu"
     },
   "lonono" : {
+    "pas_de_selection" : "Vous n'avez sélectionné de ressource pour le moment",
     "nb_ressource_insuffisant" : "Vous n'avez pas encore sélectionné sufisamment de ressources pour qu'il se passe quelque chose",
     "echec_recette" : "Votre association est un echec :",
     "reussite" : "Vous avez obtenu :",
     "plat" : "plat vendu"
   },
   "foret" : {
+    "score" : "score",
+    "timer" : "timer",
     "echec" : "Votre score ne vous permet pas d'obtenir une ressource",
     "reussite" : "Félicitations : Vous avez obtenu : "
+  },
+  "lac" : {
+    "score" : "score",
+    "timer" : "timer",
+    "echec" : "Votre score ne vous permet pas d'obtenir une ressource",
+    "reussite" : "Félicitations : Vous avez obtenu : "
+
   }
 }

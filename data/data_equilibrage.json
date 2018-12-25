@@ -1,4 +1,44 @@
 {
+  "ressource_poubelle" : "ex______",
+  "lac_algo" : {
+    "1" : {
+      "duree" : 30,
+      "bonus" : 1,
+      "malus" : 0,
+      "base_temps" : 1.5,
+      "gain" : {
+        "eau" : [1,3],
+        "poisson" : [1,6]
+      }
+    },
+    "2" : {
+      "duree" : 30,
+      "bonus" : 1,
+      "malus" : -1,
+      "base_temps" : 1.2,
+      "gain" : {
+        "eau" : [1,3],
+        "poisson" : [1,6],
+        "crevette" : [1,9],
+        "crabe" : [1,12]
+      }
+    },
+    "3" : {
+      "duree" : 30,
+      "bonus" : 1,
+      "malus" : -1,
+      "base_temps" : 1,
+      "gain" : {
+        "eau" : [1,3],
+        "poisson" : [1,6],
+        "crevette" : [1,9],
+        "crabe" : [1,12],
+        "homard" : [1,15],
+        "pieuvre" : [1,18],
+        "sirene" : [1,21]
+      }
+    }
+  },
   "foret_algo" : {
     "1" : {
       "prob_sens" : 0,
@@ -51,6 +91,10 @@
       "cereales" : [["graine"], 1]
     },
     "2" : {
+      "paille" : [["herbe"], 1],
+      "planche" : [["rondin"], 5],
+      "limace" : [["ver_de_terre"], 1],
+      "cereales" : [["graine"], 1],
       "bois_sculpte" : [["billette", "billette"], 1],
       "engrais" : [["ex______", "plante"], 1],
       "pierre" : [["herbe", "plante"], 1],
@@ -64,6 +108,21 @@
       "haricot_magique" : [["legumes", "graine_magique"], 1]
     },
     "3" : {
+      "paille" : [["herbe"], 1],
+      "planche" : [["rondin"], 5],
+      "limace" : [["ver_de_terre"], 1],
+      "cereales" : [["graine"], 1],
+      "bois_sculpte" : [["billette", "billette"], 1],
+      "engrais" : [["ex______", "plante"], 1],
+      "pierre" : [["herbe", "plante"], 1],
+      "paille" : [["paille", "paille"], 1],
+      "sceau" : [["bois_sculpte", "corde"], 1],
+      "metal" : [["pierre", "pierre"], 1],
+      "fil" : [["fleur", "fleur"], 1],
+      "roue" : [["planche", "bois_sculpte"], 1],
+      "scie" : [["roue", "metal"], 1],
+      "sable" : [["pierre", "eau"], 1],
+      "haricot_magique" : [["legumes", "graine_magique"], 1],
       "verre" : [["sable","eau", "metal"], 1],
       "appat" : [["limace", "cereales", "poisson"], 1],
       "femme" : [["sirene", "pieuvre", "graine_magique"], 1],
@@ -78,6 +137,8 @@
         "caviar" : [["poisson"], 1]
       },
       "2" : {
+        "cereale_soufflee" : [["rondin"], 1],
+        "caviar" : [["poisson"], 1],
         "huile" : [["eau", "fleur"], 1],
         "jus_de_fruit" : [["eau", "fruit"], 1],
         "riz" : [["eau", "cereales"], 1],
@@ -91,6 +152,19 @@
         "sauce" : [["bouillon", "poisson"], 1]
       },
       "3" : {
+        "cereale_soufflee" : [["rondin"], 1],
+        "caviar" : [["poisson"], 1],
+        "huile" : [["eau", "fleur"], 1],
+        "jus_de_fruit" : [["eau", "fruit"], 1],
+        "riz" : [["eau", "cereales"], 1],
+        "bouillon" : [["eau", "legumes"], 1],
+        "sushi" : [["riz", "poisson"], 1],
+        "frite" : [["huile", "legumes"], 1],
+        "saumon_citronne" : [["poisson", "fruit"], 1],
+        "miel" : [["fleur", "fruit"], 1],
+        "pop_corn_caramelise" : [["cereale_soufflee", "miel"], 1],
+        "crabe_marine" : [["crabe", "bouillon"], 1],
+        "sauce" : [["bouillon", "poisson"], 1],
         "the" : [["eau", "fleur", "fruit"], 1],
         "maki" : [["riz", "legumes", "poisson"], 1],
         "salade_de_fruit" : [["fruit", "fruit", "fruit"], 1],
@@ -1131,7 +1205,12 @@
     "arc_en_ciel" : 1,
     "pays_imaginaire" : 1,
     "retour" : 1,
-    "lonono_icone" : 1
+    "lonono_icone" : 1,
+    "validation_recette" : 1,
+    "recette_zero" : 1,
+    "retour_lonono" : 1,
+    "bouton_lac" : 1,
+    "retour_lac" : 1
   },
   "bareme_niveau" : {
       "village" : {

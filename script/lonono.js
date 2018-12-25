@@ -15,6 +15,9 @@ creation et affichage des activités après click sur le lonnono
 var Mon_lonono = function(monCanvas, _target, data_plat, data_interface, data_ressources, lonono_algo, lonono_algo2){
 
   var self = this;
+  this.monCanvas = monCanvas;
+  this.couleur_selection = data_interface.couleur_selection;
+  this.alpha_ = data_interface.alpha_;
   _target.arrayOfGameObjects = [];
   // object_trie ressource à faire apparaitre colonne de gauche
   // dans la partie du haut ressources --> nouvelles ressources
@@ -96,7 +99,7 @@ var Mon_lonono = function(monCanvas, _target, data_plat, data_interface, data_re
       }
   });
 
-
+  // creation des objects de texte
   Object.keys(data_interface.elements).forEach(function(key) {
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "text"){
@@ -104,7 +107,7 @@ var Mon_lonono = function(monCanvas, _target, data_plat, data_interface, data_re
         _target.arrayOfGameObjects.push([key,"text",key]);
       }
   });
-
+  // reformatage de l'object data_ressources2 pour prendre en compte le fait qu'une même ressource peut être utilisée plusieurs fois
   Object.keys(data_ressources3).forEach(function(key) {
       Object.keys(data_ressources2).forEach(function(key2) {
           if(key2==key){
@@ -113,6 +116,7 @@ var Mon_lonono = function(monCanvas, _target, data_plat, data_interface, data_re
           }
       });
   });
+  // c'est l'object arrayOfGameObjects3 qui va servir à la création des boutons
   _target.arrayOfGameObjects3 = {};
   $.extend( _target.arrayOfGameObjects3, data_ressources2);
   $.extend( _target.arrayOfGameObjects3, data_ressources3);
@@ -120,4 +124,22 @@ var Mon_lonono = function(monCanvas, _target, data_plat, data_interface, data_re
   console.log("data_ressources4 "+JSON.stringify(_target.arrayOfGameObjects3));
 
 
+}
+/**
+prototype icone_selectionne
+permet de mettre en evidence par une zone grisée les ressources cliquée par le joueur
+
+@param key String nom du bouton cliqué (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+@param data Object : propriétés du bouton cliqué
+@param nb Number : nombre de fois que la ressource est sélectionnée
+
+*/
+Mon_lonono.prototype.icone_selectionne = function (key, data, nb){
+//  console.log("donnee icone selectionnée "+JSON.stringify(data)+" nom object "+key);
+  for(j=0; j<nb; j++){
+    this.monCanvas.globalAlpha =   this.alpha_;
+    this.monCanvas.fillStyle =   this.couleur_selection;
+    this.monCanvas.fillRect(data._x, data._y, data._width, data._height/(j+1));
+    this.monCanvas.globalAlpha =   1;
+  }
 }

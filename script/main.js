@@ -142,14 +142,27 @@ function fadein (self, i, nb){
 
     @return mon_array array nouveau tableau representant la recette
     */
-    function mix_ressources(mon_array, mon_array2, niveau, icone, cat){
+    function mix_ressources(mon_array, mon_array2, niveau, icone, cat, mon_array3, nom_object){
         mon_array.push(icone);
         mon_array2.push(cat);
-        if(mon_array.length>niveau){
-          mon_array.shift();
-          mon_array2.shift();
+        if(mon_array3[nom_object]){
+          mon_array3[nom_object] += 1;
+        }else{
+          mon_array3[nom_object] = 1;
         }
-        return [mon_array, mon_array2];
+        if(mon_array.length>niveau){
+          mon_array = [];
+          mon_array2 = [];
+          mon_array3 = {};
+          mon_array.push(icone);
+          mon_array2.push(cat);
+          if(mon_array3[nom_object]){
+            mon_array3[nom_object] += 1;
+          }else{
+            mon_array3[nom_object] = 1;
+          }
+        }
+        return [mon_array, mon_array2, mon_array3];
     }
     /**
     fonction mix_reussite
@@ -165,8 +178,8 @@ function fadein (self, i, nb){
     function mix_reussite(mon_array, algo, niveau){
       var ressource_trouvee = [];
       Object.keys(algo[String(niveau)]).forEach(function(key) {
-        if(JSON.stringify(algo[String(niveau)][key][0]) == JSON.stringify(mon_array)){
-          ressource_trouvee = [key, 1];
+        if(JSON.stringify(algo[String(niveau)][key][0].sort()) == JSON.stringify(mon_array.sort())){
+          ressource_trouvee = [key, algo[String(niveau)][key][1]];
         }
 
       });
@@ -442,4 +455,22 @@ function fadein (self, i, nb){
       monCanvas.fillText(texte, panneau_x + panneau_width/2, panneau_y + panneau_heigth/2 );
 
 
+    }
+    /**
+
+    */
+    function centrage_colonne(_width_col, _marge, nb_col){
+
+      return (window.innerWidth- (nb_col*_width_col))/2;
+
+    }
+    /**
+
+    */
+    function verifie_couleur(mon_object, couleur){
+      if(mon_object[couleur]){
+        return true;
+      }else{
+        return false;
+      }
     }

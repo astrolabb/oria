@@ -59,6 +59,7 @@ var Carrelage = function(monCanvas, _target, color_array, ressource, data_interf
   this.centrage_x = data_interface.centrage_carrelage_x;
   this.top_y = data_interface.top_carrelage_y;
   this.marge_x = data_interface.marge_gauche;
+  this.taille_groupe_max = data_interface.taille_groupe_max;
   this.couleur_click = data_interface.couleur_case_clickee;
   // this.sens_decalage Number 0 pour decalage vers le bas, 1 pour decalage vers le haut, 2 decalage de gauche à droite, 3 decalage de droite à gauche
   this.sens_decalage = 2;
@@ -692,14 +693,14 @@ var couleur_a_rechercher;
           this.cases[groupes[i][0]-j][groupes[i][1]].decalage=-1;
           this.score += this.point_par_case;
           console.log("les groupes3- i "+Number(groupes[i][0]-j)+" j "+groupes[i][1]);
-          this.complement_groupe(groupes[i][0]-j, groupes[i][1], 1, couleur_a_rechercher);
+          this.complement_groupe(groupes[i][0]-j, groupes[i][1], 1, couleur_a_rechercher, 0);
       }else if(groupes[i][3]==0){
           couleur_a_rechercher = this.cases[groupes[i][0]][groupes[i][1]-j].couleur;
           this.cases[groupes[i][0]][groupes[i][1]-j].couleur=this.couleur_click;
           this.cases[groupes[i][0]][groupes[i][1]-j].decalage=-1;
           this.score += this.point_par_case;
           console.log("les groupes3- i "+groupes[i][0]+" j "+Number(groupes[i][1]-j));
-            this.complement_groupe(groupes[i][0], groupes[i][1]-j, 0, couleur_a_rechercher);
+            this.complement_groupe(groupes[i][0], groupes[i][1]-j, 0, couleur_a_rechercher, 0);
       }
     }
   }
@@ -718,12 +719,14 @@ prototype complement_groupe
 @param j Number numero de colonne de la case pour laquelle il faut vérifier les cases adjacentes
 @param sens number orientation du groupe dont fait partie la case : 0 pour horizontal 1 pour vertical
 @param couleur color hex couleur du groupe
+@param count number nombre de cases adjacentes de la même couleur trouvées
 
 */
-Carrelage.prototype.complement_groupe = function(i, j, sens, couleur){
+Carrelage.prototype.complement_groupe = function(i, j, sens, couleur, count){
 var k = i;
 var l = j;
 var condition = true;
+count++;
   while(condition){
       if(sens == 0){
         k++;
@@ -737,7 +740,11 @@ var condition = true;
           this.cases[k][l].couleur = this.couleur_click;
           this.cases[k][l].decalage = -1;
           this.score += this.point_par_case;
-          this.complement_groupe(k, l, (sens==0 ? 1:0), couleur);
+          if(count<this.taille_groupe_max){
+            this.complement_groupe(k, l, (sens==0 ? 1:0), couleur);
+          }else{
+            condition = false;
+          }
         }else{
           condition = false;
         }
@@ -761,7 +768,11 @@ var condition = true;
           this.cases[k][l].couleur = this.couleur_click;
           this.cases[k][l].decalage = -1;
           this.score += this.point_par_case;
-          this.complement_groupe(k, l, (sens==0 ? 1:0), couleur);
+          if(count<this.taille_groupe_max){
+            this.complement_groupe(k, l, (sens==0 ? 1:0), couleur);
+          }else{
+            condition = false;
+          }
         }else{
           condition = false;
         }
