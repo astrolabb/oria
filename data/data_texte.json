@@ -26,5 +26,13 @@ var data_texte = {
     "echec" : "Votre score ne vous permet pas d'obtenir une ressource",
     "reussite" : "Félicitations : Vous avez obtenu : "
 
+  },
+  "meme" : {
+    "reussite" : "Bien joué ! Vous avez découvert une recette :",
+    "echec" : "Encore Raté ! Vous avez fait : ",
+    "erreur" : "erreur",
+    "amorce1" : " Pour fabriquer : ",
+    "amorce2" : " Il faut mélanger : "
   }
+
 }

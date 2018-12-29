@@ -54,7 +54,7 @@ var Carrelage = function(monCanvas, _target, color_array, ressource, data_interf
   console.log("this.foret_algo3 "+this._target.mon_Player.niveau["foret"]);
   this.foret_algo = foret_algo[String(this._target.mon_Player.niveau["foret"])];
   this.cases = random_case(this.ligne, this.colonne, this.color_case);
-  this.table_couleur_image = liaison_couleur_image(ressource, color_array);
+  this.table_couleur_image = liaison_couleur_image(ressource, color_array, "foret");
   console.log("this.table_couleur_image "+JSON.stringify(this.table_couleur_image));
   this.centrage_x = data_interface.centrage_carrelage_x;
   this.top_y = data_interface.top_carrelage_y;

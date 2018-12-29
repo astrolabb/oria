@@ -25,5 +25,12 @@ var data_image_chargement = {
 "lac3" : "./image/lac3.png",
 "foret1" : "./image/foret1.png",
 "foret2" : "./image/foret3.png",
-"foret3" : "./image/foret3.png"
+"foret3" : "./image/foret3.png",
+"bois_sculpte" : "./image/bois_sculpte.png",
+"branche" : "./image/branche.png",
+"buche" : "./image/buche.png",
+"herbe" : "./image/herbe.png",
+"licorne" : "./image/licorne.png",
+"planche" : "./image/planche.png",
+"rondin" : "./image/rondin.png",
 }

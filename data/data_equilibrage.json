@@ -1,6 +1,23 @@
 {
   "ressource_poubelle" : "ex______",
-  "lac_algo" : {
+  "meme_algo" : {
+    "1" : {
+      "nb_colonne" : 3,
+      "temps_affichage" : 3000,
+      "choix_ressource_case" : 4
+    },
+    "2" : {
+      "nb_colonne" : 3,
+      "temps_affichage" : 2000,
+      "choix_ressource_case" : 4
+    },
+    "2" : {
+      "nb_colonne" : 3,
+      "temps_affichage" : 2000,
+      "choix_ressource_case" : 4
+      }
+    },
+    "lac_algo" : {
     "1" : {
       "duree" : 30,
       "bonus" : 1,
@@ -188,9 +205,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","kiwi"],
-          "niv2" :["onion","kiwi"],
-          "niv3" :["onion","kiwi"]
+          "niv1" :["herbe","herbe"],
+          "niv2" :["herbe","herbe"],
+          "niv3" :["herbe","herbe"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -211,9 +228,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["branche","branche"],
+          "niv2" :["branche","branche"],
+          "niv3" :["branche","branche"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -234,9 +251,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["buche","buche"],
+          "niv2" :["buche","buche"],
+          "niv3" :["buche","buche"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -257,9 +274,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","kiwi"],
-          "niv2" :["onion","kiwi"],
-          "niv3" :["onion","kiwi"]
+          "niv1" :["rondin","rondin"],
+          "niv2" :["rondin","rondin"],
+          "niv3" :["rondin","rondin"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -281,9 +298,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["planche","planche"],
+          "niv2" :["planche","planche"],
+          "niv3" :["planche","planche"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -305,9 +322,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["bois_sculpte","bois_sculpte"],
+          "niv2" :["bois_sculpte","bois_sculpte"],
+          "niv3" :["bois_sculpte","bois_sculpte"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -328,9 +345,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["licorne","licorne"],
+          "niv2" :["licorne","licorne"],
+          "niv3" :["licorne","licorne"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -1210,7 +1227,11 @@
     "recette_zero" : 1,
     "retour_lonono" : 1,
     "bouton_lac" : 1,
-    "retour_lac" : 1
+    "retour_lac" : 1,
+    "meme" : 1,
+    "bouton_meme" : 1,
+    "validation_meme" : 1,
+    "retour_meme" : 1
   },
   "bareme_niveau" : {
       "village" : {
@@ -1520,7 +1541,7 @@
       "cat" : "plat"
     },
     "the" : {
-      "nom" : "the",
+      "nom" : "thé",
       "_x" : 0,
       "_y" : 0,
       "_width" : 10,

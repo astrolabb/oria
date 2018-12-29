@@ -312,16 +312,24 @@ function fadein (self, i, nb){
 
     @param ressource Object Object dont les propriétés sont l'ensemble des ressource du jeu
     @param color_array array : tableau repésentant les couleurs utilisées dans le carrelage
+    @param scene String : chaine représentant le nom de la scene où la fonction est appelée
 
     @return tableau_liaison Object structure {"couleur hexa" : "string nom de la propriété"}
     */
-    function liaison_couleur_image(ressource, color_array){
+    function liaison_couleur_image(ressource, color_array, scene){
       var tableau_ressource = [];
       var tableau_liaison = {};
       var index_ressource;
       Object.keys(ressource).forEach(function(key) {
-        tableau_ressource.push(key);
+        if(scene == "foret"){
+          if(ressource[key].origin[scene]){
+            tableau_ressource.push(key);
+          }
+        }else if(scene == meme){
+          tableau_ressource.push(key);
+        }
       });
+      // le nombre de ressource provenant de la scene doit être supérieur au nombre de couleur
       for(i=0; i<color_array.length; i++){
         index_ressource = Math.floor(Math.random()*tableau_ressource.length);
         tableau_liaison[color_array[i]] = tableau_ressource[index_ressource];
@@ -472,5 +480,117 @@ function fadein (self, i, nb){
         return true;
       }else{
         return false;
+      }
+    }
+    /**
+
+    */
+    function trouve_taille_case(nb, marge_gauche, marge_haut){
+      var hauteur_utile = window.innerHeight-2*marge_haut;
+      var largeur_utile = window.innerWidth-2*marge_gauche;
+      var taille_min;
+      hauteur_utile>largeur_utile ? taille_min=largeur_utile : taille_min=hauteur_utile;
+
+      return (taille_min/nb);
+    }
+    /**
+
+    */
+    function fonction_coord_prem_case(taille, nb){
+      var coord_x = window.innerWidth/2 - ((nb/2)*taille);
+      var coord_y = window.innerHeight/2 - ((nb/2)*taille);
+
+      return [coord_x, coord_y];
+    }
+    /**
+
+    */
+    function fonction_tableau_ressource(mon_object){
+      var tableau_ressource = [];
+
+      Object.keys(mon_object).forEach(function(key) {
+          tableau_ressource.push(key);
+      });
+      return tableau_ressource;
+    }
+    /**
+
+
+    */
+    function fonction_click_case(coord, taille, nb, ecran){
+
+      return Math.floor((coord - ((ecran/2)-(taille*nb/2)))/taille);
+    }
+    /**
+
+    */
+    function fonction_recherche_couleur_case(key_x, key_y, nb, tableau_couleur){
+
+      return tableau_couleur[(key_y*nb)+key_x];
+    }
+    /**
+
+    */
+    function pluriel(nb, mot){
+      if(nb<2){
+        return mot;
+      }else{
+        return String(mot+"s");
+      }
+    }
+    /**
+
+    */
+    function fonction_tableau_recette(liste_ressource, liste_plat, texte, data_ressource, data_plat){
+      var mon_tableau_recette = [];
+      var mon_texte = "";
+      Object.keys(liste_ressource).forEach(function(key) {
+        mon_texte = "";
+        mon_texte += texte.amorce1;
+        if(data_ressource.hasOwnProperty(key)){
+          mon_texte+=data_ressource[key].nom+" ";
+        }else if(data_plat.hasOwnProperty(key)){
+          mon_texte+=data_plat[key].nom+" ";
+        }
+        mon_texte += texte.amorce2;
+        for(i=0; i<liste_ressource[key][0].length; i++){
+          if(data_ressource.hasOwnProperty(liste_ressource[key][0][i])){
+            mon_texte+=data_ressource[liste_ressource[key][0][i]].nom+trouve_le_dernier(i,liste_ressource[key][0].length,"+","");
+          }else if(data_plat.hasOwnProperty(liste_ressource[key][0][i])){
+            mon_texte+=data_plat[liste_ressource[key][0][i]].nom+trouve_le_dernier(i,liste_ressource[key][0].length,"+","");
+          }
+        }
+        mon_tableau_recette.push(mon_texte);
+      });
+      Object.keys(liste_plat).forEach(function(key) {
+        mon_texte = "";
+        mon_texte += texte.amorce1;
+        if(data_ressource.hasOwnProperty(key)){
+          mon_texte+=data_ressource[key].nom+" ";
+        }else if(data_plat.hasOwnProperty(key)){
+          mon_texte+=data_plat[key].nom+" ";
+        }
+        mon_texte += texte.amorce2;
+        for(i=0; i<liste_plat[key][0].length; i++){
+          if(data_ressource.hasOwnProperty(liste_plat[key][0][i])){
+            mon_texte+=data_ressource[liste_plat[key][0][i]].nom+trouve_le_dernier(i,liste_plat[key][0].length,"+","");
+
+          }else if(data_plat.hasOwnProperty(liste_plat[key][0][i])){
+            mon_texte+=data_plat[liste_plat[key][0][i]].nom+trouve_le_dernier(i,liste_plat[key][0].length,"+","");
+          }
+        }
+        mon_tableau_recette.push(mon_texte);
+      });
+
+      return mon_tableau_recette;
+    }
+    /**
+
+    */
+    function trouve_le_dernier(i,nb,si_oui,sinon){
+      if(i!=nb-1){
+        return si_oui;
+      }else{
+        return sinon;
       }
     }

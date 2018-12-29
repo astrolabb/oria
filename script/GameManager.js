@@ -47,6 +47,7 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
     this.mon_Player.lonono_mix_ressource = "";
     this.mon_Player.lonono_mix_plat = "";
 
+
 }
 /**
  * prototype de lancement :
@@ -128,11 +129,8 @@ GameManager.prototype.setup2 = function (bouton, data, scene)
 {
 
   var self = this;
-  // si un timer est en cours d'exécution, on l'arrète.
-  if(this.mon_Interval){
-      clearInterval(this.mon_Interval);
-      this.mon_Interval = false;
-  }
+  //ferme toutes les animations, les retardateurs et les timers
+  this.stop_animation();
 
   // tableau contenant les objects affichés à l'écran : (fond, bouton navigation, score)
   // structure [key, categorie String("image ou "texte)]
@@ -171,7 +169,9 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
   this.monCanvas_click.closePath();
 
     if(!this.mon_Interval){
-  //    this.mon_Interval = setInterval( function() {self.affichage_map();}, 3000);
+      this.mon_Interval = setInterval( function() {
+        self.map.bouge_meme();
+        self.affichage_map();}, 3000);
     }
 
 }
@@ -342,8 +342,10 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
      comportement lors click sur le jardin
      fondu de l'image avant de faire apparaitre la roue de la chance
      *
-     * @param key String nom de l'icone clickée
-      @param data
+     @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+     @param data : propriété du object-bouton cliqué
+     @param scene : frame dans lequel le bouton est cliqué
+
      */
      GameManager.prototype.setup7 = function (key, data, scene)
       {
@@ -359,6 +361,30 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
 
         });
       }
+  /**
+  prototype setup8
+  comportement lors d'un click sur la grand-mère
+
+  @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+  @param data : propriété du object-bouton cliqué
+  @param scene : frame dans lequel le bouton est cliqué
+
+  */
+  GameManager.prototype.setup8 = function (key, data, scene)
+   {
+     console.log("Mémé");
+     self = this;
+     if(this.mon_Interval){
+         clearInterval(this.mon_Interval);
+     }
+     $("#monCanvas").addClass("niveau_de_gris mon_fadein");
+     $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+          $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
+          self.meme(key, data, scene);
+
+     });
+   }
+
   /**
   * blanchi le canvas vu par le joueur en js
   @todo supprimer cette fonction si ne sert pas
@@ -376,10 +402,8 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
      }
   GameManager.prototype.contructor_village = function(key, data){
     var self = this;
-    if(this.mon_Interval){
-        clearInterval(this.mon_Interval);
-        this.mon_Interval = false;
-    }
+    //ferme toutes les animations, les retardateurs et les timers
+    this.stop_animation();
     this.arrayOfGameObjects = [];
     this.arrayOfGameObjects2 = [];
     this.arrayOfClickObjects = {};
@@ -614,10 +638,8 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
 
   */
   GameManager.prototype.lonono = function(key, data, scene){
-      if(this.mon_Interval){
-          clearInterval(this.mon_Interval);
-          this.mon_Interval = false;
-      }
+    //ferme toutes les animations, les retardateurs et les timers
+    this.stop_animation();
 
       var self = this;
       this.arrayOfGameObjects = [];
@@ -779,10 +801,8 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
   }
   GameManager.prototype.jardin = function(key, data, scene){
     var self = this;
-    if(this.mon_Interval){
-        clearInterval(this.mon_Interval);
-        this.mon_Interval = false;
-    }
+    //ferme toutes les animations, les retardateurs et les timers
+    this.stop_animation();
       // tableau contenant les objects affichés à l'écran : (fond, bouton navigation, score)
       // structure [key, categorie String("image ou "texte)]
       this.arrayOfGameObjects = [];
@@ -840,10 +860,8 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
   */
   GameManager.prototype.foret = function(key, data, scene){
     var self = this;
-    if(this.mon_Interval){
-        clearInterval(this.mon_Interval);
-        this.mon_Interval = false;
-    }
+    //ferme toutes les animations, les retardateurs et les timers
+    this.stop_animation();
       // tableau contenant les objects affichés à l'écran : (fond, bouton navigation, score)
       // structure [key, categorie String("image ou "texte)]
       this.arrayOfGameObjects = [];
@@ -925,6 +943,11 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     }
     if(this.mon_Interval){
         clearInterval(this.mon_Interval);
+        this.mon_Interval = false;
+    }
+    if(this.mon_retardateur){
+      clearTimeout(this.mon_retardateur);
+      this.mon_retardateur = false;
     }
 
   }
@@ -937,10 +960,8 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
   */
   GameManager.prototype.lac = function(key, data, scene){
     var self = this;
-    if(this.mon_Interval){
-        clearInterval(this.mon_Interval);
-        this.mon_Interval = false;
-    }
+    //ferme toutes les animations, les retardateurs et les timers
+    this.stop_animation();
     // tableau contenant les objects affichés à l'écran : (fond, bouton navigation, score)
     // structure [key, categorie String("image ou "texte)]
       this.arrayOfGameObjects = [];
@@ -1006,4 +1027,116 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
             this.mon_lac.affichage_image_chute(this.monCanvas, this.arrayOfGameObjects[i][2]);
           }
       }
+  }
+  /**
+  Prototype Mémé
+  @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+  @param data : propriété du object-bouton cliqué
+  @param scene : frame dans lequel le bouton est cliqué
+
+  */
+  GameManager.prototype.meme = function(key, data, scene){
+    var self = this;
+    //ferme toutes les animations, les retardateurs et les timers
+    this.stop_animation();
+    // tableau contenant les objects affichés à l'écran : (fond, bouton navigation, score)
+    // structure [key, categorie String("image ou "texte)]
+      this.arrayOfGameObjects = [];
+      this.arrayOfGameObjects2 = [];
+      this.arrayOfClickObjects = {};
+
+    this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    this.monCanvas.beginPath();
+    this.ma_meme = new Meme(this.monCanvas, self, this.data_interface.meme, key, data, scene, this.data_equilibrage.ressource, this.data_texte.meme, this.data_equilibrage.meme_algo[String(this.mon_Player.niveau.meme)]);
+
+    this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
+
+
+    this.click_canvas();
+    this.monCanvas.closePath();
+
+    this.affichage_meme(key, data, scene);
+
+    this.ma_meme.demarrage_jeu(0);
+    this.mon_retardateur = setTimeout( function(){
+      self.ma_meme.cas = 1;
+      self.ma_meme.demarrage_jeu(1)
+    }, this.data_equilibrage.meme_algo[String(this.mon_Player.niveau.meme)].temps_affichage);
+
+    $("#monCanvas").click(function(e){
+      //  $("#monCanvas").off('click');
+        self.ma_meme.click(self.pos_x, self.pos_y);
+    });
+
+    this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    this.monCanvas_click.beginPath();
+
+    var object_fusionne = {};
+    $.extend( object_fusionne, this.data_interface.meme.elements);
+    console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
+    // mise en place des zones à cliquer
+    this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne, "lac");
+    // affichage des zones à cliquer
+    this.affichage_click_zone();
+    this.monCanvas_click.closePath();
+
+  }/**
+  Prototype affichage_meme
+
+  @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+  @param data : propriété du object-bouton cliqué
+  @param scene : frame dans lequel le bouton est cliqué
+
+  */
+  GameManager.prototype.affichage_meme = function(key, data, scene){
+    console.log("affichage_lac : affichage des icones");
+    this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      for (var i in this.arrayOfGameObjects) {
+          if(this.arrayOfGameObjects[i][1]=="text"){
+            this.arrayOfGameObjects[i][2].setup((this.arrayOfGameObjects[i][2].text=="" ? this.mon_Player[this.arrayOfGameObjects[i][2].valeur_a_afficher] : this.arrayOfGameObjects[i][2].text));
+          }else if(this.arrayOfGameObjects[i][1]=="image"){
+            this.arrayOfGameObjects[i][2][this.arrayOfGameObjects[i][2].ombre](this.monCanvas);
+          // icone = boutons du lac
+          }
+      }
+  }
+  /**
+
+  */
+  GameManager.prototype.valid_meme = function(key, data, scene){
+    console.log("valid_meme");
+    //ferme toutes les animations, les retardateurs et les timers
+    this.stop_animation();
+    var reussite = true;
+    var ma_ressource;
+    var couleur_case;
+    var vrai_valeur;
+    var nb_erreur = 0;
+
+    for(i=0; i<this.ma_meme.algo.nb_colonne ; i++){
+
+      for(j=0; j<this.ma_meme.algo.nb_colonne ; j++){
+
+        ma_ressource = this.ma_meme.melange_ressource[(i*this.ma_meme.algo.nb_colonne)+j][this.ma_meme.tableau_click[i][j]];
+        couleur_case = this.ma_meme.color_array[(i*this.ma_meme.algo.nb_colonne)+j];
+        vrai_valeur = this.ma_meme.table_couleur_image[couleur_case];
+        if(vrai_valeur != ma_ressource){
+          reussite = false;
+          nb_erreur++;
+        }
+      }
+
+    }
+    console.log("nombre d erreur "+nb_erreur);
+    if(reussite){
+      var mon_tableau_recette = fonction_tableau_recette(this.data_equilibrage.lonono_algo["3"], this.data_equilibrage.lonono_algo2["3"],this.data_texte.meme, this.data_equilibrage.ressource, this.data_equilibrage.plats);
+      console.log("28_12_18 3 "+JSON.stringify(mon_tableau_recette));
+      var ma_recette = mon_tableau_recette[Math.floor(Math.random()*mon_tableau_recette.length)];
+      this.popup("setup2", ma_recette, "", "meme", "reussite");
+    }
+    else {
+      var mon_texte = String(nb_erreur+" "+pluriel(nb_erreur, this.data_texte.meme.erreur));
+      this.popup("setup2", mon_texte, "", "meme", "echec");
+    }
+
   }

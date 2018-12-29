@@ -168,6 +168,23 @@ var data_interface = {
         },
         "dir" : "setup7"
                     },
+      "meme" : {
+        "_x" : window.innerWidth/2-window.innerWidth/20,
+        "_y" : window.innerHeight/10,
+        "_width" : window.innerWidth/10,
+        "_height" : window.innerHeight/10,
+        "ombre" : "draw",
+        "couleur" : "pink",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+        "niv1" :["kiwi","mango"],
+        "niv2" :["kiwi","mango"],
+        "niv3" :["kiwi","mango"]
+            },
+        "dir" : "setup8"
+                },
       "or_icone" : {
         "_x" : window.innerWidth/2-window.innerWidth/30,
         "_y" : window.innerHeight- window.innerHeight/30,
@@ -307,7 +324,7 @@ var data_interface = {
     },
     "popup" : {
       "maxWidth_text" : 2*window.innerWidth/3,
-      "lineHeight" : window.innerHeight/30,
+      "lineHeight" : window.innerHeight/10,
       "marge_gauche" : window.innerWidth/20,
       "marge_haut" : window.innerHeight/5,
       "alpha_" : 0.5,
@@ -336,7 +353,7 @@ var data_interface = {
              "police" : "30pt Calibri",
              "text" : "",
              "valeur_a_afficher" : "or",
-             "alignement" : "centrage2"
+             "alignement" : "centrage"
 
                }
         }
@@ -739,6 +756,94 @@ var data_interface = {
                   }
             }
       },
+        "meme" : {
+              "maxWidth_text" : 2*window.innerWidth/3,
+              "lineHeight" : window.innerHeight/30,
+              "marge_gauche" : window.innerWidth/20,
+              "marge_haut" : window.innerHeight/8,
+              "couleur_click_case" : "red",
+              "taille_trait" : 5,
+              "couleur_trait" : "green",
+              "elements" : {
+                  "fond" : {
+                    "_x" : 0,
+                    "_y" : 0,
+                    "_width" : window.innerWidth,
+                    "_height" : window.innerHeight,
+                    "ombre" : "draw",
+                    "couleur" : "vert",
+                    "nature" : "image",
+                    "lien" : "non",
+                    "ordre" : 1,
+                    "loc" : {
+                      "niv1" :["fond_vert","fond_vert"],
+                      "niv2" :["tomato","tomato"],
+                      "niv3" :["cherry","cherry"]
+                      }
+                    },
+                    "titre" : {
+                      "_x" : 20,
+                      "_y" : window.innerHeight/40,
+                      "nature" : "text",
+                      "couleur" : "#333",
+                      "police" : "23pt Calibri",
+                      "text" : "La Mamie",
+                      "valeur_a_afficher" : "",
+                      "alignement" : "centrage2"
+                    },
+                    "retour_meme" : {
+                      "_x" : 0,
+                      "_y" : window.innerHeight- window.innerHeight/10,
+                      "_width" : window.innerWidth/3,
+                      "_height" : window.innerHeight/10,
+                      "ombre" : "draw",
+                      "couleur" : "red",
+                      "nature" : "image",
+                      "lien" : "oui",
+                      "ordre" : 2,
+                      "loc" : {
+                      "niv1" :["kiwi","kiwi"],
+                      "niv2" :["kiwi","kiwi"],
+                      "niv3" :["kiwi","kiwi"]
+                            },
+                      "dir" : "setup2"
+                    },
+                    "bouton_meme" :{
+                      "_x" : 0,
+                      "_y" : 0,
+                      "_width" : 0,
+                      "_height" : 0,
+                      "ombre" : "draw",
+                      "couleur" : "blue",
+                      "nature" : "icone",
+                      "lien" : "oui",
+                      "ordre" : 2,
+                      "loc" : {
+                      "niv1" :["kiwi","kiwi"],
+                      "niv2" :["kiwi","kiwi"],
+                      "niv3" :["kiwi","kiwi"]
+                            },
+                      "dir" : "setup2"
+                    },
+                    "validation_meme" :{
+                      "_x" : window.innerWidth-window.innerWidth/3,
+                      "_y" : window.innerHeight- window.innerHeight/10,
+                      "_width" : window.innerWidth/3,
+                      "_height" : window.innerHeight/10,
+                      "ombre" : "draw",
+                      "couleur" : "blue",
+                      "nature" : "image",
+                      "lien" : "oui",
+                      "ordre" : 2,
+                      "loc" : {
+                      "niv1" :["tomato","tomato"],
+                      "niv2" :["tomato","tomato"],
+                      "niv3" :["tomato","tomato"]
+                            },
+                      "dir" : "valid_meme"
+                    }
+              }
+        },
     "couleur_roue" : ["#0015D5", "#00D52B", "#D500B9", "#ED0037", "#E5ED00", "#00EDE5"],
     "couleur_carrelage" : ["#0015D5", "#00D52B", "#D500B9", "#ED0037", "#E5ED00", "#00EDE5"]
   }

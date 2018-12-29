@@ -18,6 +18,28 @@ var Map = function(monCanvas, _target, data_interface){
 
 
 };
+/**
+
+*/
+Map.prototype.bouge_meme = function(){
+  var mon_array=[1,-1];
+  this.meme._x = this.meme._x+mon_array[Math.floor(Math.random()*mon_array.length)]*5;
+  this.meme._y = this.meme._y+mon_array[Math.floor(Math.random()*mon_array.length)]*5;
+  if(this.meme._x<window.innerWidth/30){
+    this.meme._x = window.innerWidth/30;
+  }else if(this.meme._x>29*window.innerWidth/30){
+    this.meme._x = 29*window.innerWidth/30;
+  }
+  if(this.meme._y<window.innerHeight/30){
+    this.meme._y = window.innerHeight/30;
+  }else if(this.meme._x>29*window.innerHeight/30){
+    this.meme._y = 29*window.innerHeight/30;
+  }
+}
+/**
+
+
+*/
 var Icone = function(myCanvasContext, data_image, key, _target){
   this._target = _target;
   this.monCanvas = myCanvasContext;
