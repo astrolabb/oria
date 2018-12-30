@@ -8,6 +8,8 @@ var Player = function (){
   this.niveau_max = 0;
   // objet_debloque : Object répertorie tous les objets débloqués
   this.objet_debloque = {};
+  // plat trouvé Object
+  this.plat_trouve = {};
   // propriete servant à stocker la date du dernier lancé de la roue de la chance
   this.jardin_date_lance_roue = 0;
   // propriete poubelle : malus utilisé dans la section jardin pour les chances de gagner à la roue de la fortune
@@ -23,6 +25,7 @@ Player.prototype.setup = function (data_equilibrage)
   this.niveau = data_equilibrage.niveau;
   this.niveau_max = data_equilibrage.max_niveau;
   this.ressource.nb_objet = this.init_nb_objet();
+  this.zone_a_verifier_fin_jeu = data_equilibrage.zone_a_verifier_fin_jeu;
 
 
 }
@@ -68,6 +71,7 @@ Player.prototype.echange = function(key, nb_unit_key, ref, data){
     this[ref]+=data[ref];
     return true;
   }else if(nb_unit_key<0 && this[ref]>=-nb_unit_key){
+    this.objet_debloque[key] = true;
     this.ressource[key]++;
     this[ref]-=-data[ref];
     return true;
@@ -99,6 +103,12 @@ Player.prototype.echange2 = function(mix, mix2, resultat, nombre, cat,  _target)
 
     this[mix2[i]][mix[i]] --;
   };
+  if(this.ressource.hasOwnProperty(resultat)){
+    this.objet_debloque[resultat] = true;
+  }else if(this.plat.hasOwnProperty(resultat)){
+    this.plat_trouve[resultat] = true;
+  }
+
   this[cat][resultat] =  this[cat][resultat] + nombre;
   return true;
 }
@@ -137,9 +147,41 @@ Player.prototype.init_nb_objet = function(){
   var total = 0;
     Object.keys(this.ressource).forEach(function(key) {
         if(self.ressource[key]>0){
-            self.objet_debloque[key] = self.ressource[key];
+            self.objet_debloque[key] = true;
             total++;
         }
     });
+    Object.keys(this.plat).forEach(function(key) {
+        if(self.plat[key]>0){
+           self.plat_trouve[key] = true;
+        }
+    });
     return total;
+}
+/**
+prototype verification_si_fini
+verification si le joueur a terminé le jeu
+
+@return mon_resultat Boolean true pour oui, false pour non
+
+*/
+Player.prototype.verification_si_fini = function (){
+  var self = this;
+  var mon_resultat = true;
+  var ma_liste = this.zone_a_verifier_fin_jeu;
+
+  for (i=0; i<ma_liste.length; i++){
+    if(this.niveau[ma_liste[i]] != this.niveau_max){
+      mon_resultat = false;
+    }
+  }
+
+
+  var i=0;
+  Object.keys(this.ressource).forEach(function(key) {
+    if(!self.objet_debloque.hasOwnProperty(key)){
+      mon_resultat = false;
+    }
+  });
+  return mon_resultat;
 }

@@ -187,10 +187,10 @@ Carrelage.prototype.decors = function(){
   // légende timer
   var largeur_panneau = this.centrage_x-(this.case_width*this.colonne/2)-this.data_interface.epaisseur_trait - 2* this.data_interface._x_score;
   var hauteur_panneau = this.data_interface._height_score;
-  texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, "Timer", this.data_interface._x_score,  this.data_interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_legende);
+  texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, "Timer", this.data_interface._x_score,  this.data_interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_legende, this.data_interface.police, this.data_interface.taille_police1);
   // légende score
   var position_x_panneau_score = 3*this.data_interface._x_score + largeur_panneau + this.case_width*this.colonne + 2*this.data_interface.epaisseur_trait;
-  texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, "Score", position_x_panneau_score,  this.data_interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_legende);
+  texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, "Score", position_x_panneau_score,  this.data_interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_legende, this.data_interface.police, this.data_interface.taille_police1);
 
 }
 /**
@@ -204,9 +204,9 @@ Carrelage.prototype.affiche_score = function(){
     var texte_afficher = Math.floor(this.duree-(mon_timer - this.date_debut)/1000);
     var largeur_panneau = this.centrage_x-(this.case_width*this.colonne/2)-this.data_interface.epaisseur_trait - 2* this.data_interface._x_score;
     var hauteur_panneau = this.data_interface._height_score;
-    texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, texte_afficher, this.data_interface._x_score,  this.data_interface._y_score, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_cartouche);
+    texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, texte_afficher, this.data_interface._x_score,  this.data_interface._y_score, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_cartouche, this.data_interface.police, this.data_interface.taille_police1);
     var position_x_panneau_score = 3*this.data_interface._x_score + largeur_panneau + this.case_width*this.colonne + 2*this.data_interface.epaisseur_trait;
-    texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, this.score, position_x_panneau_score,  this.data_interface._y_score, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_cartouche);
+    texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, this.score, position_x_panneau_score,  this.data_interface._y_score, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_cartouche, this.data_interface.police, this.data_interface.taille_police1);
 
   }else{
     var mon_resultat=0;
@@ -225,6 +225,7 @@ Carrelage.prototype.affiche_score = function(){
     if(mon_resultat == 0){
       this._target.popup("setup2", "", "", "foret", "echec");
     }else{
+      this._target.mon_Player.objet_debloque[mon_resultat] = true;
       this._target.popup("setup2", mon_resultat, ma_quantite, "foret", "reussite");
     }
 

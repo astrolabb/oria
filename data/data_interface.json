@@ -11,7 +11,8 @@ var data_interface = {
         "_y" : window.innerHeight/15,
         "nature" : "text",
         "couleur" : "#333",
-        "police" : "23pt Calibri",
+        "police" : "Arial",
+        "taille_police1" : "20",
         "text" : "lonnono warrior challenge maxi troll 2",
         "valeur_a_afficher" : "",
         "alignement" : "centrage2"
@@ -21,7 +22,8 @@ var data_interface = {
         "_y" : window.innerHeight/3,
         "nature" : "text",
         "couleur" : "#333",
-        "police" : "16pt Calibri",
+        "police" : "Arial",
+        "taille_police1" : "20",
         "text" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
         "valeur_a_afficher" : "",
         "alignement" : "centrage"
@@ -38,21 +40,10 @@ var data_interface = {
         "loc" : "peanut"
 
       },
-      "image" : {
-        "_x" : 50,
-        "_y" : 100,
-        "_width" : 50,
-        "_height" : 50,
-        "ombre" : "draw",
-        "nature" : "image",
-        "lien" : "non",
-        "ordre" : 2,
-        "loc" : "cherry"
-      },
       "bouton" : {
-        "_x" : (window.innerWidth/2)-(window.innerWidth/6),
+        "_x" : (window.innerWidth/2)-(window.innerWidth/8),
         "_y" : 3*window.innerHeight/4,
-        "_width" : (window.innerWidth/3),
+        "_width" : (window.innerWidth/4),
         "_height" : window.innerHeight/10,
         "ombre" : "draw",
         "nature" : "image",
@@ -60,6 +51,30 @@ var data_interface = {
         "ordre" : 2,
         "loc" : "apple",
         "dir" : "setup2"
+      },
+      "bouton2" : {
+        "_x" : window.innerWidth/10,
+        "_y" : 3*window.innerHeight/4,
+        "_width" : (window.innerWidth/4),
+        "_height" : window.innerHeight/10,
+        "ombre" : "draw",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : "cherry",
+        "dir" : "credit"
+      },
+      "bouton3" : {
+        "_x" : window.innerWidth- (window.innerWidth/4) - window.innerWidth/10,
+        "_y" : 3*window.innerHeight/4,
+        "_width" : (window.innerWidth/4),
+        "_height" : window.innerHeight/10,
+        "ombre" : "draw",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : "tomato",
+        "dir" : "charger"
       }
     }
   },
@@ -186,32 +201,51 @@ var data_interface = {
         "dir" : "setup8"
                 },
       "or_icone" : {
-        "_x" : window.innerWidth/2-window.innerWidth/30,
-        "_y" : window.innerHeight- window.innerHeight/30,
-        "_width" : window.innerWidth/30,
-        "_height" : window.innerHeight/30,
+        "_x" : window.innerWidth/2-window.innerWidth/20,
+        "_y" : 3*window.innerHeight/4,
+        "_width" : window.innerWidth/20,
+        "_height" : window.innerHeight/20,
         "ombre" : "draw",
         "couleur" : "red",
         "nature" : "image",
-        "lien" : "non",
+        "lien" : "oui",
         "ordre" : 2,
         "loc" : {
           "niv1" :["acorn","acorn"],
           "niv2" :["acorn","acorn"],
           "niv3" :["acorn","acorn"]
-        }
+        },
+        "dir" : "setup9"
             },
       "or_text" : {
           "_x" : window.innerWidth/2,
-          "_y" : window.innerHeight- window.innerHeight/30,
+          "_y" :  3*window.innerHeight/4,
           "nature" : "text",
           "couleur" : "#333",
-          "police" : "23pt Calibri",
+          "police" : "Arial",
+          "taille_police1" : "20",
           "text" : "",
           "valeur_a_afficher" : "or",
           "alignement" : "left"
 
-                }
+                },
+      "sauvegarde" : {
+        "_x" : window.innerWidth/2-window.innerWidth/20,
+        "_y" : 3*window.innerHeight/4+window.innerHeight/8,
+        "_width" : window.innerWidth/10,
+        "_height" : window.innerHeight/10,
+        "ombre" : "draw",
+        "couleur" : "red",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["onion","onion"],
+          "niv2" :["onion","onion"],
+          "niv3" :["onion","onion"]
+        },
+        "dir" : "setup11"
+              }
             }
         },
         "village" : {
@@ -220,6 +254,8 @@ var data_interface = {
           "marge_gauche" : window.innerWidth/20,
           "marge_haut" : window.innerHeight/5,
           "alpha_" : 0.5,
+          "police" : "Arial",
+          "taille_police1" : "20",
           "elements" : {
               "fond" : {
                 "_x" : 0,
@@ -242,7 +278,8 @@ var data_interface = {
               "_y" : window.innerHeight/20,
               "nature" : "text",
               "couleur" : "#333",
-              "police" : "23pt Calibri",
+              "police" : "Arial",
+              "taille_police1" : "20",
               "text" : "Le Marché",
               "valeur_a_afficher" : "",
               "alignement" : "centrage2"
@@ -252,7 +289,8 @@ var data_interface = {
             "_y" : window.innerHeight/13,
             "nature" : "text",
             "couleur" : "#333",
-            "police" : "20pt Calibri",
+            "police" : "Arial",
+            "taille_police1" : "20",
             "text" : "Vendre vos plats",
             "valeur_a_afficher" : "",
             "alignement" : "left"
@@ -262,7 +300,8 @@ var data_interface = {
           "_y" : window.innerHeight/15,
           "nature" : "text",
           "couleur" : "#333",
-          "police" : "20pt Calibri",
+          "police" : "Arial",
+          "taille_police1" : "20",
           "text" : "Acheter des ressources",
           "valeur_a_afficher" : "",
           "alignement" : "end"
@@ -288,7 +327,8 @@ var data_interface = {
           "_y" : window.innerHeight- window.innerHeight/15,
           "nature" : "text",
           "couleur" : "#333",
-          "police" : "50pt Calibri",
+          "police" : "Arial",
+          "taille_police1" : "10",
           "text" : "",
           "valeur_a_afficher" : "or",
           "alignement" : "left"
@@ -298,7 +338,8 @@ var data_interface = {
           "_y" : 10,
           "nature" : "",
           "couleur" : "#333",
-          "police" : "30pt Calibri",
+          "police" : "Arial",
+          "taille_police1" : "20",
           "text" : "",
           "valeur_a_afficher" : "",
           "alignement" : "centrage3"
@@ -350,7 +391,8 @@ var data_interface = {
              "_y" : window.innerHeight/2,
              "nature" : "text",
              "couleur" : "#333",
-             "police" : "30pt Calibri",
+             "police" : "Arial",
+             "taille_police1" : "20",
              "text" : "",
              "valeur_a_afficher" : "or",
              "alignement" : "centrage"
@@ -409,7 +451,8 @@ var data_interface = {
               "_y" : window.innerHeight/20,
               "nature" : "text",
               "couleur" : "#333",
-              "police" : "23pt Calibri",
+              "police" : "Arial",
+              "taille_police1" : "20",
               "text" : "Le lonono",
               "valeur_a_afficher" : "",
               "alignement" : "centrage2"
@@ -419,7 +462,8 @@ var data_interface = {
               "_y" : window.innerHeight/12,
               "nature" : "text",
               "couleur" : "#333",
-              "police" : "23pt Calibri",
+              "police" : "Arial",
+              "taille_police1" : "20",
               "text" : "Choisir des ressources à donner au lonono",
               "valeur_a_afficher" : "",
               "alignement" : "centrage2"
@@ -429,7 +473,8 @@ var data_interface = {
             "_y" : window.innerHeight/8,
             "nature" : "text",
             "couleur" : "#333",
-            "police" : "20pt Calibri",
+            "police" : "Arial",
+            "taille_police1" : "20",
             "text" : "Pour trouver de nouvelles ressources",
             "valeur_a_afficher" : "",
             "alignement" : "left"
@@ -439,7 +484,8 @@ var data_interface = {
             "_y" : window.innerHeight/8,
             "nature" : "text",
             "couleur" : "#333",
-            "police" : "20pt Calibri",
+            "police" : "Arial",
+            "taille_police1" : "20",
             "text" : "Pour la fabrication de plats",
             "valeur_a_afficher" : "",
             "alignement" : "end"
@@ -449,7 +495,8 @@ var data_interface = {
             "_y" : 10,
             "nature" : "",
             "couleur" : "#333",
-            "police" : "30pt Calibri",
+            "police" : "Arial",
+            "taille_police1" : "20",
             "text" : "",
             "valeur_a_afficher" : "",
             "alignement" : "centrage3"
@@ -526,7 +573,8 @@ var data_interface = {
                 "_y" : window.innerHeight- window.innerHeight/5,
                 "nature" : "text",
                 "couleur" : "#333",
-                "police" : "23pt Calibri",
+                "police" : "Arial",
+                "taille_police1" : "20",
                 "text" : "",
                 "valeur_a_afficher" : "lonono_mix_ressource",
                 "alignement" : "left"
@@ -537,7 +585,8 @@ var data_interface = {
                 "_y" : window.innerHeight- window.innerHeight/5,
                 "nature" : "text",
                 "couleur" : "#333",
-                "police" : "23pt Calibri",
+                "police" : "Arial",
+                "taille_police1" : "20",
                 "text" : "",
                 "valeur_a_afficher" : "lonono_mix_plat",
                 "alignement" : "end"
@@ -557,9 +606,8 @@ var data_interface = {
           "couleur_trait" : "#FFFFFF",
           "couleur_texte" : "green",
           "couleur_cartouche" : "yellow",
-          "police_texte" : "2em Arial",
-          // 1em = 16px : faire la conversion
-          "police_texte_px" : "32",
+          "police" : "Arial",
+          "taille_police1" : "20",
           "delay_timer" : 40,
           "duree_rotation" : 10,
           "duree_acceleration" : 4,
@@ -591,7 +639,8 @@ var data_interface = {
                   "_y" : window.innerHeight/40,
                   "nature" : "text",
                   "couleur" : "#333",
-                  "police" : "23pt Calibri",
+                  "police" : "Arial",
+                  "taille_police1" : "20",
                   "text" : "Le jardin",
                   "valeur_a_afficher" : "",
                   "alignement" : "centrage2"
@@ -621,9 +670,8 @@ var data_interface = {
       "couleur_texte" : "green",
       "couleur_cartouche" : "white",
       "couleur_legende" : "yellow",
-      "police_texte" : "2em Arial",
-      // 1em = 16px : faire la conversion
-      "taille_police" : 2,
+      "police" : "Arial",
+      "taille_police1" : "20",
       "elements" : {
           "fond_foret" : {
             "_x" : 0,
@@ -646,7 +694,8 @@ var data_interface = {
               "_y" : window.innerHeight/40,
               "nature" : "text",
               "couleur" : "#333",
-              "police" : "23pt Calibri",
+              "police" : "Arial",
+              "taille_police1" : "20",
               "text" : "La forêt",
               "valeur_a_afficher" : "",
               "alignement" : "centrage2"
@@ -676,16 +725,17 @@ var data_interface = {
             "lineHeight" : window.innerHeight/30,
             "marge_gauche" : window.innerWidth/20,
             "marge_haut" : window.innerHeight/8,
-            "nombre_colonne" : 7,
+            "nombre_colonne" : 5,
             "ressource_a_afficher" : ["eau", "poisson", "crevette", "crabe", "homard", "pieuvre", "sirene"],
-            "largeur_colonne" : window.innerWidth/20,
+            "largeur_colonne" : window.innerWidth/15,
             "hauteur_colonne" : window.innerHeight*4/7,
             "hauteur_bouton" : window.innerWidth/10,
-            "couleur_colonne" : ["orange","magenta","blue","green","yellow"],
+            "couleur_colonne" : ["#0F4306","#0F4306","#28C710","#3BC037","#EDED06"],
             "fondu_colonne" : 0.5,
             "couleur_bouton_actif" : "red",
             "couleur_bouton_click" : "white",
-            "temps_entre_refresh" : 30,
+            "temps_entre_refresh" : 50,
+            "intervalle_minimal" : 0.8,
             "_x_score" : window.innerWidth/10,
             "_width_score" : window.innerWidth/4,
             "_height_score" : window.innerWidth/20,
@@ -693,6 +743,8 @@ var data_interface = {
             "couleur_texte" : "green",
             "couleur_cartouche" : "white",
             "couleur_legende" : "yellow",
+            "police" : "Arial",
+            "taille_police1" : "20",
             "elements" : {
                 "fond" : {
                   "_x" : 0,
@@ -705,7 +757,7 @@ var data_interface = {
                   "lien" : "non",
                   "ordre" : 1,
                   "loc" : {
-                    "niv1" :["fond_gris","fond_gris"],
+                    "niv1" :["fond_vert","fond_vert"],
                     "niv2" :["tomato","tomato"],
                     "niv3" :["cherry","cherry"]
                     }
@@ -715,7 +767,8 @@ var data_interface = {
                     "_y" : window.innerHeight/40,
                     "nature" : "text",
                     "couleur" : "#333",
-                    "police" : "23pt Calibri",
+                    "police" : "Arial",
+                    "taille_police1" : "20",
                     "text" : "Le lac",
                     "valeur_a_afficher" : "",
                     "alignement" : "centrage2"
@@ -786,7 +839,8 @@ var data_interface = {
                       "_y" : window.innerHeight/40,
                       "nature" : "text",
                       "couleur" : "#333",
-                      "police" : "23pt Calibri",
+                      "police" : "Arial",
+                      "taille_police1" : "20",
                       "text" : "La Mamie",
                       "valeur_a_afficher" : "",
                       "alignement" : "centrage2"
@@ -844,6 +898,207 @@ var data_interface = {
                     }
               }
         },
+        "synthese" : {
+              "maxWidth_text" : 2*window.innerWidth/3,
+              "lineHeight" : window.innerHeight/30,
+              "marge_gauche" : window.innerWidth/20,
+              "marge_haut" : window.innerHeight/8,
+              "icone_jeu_y" : window.innerHeight/7,
+              "jeu_a_afficher" : ["lac", "foret", "lonono", "village", "jardin"],
+              "couleur_masque" : "white",
+              "alpha_" : 0.5,
+              "couleur_texte" : "#28C710",
+              "police" : "Arial",
+              "taille_police1" : "10",
+              "max_hauteur1" : window.innerHeight/4,
+              "max_hauteur2" : window.innerHeight/6,
+              "icone_ressource_y" : window.innerHeight/2,
+              "icone_plat_y" : 11*window.innerHeight/16,
+              "elements" : {
+                  "fond" : {
+                    "_x" : 0,
+                    "_y" : 0,
+                    "_width" : window.innerWidth,
+                    "_height" : window.innerHeight,
+                    "ombre" : "draw",
+                    "couleur" : "vert",
+                    "nature" : "image",
+                    "lien" : "non",
+                    "ordre" : 1,
+                    "loc" : {
+                      "niv1" :["fond_vert","fond_vert"],
+                      "niv2" :["tomato","tomato"],
+                      "niv3" :["cherry","cherry"]
+                      }
+                    },
+                    "titre" : {
+                      "_x" : 20,
+                      "_y" : window.innerHeight/40,
+                      "nature" : "text",
+                      "couleur" : "#333",
+                      "police" : "Arial",
+                      "taille_police1" : "20",
+                      "text" : "Synthèse des niveaux",
+                      "valeur_a_afficher" : "",
+                      "alignement" : "centrage2"
+                    },
+                    "retour_synthese" : {
+                      "_x" : 0,
+                      "_y" : window.innerHeight- window.innerHeight/10,
+                      "_width" : window.innerWidth/3,
+                      "_height" : window.innerHeight/10,
+                      "ombre" : "draw",
+                      "couleur" : "red",
+                      "nature" : "image",
+                      "lien" : "oui",
+                      "ordre" : 2,
+                      "loc" : {
+                      "niv1" :["kiwi","kiwi"],
+                      "niv2" :["kiwi","kiwi"],
+                      "niv3" :["kiwi","kiwi"]
+                            },
+                      "dir" : "setup2"
+                    },
+                    "soustitre1" : {
+                      "_x" : 20,
+                      "_y" : window.innerHeight/10,
+                      "nature" : "text",
+                      "couleur" : "#333",
+                      "police" : "Arial",
+                      "taille_police1" : "20",
+                      "text" : "Niveaux concernant les jeux",
+                      "valeur_a_afficher" : "",
+                      "alignement" : "left"
+                    },
+                    "soustitre2" : {
+                      "_x" : 20,
+                      "_y" : 7*window.innerHeight/16,
+                      "nature" : "text",
+                      "couleur" : "#333",
+                      "police" : "Arial",
+                      "taille_police1" : "20",
+                      "text" : "Ressources découvertes",
+                      "valeur_a_afficher" : "",
+                      "alignement" : "left"
+                    },
+                    "soustitre3" : {
+                      "_x" : 20,
+                      "_y" : 9*window.innerHeight/16,
+                      "nature" : "text",
+                      "couleur" : "#333",
+                      "police" : "Arial",
+                      "taille_police1" : "20",
+                      "text" : "Recettes découvertes",
+                      "valeur_a_afficher" : "",
+                      "alignement" : "left"
+                    },
+
+              }
+        },
+          "victoire" : {
+                "maxWidth_text" : 2*window.innerWidth/3,
+                "lineHeight" : window.innerHeight/30,
+                "marge_gauche" : window.innerWidth/20,
+                "marge_haut" : window.innerHeight/8,
+                "elements" : {
+                    "fond" : {
+                      "_x" : 0,
+                      "_y" : 0,
+                      "_width" : window.innerWidth,
+                      "_height" : window.innerHeight,
+                      "ombre" : "draw",
+                      "couleur" : "vert",
+                      "nature" : "image",
+                      "lien" : "non",
+                      "ordre" : 1,
+                      "loc" : {
+                        "niv1" :["fond_vert","fond_vert"],
+                        "niv2" :["tomato","tomato"],
+                        "niv3" :["cherry","cherry"]
+                        }
+                      },
+                      "titre" : {
+                        "_x" : 20,
+                        "_y" : window.innerHeight/3,
+                        "nature" : "text",
+                        "couleur" : "#333",
+                        "police" : "Arial",
+                        "taille_police1" : "20",
+                        "text" : "Victoire, Vous avez terminé le jeu.",
+                        "valeur_a_afficher" : "",
+                        "alignement" : "centrage2"
+                      },
+                      "retour_victoire" : {
+                        "_x" : 0,
+                        "_y" : window.innerHeight- window.innerHeight/10,
+                        "_width" : window.innerWidth/3,
+                        "_height" : window.innerHeight/10,
+                        "ombre" : "draw",
+                        "couleur" : "red",
+                        "nature" : "image",
+                        "lien" : "oui",
+                        "ordre" : 2,
+                        "loc" : {
+                        "niv1" :["kiwi","kiwi"],
+                        "niv2" :["kiwi","kiwi"],
+                        "niv3" :["kiwi","kiwi"]
+                              },
+                        "dir" : "setup"
+                      }
+                }
+          },
+            "credit" : {
+                  "maxWidth_text" : 2*window.innerWidth/3,
+                  "lineHeight" : window.innerHeight/30,
+                  "marge_gauche" : window.innerWidth/20,
+                  "marge_haut" : window.innerHeight/8,
+                  "elements" : {
+                      "fond" : {
+                        "_x" : 0,
+                        "_y" : 0,
+                        "_width" : window.innerWidth,
+                        "_height" : window.innerHeight,
+                        "ombre" : "draw",
+                        "couleur" : "vert",
+                        "nature" : "image",
+                        "lien" : "non",
+                        "ordre" : 1,
+                        "loc" : {
+                          "niv1" :["fond_vert","fond_vert"],
+                          "niv2" :["tomato","tomato"],
+                          "niv3" :["cherry","cherry"]
+                          }
+                        },
+                        "titre" : {
+                          "_x" : 20,
+                          "_y" : window.innerHeight/4,
+                          "nature" : "text",
+                          "couleur" : "#333",
+                          "police" : "Arial",
+                          "taille_police1" : "20",
+                          "text" : "Présentation du jeu, biographie de Nathalie, la vie et l'oeuvre d'Astrolabb. Sans compter les remerciements.",
+                          "valeur_a_afficher" : "",
+                          "alignement" : "centrage"
+                        },
+                        "retour_credit" : {
+                          "_x" : 0,
+                          "_y" : window.innerHeight- window.innerHeight/10,
+                          "_width" : window.innerWidth/3,
+                          "_height" : window.innerHeight/10,
+                          "ombre" : "draw",
+                          "couleur" : "red",
+                          "nature" : "image",
+                          "lien" : "oui",
+                          "ordre" : 2,
+                          "loc" : {
+                          "niv1" :["kiwi","kiwi"],
+                          "niv2" :["kiwi","kiwi"],
+                          "niv3" :["kiwi","kiwi"]
+                                },
+                          "dir" : "setup"
+                        }
+                  }
+            },
     "couleur_roue" : ["#0015D5", "#00D52B", "#D500B9", "#ED0037", "#E5ED00", "#00EDE5"],
     "couleur_carrelage" : ["#0015D5", "#00D52B", "#D500B9", "#ED0037", "#E5ED00", "#00EDE5"]
   }

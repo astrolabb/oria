@@ -30,7 +30,7 @@ function Main(data_interface, data_equilibrage, data_image_chargee){
   // démarrage du gestionnaire de jeu : images/click
   var mon_GameManager = new GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player, data_texte);
   // lancement du menu d'accueil : prototype : setup
-  mon_GameManager.setup2();
+  mon_GameManager.setup("", "{}", "demarrage");
 
 
 }
@@ -450,15 +450,16 @@ function fadein (self, i, nb){
     @param panneau_width Number largeur du panneau
     @param panneau_height Number hauteur du panneau
     @param panneau_color color hex couleur du panneau
-
-
+    @param police String nom de la police à utiliser
+    @param taille Number taille de la police : la taille en pixel est egale à la hauteur de l'écran dévisée par ce nombre
     */
-    function texte_sur_panneau(monCanvas, texte_color, texte, panneau_x, panneau_y, panneau_width, panneau_heigth, panneau_color){
+    function texte_sur_panneau(monCanvas, texte_color, texte, panneau_x, panneau_y, panneau_width, panneau_heigth, panneau_color, police, taille){
 
       monCanvas.beginPath();
       monCanvas.fillStyle = panneau_color;
       monCanvas.fillRect(panneau_x, panneau_y, panneau_width, panneau_heigth);
       monCanvas.closePath();
+      monCanvas.font = format_police(police, taille);
       monCanvas.fillStyle = texte_color;
       monCanvas.fillText(texte, panneau_x + panneau_width/2, panneau_y + panneau_heigth/2 );
 
@@ -593,4 +594,26 @@ function fadein (self, i, nb){
       }else{
         return sinon;
       }
+    }
+    /**
+
+    */
+    function redimensionnement_image(nb, max_taille, marge_gauche){
+
+
+      var largeur_utile = window.innerWidth-2*marge_gauche;
+      var largeur_image = largeur_utile/nb;
+      if(largeur_image>max_taille){
+        return max_taille;
+      }else{
+        return largeur_image;
+      }
+    }
+    /**
+
+    */
+    function format_police(nb, police){
+
+      return String(window.innerHeight/nb)+"px "+police;
+
     }

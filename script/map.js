@@ -32,7 +32,7 @@ Map.prototype.bouge_meme = function(){
   }
   if(this.meme._y<window.innerHeight/30){
     this.meme._y = window.innerHeight/30;
-  }else if(this.meme._x>29*window.innerHeight/30){
+  }else if(this.meme._y>29*window.innerHeight/30){
     this.meme._y = 29*window.innerHeight/30;
   }
 }

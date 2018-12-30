@@ -62,6 +62,8 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface,
     Object.keys(data_interface.elements).forEach(function(key) {
         console.log(key+" "+data_interface.elements[key]);
         if(data_interface.elements[key].nature == "text"){
+          data_interface.elements[key].taille_police1 = data_interface.taille_police1;
+          data_interface.elements[key].police = data_interface.police;
           self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight);
           _target.arrayOfGameObjects.push([key,"text"]);
         }

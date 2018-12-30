@@ -195,6 +195,7 @@ Roue.prototype.dessin_repere = function(images){
   var texte_afficher = this.ressource[this.liste_camenbert[cle]].nom;
   this.resultat = texte_afficher;
   this.resultat_key = this.liste_camenbert[cle];
+  this.canvas.font = format_police(this.data_interface.taille_police1, this.data_interface.police);
   this.canvas.fillText(texte_afficher, (2*this.epaisseur_trait) + this.centre_x+this.rayon, this.centre_y+this.hauteur_triangle+this.separation_fleche_cartouche)
 }
 /**
@@ -226,6 +227,7 @@ Roue.prototype.tourne = function(mon_heure, duree, rotation, images){
         this._target.mon_Player.jardin_date_lance_roue = new Date().getTime();
         this._target.mon_Player.jardin_poubelle += 100;
         this._target.mon_Player.ressource[this.resultat_key] +=1;
+        this._target.mon_Player.objet_debloque[this.resultat_key] = true;
         this._target.popup("setup2", this.resultat, "", "map", "jardin_fin");
       }
   }else{

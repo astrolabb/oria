@@ -6,7 +6,7 @@ var Text_affichage = function(monCanvas, data_texte, nom, maxWidth, lineHeight){
   this.valeur_a_afficher = data_texte.valeur_a_afficher;
   this.maxWidth = maxWidth;
   this.lineHeight = lineHeight;
-  this.font = data_texte.police;
+  this.font = format_police(data_texte.taille_police1, data_texte.police);
   this.fillStyle = data_texte.couleur;
   this.alignement = data_texte.alignement
 }

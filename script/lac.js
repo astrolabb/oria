@@ -33,6 +33,7 @@ var Lac = function(monCanvas, _target, data_interface, key, data, scene, ressour
   this.score = 0;
   this.texte = texte;
   this.algo = algo;
+  console.log("30_12_18 3 "+JSON.stringify(this.algo));
 
 
   _target.arrayOfGameObjects = [];
@@ -63,7 +64,7 @@ var Lac = function(monCanvas, _target, data_interface, key, data, scene, ressour
   // on boucle sur le nombre de colonne
   for(i=0; i<data_interface.nombre_colonne; i++){
     ma_couleur = getColorRandom();
-    while(verifie_couleur(mes_couleurs, getColorRandom())){
+    while(verifie_couleur(mes_couleurs, ma_couleur)){
       ma_couleur = getColorRandom();
     }
 
@@ -151,9 +152,9 @@ Lac.prototype.affichage_score = function(monCanvas){
 
     var largeur_panneau = window.innerWidth/2-(this.interface.largeur_colonne*this.interface.nombre_colonne/2) - 2* this.interface._x_score;
     var hauteur_panneau = this.interface._height_score;
-    texte_sur_panneau(monCanvas, this.interface.couleur_texte, texte_afficher, this.interface._x_score,  this.interface._y_score, largeur_panneau, hauteur_panneau,  this.interface.couleur_cartouche);
+    texte_sur_panneau(monCanvas, this.interface.couleur_texte, texte_afficher, this.interface._x_score,  this.interface._y_score, largeur_panneau, hauteur_panneau,  this.interface.couleur_cartouche, this.interface.police, this.interface.taille_police1);
     var position_x_panneau_score = 3*this.interface._x_score + largeur_panneau + this.interface.largeur_colonne*this.interface.nombre_colonne;
-    texte_sur_panneau(monCanvas, this.interface.couleur_texte, this.score, position_x_panneau_score,  this.interface._y_score, largeur_panneau, hauteur_panneau,  this.interface.couleur_cartouche);
+    texte_sur_panneau(monCanvas, this.interface.couleur_texte, this.score, position_x_panneau_score,  this.interface._y_score, largeur_panneau, hauteur_panneau,  this.interface.couleur_cartouche, this.interface.police, this.interface.taille_police1);
 
     if(texte_afficher <= 0){
       var mon_resultat=0;
@@ -172,6 +173,7 @@ Lac.prototype.affichage_score = function(monCanvas){
       if(mon_resultat == 0){
         this._target.popup("setup2", "", "", "lac", "echec");
       }else{
+        this._target.mon_Player.objet_debloque[mon_resultat] = true;
         this._target.popup("setup2", mon_resultat, ma_quantite, "lac", "reussite");
       }
 
@@ -190,10 +192,10 @@ Lac.prototype.affichage_decor = function(monCanvas){
 
   var largeur_panneau = window.innerWidth/2-(this.interface.largeur_colonne*this.interface.nombre_colonne/2) - 2* this.interface._x_score;
   var hauteur_panneau = this.interface._height_score;
-  texte_sur_panneau(monCanvas, this.interface.couleur_texte, this.texte["timer"], this.interface._x_score,  this.interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.interface.couleur_legende);
+  texte_sur_panneau(monCanvas, this.interface.couleur_texte, this.texte["timer"], this.interface._x_score,  this.interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.interface.couleur_legende, this.interface.police, this.interface.taille_police1);
   // légende score
   var position_x_panneau_score = 3*this.interface._x_score + largeur_panneau + this.interface.largeur_colonne*this.interface.nombre_colonne;
-  texte_sur_panneau(monCanvas, this.interface.couleur_texte, this.texte["score"], position_x_panneau_score,  this.interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.interface.couleur_legende);
+  texte_sur_panneau(monCanvas, this.interface.couleur_texte, this.texte["score"], position_x_panneau_score,  this.interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.interface.couleur_legende, this.interface.police, this.interface.taille_police1);
 
 }
 /**
@@ -203,9 +205,12 @@ calcule la position de la ressource pendant sa chute
 @param temps Number : date actuelle en milliseconde
 */
 Lac.prototype.calcul_anim = function(temps){
+  var g;
   for(i=0; i<this.interface.nombre_colonne; i++){
       if(this["bouton_"+i].couleur==this.interface.couleur_bouton_actif){
-        this["ressource_"+i]._y = this.interface.marge_haut+(this.interface.hauteur_colonne-Math.sin((Math.PI/2)-(Math.PI/2)*((temps-this.temps_ecoule)/this.mon_intervalle))*this.interface.hauteur_colonne);
+        g = 2*this.interface.hauteur_colonne/(this.mon_intervalle*this.mon_intervalle);
+  //      this["ressource_"+i]._y = this.interface.marge_haut+((temps-this.temps_ecoule)/this.mon_intervalle)*this.interface.hauteur_colonne;
+          this["ressource_"+i]._y = this.interface.marge_haut+(0.5*g*(temps-this.temps_ecoule)*(temps-this.temps_ecoule));
       }else{
         this["ressource_"+i]._y = -this["ressource_"+i]._height;
       }
@@ -228,6 +233,9 @@ timer contenant requestAnimationFrame
   if(this.mon_intervalle==0){
     // on en crée un d'un valeur random et dont le max est this.duree_timer
     this.mon_intervalle = Math.random()*this.duree_timer;
+    while(this.mon_intervalle < this.interface.intervalle_minimal){
+      this.mon_intervalle = Math.random()*this.duree_timer;
+    }
   }
 
   // si le temps d'activation du bouton est depassé, il faut en choisir un autre
@@ -279,7 +287,7 @@ Lac.prototype.click = function(_x, _y){
       console.log("click : x "+_x+" y "+_y);
       // si on clique sur un bouton : renvoie un nombre si oui et false si non
       var i = this.trouve_la_colonne(_x, _y);
-      if(i){
+      if(i>=0){
         // si le bouton est activé
         if(this["bouton_"+i].couleur == this.interface.couleur_bouton_actif){
           this.score+=this.algo.bonus;
@@ -303,15 +311,16 @@ recherche si le joueur a cliqué sur un bouton
 */
 Lac.prototype.trouve_la_colonne = function(_x, _y){
   if(_y>this.interface.marge_haut + this.interface.hauteur_colonne && _y<this.interface.marge_haut + this.interface.hauteur_colonne + this.interface.largeur_colonne){
-    console.log("bouton cliqué "+ma_colonne);
+
 
     var ma_colonne = Math.floor((_x-centrage_colonne(this.interface.largeur_colonne, this.interface.marge_gauche, this.interface.nombre_colonne))/this.interface.largeur_colonne);
+    console.log("bouton cliqué "+ma_colonne);
     if(ma_colonne>=0 && ma_colonne<this.interface.nombre_colonne){
       return ma_colonne;
     }else{
-      return false;
+      return -1;
     }
   }else{
-    return false;
+    return -1;
   }
 }

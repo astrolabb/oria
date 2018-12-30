@@ -55,7 +55,7 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
  *
  *
  */
- GameManager.prototype.setup = function ()
+ GameManager.prototype.setup = function (key, data, scene)
  {
 
    // tableau des contextes des éléments à cliquer : mise à 0
@@ -96,6 +96,8 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
        for (var i in this.arrayOfGameObjects2) {
          console.log("object_fusionne2 "+this.arrayOfGameObjects2[i]);
            this.canvas_hit[this.arrayOfGameObjects2[i]].draw(this.monCanvas_click);
+    // this.canvas_hit[this.arrayOfGameObjects2[i]].draw(this.monCanvas);
+
        }
    }
 
@@ -140,6 +142,15 @@ GameManager.prototype.setup2 = function (bouton, data, scene)
 
   // mise à jour de la propriété nb_objet : nombre d'objets découverts pour la gestion des niveaux du lonono
   this.mon_Player.ressource.nb_objet = this.mon_Player.update_nb_objet(this.data_equilibrage.bareme_niveau.lonono, "nb_objet" , "lonono");
+  // verification si le joueur n'a pas tout débloqué et donc n'a pas fini le jeu
+  var ma_verif = this.mon_Player.verification_si_fini();
+  // si le joueur a terminé le jeu
+  if(ma_verif){
+    this.setup10(bouton, data, scene);
+
+  // si le joueur n'a pas terminé le jeu
+  }else{
+
   console.log("affichage nombre objets découverts "+this.mon_Player.ressource.nb_objet);
   this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
   this.monCanvas.beginPath();
@@ -173,7 +184,7 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
         self.map.bouge_meme();
         self.affichage_map();}, 3000);
     }
-
+  }
 }
 
 /**
@@ -261,9 +272,8 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
    {
      console.log("lonono");
      self = this;
-     if(this.mon_Interval){
-         clearInterval(this.mon_Interval);
-     }
+     //ferme toutes les animations, les retardateurs et les timers
+     this.stop_animation();
      $("#monCanvas").addClass("niveau_de_gris mon_fadein");
      $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
           $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
@@ -281,10 +291,8 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
    {
      console.log("village");
      self = this;
-     if(this.mon_Interval){
-         clearInterval(this.mon_Interval);
-         this.mon_Interval = false;
-     }
+     //ferme toutes les animations, les retardateurs et les timers
+     this.stop_animation();
      $("#monCanvas").addClass("niveau_de_gris mon_fadein");
      $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
           $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
@@ -306,9 +314,8 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
     {
       console.log("setup5 --> la lac");
       self = this;
-      if(this.mon_Interval){
-          clearInterval(this.mon_Interval);
-      }
+      //ferme toutes les animations, les retardateurs et les timers
+      this.stop_animation();
       $("#monCanvas").addClass("niveau_de_gris mon_fadein");
       $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
            $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
@@ -327,9 +334,8 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
      {
        console.log("foret");
        self = this;
-       if(this.mon_Interval){
-           clearInterval(this.mon_Interval);
-       }
+       //ferme toutes les animations, les retardateurs et les timers
+       this.stop_animation();
        $("#monCanvas").addClass("niveau_de_gris mon_fadein");
        $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
             $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
@@ -351,9 +357,8 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
       {
         console.log("jardin");
         self = this;
-        if(this.mon_Interval){
-            clearInterval(this.mon_Interval);
-        }
+        //ferme toutes les animations, les retardateurs et les timers
+        this.stop_animation();
         $("#monCanvas").addClass("niveau_de_gris mon_fadein");
         $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
              $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
@@ -374,9 +379,8 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
    {
      console.log("Mémé");
      self = this;
-     if(this.mon_Interval){
-         clearInterval(this.mon_Interval);
-     }
+     //ferme toutes les animations, les retardateurs et les timers
+     this.stop_animation();
      $("#monCanvas").addClass("niveau_de_gris mon_fadein");
      $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
           $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
@@ -384,7 +388,74 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
 
      });
    }
+   /**
+   prototype setup9
+   comportement lors d'un click sur la synthèse des niveaux
 
+   @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+   @param data : propriété du object-bouton cliqué
+   @param scene : frame dans lequel le bouton est cliqué
+
+   */
+   GameManager.prototype.setup9 = function (key, data, scene)
+    {
+      console.log("Synthèse des niveaux");
+      self = this;
+      //ferme toutes les animations, les retardateurs et les timers
+      this.stop_animation();
+      $("#monCanvas").addClass("niveau_de_gris mon_fadein");
+      $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+           $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
+           self.synthese(key, data, scene);
+
+      });
+    }
+    /**
+    prototype setup10
+    comportement lorsque le joueur a terminé le jeu
+
+    @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+    @param data : propriété du object-bouton cliqué
+    @param scene : frame dans lequel le bouton est cliqué
+
+    */
+    GameManager.prototype.setup10 = function (key, data, scene)
+     {
+       console.log("jeu terminé");
+       self = this;
+       //ferme toutes les animations, les retardateurs et les timers
+       this.stop_animation();
+       $("#monCanvas").addClass("niveau_de_gris mon_fadein");
+       $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+            $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
+            self.victoire(key, data, scene);
+
+       });
+     }
+     /**
+     prototype setup11
+     comportement lorsque le joueur a terminé le jeu
+
+     @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+     @param data : propriété du object-bouton cliqué
+     @param scene : frame dans lequel le bouton est cliqué
+
+     */
+     GameManager.prototype.setup11 = function (key, data, scene)
+      {
+        console.log("sauvegarde en cours");
+        self = this;
+        localStorage.removeItem("niveau");
+        localStorage.removeItem("ressource");
+        localStorage.removeItem("plat");
+        localStorage.setItem("niveau",JSON.stringify(this.mon_Player.niveau));
+        localStorage.setItem("ressource",JSON.stringify(this.mon_Player.ressource));
+        localStorage.setItem("plat",JSON.stringify(this.mon_Player.plat));
+        //ferme toutes les animations, les retardateurs et les timers
+        this.stop_animation();
+        this.popup("setup2", "", "", "sauvegarde", "reussie");
+
+      }
   /**
   * blanchi le canvas vu par le joueur en js
   @todo supprimer cette fonction si ne sert pas
@@ -430,7 +501,9 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
     this.affichage_click_zone();
     this.monCanvas_click.closePath();
       if(!this.mon_Interval){
-          this.mon_Interval = setInterval( function() {self.affichage_village(key, data);}, 3000);
+          this.mon_Interval = setInterval( function() {
+            self.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+            self.affichage_village(key, data);}, 3000);
       }
   }
   GameManager.prototype.affichage_village = function(key, data)
@@ -515,7 +588,6 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
           if(data.or>0){
               this.popup("contructor_village", this.data_equilibrage.plats[key].nom, "", "village", "plat");
           }else{
-              this.mon_Player.objet_debloque[this.data_equilibrage.ressource[key].nom] = this.mon_Player.objet_debloque[this.data_equilibrage.ressource[key].nom] + 1;
               this.popup("contructor_village", this.data_equilibrage.ressource[key].nom, "", "village", "achat");
           }
 
@@ -870,7 +942,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
 
     this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
     this.monCanvas.beginPath();
-    this.mon_jardin = new Foret(this.monCanvas, self, this.data_interface.foret);
+    this.ma_foret = new Foret(this.monCanvas, self, this.data_interface.foret);
 
     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
 
@@ -935,6 +1007,8 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
 
   */
   GameManager.prototype.stop_animation = function(){
+
+    $("#monCanvas").off('click');
     if(this.mon_carrelage){
       cancelAnimationFrame(this.mon_carrelage.mon_timer);
     }
@@ -949,7 +1023,17 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
       clearTimeout(this.mon_retardateur);
       this.mon_retardateur = false;
     }
-
+    delete this.mon_lac;
+    delete this.canvas_hit;
+    delete this.intro;
+    delete this.map;
+    delete this.village;
+    delete this.mon_lonono;
+    delete this.mon_jardin;
+    delete this.ma_meme;
+    delete this.ma_foret;
+    delete this.mon_carrelage;
+    delete this.ma_synthese;
   }
   /**
   Prototype lac
@@ -1080,7 +1164,8 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     this.affichage_click_zone();
     this.monCanvas_click.closePath();
 
-  }/**
+  }
+  /**
   Prototype affichage_meme
 
   @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
@@ -1139,4 +1224,189 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
       this.popup("setup2", mon_texte, "", "meme", "echec");
     }
 
+  }
+  /**
+
+  */
+  GameManager.prototype.synthese = function(key, data, scene){
+    var self = this;
+    //ferme toutes les animations, les retardateurs et les timers
+    this.stop_animation();
+    // tableau contenant les objects affichés à l'écran : (fond, bouton navigation, score)
+    // structure [key, categorie String("image ou "texte)]
+      this.arrayOfGameObjects = [];
+      this.arrayOfGameObjects2 = [];
+      this.arrayOfClickObjects = {};
+
+    this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    this.monCanvas.beginPath();
+    this.ma_synthese = new Synthese(this.monCanvas, self, this.data_interface.synthese, key, data, scene, this.data_texte.synthese, this.data_equilibrage.ressource, this.data_equilibrage.plats);
+
+    this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
+
+    this.synthese_affichage(key, data, scene);
+    this.ma_synthese.affichage_niveaux(this.data_image_chargee, this.data_interface.carte.elements, this.mon_Player.objet_debloque, this.mon_Player.plat_trouve);
+
+    this.click_canvas();
+    this.monCanvas.closePath();
+
+    $("#monCanvas").click(function(e){
+      //  $("#monCanvas").off('click');
+      //  self.ma_meme.click(self.pos_x, self.pos_y);
+    });
+
+    this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    this.monCanvas_click.beginPath();
+
+    var object_fusionne = {};
+    $.extend( object_fusionne, this.data_interface.synthese.elements);
+    console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
+    // mise en place des zones à cliquer
+    this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne, "synthese");
+    // affichage des zones à cliquer
+    this.affichage_click_zone();
+    this.monCanvas_click.closePath();
+
+  }
+  /**
+  Prototype synthese_affichage
+
+  @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+  @param data : propriété du object-bouton cliqué
+  @param scene : frame dans lequel le bouton est cliqué
+
+  */
+  GameManager.prototype.synthese_affichage = function(key, data, scene){
+    console.log("synthese_affichage : affichage des icones");
+    this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      for (var i in this.arrayOfGameObjects) {
+          if(this.arrayOfGameObjects[i][1]=="text"){
+            this.arrayOfGameObjects[i][2].setup((this.arrayOfGameObjects[i][2].text=="" ? this.mon_Player[this.arrayOfGameObjects[i][2].valeur_a_afficher] : this.arrayOfGameObjects[i][2].text));
+          }else if(this.arrayOfGameObjects[i][1]=="image"){
+            this.arrayOfGameObjects[i][2][this.arrayOfGameObjects[i][2].ombre](this.monCanvas);
+
+          }
+      }
+  }
+  /**
+  prototype victoire
+  partie a afficher quand le joueur termine le jeu
+
+  @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+  @param data : propriété du object-bouton cliqué
+  @param scene : frame dans lequel le bouton est cliqué
+
+  */
+  GameManager.prototype.victoire = function(key, data, scene){
+      var self = this;
+      //ferme toutes les animations, les retardateurs et les timers
+      this.stop_animation();
+
+      // tableau contenant les objects affichés à l'écran : (fond, bouton navigation, score)
+      // structure [key, categorie String("image ou "texte)]
+      this.arrayOfGameObjects = [];
+      this.arrayOfGameObjects2 = [];
+      this.arrayOfClickObjects = {};
+
+      console.log("affichage nombre objets découverts "+this.mon_Player.ressource.nb_objet);
+      this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      this.monCanvas.beginPath();
+      this.ma_victoire = new Victoire(this.monCanvas, self, this.data_interface.victoire);
+
+      this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
+
+      this.affichage_victoire(key, data, scene);
+      this.click_canvas();
+      this.monCanvas.closePath();
+
+      this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      this.monCanvas_click.beginPath();
+
+      var object_fusionne = {};
+      $.extend( object_fusionne, this.data_interface.victoire.elements);
+
+
+      // mise en place des zones à cliquer
+      this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne, "victoire");
+      // affichage des zones à cliquer
+      this.affichage_click_zone();
+      this.monCanvas_click.closePath();
+
+  }
+  /**
+  Prototype affichage_victoire
+
+  @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+  @param data : propriété du object-bouton cliqué
+  @param scene : frame dans lequel le bouton est cliqué
+
+  */
+  GameManager.prototype.affichage_victoire = function(key, data, scene){
+    console.log("affichage_victoire : affichage des icones");
+    this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      for (var i in this.arrayOfGameObjects) {
+          if(this.arrayOfGameObjects[i][1]=="text"){
+            this.arrayOfGameObjects[i][2].setup((this.arrayOfGameObjects[i][2].text=="" ? this.mon_Player[this.arrayOfGameObjects[i][2].valeur_a_afficher] : this.arrayOfGameObjects[i][2].text));
+          }else if(this.arrayOfGameObjects[i][1]=="image"){
+            this.arrayOfGameObjects[i][2][this.arrayOfGameObjects[i][2].ombre](this.monCanvas);
+
+          }
+      }
+  }
+  /**
+  prototype credit
+  partie pour afficher les crédits du jeu
+
+  @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+  @param data : propriété du object-bouton cliqué
+  @param scene : frame dans lequel le bouton est cliqué
+
+  */
+  GameManager.prototype.credit = function(key, data, scene){
+      var self = this;
+      //ferme toutes les animations, les retardateurs et les timers
+      this.stop_animation();
+
+      // tableau contenant les objects affichés à l'écran : (fond, bouton navigation, score)
+      // structure [key, categorie String("image ou "texte)]
+      this.arrayOfGameObjects = [];
+      this.arrayOfGameObjects2 = [];
+      this.arrayOfClickObjects = {};
+
+      console.log("affichage nombre objets découverts "+this.mon_Player.ressource.nb_objet);
+      this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      this.monCanvas.beginPath();
+      this.mes_credits = new Victoire(this.monCanvas, self, this.data_interface.credit);
+
+      this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
+
+      this.affichage_victoire(key, data, scene);
+      this.click_canvas();
+      this.monCanvas.closePath();
+
+      this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      this.monCanvas_click.beginPath();
+
+      var object_fusionne = {};
+      $.extend( object_fusionne, this.data_interface.credit.elements);
+
+
+      // mise en place des zones à cliquer
+      this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne, "credit");
+      // affichage des zones à cliquer
+      this.affichage_click_zone();
+      this.monCanvas_click.closePath();
+
+  }
+  /**
+
+  */
+  GameManager.prototype.charger  = function(key, data, scene){
+    //ferme toutes les animations, les retardateurs et les timers
+    this.stop_animation();
+    this.mon_Player.niveau = JSON.parse(localStorage.getItem("niveau"));
+    this.mon_Player.ressource = JSON.parse(localStorage.getItem("ressource"));
+    this.mon_Player.plat = JSON.parse(localStorage.getItem("plat"));
+
+    this.popup("setup2", "", "", "sauvegarde", "chargement");
   }
