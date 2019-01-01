@@ -40,14 +40,17 @@ var Meme = function(monCanvas, _target, data_interface, key, data, scene, ressou
   Object.keys(data_interface.elements).forEach(function(key) {
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "text"){
-          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight);
+          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.meme);
           _target.arrayOfGameObjects.push([key,"text",self[key]]);
       }
   });
 
 };
 /**
+prototype demarrage_jeu
+permet de lancer le jeu dans le gameManager
 
+@param : cas Number 0 au debut du jeu les icones sont visibles 1 les icones sont invisibles
 
 */
 Meme.prototype.demarrage_jeu = function(cas){
@@ -58,7 +61,12 @@ Meme.prototype.demarrage_jeu = function(cas){
 
 }
 /**
+prototype melanger_ressource
+permet de noyer les vrais résultats avec des résultats faux et de limiter le nombre de résultat faux
 
+@param tableau_ressource Array prend l'object ressource et le transforme en tableau
+
+@return this.melange_ressource Array de la longueur de this.color_array c'est à dire un tableau de longueur nb_colonne*nb_colonne ( et pas [nb_colonne][nb_colonne])
 */
 Meme.prototype.melanger_ressource = function(tableau_ressource){
   this.melange_ressource = [];
@@ -74,7 +82,13 @@ Meme.prototype.melanger_ressource = function(tableau_ressource){
 
 }
 
-/**affichage_tableau
+/**
+Prototype affichage_tableau
+permet de gérer l'interface graphique
+
+@param tableau_ressource Array prend l'object ressource et le transforme en tableau
+@param : cas Number 0 au debut du jeu les icones sont visibles 1 les icones sont invisibles
+
 
 */
 Meme.prototype.affichage_tableau = function(mon_tableau_ressource, cas){
@@ -100,12 +114,13 @@ Meme.prototype.affichage_tableau = function(mon_tableau_ressource, cas){
         }
         this.color_array.push(ma_couleur);
         this.table_couleur_image[ma_couleur] = mon_tableau_ressource[Math.floor(Math.random()*mon_tableau_ressource.length)];
-
+      // dans la suite du jeu on affiche juste une image dont le fond est de la même couleur qu'avant
       }else if(cas==1){
         ma_couleur = this.color_array[(i*this.algo.nb_colonne)+j];
       }
       this.tableau_click[i][j] = 0;
       this.ma_case(i,j, taille_case, coord_premiere_case, ma_couleur);
+      // au début on affiche les icones
       if(cas==0){
         this.mon_icone(i,j, taille_case, coord_premiere_case, this.table_couleur_image[ma_couleur]);
       }
@@ -113,7 +128,13 @@ Meme.prototype.affichage_tableau = function(mon_tableau_ressource, cas){
   }
 }
 /**
-
+prototype mon_icone
+affiche l'icone voulue
+@param num_ligne Number Numero de ligne
+@param num_colonne Number Numero de colonne
+@param taille Number taille des icones
+@param coord_prem_case Array coordonnée de la première case [_x, _y]
+@param String nom de la ressource à afficher
 */
 Meme.prototype.mon_icone = function(num_ligne, num_colonne, taille, coord_prem_case, ressource){
   var mon_abs = coord_prem_case[0] + num_colonne*taille;
@@ -124,6 +145,13 @@ Meme.prototype.mon_icone = function(num_ligne, num_colonne, taille, coord_prem_c
 
 }
 /**
+prototype ma_case
+affiche la case choisie
+@param num_ligne Number Numero de ligne
+@param num_colonne Number Numero de colonne
+@param taille Number taille des icones
+@param coord_prem_case Array coordonnée de la première case [_x, _y]
+@param String nom de la ressource à afficher
 
 */
 Meme.prototype.ma_case = function(num_ligne, num_colonne, taille, coord_prem_case, couleur){
@@ -140,7 +168,11 @@ Meme.prototype.ma_case = function(num_ligne, num_colonne, taille, coord_prem_cas
 
 }
 /**
+prototype click
+comportement lors d'un click
 
+@param abs Number coord du click en abscisse
+@param ord Number coord du click en ordonnée
 */
 Meme.prototype.click = function(abs, ord){
   if(this.cas == 1){

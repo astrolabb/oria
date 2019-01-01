@@ -1,8 +1,13 @@
-var Text_affichage = function(monCanvas, data_texte, nom, maxWidth, lineHeight){
+var Text_affichage = function(monCanvas, data_texte, nom, maxWidth, lineHeight, mon_texte){
   this.monCanvas = monCanvas;
   this._x = data_texte._x;
   this._y = data_texte._y + lineHeight;
-  this.text = data_texte.text;
+  console.log("31_12_18 "+data_texte.text);
+  if(mon_texte){
+    data_texte.text=="" ? this.text="" : this.text=mon_texte[data_texte.text];
+  }else{
+    this.text = data_texte.text;
+  }
   this.valeur_a_afficher = data_texte.valeur_a_afficher;
   this.maxWidth = maxWidth;
   this.lineHeight = lineHeight;

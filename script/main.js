@@ -539,8 +539,17 @@ function fadein (self, i, nb){
         return String(mot+"s");
       }
     }
-    /**
+    /** fonction fonction_tableau_recette
+    dans le jeu de la mémé permet l'affichage de la recette à utiliser dans le jeu du lonono
+    permet de formater une réponse
+    permet d'envoyer un tableau qu'un random rendra aléatoire
+    @param liste_ressource Object dans l'algo du lonono pour fabriquer une ressource
+    @param liste_plat Object dans l'algo du lonono pour fabriquer un plat
+    @param texte Object ensemble des amorces
+    @param data_ressource Object ressources du jeu
+    @param data_plat Object plats du jeu
 
+    @return mon_tableau_recette Array un tableau avec toutes les recettes
     */
     function fonction_tableau_recette(liste_ressource, liste_plat, texte, data_ressource, data_plat){
       var mon_tableau_recette = [];
@@ -586,7 +595,12 @@ function fadein (self, i, nb){
       return mon_tableau_recette;
     }
     /**
-
+    fonction trouve_le_dernier
+    trouve dans une boucle le dernier appel et si c'est le dernier affecte un comportement
+    @param i Number iteration de la boucle actuelle
+    @param nb Number nombre de boucle totale
+    @param si_oui String
+    @param sinon String
     */
     function trouve_le_dernier(i,nb,si_oui,sinon){
       if(i!=nb-1){
@@ -596,7 +610,11 @@ function fadein (self, i, nb){
       }
     }
     /**
-
+    fonction redimensionnement_image
+    permet dans le jeu de la mémé de limiter la taille des cases
+    @param nb Number nombre de colonne
+    @param max_taille Number taille maximale de la case à ne pas dépasser
+    @param marge_gauche Number marge gauche
     */
     function redimensionnement_image(nb, max_taille, marge_gauche){
 
@@ -610,7 +628,11 @@ function fadein (self, i, nb){
       }
     }
     /**
+    fonction  format_police
+    permet de retourner un format de police compatible avec le canvas.font
 
+    @param nb Number valeur par laquelle il faut diviser la taille de l'ecran en hauteur
+    @param police String police à utiliser
     */
     function format_police(nb, police){
 

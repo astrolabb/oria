@@ -19,7 +19,7 @@ var Jardin = function(monCanvas, _target, data_interface){
   Object.keys(data_interface.elements).forEach(function(key) {
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "text"){
-          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight);
+          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.jardin);
           _target.arrayOfGameObjects.push([key,"text",self[key]]);
       }
   });
@@ -184,14 +184,13 @@ Roue.prototype.dessin_repere = function(images){
   }
   this.canvas.beginPath();
   this.canvas.fillStyle = this.data_interface.couleur_cartouche;
-  this.canvas.fillRect((2*this.epaisseur_trait) + this.centre_x+this.rayon, this.centre_y+this.hauteur_triangle+this.separation_fleche_cartouche, this.largeur_texte, this.data_interface.police_texte_px);
+  this.canvas.fillRect((2*this.epaisseur_trait) + this.centre_x+this.rayon, this.centre_y+this.hauteur_triangle+this.separation_fleche_cartouche, this.largeur_texte, window.innerHeight/this.data_interface.taille_police1);
   this.canvas.closePath();
 
 
   this.canvas.textAlign = "left";
   this.canvas.textBaseline = "hanging";
   this.canvas.fillStyle = this.data_interface.couleur_texte;
-  this.canvas.font = this.data_interface.police_texte;
   var texte_afficher = this.ressource[this.liste_camenbert[cle]].nom;
   this.resultat = texte_afficher;
   this.resultat_key = this.liste_camenbert[cle];

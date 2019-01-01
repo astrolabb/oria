@@ -55,7 +55,7 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface,
     Object.keys(data_equilibrage).forEach(function(key) {
         console.log(key+" "+data_equilibrage[key]);
         if(data_equilibrage[key].nature == "text"){
-            self[key] = new Text_affichage(monCanvas, data_equilibrage[key], key, data_interface.maxWidth_text, data_interface.lineHeight);
+            self[key] = new Text_affichage(monCanvas, data_equilibrage[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.village);
             _target.arrayOfGameObjects.push([key,"text"]);
         }
     });
@@ -64,7 +64,7 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface,
         if(data_interface.elements[key].nature == "text"){
           data_interface.elements[key].taille_police1 = data_interface.taille_police1;
           data_interface.elements[key].police = data_interface.police;
-          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight);
+          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.village);
           _target.arrayOfGameObjects.push([key,"text"]);
         }
     });

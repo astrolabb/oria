@@ -22,7 +22,7 @@ var Synthese = function(monCanvas, _target, data_interface, key, data, scene, te
   Object.keys(data_interface.elements).forEach(function(key) {
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "text"){
-          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight);
+          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.synthese);
           _target.arrayOfGameObjects.push([key,"text",self[key]]);
       }
   });

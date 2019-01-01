@@ -1,30 +1,47 @@
 var data_texte = {
+  "intro" : {
+    "titre" : "lonnono warrior challenge maxi troll 2",
+    "texte" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+  },
   "map" : {
       "niveau" : "Vous avez débloqué un nouveau niveau",
       "jardin_fin" : "Vous avez gagné une ressource :"
       },
   "village" : {
       "achat" : "ressource achetée",
-      "plat" : "plat vendu"
+      "plat" : "plat vendu",
+      "titre" : "Le Marché",
+      "soustitreg" : "Vendre vos plats",
+      "soustitred" : "Acheter des ressources"
     },
   "lonono" : {
     "pas_de_selection" : "Vous n'avez sélectionné de ressource pour le moment",
     "nb_ressource_insuffisant" : "Vous n'avez pas encore sélectionné sufisamment de ressources pour qu'il se passe quelque chose",
     "echec_recette" : "Votre association est un echec :",
     "reussite" : "Vous avez obtenu :",
-    "plat" : "plat vendu"
+    "plat" : "plat vendu",
+    "titre" : "Le lonono",
+    "titre2" : "Choisir des ressources à donner au lonono",
+    "soustitreg" : "Pour trouver de nouvelles ressources",
+    "soustitred" : "Pour la fabrication de plats"
+    },
+  "jardin" : {
+    "titre" : "Le jardin"
+
   },
   "foret" : {
     "score" : "score",
     "timer" : "timer",
     "echec" : "Votre score ne vous permet pas d'obtenir une ressource",
-    "reussite" : "Félicitations : Vous avez obtenu : "
+    "reussite" : "Félicitations : Vous avez obtenu : ",
+    "titre" : "La forêt"
   },
   "lac" : {
     "score" : "score",
     "timer" : "timer",
     "echec" : "Votre score ne vous permet pas d'obtenir une ressource",
-    "reussite" : "Félicitations : Vous avez obtenu : "
+    "reussite" : "Félicitations : Vous avez obtenu : ",
+    "titre" : "Le lac"
 
   },
   "meme" : {
@@ -32,15 +49,26 @@ var data_texte = {
     "echec" : "Encore Raté ! Vous avez fait : ",
     "erreur" : "erreur",
     "amorce1" : " Pour fabriquer : ",
-    "amorce2" : " Il faut mélanger : "
+    "amorce2" : " Il faut mélanger : ",
+    "titre" : "La Mamie"
   },
   "synthese" : {
-
-
+    "titre" : "Synthèse des niveaux",
+    "soustitre1" : "Niveaux concernant les jeux",
+    "soustitre2" : "Ressources découvertes",
+    "soustitre3" : "Recettes découvertes"
   },
   "sauvegarde" : {
     "reussie" : "Sauvegarde réussie",
-    "chargement" : "Chargement réussi"
+    "chargement" : "Chargement réussi",
+    "nonchargement" : "Echec du chargement",
+    "nonsauvegarde" : "Echec de la sauvegarde"
+
+  },
+  "victoire" : {
+    "titre" : "Victoire, Vous avez terminé le jeu.",
+    "titre2" : "Présentation du jeu, biographie de Nathalie, la vie et l'oeuvre d'Astrolabb. Sans compter les remerciements."
+
   }
 
 }

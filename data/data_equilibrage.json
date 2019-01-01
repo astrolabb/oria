@@ -12,7 +12,7 @@
       "temps_affichage" : 2000,
       "choix_ressource_case" : 4
     },
-    "2" : {
+    "3" : {
       "nb_colonne" : 3,
       "temps_affichage" : 2000,
       "choix_ressource_case" : 4
@@ -1236,7 +1236,10 @@
     "retour_synthese" : 1,
     "retour_victoire" : 1,
     "retour_credit" : 1,
-    "sauvegarde" : 1
+    "sauvegarde" : 1,
+    "bouton" : 1,
+    "bouton2" : 1,
+    "bouton3" : 1
   },
   "bareme_niveau" : {
       "village" : {

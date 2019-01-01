@@ -13,7 +13,7 @@ var data_interface = {
         "couleur" : "#333",
         "police" : "Arial",
         "taille_police1" : "20",
-        "text" : "lonnono warrior challenge maxi troll 2",
+        "text" : "titre",
         "valeur_a_afficher" : "",
         "alignement" : "centrage2"
       },
@@ -24,7 +24,7 @@ var data_interface = {
         "couleur" : "#333",
         "police" : "Arial",
         "taille_police1" : "20",
-        "text" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+        "text" : "texte",
         "valeur_a_afficher" : "",
         "alignement" : "centrage"
       },
@@ -34,10 +34,15 @@ var data_interface = {
         "_width" : window.innerWidth,
         "_height" : window.innerHeight,
         "ombre" : "draw",
+        "couleur" : "grey",
         "nature" : "image",
         "lien" : "non",
         "ordre" : 1,
-        "loc" : "peanut"
+        "loc" : {
+          "niv1" :["peanut","peanut"],
+          "niv2" :["peanut","peanut"],
+          "niv3" :["peanut","peanut"]
+        }
 
       },
       "bouton" : {
@@ -49,7 +54,11 @@ var data_interface = {
         "nature" : "image",
         "lien" : "oui",
         "ordre" : 2,
-        "loc" : "apple",
+        "loc" : {
+          "niv1" :["apple","apple"],
+          "niv2" :["apple","apple"],
+          "niv3" :["apple","apple"]
+        },
         "dir" : "setup2"
       },
       "bouton2" : {
@@ -61,7 +70,11 @@ var data_interface = {
         "nature" : "image",
         "lien" : "oui",
         "ordre" : 2,
-        "loc" : "cherry",
+        "loc" : {
+          "niv1" :["cherry","cherry"],
+          "niv2" :["cherry","cherry"],
+          "niv3" :["cherry","cherry"]
+        },
         "dir" : "credit"
       },
       "bouton3" : {
@@ -73,7 +86,11 @@ var data_interface = {
         "nature" : "image",
         "lien" : "oui",
         "ordre" : 2,
-        "loc" : "tomato",
+        "loc" : {
+          "niv1" :["tomato","tomato"],
+          "niv2" :["tomato","tomato"],
+          "niv3" :["tomato","tomato"]
+        },
         "dir" : "charger"
       }
     }
@@ -280,7 +297,7 @@ var data_interface = {
               "couleur" : "#333",
               "police" : "Arial",
               "taille_police1" : "20",
-              "text" : "Le Marché",
+              "text" : "titre",
               "valeur_a_afficher" : "",
               "alignement" : "centrage2"
             },
@@ -291,7 +308,7 @@ var data_interface = {
             "couleur" : "#333",
             "police" : "Arial",
             "taille_police1" : "20",
-            "text" : "Vendre vos plats",
+            "text" : "soustitreg",
             "valeur_a_afficher" : "",
             "alignement" : "left"
           },
@@ -302,7 +319,7 @@ var data_interface = {
           "couleur" : "#333",
           "police" : "Arial",
           "taille_police1" : "20",
-          "text" : "Acheter des ressources",
+          "text" : "soustitred",
           "valeur_a_afficher" : "",
           "alignement" : "end"
           },
@@ -453,7 +470,7 @@ var data_interface = {
               "couleur" : "#333",
               "police" : "Arial",
               "taille_police1" : "20",
-              "text" : "Le lonono",
+              "text" : "titre",
               "valeur_a_afficher" : "",
               "alignement" : "centrage2"
             },
@@ -464,7 +481,7 @@ var data_interface = {
               "couleur" : "#333",
               "police" : "Arial",
               "taille_police1" : "20",
-              "text" : "Choisir des ressources à donner au lonono",
+              "text" : "titre2",
               "valeur_a_afficher" : "",
               "alignement" : "centrage2"
             },
@@ -475,7 +492,7 @@ var data_interface = {
             "couleur" : "#333",
             "police" : "Arial",
             "taille_police1" : "20",
-            "text" : "Pour trouver de nouvelles ressources",
+            "text" : "soustitreg",
             "valeur_a_afficher" : "",
             "alignement" : "left"
             },
@@ -486,7 +503,7 @@ var data_interface = {
             "couleur" : "#333",
             "police" : "Arial",
             "taille_police1" : "20",
-            "text" : "Pour la fabrication de plats",
+            "text" : "soustitred",
             "valeur_a_afficher" : "",
             "alignement" : "end"
             },
@@ -641,7 +658,7 @@ var data_interface = {
                   "couleur" : "#333",
                   "police" : "Arial",
                   "taille_police1" : "20",
-                  "text" : "Le jardin",
+                  "text" : "titre",
                   "valeur_a_afficher" : "",
                   "alignement" : "centrage2"
                 }
@@ -696,7 +713,7 @@ var data_interface = {
               "couleur" : "#333",
               "police" : "Arial",
               "taille_police1" : "20",
-              "text" : "La forêt",
+              "text" : "titre",
               "valeur_a_afficher" : "",
               "alignement" : "centrage2"
             },
@@ -769,7 +786,7 @@ var data_interface = {
                     "couleur" : "#333",
                     "police" : "Arial",
                     "taille_police1" : "20",
-                    "text" : "Le lac",
+                    "text" : "titre",
                     "valeur_a_afficher" : "",
                     "alignement" : "centrage2"
                   },
@@ -841,7 +858,7 @@ var data_interface = {
                       "couleur" : "#333",
                       "police" : "Arial",
                       "taille_police1" : "20",
-                      "text" : "La Mamie",
+                      "text" : "titre",
                       "valeur_a_afficher" : "",
                       "alignement" : "centrage2"
                     },
@@ -938,7 +955,7 @@ var data_interface = {
                       "couleur" : "#333",
                       "police" : "Arial",
                       "taille_police1" : "20",
-                      "text" : "Synthèse des niveaux",
+                      "text" : "titre",
                       "valeur_a_afficher" : "",
                       "alignement" : "centrage2"
                     },
@@ -966,7 +983,7 @@ var data_interface = {
                       "couleur" : "#333",
                       "police" : "Arial",
                       "taille_police1" : "20",
-                      "text" : "Niveaux concernant les jeux",
+                      "text" : "soustitre1",
                       "valeur_a_afficher" : "",
                       "alignement" : "left"
                     },
@@ -977,7 +994,7 @@ var data_interface = {
                       "couleur" : "#333",
                       "police" : "Arial",
                       "taille_police1" : "20",
-                      "text" : "Ressources découvertes",
+                      "text" : "soustitre2",
                       "valeur_a_afficher" : "",
                       "alignement" : "left"
                     },
@@ -988,7 +1005,7 @@ var data_interface = {
                       "couleur" : "#333",
                       "police" : "Arial",
                       "taille_police1" : "20",
-                      "text" : "Recettes découvertes",
+                      "text" : "soustitre3",
                       "valeur_a_afficher" : "",
                       "alignement" : "left"
                     },
@@ -1024,7 +1041,7 @@ var data_interface = {
                         "couleur" : "#333",
                         "police" : "Arial",
                         "taille_police1" : "20",
-                        "text" : "Victoire, Vous avez terminé le jeu.",
+                        "text" : "titre",
                         "valeur_a_afficher" : "",
                         "alignement" : "centrage2"
                       },
@@ -1076,7 +1093,7 @@ var data_interface = {
                           "couleur" : "#333",
                           "police" : "Arial",
                           "taille_police1" : "20",
-                          "text" : "Présentation du jeu, biographie de Nathalie, la vie et l'oeuvre d'Astrolabb. Sans compter les remerciements.",
+                          "text" : "titre2",
                           "valeur_a_afficher" : "",
                           "alignement" : "centrage"
                         },

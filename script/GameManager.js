@@ -67,6 +67,8 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
      this.monCanvas.beginPath();
      // mise place des images et des boutons par le contructeur Intro
      this.intro = new Intro(this.monCanvas,this, data_interface);
+     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
+
      // affichage des images et des boutons
      this.affichage_intro();
      // recupération position click, lien vers destination souhaitée
@@ -110,13 +112,14 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
  GameManager.prototype.affichage_intro = function ()
   {
     console.log("affichage_intro");
-    console.log("arrayOfGameObjects : "+JSON.stringify(this.arrayOfGameObjects));
+//    console.log("arrayOfGameObjects : "+JSON.stringify(this.arrayOfGameObjects));
       for (var i in this.arrayOfGameObjects) {
           if(this.arrayOfGameObjects[i][1]=="text"){
 
             this.intro[this.arrayOfGameObjects[i][0]].setup((this.intro[this.arrayOfGameObjects[i][0]].text=="" ? this.mon_Player[this.intro[this.arrayOfGameObjects[i][0]].valeur_a_afficher] : this.intro[this.arrayOfGameObjects[i][0]].text));
           }else if(this.arrayOfGameObjects[i][1]=="image"){
-            this.intro[this.arrayOfGameObjects[i][0]].affichage();
+            this.arrayOfGameObjects[i][2][this.arrayOfGameObjects[i][2].ombre](this.monCanvas);
+      //      this.intro[this.arrayOfGameObjects[i][0]].affichage();
           }
       }
 
@@ -445,6 +448,7 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
       {
         console.log("sauvegarde en cours");
         self = this;
+        try{
         localStorage.removeItem("niveau");
         localStorage.removeItem("ressource");
         localStorage.removeItem("plat");
@@ -452,9 +456,12 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
         localStorage.setItem("ressource",JSON.stringify(this.mon_Player.ressource));
         localStorage.setItem("plat",JSON.stringify(this.mon_Player.plat));
         //ferme toutes les animations, les retardateurs et les timers
-        this.stop_animation();
-        this.popup("setup2", "", "", "sauvegarde", "reussie");
 
+        this.popup("setup2", "", "", "sauvegarde", "reussie");
+        }catch (exception) {
+          this.stop_animation();
+          this.popup("setup2", "", "", "sauvegarde", "nonsauvegarde");
+        }
       }
   /**
   * blanchi le canvas vu par le joueur en js
@@ -648,12 +655,10 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
 
   */
   GameManager.prototype.popup = function(target, var1, var2, frame, element){
+    this.stop_animation();
     var self = this;
-    console.log("popup");
-    self = this;
-    if(this.mon_Interval){
-        clearInterval(this.mon_Interval);
-    }
+    console.log("popup ");
+
     this.arrayOfGameObjects = [];
     this.mon_popup = new Popup(this.monCanvas, self, this.data_equilibrage.plats, this.data_interface.popup);
     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
@@ -1190,8 +1195,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
   */
   GameManager.prototype.valid_meme = function(key, data, scene){
     console.log("valid_meme");
-    //ferme toutes les animations, les retardateurs et les timers
-    this.stop_animation();
+
     var reussite = true;
     var ma_ressource;
     var couleur_case;
@@ -1212,6 +1216,8 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
       }
 
     }
+    //ferme toutes les animations, les retardateurs et les timers
+    this.stop_animation();
     console.log("nombre d erreur "+nb_erreur);
     if(reussite){
       var mon_tableau_recette = fonction_tableau_recette(this.data_equilibrage.lonono_algo["3"], this.data_equilibrage.lonono_algo2["3"],this.data_texte.meme, this.data_equilibrage.ressource, this.data_equilibrage.plats);
@@ -1404,9 +1410,18 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
   GameManager.prototype.charger  = function(key, data, scene){
     //ferme toutes les animations, les retardateurs et les timers
     this.stop_animation();
-    this.mon_Player.niveau = JSON.parse(localStorage.getItem("niveau"));
-    this.mon_Player.ressource = JSON.parse(localStorage.getItem("ressource"));
-    this.mon_Player.plat = JSON.parse(localStorage.getItem("plat"));
 
-    this.popup("setup2", "", "", "sauvegarde", "chargement");
+    try {
+      if(!localStorage.getItem("niveau")){
+        this.popup("setup2", "", "", "sauvegarde", "nonchargement");
+      }else{
+        this.mon_Player.niveau = JSON.parse(localStorage.getItem("niveau"));
+        this.mon_Player.ressource = JSON.parse(localStorage.getItem("ressource"));
+        this.mon_Player.plat = JSON.parse(localStorage.getItem("plat"));
+        this.popup("setup2", "", "", "sauvegarde", "chargement");
+      }
+    }catch (exception) {
+      this.popup("setup2", "", "", "sauvegarde", "nonchargement");
+    }
+
   }
