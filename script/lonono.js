@@ -101,9 +101,10 @@ var Mon_lonono = function(monCanvas, _target, data_plat, data_interface, data_re
 
   // creation des objects de texte
   Object.keys(data_interface.elements).forEach(function(key) {
-      console.log(key+" "+data_interface.elements[key]);
+      console.log("ma clée "+key+" "+data_interface.elements[key]);
+      console.log("ma référence "+data_interface.elements[key].reference+" "+data_interface.elements[data_interface.elements[key].reference]);
       if(data_interface.elements[key].nature == "text"){
-        self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.lonono);
+        self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.lonono, data_interface.elements[key].reference=="" ? "" : data_interface.elements[data_interface.elements[key].reference]);
         _target.arrayOfGameObjects.push([key,"text",key]);
       }
   });

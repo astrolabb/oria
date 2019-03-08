@@ -4,29 +4,31 @@ var data_interface = {
   "largeuricone" : 50,
   "introduction" : {
     "maxWidth_text" : 2*window.innerWidth/3,
-    "lineHeight" : window.innerHeight/30,
+    "lineHeight" : window.innerHeight/23,
     "elements" : {
         "titre" : {
         "_x" : 20,
         "_y" : window.innerHeight/15,
         "nature" : "text",
-        "couleur" : "#333",
+        "couleur" : "#F4A402",
         "police" : "Arial",
-        "taille_police1" : "20",
+        "taille_police1" : "15",
         "text" : "titre",
         "valeur_a_afficher" : "",
-        "alignement" : "centrage2"
+        "alignement" : "centrage2",
+        "reference" : ""
       },
       "texte" : {
         "_x" : 20,
         "_y" : window.innerHeight/3,
         "nature" : "text",
-        "couleur" : "#333",
+        "couleur" : "#F4A402",
         "police" : "Arial",
-        "taille_police1" : "20",
+        "taille_police1" : "18",
         "text" : "texte",
         "valeur_a_afficher" : "",
-        "alignement" : "centrage"
+        "alignement" : "centrage",
+        "reference" : ""
       },
       "fond" : {
         "_x" : 0,
@@ -39,12 +41,24 @@ var data_interface = {
         "lien" : "non",
         "ordre" : 1,
         "loc" : {
-          "niv1" :["peanut","peanut"],
-          "niv2" :["peanut","peanut"],
-          "niv3" :["peanut","peanut"]
+          "niv1" :["lonono3","lonono3"],
+          "niv2" :["lonono3","lonono3"],
+          "niv3" :["lonono3","lonono3"]
         }
 
       },
+      "texte_bouton" : {
+        "_x" : 0,
+        "_y" : window.innerHeight- window.innerHeight/8,
+        "nature" : "text",
+        "couleur" : "#333",
+        "police" : "Arial",
+        "taille_police1" : "20",
+        "text" : "bouton",
+        "valeur_a_afficher" : "",
+        "alignement" : "ref",
+        "reference" : "bouton"
+        },
       "bouton" : {
         "_x" : (window.innerWidth/2)-(window.innerWidth/8),
         "_y" : 3*window.innerHeight/4,
@@ -55,12 +69,24 @@ var data_interface = {
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["apple","apple"],
-          "niv2" :["apple","apple"],
-          "niv3" :["apple","apple"]
+          "niv1" :["panneau","panneau"],
+          "niv2" :["panneau","panneau"],
+          "niv3" :["panneau","panneau"]
         },
-        "dir" : "setup2"
+        "dir" : "saisie_nom"
       },
+      "texte_bouton2" : {
+        "_x" : 0,
+        "_y" : window.innerHeight- window.innerHeight/8,
+        "nature" : "text",
+        "couleur" : "#333",
+        "police" : "Arial",
+        "taille_police1" : "20",
+        "text" : "bouton2",
+        "valeur_a_afficher" : "",
+        "alignement" : "ref",
+        "reference" : "bouton2"
+        },
       "bouton2" : {
         "_x" : window.innerWidth/10,
         "_y" : 3*window.innerHeight/4,
@@ -71,12 +97,24 @@ var data_interface = {
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["cherry","cherry"],
-          "niv2" :["cherry","cherry"],
-          "niv3" :["cherry","cherry"]
+          "niv1" :["panneau","panneau"],
+          "niv2" :["panneau","panneau"],
+          "niv3" :["panneau","panneau"]
         },
         "dir" : "credit"
       },
+      "texte_bouton3" : {
+        "_x" : 0,
+        "_y" : window.innerHeight- window.innerHeight/8,
+        "nature" : "text",
+        "couleur" : "#333",
+        "police" : "Arial",
+        "taille_police1" : "20",
+        "text" : "bouton3",
+        "valeur_a_afficher" : "",
+        "alignement" : "ref",
+        "reference" : "bouton3"
+        },
       "bouton3" : {
         "_x" : window.innerWidth- (window.innerWidth/4) - window.innerWidth/10,
         "_y" : 3*window.innerHeight/4,
@@ -87,11 +125,89 @@ var data_interface = {
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["tomato","tomato"],
-          "niv2" :["tomato","tomato"],
-          "niv3" :["tomato","tomato"]
+          "niv1" :["panneau","panneau"],
+          "niv2" :["panneau","panneau"],
+          "niv3" :["panneau","panneau"]
         },
         "dir" : "charger"
+      }
+    }
+  },
+  "saisie_nom" : {
+    "maxWidth_text" : 2*window.innerWidth/3,
+    "lineHeight" : window.innerHeight/23,
+    "classe_champ_saisie" : "style_champ_saisie_pseudo",
+    "taille_police_champ_saisie" : 5,
+    "police_champ_saisie" : "arial",
+    "elements" : {
+        "titre" : {
+        "_x" : 20,
+        "_y" : window.innerHeight/15,
+        "nature" : "text",
+        "couleur" : "#F4A402",
+        "police" : "Arial",
+        "taille_police1" : "15",
+        "text" : "titre",
+        "valeur_a_afsetup2ficher" : "",
+        "alignement" : "centrage2",
+        "reference" : ""
+      },
+      "texte" : {
+        "_x" : 20,
+        "_y" : window.innerHeight/6,
+        "nature" : "text",
+        "couleur" : "#F4A402",
+        "police" : "Arial",
+        "taille_police1" : "18",
+        "text" : "sous_titre",
+        "valeur_a_afficher" : "",
+        "alignement" : "centrage",
+        "reference" : ""
+      },
+      "fond" : {
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : window.innerWidth,
+        "_height" : window.innerHeight,
+        "ombre" : "draw",
+        "couleur" : "grey",
+        "nature" : "image",
+        "lien" : "non",
+        "ordre" : 1,
+        "loc" : {
+          "niv1" :["fond_vert","fond_vert"],
+          "niv2" :["fond_vert","fond_vert"],
+          "niv3" :["fond_vert","fond_vert"]
+        }
+
+      },
+      "texte_bouton" : {
+        "_x" : 0,
+        "_y" : window.innerHeight- window.innerHeight/8,
+        "nature" : "text",
+        "couleur" : "#333",
+        "police" : "Arial",
+        "taille_police1" : "20",
+        "text" : "bouton",
+        "valeur_a_afficher" : "",
+        "alignement" : "ref",
+        "reference" : "bouton"
+        },
+      "bouton" : {
+        "_x" : (window.innerWidth/2)-(window.innerWidth/8),
+        "_y" : 3*window.innerHeight/4,
+        "_width" : (window.innerWidth/4),
+        "_height" : window.innerHeight/10,
+        "ombre" : "draw",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["panneau","panneau"],
+          "niv2" :["panneau","panneau"],
+          "niv3" :["panneau","panneau"]
+        },
+        "dir" : "enregistrement_nom"
       }
     }
   },
@@ -131,6 +247,19 @@ var data_interface = {
           "niv3" :["lonono3","lonono3"]
         },
         "dir" : "setup3"
+      },
+      "pseudo" : {
+          "_x" : window.innerWidth/2-window.innerWidth/10,
+          "_y" : window.innerHeight/2-window.innerHeight/8,
+          "nature" : "text",
+          "couleur" : "#333",
+          "police" : "Arial",
+          "taille_police1" : "10",
+          "text" : "",
+          "valeur_a_afficher" : "pseudo",
+          "alignement" : "centrage2",
+          "reference" : ""
+
       },
       "village" : {
         "_x" : window.innerWidth-window.innerWidth/3,
@@ -243,13 +372,26 @@ var data_interface = {
           "taille_police1" : "20",
           "text" : "",
           "valeur_a_afficher" : "or",
-          "alignement" : "left"
+          "alignement" : "left",
+          "reference" : ""
 
                 },
+          "texte_sauvegarde" : {
+              "_x" : 0,
+              "_y" : window.innerHeight- window.innerHeight/8,
+              "nature" : "text",
+              "couleur" : "#333",
+              "police" : "Arial",
+              "taille_police1" : "20",
+              "text" : "sauvegarde",
+              "valeur_a_afficher" : "",
+              "alignement" : "ref",
+              "reference" : "sauvegarde"
+                  },
       "sauvegarde" : {
-        "_x" : window.innerWidth/2-window.innerWidth/20,
+        "_x" : window.innerWidth/2-window.innerWidth/12,
         "_y" : 3*window.innerHeight/4+window.innerHeight/8,
-        "_width" : window.innerWidth/10,
+        "_width" : window.innerWidth/6,
         "_height" : window.innerHeight/10,
         "ombre" : "draw",
         "couleur" : "red",
@@ -257,9 +399,9 @@ var data_interface = {
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["panneau","panneau"],
+          "niv2" :["panneau","panneau"],
+          "niv3" :["panneau","panneau"]
         },
         "dir" : "setup11"
               }
@@ -299,7 +441,8 @@ var data_interface = {
               "taille_police1" : "20",
               "text" : "titre",
               "valeur_a_afficher" : "",
-              "alignement" : "centrage2"
+              "alignement" : "centrage2",
+              "reference" : ""
             },
             "sous_titre_gauche" : {
             "_x" : window.innerWidth/20,
@@ -310,7 +453,8 @@ var data_interface = {
             "taille_police1" : "20",
             "text" : "soustitreg",
             "valeur_a_afficher" : "",
-            "alignement" : "left"
+            "alignement" : "left",
+            "reference" : ""
           },
           "sous_titre_droit" : {
           "_x" : 20,
@@ -321,7 +465,8 @@ var data_interface = {
           "taille_police1" : "20",
           "text" : "soustitred",
           "valeur_a_afficher" : "",
-          "alignement" : "end"
+          "alignement" : "end",
+          "reference" : ""
           },
           "or_icone" : {
           "_x" : window.innerWidth/2-window.innerWidth/10,
@@ -348,7 +493,8 @@ var data_interface = {
           "taille_police1" : "10",
           "text" : "",
           "valeur_a_afficher" : "or",
-          "alignement" : "left"
+          "alignement" : "left",
+          "reference" : ""
                     },
           "texte_icone" : {
           "_x" : 10,
@@ -359,8 +505,21 @@ var data_interface = {
           "taille_police1" : "20",
           "text" : "",
           "valeur_a_afficher" : "",
-          "alignement" : "centrage3"
+          "alignement" : "centrage3",
+          "reference" : ""
             },
+          "texte_retour" : {
+            "_x" : 0,
+            "_y" : window.innerHeight- window.innerHeight/8,
+            "nature" : "text",
+            "couleur" : "#333",
+            "police" : "Arial",
+            "taille_police1" : "20",
+            "text" : "retour",
+            "valeur_a_afficher" : "",
+            "alignement" : "ref",
+            "reference" : "retour"
+          },
           "retour" : {
           "_x" : 0,
           "_y" : window.innerHeight- window.innerHeight/10,
@@ -372,9 +531,9 @@ var data_interface = {
           "lien" : "oui",
           "ordre" : 2,
           "loc" : {
-          "niv1" :["kiwi","kiwi"],
-          "niv2" :["kiwi","kiwi"],
-          "niv3" :["kiwi","kiwi"]
+          "niv1" :["panneau","panneau"],
+          "niv2" :["panneau","panneau"],
+          "niv3" :["panneau","panneau"]
                 },
           "dir" : "setup2"
               }
@@ -412,7 +571,8 @@ var data_interface = {
              "taille_police1" : "20",
              "text" : "",
              "valeur_a_afficher" : "or",
-             "alignement" : "centrage"
+             "alignement" : "centrage",
+             "reference" : ""
 
                }
         }
@@ -424,17 +584,17 @@ var data_interface = {
       elements : {
           "_x" : 0,
           "_y" : 0,
-          "_width" : window.innerWidth/10,
-          "_height" : window.innerHeight/10,
+          "_width" : window.innerWidth/13,
+          "_height" : window.innerHeight/13,
           "ombre" : "draw",
           "couleur" : "red",
           "nature" : "image",
           "lien" : "oui",
           "ordre" : 2,
           "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["onion","onion"],
-          "niv3" :["apple","apple"]
+          "niv1" :["up","up"],
+          "niv2" :["up","up"],
+          "niv3" :["up","up"]
           },
           "dir" : "niveau_up"
         }
@@ -472,7 +632,8 @@ var data_interface = {
               "taille_police1" : "20",
               "text" : "titre",
               "valeur_a_afficher" : "",
-              "alignement" : "centrage2"
+              "alignement" : "centrage2",
+              "reference" : ""
             },
             "titre2" : {
               "_x" : 20,
@@ -483,7 +644,8 @@ var data_interface = {
               "taille_police1" : "20",
               "text" : "titre2",
               "valeur_a_afficher" : "",
-              "alignement" : "centrage2"
+              "alignement" : "centrage2",
+              "reference" : ""
             },
             "sous_titre_gauche" : {
             "_x" : window.innerWidth/20,
@@ -494,7 +656,8 @@ var data_interface = {
             "taille_police1" : "20",
             "text" : "soustitreg",
             "valeur_a_afficher" : "",
-            "alignement" : "left"
+            "alignement" : "left",
+            "reference" : ""
             },
             "sous_titre_droite" : {
             "_x" : window.innerWidth/20,
@@ -505,7 +668,8 @@ var data_interface = {
             "taille_police1" : "20",
             "text" : "soustitred",
             "valeur_a_afficher" : "",
-            "alignement" : "end"
+            "alignement" : "end",
+            "reference" : ""
             },
             "texte_icone" : {
             "_x" : 10,
@@ -516,8 +680,21 @@ var data_interface = {
             "taille_police1" : "20",
             "text" : "",
             "valeur_a_afficher" : "",
-            "alignement" : "centrage3"
+            "alignement" : "centrage3",
+            "reference" : ""
               },
+              "texte_validation_recette" : {
+                  "_x" : 0,
+                  "_y" : window.innerHeight- window.innerHeight/8,
+                  "nature" : "text",
+                  "couleur" : "#333",
+                  "police" : "Arial",
+                  "taille_police1" : "10",
+                  "text" : "validation_recette",
+                  "valeur_a_afficher" : "",
+                  "alignement" : "ref",
+                  "reference" : "validation_recette"
+                      },
             "validation_recette" : {
             "_x" : window.innerWidth/2-window.innerWidth/6,
             "_y" : (window.innerHeight*7/8)-window.innerHeight/6,
@@ -529,43 +706,67 @@ var data_interface = {
             "lien" : "oui",
             "ordre" : 2,
             "loc" : {
-            "niv1" :["apple","tomato"],
-            "niv2" :["tomato","apple"],
-            "niv3" :["apple","tomato"]
+            "niv1" :["panneau","panneau"],
+            "niv2" :["panneau","panneau"],
+            "niv3" :["panneau","panneau"]
                   },
             "dir" : "valid_lonono"
               },
+              "texte_recette_zero" : {
+                  "_x" : 0,
+                  "_y" : window.innerHeight- window.innerHeight/8,
+                  "nature" : "text",
+                  "couleur" : "#333",
+                  "police" : "Arial",
+                  "taille_police1" : "20",
+                  "text" : "recette_zero",
+                  "valeur_a_afficher" : "",
+                  "alignement" : "ref",
+                  "reference" : "recette_zero"
+                      },
             "recette_zero" : {
-            "_x" : window.innerWidth-window.innerWidth/3,
+            "_x" : window.innerWidth-window.innerWidth/5,
             "_y" : (window.innerHeight)-window.innerHeight/10,
-            "_width" : window.innerWidth/3,
-            "_height" : window.innerHeight/10,
+            "_width" : window.innerWidth/5,
+            "_height" : window.innerHeight/8,
             "ombre" : "draw",
             "couleur" : "blue",
             "nature" : "image",
             "lien" : "oui",
             "ordre" : 2,
             "loc" : {
-            "niv1" :["apple","tomato"],
-            "niv2" :["tomato","apple"],
-            "niv3" :["apple","tomato"]
+            "niv1" :["panneau","panneau"],
+            "niv2" :["panneau","panneau"],
+            "niv3" :["panneau","panneau"]
                   },
             "dir" : "recette_zero"
               },
+            "texte_retour_lonono" : {
+              "_x" : 0,
+              "_y" : window.innerHeight- window.innerHeight/8,
+              "nature" : "text",
+              "couleur" : "#333",
+              "police" : "Arial",
+              "taille_police1" : "20",
+              "text" : "retour",
+              "valeur_a_afficher" : "",
+              "alignement" : "ref",
+              "reference" : "retour_lonono"
+              },
             "retour_lonono" : {
             "_x" : 0,
-            "_y" : window.innerHeight- window.innerHeight/10,
-            "_width" : window.innerWidth/3,
-            "_height" : window.innerHeight/10,
+            "_y" : window.innerHeight- window.innerHeight/8,
+            "_width" : window.innerWidth/5,
+            "_height" : window.innerHeight/8,
             "ombre" : "draw",
             "couleur" : "red",
             "nature" : "image",
             "lien" : "oui",
             "ordre" : 2,
             "loc" : {
-            "niv1" :["kiwi","kiwi"],
-            "niv2" :["kiwi","kiwi"],
-            "niv3" :["kiwi","kiwi"]
+            "niv1" :["panneau","panneau"],
+            "niv2" :["panneau","panneau"],
+            "niv3" :["panneau","panneau"]
                   },
             "dir" : "retour_lonono"
             },
@@ -594,7 +795,8 @@ var data_interface = {
                 "taille_police1" : "20",
                 "text" : "",
                 "valeur_a_afficher" : "lonono_mix_ressource",
-                "alignement" : "left"
+                "alignement" : "left",
+                "reference" : ""
 
             },
             "mix_droite" : {
@@ -606,7 +808,8 @@ var data_interface = {
                 "taille_police1" : "20",
                 "text" : "",
                 "valeur_a_afficher" : "lonono_mix_plat",
-                "alignement" : "end"
+                "alignement" : "end",
+                "reference" : ""
                     }
               }
         },
@@ -660,7 +863,8 @@ var data_interface = {
                   "taille_police1" : "20",
                   "text" : "titre",
                   "valeur_a_afficher" : "",
-                  "alignement" : "centrage2"
+                  "alignement" : "centrage2",
+                  "reference" : ""
                 }
           }
     },
@@ -715,22 +919,35 @@ var data_interface = {
               "taille_police1" : "20",
               "text" : "titre",
               "valeur_a_afficher" : "",
-              "alignement" : "centrage2"
+              "alignement" : "centrage2",
+              "reference" : ""
             },
+            "texte_retour" : {
+                "_x" : 0,
+                "_y" : window.innerHeight- window.innerHeight/8,
+                "nature" : "text",
+                "couleur" : "#333",
+                "police" : "Arial",
+                "taille_police1" : "20",
+                "text" : "retour",
+                "valeur_a_afficher" : "",
+                "alignement" : "ref",
+                "reference" : "retour"
+                    },
             "retour" : {
               "_x" : 0,
               "_y" : window.innerHeight- window.innerHeight/10,
-              "_width" : window.innerWidth/3,
-              "_height" : window.innerHeight/10,
+              "_width" : window.innerWidth/5,
+              "_height" : window.innerHeight/8,
               "ombre" : "draw",
               "couleur" : "red",
               "nature" : "image",
               "lien" : "oui",
               "ordre" : 2,
               "loc" : {
-              "niv1" :["kiwi","kiwi"],
-              "niv2" :["kiwi","kiwi"],
-              "niv3" :["kiwi","kiwi"]
+              "niv1" :["panneau","panneau"],
+              "niv2" :["panneau","panneau"],
+              "niv3" :["panneau","panneau"]
                     },
               "dir" : "foret_supr"
               }
@@ -752,7 +969,7 @@ var data_interface = {
             "couleur_bouton_actif" : "red",
             "couleur_bouton_click" : "white",
             "temps_entre_refresh" : 50,
-            "intervalle_minimal" : 0.8,
+            "intervalle_minimal" : 0.6,
             "_x_score" : window.innerWidth/10,
             "_width_score" : window.innerWidth/4,
             "_height_score" : window.innerWidth/20,
@@ -788,22 +1005,35 @@ var data_interface = {
                     "taille_police1" : "20",
                     "text" : "titre",
                     "valeur_a_afficher" : "",
-                    "alignement" : "centrage2"
+                    "alignement" : "centrage2",
+                    "reference" : ""
                   },
+                  "texte_retour_lac" : {
+                      "_x" : 0,
+                      "_y" : window.innerHeight- window.innerHeight/8,
+                      "nature" : "text",
+                      "couleur" : "#333",
+                      "police" : "Arial",
+                      "taille_police1" : "20",
+                      "text" : "retour_lac",
+                      "valeur_a_afficher" : "",
+                      "alignement" : "ref",
+                      "reference" : "retour_lac"
+                          },
                   "retour_lac" : {
                     "_x" : 0,
                     "_y" : window.innerHeight- window.innerHeight/10,
-                    "_width" : window.innerWidth/3,
-                    "_height" : window.innerHeight/10,
+                    "_width" : window.innerWidth/5,
+                    "_height" : window.innerHeight/8,
                     "ombre" : "draw",
                     "couleur" : "red",
                     "nature" : "image",
                     "lien" : "oui",
                     "ordre" : 2,
                     "loc" : {
-                    "niv1" :["kiwi","kiwi"],
-                    "niv2" :["kiwi","kiwi"],
-                    "niv3" :["kiwi","kiwi"]
+                    "niv1" :["panneau","panneau"],
+                    "niv2" :["panneau","panneau"],
+                    "niv3" :["panneau","panneau"]
                           },
                     "dir" : "foret_supr"
                   },
@@ -860,7 +1090,8 @@ var data_interface = {
                       "taille_police1" : "20",
                       "text" : "titre",
                       "valeur_a_afficher" : "",
-                      "alignement" : "centrage2"
+                      "alignement" : "centrage2",
+                      "reference" : ""
                     },
                     "retour_meme" : {
                       "_x" : 0,
@@ -957,7 +1188,8 @@ var data_interface = {
                       "taille_police1" : "20",
                       "text" : "titre",
                       "valeur_a_afficher" : "",
-                      "alignement" : "centrage2"
+                      "alignement" : "centrage2",
+                      "reference" : ""
                     },
                     "retour_synthese" : {
                       "_x" : 0,
@@ -985,7 +1217,8 @@ var data_interface = {
                       "taille_police1" : "20",
                       "text" : "soustitre1",
                       "valeur_a_afficher" : "",
-                      "alignement" : "left"
+                      "alignement" : "left",
+                      "reference" : ""
                     },
                     "soustitre2" : {
                       "_x" : 20,
@@ -996,7 +1229,8 @@ var data_interface = {
                       "taille_police1" : "20",
                       "text" : "soustitre2",
                       "valeur_a_afficher" : "",
-                      "alignement" : "left"
+                      "alignement" : "left",
+                      "reference" : ""
                     },
                     "soustitre3" : {
                       "_x" : 20,
@@ -1007,7 +1241,8 @@ var data_interface = {
                       "taille_police1" : "20",
                       "text" : "soustitre3",
                       "valeur_a_afficher" : "",
-                      "alignement" : "left"
+                      "alignement" : "left",
+                      "reference" : ""
                     },
 
               }
@@ -1043,7 +1278,8 @@ var data_interface = {
                         "taille_police1" : "20",
                         "text" : "titre",
                         "valeur_a_afficher" : "",
-                        "alignement" : "centrage2"
+                        "alignement" : "centrage2",
+                        "reference" : ""
                       },
                       "retour_victoire" : {
                         "_x" : 0,
@@ -1095,7 +1331,8 @@ var data_interface = {
                           "taille_police1" : "20",
                           "text" : "titre2",
                           "valeur_a_afficher" : "",
-                          "alignement" : "centrage"
+                          "alignement" : "centrage",
+                          "reference" : ""
                         },
                         "retour_credit" : {
                           "_x" : 0,

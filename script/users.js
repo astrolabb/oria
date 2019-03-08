@@ -14,6 +14,8 @@ var Player = function (){
   this.jardin_date_lance_roue = 0;
   // propriete poubelle : malus utilisé dans la section jardin pour les chances de gagner à la roue de la fortune
   this.jardin_poubelle = 0;
+  // propriété servant à stocker le pseudo du joueur
+  this.pseudo = "";
 }
 
 Player.prototype.setup = function (data_equilibrage)

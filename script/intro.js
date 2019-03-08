@@ -14,8 +14,9 @@ var Intro = function(monCanvas, _target, data_interface){
         });
         Object.keys(data_interface.introduction.elements).forEach(function(key) {
             console.log(key+" "+data_interface.introduction.elements[key]);
+            console.log(data_interface.introduction.elements[key].reference+" "+data_interface.introduction.elements[data_interface.introduction.elements[key].reference]);
             if(data_interface.introduction.elements[key].nature == "text"){
-                self[key] = new Text_affichage(monCanvas, data_interface.introduction.elements[key], key, data_interface.introduction.maxWidth_text, data_interface.introduction.lineHeight, _target.data_texte.intro);
+                self[key] = new Text_affichage(monCanvas, data_interface.introduction.elements[key], key, data_interface.introduction.maxWidth_text, data_interface.introduction.lineHeight, _target.data_texte.intro, data_interface.introduction.elements[key].reference=="" ? "" : data_interface.introduction.elements[data_interface.introduction.elements[key].reference]);
                 _target.arrayOfGameObjects.push([key,"text",self[key]]);
             }
         });

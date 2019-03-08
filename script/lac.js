@@ -49,7 +49,7 @@ var Lac = function(monCanvas, _target, data_interface, key, data, scene, ressour
   Object.keys(data_interface.elements).forEach(function(key) {
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "text"){
-          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.lac);
+          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.lac, data_interface.elements[key].reference=="" ? "" : data_interface.elements[data_interface.elements[key].reference]);
           _target.arrayOfGameObjects.push([key,"text",self[key]]);
       }
   });
@@ -208,9 +208,10 @@ Lac.prototype.calcul_anim = function(temps){
   var g;
   for(i=0; i<this.interface.nombre_colonne; i++){
       if(this["bouton_"+i].couleur==this.interface.couleur_bouton_actif){
-        g = 2*this.interface.hauteur_colonne/(this.mon_intervalle*this.mon_intervalle);
+        // @var g variable d'accelération : on peut moduler la chute en augmentant la puissance de this.mon_intervalle defini à 4 par défaut
+          g = 2*this.interface.hauteur_colonne/(this.mon_intervalle*this.mon_intervalle*this.mon_intervalle*this.mon_intervalle);
   //      this["ressource_"+i]._y = this.interface.marge_haut+((temps-this.temps_ecoule)/this.mon_intervalle)*this.interface.hauteur_colonne;
-          this["ressource_"+i]._y = this.interface.marge_haut+(0.5*g*(temps-this.temps_ecoule)*(temps-this.temps_ecoule));
+          this["ressource_"+i]._y = this.interface.marge_haut+(0.5*g*(temps-this.temps_ecoule)*(temps-this.temps_ecoule)*(temps-this.temps_ecoule)*(temps-this.temps_ecoule));
       }else{
         this["ressource_"+i]._y = -this["ressource_"+i]._height;
       }
@@ -233,7 +234,8 @@ timer contenant requestAnimationFrame
   if(this.mon_intervalle==0){
     // on en crée un d'un valeur random et dont le max est this.duree_timer
     this.mon_intervalle = Math.random()*this.duree_timer;
-    while(this.mon_intervalle < this.interface.intervalle_minimal){
+
+    while(this.mon_intervalle < (this.interface.intervalle_minimal*1000)){
       this.mon_intervalle = Math.random()*this.duree_timer;
     }
   }

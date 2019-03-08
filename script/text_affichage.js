@@ -1,4 +1,11 @@
-var Text_affichage = function(monCanvas, data_texte, nom, maxWidth, lineHeight, mon_texte){
+/**
+Text_affichage : classe d'affichage du texte
+@param monCanvas : Canevas où afficher le texte
+
+@param reference : référence de l'éléement sur lequel aligner le texte
+*/
+
+var Text_affichage = function(monCanvas, data_texte, nom, maxWidth, lineHeight, mon_texte, reference){
   this.monCanvas = monCanvas;
   this._x = data_texte._x;
   this._y = data_texte._y + lineHeight;
@@ -13,17 +20,28 @@ var Text_affichage = function(monCanvas, data_texte, nom, maxWidth, lineHeight, 
   this.lineHeight = lineHeight;
   this.font = format_police(data_texte.taille_police1, data_texte.police);
   this.fillStyle = data_texte.couleur;
-  this.alignement = data_texte.alignement
+  this.alignement = data_texte.alignement;
+  this.reference = reference;
+  console.log("this.reference "+JSON.stringify(this.reference));
 }
+/**
+
+*/
 
 Text_affichage.prototype.setup = function(text){
+  console.log("this.reference2 "+JSON.stringify(this.reference));
+  var ma_ref_x = (this.reference=="" ? 0 : this.reference._x);
+  var ma_ref_y = (this.reference=="" ? 0 : this.reference._y);
+  var ma_ref_width = (this.reference=="" ? 0 : this.reference._width);
+  var ma_ref_height = (this.reference=="" ? 0 : this.reference._height);
+
   if(this.alignement=="centrage2"){
     var _x = window.innerWidth/2;
     var _y = this._y;
     this.text_alignement(text,"center", _x, _y);
   }else if(this.alignement=="left"){
-    var _x = this._x;
-    var _y = this._y;
+    var _x = this._x + ma_ref_x;
+    var _y = (ma_ref_y==0 ? this._y : ma_ref_y);
     this.text_alignement(text,"left", _x, _y);
   }else if(this.alignement=="centrage3"){
     var _x = this._x;
@@ -35,6 +53,11 @@ Text_affichage.prototype.setup = function(text){
     this.text_alignement(text,"end", _x, _y);
   }else if(this.alignement=="centrage"){
     this.centrage(text);
+  }else if(this.alignement=="ref"){
+    var _x = ma_ref_x + ma_ref_width/2;
+    var _y = ma_ref_y + ma_ref_height/2;;
+    this.monCanvas.textAlign="center";
+    this.affichage(text, _x, _y);
   }else{
     this.affichage(text, this._x, this._y);
   }

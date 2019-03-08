@@ -4,7 +4,7 @@
   "meme_algo" : {
     "1" : {
       "nb_colonne" : 3,
-      "temps_affichage" : 3000,
+      "temps_affichage" : 10000,
       "choix_ressource_case" : 4
     },
     "2" : {
@@ -23,7 +23,7 @@
       "duree" : 30,
       "bonus" : 1,
       "malus" : 0,
-      "base_temps" : 2,
+      "base_temps" : 1.5,
       "gain" : {
         "eau" : [1,3],
         "poisson" : [1,6]
@@ -307,6 +307,29 @@
         "or" : -1,
         "cat" : "ressource"
       },
+      "sceau" : {
+        "origin" : {
+          "lonono" : 2
+        },
+        "nom" : "sceau",
+        "niv" : 2,
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : 10,
+        "_height" : 10,
+        "ombre" : "draw_ombre",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["sceau","sceau"],
+          "niv2" :["sceau","sceau"],
+          "niv3" :["sceau","sceau"]
+          },
+        "dir" : "vente",
+        "or" : -1,
+        "cat" : "ressource"
+      },
       "bois_sculpte" : {
         "origin" : {
           "foret" : 3,
@@ -369,9 +392,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["plante","plante"],
+          "niv2" :["plante","plante"],
+          "niv3" :["plante","plante"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -392,9 +415,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["limace","limace"],
+          "niv2" :["limace","limace"],
+          "niv3" :["limace","limace"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -415,9 +438,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["cereales","cereales"],
+          "niv2" :["cereales","cereales"],
+          "niv3" :["cereales","cereales"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -438,9 +461,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["fleur","fleur"],
+          "niv2" :["fleur","fleur"],
+          "niv3" :["fleur","fleur"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -461,9 +484,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["legumes","legumes"],
+          "niv2" :["legumes","legumes"],
+          "niv3" :["legumes","legumes"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -484,9 +507,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["fruit","fruit"],
+          "niv2" :["fruit","fruit"],
+          "niv3" :["fruit","fruit"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -507,9 +530,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["graine_magique","graine_magique"],
+          "niv2" :["graine_magique","graine_magique"],
+          "niv3" :["graine_magique","graine_magique"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -530,9 +553,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["eau","eau"],
+          "niv2" :["eau","eau"],
+          "niv3" :["eau","eau"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -553,9 +576,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["poisson","poisson"],
+          "niv2" :["poisson","poisson"],
+          "niv3" :["poisson","poisson"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -576,9 +599,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["crevette","crevette"],
+          "niv2" :["crevette","crevette"],
+          "niv3" :["crevette","crevette"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -599,9 +622,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["crabe","crabe"],
+          "niv2" :["crabe","crabe"],
+          "niv3" :["crabe","crabe"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -622,9 +645,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["homard","homard"],
+          "niv2" :["homard","homard"],
+          "niv3" :["homard","homard"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -645,9 +668,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["pieuvre","pieuvre"],
+          "niv2" :["pieuvre","pieuvre"],
+          "niv3" :["pieuvre","pieuvre"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -668,9 +691,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["onion","onion"],
-          "niv2" :["onion","onion"],
-          "niv3" :["onion","onion"]
+          "niv1" :["sirene","sirene"],
+          "niv2" :["sirene","sirene"],
+          "niv3" :["sirene","sirene"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -691,9 +714,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["paille","paille"],
+          "niv2" :["paille","paille"],
+          "niv3" :["paille","paille"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -714,9 +737,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["ver_de_terre","ver_de_terre"],
+          "niv2" :["ver_de_terre","ver_de_terre"],
+          "niv3" :["ver_de_terre","ver_de_terre"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -737,9 +760,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["kiwi","kiwi"],
-          "niv2" :["kiwi","kiwi"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["ex______","ex______"],
+          "niv2" :["ex______","ex______"],
+          "niv3" :["ex______","ex______"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -783,9 +806,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["engrais","engrais"],
+          "niv2" :["engrais","engrais"],
+          "niv3" :["engrais","engrais"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -829,9 +852,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["corde","corde"],
+          "niv2" :["corde","corde"],
+          "niv3" :["corde","corde"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -852,9 +875,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["metal","metal"],
+          "niv2" :["metal","metal"],
+          "niv3" :["metal","metal"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -875,9 +898,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["fil","fil"],
+          "niv2" :["fil","fil"],
+          "niv3" :["fil","fil"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -898,9 +921,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["roue","roue"],
+          "niv2" :["roue","roue"],
+          "niv3" :["roue","roue"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -921,9 +944,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["scie","scie"],
+          "niv2" :["scie","scie"],
+          "niv3" :["scie","scie"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -944,9 +967,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["sable","sable"],
+          "niv2" :["sable","sable"],
+          "niv3" :["sable","sable"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -967,9 +990,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["haricot_magique","haricot_magique"],
+          "niv2" :["haricot_magique","haricot_magique"],
+          "niv3" :["haricot_magique","haricot_magique"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -990,9 +1013,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["verre","verre"],
+          "niv2" :["verre","verre"],
+          "niv3" :["verre","verre"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -1013,9 +1036,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["appat","appat"],
+          "niv2" :["appat","appat"],
+          "niv3" :["appat","appat"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -1036,9 +1059,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["femme","femme"],
+          "niv2" :["femme","femme"],
+          "niv3" :["femme","femme"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -1059,9 +1082,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["arc_en_ciel","arc_en_ciel"],
+          "niv2" :["arc_en_ciel","arc_en_ciel"],
+          "niv3" :["arc_en_ciel","arc_en_ciel"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -1082,9 +1105,9 @@
         "lien" : "oui",
         "ordre" : 2,
         "loc" : {
-          "niv1" :["carrot","carrot"],
-          "niv2" :["carrot","carrot"],
-          "niv3" :["carrot","carrot"]
+          "niv1" :["pays_imaginaire","pays_imaginaire"],
+          "niv2" :["pays_imaginaire","pays_imaginaire"],
+          "niv3" :["pays_imaginaire","pays_imaginaire"]
           },
         "dir" : "vente",
         "or" : -1,
@@ -1093,12 +1116,12 @@
 
   },
   "ressource_demarrage" : {
-    "herbe" : 2,
-    "branche" : 51,
-    "billette" : 3,
-    "rondin" : 21,
-    "planche" : 311,
-    "bois_sculpte" : 107,
+    "herbe" : 0,
+    "branche" : 0,
+    "billette" : 0,
+    "rondin" : 0,
+    "planche" : 0,
+    "bois_sculpte" : 0,
     "licorne" : 0,
     "plante" : 0,
     "limace" : 0,
@@ -1114,18 +1137,18 @@
     "homard" : 0,
     "pieuvre" : 0,
     "sirene" : 0,
-    "paille" : 61,
-    "ver_de_terre" : 16,
-    "ex______" : 151,
-    "graine" : 101,
+    "paille" : 0,
+    "ver_de_terre" : 0,
+    "ex______" : 0,
+    "graine" : 0,
     "engrais" : 0,
-    "pierre" : 101,
-    "sceau" : 2,
+    "pierre" : 0,
+    "sceau" : 0,
     "corde" : 0,
     "metal" : 0,
     "fil" : 0,
-    "roue" : 9,
-    "scie" : 3,
+    "roue" : 0,
+    "scie" : 0,
     "sable" : 0,
     "haricot_magique" : 0,
     "verre" : 101,
@@ -1133,24 +1156,24 @@
     "femme" : 0,
     "arc_en_ciel" : 0,
     "pays_imaginaire" : 0,
-    "nb_objet" : 24
+    "nb_objet" : 0
   },
   "plat_demarrage" : {
-    "cereale_soufflee" : 5,
+    "cereale_soufflee" : 0,
     "caviar" : 0,
     "huile" : 0,
     "jus_de_fruit" : 0,
     "riz" : 0,
-    "bouillon" : 2,
+    "bouillon" : 0,
     "sushi" : 0,
     "frite" : 0,
     "saumon_citronne" : 0,
     "miel" : 0,
     "pop_corn_caramelise" : 0,
-    "crabe_marine" : 4,
+    "crabe_marine" : 0,
     "sauce" : 0,
     "the" : 0,
-    "maki" : 8,
+    "maki" : 0,
     "salade_de_fruit" : 0,
     "crevette_sautee" : 0,
     "homard_royal" : 0
@@ -1188,6 +1211,7 @@
     "billette" : 1,
     "rondin" : 1,
     "planche" : 1,
+    "sceau" : 1,
     "bois_sculpte" : 1,
     "licorne" : 1,
     "plante" : 1,

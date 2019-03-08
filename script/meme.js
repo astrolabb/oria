@@ -40,7 +40,7 @@ var Meme = function(monCanvas, _target, data_interface, key, data, scene, ressou
   Object.keys(data_interface.elements).forEach(function(key) {
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "text"){
-          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.meme);
+          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.meme, data_interface.elements[key].reference=="" ? "" : data_interface.elements[data_interface.elements[key][reference]]);
           _target.arrayOfGameObjects.push([key,"text",self[key]]);
       }
   });
@@ -72,12 +72,13 @@ Meme.prototype.melanger_ressource = function(tableau_ressource){
   this.melange_ressource = [];
   for(i=0; i<this.color_array.length ; i++){
     this.melange_ressource[i] = [];
-    for(j=0; j<this.algo.choix_ressource_case ; j++){
+    this.melange_ressource[i][0];
+    for(j=1; j<=this.algo.choix_ressource_case ; j++){
       this.melange_ressource[i][j] = tableau_ressource[Math.floor(Math.random()*tableau_ressource.length)];
     }
   }
   for(i=0; i<this.color_array.length ; i++){
-    this.melange_ressource[i][Math.floor(Math.random()*this.algo.choix_ressource_case)] = this.table_couleur_image[this.color_array[i]];
+    this.melange_ressource[i][Math.floor(Math.random()*this.algo.choix_ressource_case)+1] = this.table_couleur_image[this.color_array[i]];
   }
 
 }
@@ -192,8 +193,8 @@ Meme.prototype.click = function(abs, ord){
       this.ma_case(case_y,case_x, taille_case, coord_premiere_case, ma_couleur);
 
       this.tableau_click[case_y][case_x]++;
-      if(this.tableau_click[case_y][case_x]>=this.algo.choix_ressource_case){
-        this.tableau_click[case_y][case_x] = 0;
+      if(this.tableau_click[case_y][case_x]>this.algo.choix_ressource_case){
+        this.tableau_click[case_y][case_x] = 1;
       }
       var ressource_affichee = this.melange_ressource[(case_y*this.algo.nb_colonne)+case_x][this.tableau_click[case_y][case_x]];
       console.log("ressource_affichee "+ressource_affichee);

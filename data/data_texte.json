@@ -1,18 +1,28 @@
 var data_texte = {
   "intro" : {
     "titre" : "lonnono warrior challenge maxi troll 2",
-    "texte" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+    "texte" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+    "bouton" : "start",
+    "bouton2" : "crédit",
+    "bouton3" : "charger partie"
   },
+  "saisie_nom" : {
+        "titre" : "Entrez votre pseudo",
+        "sous_titre" : "Tapez directement sur le clavier",
+        "bouton" : "Valider"
+        },
   "map" : {
       "niveau" : "Vous avez débloqué un nouveau niveau",
-      "jardin_fin" : "Vous avez gagné une ressource :"
+      "jardin_fin" : "Vous avez gagné une ressource :",
+      "sauvegarde" : "sauvegarder"
       },
   "village" : {
       "achat" : "ressource achetée",
       "plat" : "plat vendu",
       "titre" : "Le Marché",
       "soustitreg" : "Vendre vos plats",
-      "soustitred" : "Acheter des ressources"
+      "soustitred" : "Acheter des ressources",
+      "retour" : "retour"
     },
   "lonono" : {
     "pas_de_selection" : "Vous n'avez sélectionné de ressource pour le moment",
@@ -21,6 +31,9 @@ var data_texte = {
     "reussite" : "Vous avez obtenu :",
     "plat" : "plat vendu",
     "titre" : "Le lonono",
+    "retour" : "Retour",
+    "recette_zero" : "désectionner",
+    "validation_recette" : "Utiliser",
     "titre2" : "Choisir des ressources à donner au lonono",
     "soustitreg" : "Pour trouver de nouvelles ressources",
     "soustitred" : "Pour la fabrication de plats"
@@ -34,14 +47,16 @@ var data_texte = {
     "timer" : "timer",
     "echec" : "Votre score ne vous permet pas d'obtenir une ressource",
     "reussite" : "Félicitations : Vous avez obtenu : ",
-    "titre" : "La forêt"
+    "titre" : "La forêt",
+    "retour" : "retour"
   },
   "lac" : {
     "score" : "score",
     "timer" : "timer",
     "echec" : "Votre score ne vous permet pas d'obtenir une ressource",
     "reussite" : "Félicitations : Vous avez obtenu : ",
-    "titre" : "Le lac"
+    "titre" : "Le lac",
+    "retour_lac" : "retour"
 
   },
   "meme" : {

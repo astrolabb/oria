@@ -91,13 +91,14 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
   *
   * @return {[type]} [description]
   */
-  GameManager.prototype.affichage_click_zone = function ()
+  GameManager.prototype.affichage_click_zone = function (variable)
    {
      console.log("affichage_click_zone");
      console.log("arrayOfGameObjects2 : "+JSON.stringify(this.arrayOfGameObjects2));
        for (var i in this.arrayOfGameObjects2) {
          console.log("object_fusionne2 "+this.arrayOfGameObjects2[i]);
-           this.canvas_hit[this.arrayOfGameObjects2[i]].draw(this.monCanvas_click);
+         this.canvas_hit[this.arrayOfGameObjects2[i]].draw(this.monCanvas_click);
+
     // this.canvas_hit[this.arrayOfGameObjects2[i]].draw(this.monCanvas);
 
        }
@@ -185,7 +186,15 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
     if(!this.mon_Interval){
       this.mon_Interval = setInterval( function() {
         self.map.bouge_meme();
-        self.affichage_map();}, 3000);
+        self.affichage_map();
+        object_fusionne["meme"]._x = self.map.meme._x;
+        object_fusionne["meme"]._y = self.map.meme._y;
+        self.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        self.monCanvas_click.beginPath();
+        self.canvas_hit = new Gameplay(self.monCanvas_click, self, object_fusionne, "map");
+        self.affichage_click_zone();
+        self.monCanvas_click.closePath();
+      }, 3000);
     }
   }
 }
@@ -449,6 +458,8 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
         console.log("sauvegarde en cours");
         self = this;
         try{
+        localStorage.removeItem("pseudo");
+        localStorage.setItem("niveau",JSON.stringify(this.mon_Player.pseudo));
         localStorage.removeItem("niveau");
         localStorage.removeItem("ressource");
         localStorage.removeItem("plat");
@@ -463,6 +474,33 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
           this.popup("setup2", "", "", "sauvegarde", "nonsauvegarde");
         }
       }
+    /**
+    prototype enregistrement_nom
+    enregistre le nom du joueur en variable globale et envoie le joueur sur la carte générale
+
+    @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+    @param data : propriété du object-bouton cliqué
+    @param scene : frame dans lequel le bouton est cliqué
+
+    */
+    GameManager.prototype.enregistrement_nom = function (key, data, scene)
+     {
+       console.log("enregistrement du pseudo");
+       self = this;
+       this.mon_Player.pseudo = this.ma_saisie.mon_champ.value;
+       //ferme toutes les animations, les retardateurs et les timers
+       console.log("mon pseudo "+this.mon_Player.pseudo);
+       // on supprime le champ de saisie
+       document.body.removeChild(this.ma_saisie.mon_champ);
+       this.stop_animation();
+       $("#monCanvas").addClass("niveau_de_gris mon_fadein");
+       $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+            $("#monCanvas").removeClass("niveau_de_gris mon_fadein");
+            self.setup2(key, data, scene);
+
+       });
+     }
+
   /**
   * blanchi le canvas vu par le joueur en js
   @todo supprimer cette fonction si ne sert pas
@@ -1039,6 +1077,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     delete this.ma_foret;
     delete this.mon_carrelage;
     delete this.ma_synthese;
+    delete this.ma_saisie;
   }
   /**
   Prototype lac
@@ -1415,6 +1454,8 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
       if(!localStorage.getItem("niveau")){
         this.popup("setup2", "", "", "sauvegarde", "nonchargement");
       }else{
+
+        this.mon_Player.pseudo = JSON.parse(localStorage.getItem("pseudo"));
         this.mon_Player.niveau = JSON.parse(localStorage.getItem("niveau"));
         this.mon_Player.ressource = JSON.parse(localStorage.getItem("ressource"));
         this.mon_Player.plat = JSON.parse(localStorage.getItem("plat"));
@@ -1424,4 +1465,73 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
       this.popup("setup2", "", "", "sauvegarde", "nonchargement");
     }
 
+  }
+  /**
+  prototype saisie_nom
+  Permet au joueur d'enregistrer un pseudo
+
+  @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+  @param data : propriété du object-bouton cliqué
+  @param scene : frame dans lequel le bouton est cliqué
+
+  */
+  GameManager.prototype.saisie_nom = function(key, data, scene){
+      var self = this;
+      //ferme toutes les animations, les retardateurs et les timers
+      this.stop_animation();
+
+      // tableau contenant les objects affichés à l'écran : (fond, bouton navigation, score)
+      // structure [key, categorie String("image ou "texte)]
+      this.arrayOfGameObjects = [];
+      this.arrayOfGameObjects2 = [];
+      this.arrayOfClickObjects = {};
+
+      console.log("affichage nombre objets découverts "+this.mon_Player.ressource.nb_objet);
+      this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      this.monCanvas.beginPath();
+      this.ma_saisie = new Saisie_nom(this.monCanvas, self, this.data_interface.saisie_nom);
+
+      this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
+
+      this.affichage_saisie_nom(key, data, scene);
+
+      this.ma_saisie.mon_champ_saisie(this.data_interface.saisie_nom);
+
+
+      this.click_canvas();
+      this.monCanvas.closePath();
+
+      this.monCanvas_click.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      this.monCanvas_click.beginPath();
+
+      var object_fusionne = {};
+      $.extend( object_fusionne, this.data_interface.saisie_nom.elements);
+
+
+      // mise en place des zones à cliquer
+      this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne, "saisie_nom");
+      // affichage des zones à cliquer
+      this.affichage_click_zone();
+      this.monCanvas_click.closePath();
+
+  }
+  /**
+  Prototype affichage_saisie_nom
+
+  @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+  @param data : propriété du object-bouton cliqué
+  @param scene : frame dans lequel le bouton est cliqué
+
+  */
+  GameManager.prototype.affichage_saisie_nom = function(key, data, scene){
+    console.log("affichage_saisie_nom : saisie du pseudo");
+    this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      for (var i in this.arrayOfGameObjects) {
+          if(this.arrayOfGameObjects[i][1]=="text"){
+            this.arrayOfGameObjects[i][2].setup((this.arrayOfGameObjects[i][2].text=="" ? this.mon_Player[this.arrayOfGameObjects[i][2].valeur_a_afficher] : this.arrayOfGameObjects[i][2].text));
+          }else if(this.arrayOfGameObjects[i][1]=="image"){
+            this.arrayOfGameObjects[i][2][this.arrayOfGameObjects[i][2].ombre](this.monCanvas);
+
+          }
+      }
   }

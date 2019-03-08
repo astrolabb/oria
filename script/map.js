@@ -11,7 +11,7 @@ var Map = function(monCanvas, _target, data_interface){
   Object.keys(data_interface.elements).forEach(function(key) {
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "text"){
-          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.map);
+          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.map, data_interface.elements[key].reference=="" ? "" : data_interface.elements[data_interface.elements[key].reference]);
           _target.arrayOfGameObjects.push([key,"text",self[key]]);
       }
   });
@@ -111,7 +111,7 @@ console.log("valeur_a_afficher du texte sur icone "+object_fusionne[this.key]);
     "alignement" : this._target.data_interface.village.elements.texte_icone.alignement
 
   };
-  this.texte_dessus = new Text_affichage(this.monCanvas, data_texte, "", 0, 0, false);
+  this.texte_dessus = new Text_affichage(this.monCanvas, data_texte, "", 0, 0, false, "");
   this.texte_dessus.setup(data_texte.text);
 }
 Icone.prototype.draw = function(mon_alpha, key){
