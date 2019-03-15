@@ -65,7 +65,9 @@ var data_texte = {
     "erreur" : "erreur",
     "amorce1" : " Pour fabriquer : ",
     "amorce2" : " Il faut mélanger : ",
-    "titre" : "La Mamie"
+    "titre" : "La Mamie",
+    "retour_meme" : "retour",
+    "validation_meme" : "validation"
   },
   "synthese" : {
     "titre" : "Synthèse des niveaux",

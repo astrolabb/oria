@@ -1093,6 +1093,18 @@ var data_interface = {
                       "alignement" : "centrage2",
                       "reference" : ""
                     },
+                    "texte_retour_meme" : {
+                        "_x" : 0,
+                        "_y" : window.innerHeight- window.innerHeight/8,
+                        "nature" : "text",
+                        "couleur" : "#333",
+                        "police" : "Arial",
+                        "taille_police1" : "20",
+                        "text" : "retour_meme",
+                        "valeur_a_afficher" : "",
+                        "alignement" : "ref",
+                        "reference" : "retour_meme"
+                            },
                     "retour_meme" : {
                       "_x" : 0,
                       "_y" : window.innerHeight- window.innerHeight/10,
@@ -1104,9 +1116,9 @@ var data_interface = {
                       "lien" : "oui",
                       "ordre" : 2,
                       "loc" : {
-                      "niv1" :["kiwi","kiwi"],
-                      "niv2" :["kiwi","kiwi"],
-                      "niv3" :["kiwi","kiwi"]
+                        "niv1" :["panneau","panneau"],
+                        "niv2" :["panneau","panneau"],
+                        "niv3" :["panneau","panneau"]
                             },
                       "dir" : "setup2"
                     },
@@ -1127,6 +1139,18 @@ var data_interface = {
                             },
                       "dir" : "setup2"
                     },
+                    "texte_validation" : {
+                        "_x" : 0,
+                        "_y" : window.innerHeight- window.innerHeight/8,
+                        "nature" : "text",
+                        "couleur" : "#333",
+                        "police" : "Arial",
+                        "taille_police1" : "20",
+                        "text" : "validation_meme",
+                        "valeur_a_afficher" : "",
+                        "alignement" : "ref",
+                        "reference" : "validation_meme"
+                            },
                     "validation_meme" :{
                       "_x" : window.innerWidth-window.innerWidth/3,
                       "_y" : window.innerHeight- window.innerHeight/10,
@@ -1138,9 +1162,9 @@ var data_interface = {
                       "lien" : "oui",
                       "ordre" : 2,
                       "loc" : {
-                      "niv1" :["tomato","tomato"],
-                      "niv2" :["tomato","tomato"],
-                      "niv3" :["tomato","tomato"]
+                      "niv1" :["panneau","panneau"],
+                      "niv2" :["panneau","panneau"],
+                      "niv3" :["panneau","panneau"]
                             },
                       "dir" : "valid_meme"
                     }

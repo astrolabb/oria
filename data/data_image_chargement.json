@@ -65,6 +65,25 @@ var data_image_chargement = {
 "verre" : "./image/verre.png",
 "pays_imaginaire" : "./image/pays_imaginaire.png",
 "panneau" : "./image/panneau.png",
-"up" : "./image/up.png"
+"up" : "./image/up.png",
+"cereale_soufflee" : "./image/cereale_souffle.png",
+"caviar" : "./image/caviar.png",
+"huile" : "./image/huile.png",
+"jus_de_fruit" : "./image/jus_de_fruit.png",
+"riz" : "./image/riz.png",
+"bouillon" : "./image/bouillon.png",
+"sushi" : "./image/sushi.png",
+"frite" : "./image/frite.png",
+"saumon_citronne" : "./image/saumon_citronne.png",
+"miel" : "./image/miel.png",
+"pop_corn_caramelise" : "./image/pop_corn_caramelise.png",
+"crabe_marine" : "./image/crabe_marine.png",
+"sauce" : "./image/sauce.png",
+"the" : "./image/the.png",
+"maki" : "./image/maki.png",
+"salade_de_fruit" : "./image/salade_de_fruit.png",
+"crevette_sautee" : "./image/crevette_sautee.png",
+"homard_royal" : "./image/homard_royal.png"
+
 
 }
