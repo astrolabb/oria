@@ -4,9 +4,10 @@ fonction de lancement du jeu
 @param data_interface : Object : toutes les donnees de l'interface provenant de data_interface.json
 @param data_equilibrage : Object : toutes les données d'équilibrage provenant de equilibrage_url
 @param data_image_chargee : Object : object contenant les contextes des images chargées
+@param data_son_charge : Object : object  contenant les contextes des sons chargés
 
 */
-function Main(data_interface, data_equilibrage, data_image_chargee){
+function Main(data_interface, data_equilibrage, data_image_chargee, data_son_charge){
 
   console.log("fonction Main");
 
@@ -28,7 +29,7 @@ function Main(data_interface, data_equilibrage, data_image_chargee){
   // initialisation du joueur
   mon_Player.setup(data_equilibrage);
   // démarrage du gestionnaire de jeu : images/click
-  var mon_GameManager = new GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player, data_texte);
+  var mon_GameManager = new GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player, data_texte, data_son_charge);
   // lancement du menu d'accueil : prototype : setup
   mon_GameManager.setup("", "{}", "demarrage");
 

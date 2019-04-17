@@ -10,9 +10,10 @@ exemple : positionnement image / écouteurs des clicks /
 @param data_image_chargee Object contenant tous les contextes des images chargées
 @param mon_Player Object classe contenant les paramètres du joueur : score, ressources
 @param data_texte Object contenant les textes à afficher dans les popups
+@param data_son_charge Object contenant tous les contextes des sons chargés
 */
 
-function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player, data_texte)
+function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player, data_texte, data_son_charge)
 {
     console.log("fonction GameManager");
     console.log("test chargement : or "+mon_Player.or);
@@ -20,6 +21,7 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
     this.monCanvas_click = monCanvas_clic;
     this.data_interface = data_interface;
     this.data_image_chargee = data_image_chargee;
+    this.data_son_charge = data_son_charge;
     this.arrayOfGameObjects = [];
     this.arrayOfGameObjects2 = [];
     this.arrayOfClickObjects = {};
@@ -260,6 +262,7 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
        console.log("click");
         var self = this;
         $("#monCanvas").click(function(e){
+
           self.position_curseur(e);
           console.log("pos_x "+self.pos_x+" pos_y "+self.pos_y);
           self.affichage_curseur();
@@ -268,6 +271,9 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
 
           if(resultat){
             $("#monCanvas").off('click');
+            if(resultat[2].son){
+              self.data_son_charge[resultat[2].son].play();
+            }
             console.log("click_canvas "+JSON.stringify(resultat));
             self[resultat[1]](resultat[0], resultat[2], resultat[3]);
           }

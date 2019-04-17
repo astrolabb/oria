@@ -35,7 +35,12 @@ animation: fadein2 4s ease-in 0s;
 @-webkit-keyframes fadein2 { from { opacity: 1; } to { opacity: 0; } }
 keyframes fadein2 { from { opacity: 1; } to { opacity: 0; } }
 
-
+.style_barre_chargement {
+  width: 50%;
+  margin: auto;
+  content: attr(value);
+  text-align: center;
+}
 
 /* @/TODO:
 

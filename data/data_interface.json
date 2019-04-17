@@ -73,6 +73,7 @@ var data_interface = {
           "niv2" :["panneau","panneau"],
           "niv3" :["panneau","panneau"]
         },
+        "son" : "papier",
         "dir" : "saisie_nom"
       },
       "texte_bouton2" : {
@@ -101,6 +102,7 @@ var data_interface = {
           "niv2" :["panneau","panneau"],
           "niv3" :["panneau","panneau"]
         },
+        "son" : "papier",
         "dir" : "credit"
       },
       "texte_bouton3" : {
@@ -129,6 +131,7 @@ var data_interface = {
           "niv2" :["panneau","panneau"],
           "niv3" :["panneau","panneau"]
         },
+        "son" : "papier",
         "dir" : "charger"
       }
     }
@@ -207,6 +210,7 @@ var data_interface = {
           "niv2" :["panneau","panneau"],
           "niv3" :["panneau","panneau"]
         },
+        "son" : "papier",
         "dir" : "enregistrement_nom"
       }
     }
@@ -246,6 +250,7 @@ var data_interface = {
           "niv2" :["lonono2","lonono2"],
           "niv3" :["lonono3","lonono3"]
         },
+        "son" : "coq",
         "dir" : "setup3"
       },
       "pseudo" : {
@@ -276,6 +281,7 @@ var data_interface = {
           "niv2" :["village2","village2"],
           "niv3" :["village3","village3"]
         },
+        "son" : "sous",
         "dir" : "setup4"
       },
       "lac" : {
@@ -293,6 +299,7 @@ var data_interface = {
           "niv2" :["lac2","lac2"],
           "niv3" :["lac3","lac3"]
         },
+        "son" : "papier",
         "dir" : "setup5"
                 },
       "foret" : {
@@ -310,6 +317,7 @@ var data_interface = {
           "niv2" :["foret2","foret2"],
           "niv3" :["foret3","foret3"]
         },
+        "son" : "papier",
         "dir" : "setup6"
                   },
       "jardin" : {
@@ -327,6 +335,7 @@ var data_interface = {
           "niv2" :["jardin2","jardin2"],
           "niv3" :["jardin3","jardin3"]
         },
+        "son" : "papier",
         "dir" : "setup7"
                     },
       "meme" : {
@@ -344,6 +353,7 @@ var data_interface = {
         "niv2" :["kiwi","mango"],
         "niv3" :["kiwi","mango"]
             },
+        "son" : "papier",
         "dir" : "setup8"
                 },
       "or_icone" : {
@@ -376,7 +386,7 @@ var data_interface = {
           "reference" : ""
 
                 },
-          "texte_sauvegarde" : {
+      "texte_sauvegarde" : {
               "_x" : 0,
               "_y" : window.innerHeight- window.innerHeight/8,
               "nature" : "text",
@@ -829,9 +839,9 @@ var data_interface = {
           "police" : "Arial",
           "taille_police1" : "20",
           "delay_timer" : 40,
-          "duree_rotation" : 10,
-          "duree_acceleration" : 4,
-          "duree_deceleration" : 6,
+          "duree_rotation" : 2,
+          "duree_acceleration" : 1,
+          "duree_deceleration" : 1,
           "rotation_par_frame" : Math.PI/20,
           // lot dans la roue de la chance servant à diminuer les chances de gagner
           "lot_poubelle" : "ex______",
