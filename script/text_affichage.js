@@ -98,22 +98,28 @@ Text_affichage.prototype.centrage = function(text){
         console.log("fonction centrage "+text+" this.text "+this.text);
         this.monCanvas.textAlign="start";
         var mon_texte = text=="" ? this.text : text;
-        var _x = (window.innerWidth - this.maxWidth) / 2;
+        //var _x = (window.innerWidth - this.maxWidth) / 2;
+        var _x;
         var words = mon_texte.split(' ');
         var line = '';
         for(var n = 0; n < words.length; n++) {
           var testLine = line + words[n] + ' ';
           var metrics = this.monCanvas.measureText(testLine);
           var testWidth = metrics.width;
-          if (testWidth > this.maxWidth && n > 0) {
+          line += words[n] + ' ';
+          if (testWidth > this.maxWidth) {
+            _x = (window.innerWidth - testWidth) / 2;
             this.affichage(line, _x, this._y);
-            line = words[n] + ' ';
+            line = '';
             this._y += this.lineHeight;
           }
-          else {
+          if (n == words.length-1) {
             line = testLine;
+            _x = (window.innerWidth - testWidth) / 2;
+            this.affichage(line, _x, this._y);
           }
+
         }
-        this.affichage(line, _x, this._y);
+    //    this.affichage(line, _x, this._y);
 
 }

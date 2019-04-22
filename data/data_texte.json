@@ -13,7 +13,7 @@ var data_texte = {
         },
   "map" : {
       "niveau" : "Vous avez débloqué un nouveau niveau",
-      "jardin_fin" : "Vous avez gagné une ressource :",
+      "jardin_fin" : "Vous avez gagné une ressource",
       "sauvegarde" : "sauvegarder"
       },
   "village" : {
@@ -46,7 +46,7 @@ var data_texte = {
     "score" : "score",
     "timer" : "timer",
     "echec" : "Votre score ne vous permet pas d'obtenir une ressource",
-    "reussite" : "Félicitations : Vous avez obtenu : ",
+    "reussite" : "Félicitations : Vous avez obtenu ",
     "titre" : "La forêt",
     "retour" : "retour"
   },
@@ -54,7 +54,7 @@ var data_texte = {
     "score" : "score",
     "timer" : "timer",
     "echec" : "Votre score ne vous permet pas d'obtenir une ressource",
-    "reussite" : "Félicitations : Vous avez obtenu : ",
+    "reussite" : "Félicitations : Vous avez obtenu ",
     "titre" : "Le lac",
     "retour_lac" : "retour"
 

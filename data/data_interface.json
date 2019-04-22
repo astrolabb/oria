@@ -554,27 +554,29 @@ var data_interface = {
       "lineHeight" : window.innerHeight/10,
       "marge_gauche" : window.innerWidth/20,
       "marge_haut" : window.innerHeight/5,
+      "icone_width" : window.innerWidth/3,
+      "icone_height" : window.innerHeight/3,
       "alpha_" : 0.5,
       "elements" : {
           "fond" : {
-            "_x" : 0,
-            "_y" : 0,
-            "_width" : window.innerWidth,
-            "_height" : window.innerHeight,
+            "_x" : window.innerWidth*0.2,
+            "_y" : window.innerHeight*0.2,
+            "_width" : window.innerWidth*0.6,
+            "_height" : window.innerHeight*0.6,
             "ombre" : "draw",
             "couleur" : "grey",
             "nature" : "image",
             "lien" : "non",
             "ordre" : 1,
             "loc" : {
-              "niv1" :["cherry","cherry"],
+              "niv1" :["fond_gris","fond_gris"],
               "niv2" :["pumpkin","pumpkin"],
               "niv3" :["pumpkin","pumpkin"]
               }
            },
          "titre" : {
              "_x" : window.innerWidth/3,
-             "_y" : window.innerHeight/2,
+             "_y" : 2*window.innerHeight/3,
              "nature" : "text",
              "couleur" : "#333",
              "police" : "Arial",
@@ -791,7 +793,7 @@ var data_interface = {
               "lien" : "non",
               "ordre" : 2,
               "loc" : {
-                "niv1" :["apple","cherry"],
+                "niv1" :["lonono3","lonono3"],
                 "niv2" :["mango","tomato"],
                 "niv3" :["onion","pumpkin"]
               }
@@ -839,9 +841,9 @@ var data_interface = {
           "police" : "Arial",
           "taille_police1" : "20",
           "delay_timer" : 40,
-          "duree_rotation" : 2,
-          "duree_acceleration" : 1,
-          "duree_deceleration" : 1,
+          "duree_rotation" : 6,
+          "duree_acceleration" : 3,
+          "duree_deceleration" : 3,
           "rotation_par_frame" : Math.PI/20,
           // lot dans la roue de la chance servant à diminuer les chances de gagner
           "lot_poubelle" : "ex______",
@@ -1074,6 +1076,9 @@ var data_interface = {
               "couleur_click_case" : "red",
               "taille_trait" : 5,
               "couleur_trait" : "green",
+              "1" : 1,
+              "2" : 2,
+              "3" : 3,
               "elements" : {
                   "fond" : {
                     "_x" : 0,

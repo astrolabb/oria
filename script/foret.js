@@ -223,11 +223,13 @@ Carrelage.prototype.affiche_score = function(){
     this._target.mon_Player.ressource[mon_resultat] += ma_quantite;
     this._target.stop_animation();
     if(mon_resultat == 0){
-      this._target.popup("setup2", "", "", "foret", "echec");
+
+      this._target.popup("setup2", "", "", "foret", "echec", "", "");
     }else{
       this._target.mon_Player.objet_debloque[mon_resultat] = true;
-      this._target.popup("setup2", mon_resultat, ma_quantite, "foret", "reussite");
-    }
+      this._target.popup("setup2", ma_quantite + " " + self.ressource[mon_resultat].nom, "", "foret", "reussite", self.ressource[mon_resultat], mon_resultat);
+
+      }
 
   }
 

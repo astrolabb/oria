@@ -3,18 +3,18 @@
   "zone_a_verifier_fin_jeu" :  ["lac", "foret", "lonono", "village", "jardin"],
   "meme_algo" : {
     "1" : {
-      "nb_colonne" : 3,
-      "temps_affichage" : 10000,
+      "nb_colonne" : 2,
+      "temps_affichage" : 4000,
       "choix_ressource_case" : 4
     },
     "2" : {
       "nb_colonne" : 3,
-      "temps_affichage" : 2000,
+      "temps_affichage" : 10000,
       "choix_ressource_case" : 4
     },
     "3" : {
-      "nb_colonne" : 3,
-      "temps_affichage" : 2000,
+      "nb_colonne" : 4,
+      "temps_affichage" : 10000,
       "choix_ressource_case" : 4
       }
     },
@@ -1116,22 +1116,22 @@
 
   },
   "ressource_demarrage" : {
-    "herbe" : 0,
+    "herbe" : 2,
     "branche" : 0,
     "billette" : 0,
     "rondin" : 0,
-    "planche" : 0,
+    "planche" : 2,
     "bois_sculpte" : 0,
     "licorne" : 0,
-    "plante" : 0,
+    "plante" : 2,
     "limace" : 0,
-    "cereales" : 0,
+    "cereales" : 2,
     "fleur" : 0,
-    "legumes" : 0,
+    "legumes" : 1,
     "fruit" : 0,
     "graine_magique" : 0,
     "eau" : 0,
-    "poisson" : 0,
+    "poisson" : 2,
     "crevette" : 0,
     "crabe" : 0,
     "homard" : 0,
@@ -1263,7 +1263,8 @@
     "sauvegarde" : 1,
     "bouton" : 1,
     "bouton2" : 1,
-    "bouton3" : 1
+    "bouton3" : 1,
+    "bouton_niveau" : 1
   },
   "bareme_niveau" : {
       "village" : {

@@ -37,7 +37,11 @@ Map.prototype.bouge_meme = function(){
   }
 }
 /**
+Icone : object servant à afficher toutes les images
 
+@param myCanvasContext : context sur lequel va être afficher l'image
+@param data_image : object représentant l'image à afficher cela peut être une ressource ou un plat (dispo dans data_equilibrage) ou un élément de décors (data_interface.json)
+@param key
 
 */
 var Icone = function(myCanvasContext, data_image, key, _target){
@@ -51,7 +55,11 @@ var Icone = function(myCanvasContext, data_image, key, _target){
   this.ombre = data_image.ombre;
   this._x = data_image._x;
   this._y = data_image._y;
-  this.couleur = data_image.couleur;
+  if(data_image.couleur){
+    this.couleur = data_image.couleur;
+  }else{
+    this.couleur = "#333";
+  }
   this.loc = data_image.loc;
   this.lien = data_image.lien;
   this.cat = data_image.cat;

@@ -474,10 +474,10 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
         localStorage.setItem("plat",JSON.stringify(this.mon_Player.plat));
         //ferme toutes les animations, les retardateurs et les timers
 
-        this.popup("setup2", "", "", "sauvegarde", "reussie");
+        this.popup("setup2", "", "", "sauvegarde", "reussie", "", "");
         }catch (exception) {
           this.stop_animation();
-          this.popup("setup2", "", "", "sauvegarde", "nonsauvegarde");
+          this.popup("setup2", "", "", "sauvegarde", "nonsauvegarde", "", "");
         }
       }
     /**
@@ -637,9 +637,9 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
         console.log("debut de la vente");
         if(this.mon_Player.echange(key, data.or, "or", data)){
           if(data.or>0){
-              this.popup("contructor_village", this.data_equilibrage.plats[key].nom, "", "village", "plat");
+              this.popup("contructor_village", this.data_equilibrage.plats[key].nom, "", "village", "plat", this.data_equilibrage.plats[key], key);
           }else{
-              this.popup("contructor_village", this.data_equilibrage.ressource[key].nom, "", "village", "achat");
+              this.popup("contructor_village", this.data_equilibrage.ressource[key].nom, "", "village", "achat", this.data_equilibrage.ressource[key], key);
           }
 
         }else{
@@ -696,17 +696,19 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
   @param var2 string variable complémentaire à afficher en fin de texte
   @param frame string scène où est affiché le popup : va servir d'attribut à rechercher le texte dans le fichier data_texte
   @param element string attribu de frame dans le fichier texte_data
+  @param var3_1 object object représentant les données de l'image à afficher cela peut être une ressource ou un plat
+  @param var3_2 string chaine représentant le nom de l'image à afficher
 
   */
-  GameManager.prototype.popup = function(target, var1, var2, frame, element){
+  GameManager.prototype.popup = function(target, var1, var2, frame, element, var3_1, var3_2){
     this.stop_animation();
     var self = this;
     console.log("popup ");
 
     this.arrayOfGameObjects = [];
-    this.mon_popup = new Popup(this.monCanvas, self, this.data_equilibrage.plats, this.data_interface.popup);
+    this.mon_popup = new Popup(this.monCanvas, self, this.data_equilibrage, this.data_interface.popup, var3_1, var3_2);
     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
-    this.affichage_popup(var1, var2, frame, element, target);
+    this.affichage_popup(var1, var2, frame, element, target, var3_1, var3_2);
 
 
   }
@@ -718,9 +720,10 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
   @param frame string scène où est affiché le popup : va servir d'attribut à rechercher le texte dans le fichier data_texte
   @param element string attribu de frame dans le fichier texte_data
   @param target canevas où doit s'afficher le popup
-
+  @param var3_1 object représentant l'image à afficher
+  @param var3_2 string nom de l'image supplémentaire à afficher
   */
-  GameManager.prototype.affichage_popup = function(var1, var2, frame, element, target){
+  GameManager.prototype.affichage_popup = function(var1, var2, frame, element, target, var3){
     console.log("fonction affichage_popup");
     self = this;
     for (var i in this.arrayOfGameObjects) {
@@ -751,7 +754,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
           self.mon_Player.ressource[e[0]] = e[1] - e[2];
         console.log("valeur ressource avant "+self.mon_Player.ressource[e[0]]);
       });
-      self.popup("setup2", data.key, this.mon_Player.niveau[data.key], "map", "niveau");
+      self.popup("setup2", data.key, this.mon_Player.niveau[data.key], "map", "niveau",self.data_interface.bouton_niveau.elements, "bouton_niveau");
   }
   /**
   classe de gestion du lonono
@@ -854,7 +857,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     var poub = this.data_equilibrage.ressource_poubelle;
             // si pas de ressource de plat selectionné
             if(mix_ressources.length==0 && mix_plat.length==0){
-              this.popup("lonono", "", "", "lonono", "pas_de_selection");
+              this.popup("lonono", "", "", "lonono", "pas_de_selection", "", "");
               // si des ressources sont sélectionnées
             }else if(mix_ressources.length!=0){
                 // mix_reussite permet de savoir si un objet est gagné par le joueur retourne un tableau de la forme : [clee, nombre]
@@ -887,8 +890,11 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
                 // tableau représentant la catégorie des ressources présentent dans array_mix_ressource
                 this.array_mix_ressource2 = [];
                 this.array_mix_ressource3 = {};
-                this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher);
-
+                if(mon_affichage.length==0){
+                  this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher, "", "");
+                }else{
+                  this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher, this.data_equilibrage.ressource[mon_affichage[0]], mon_affichage[0]);
+                }
             // si des ressources sont sélectionnées pour la création de plat
             }else if(mix_plat.length!=0){
 
@@ -917,8 +923,12 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
             // tableau représentant  la catégorie des ressources présentent dans array_mix_plat
             this.array_mix_plat2 = [];
             this.array_mix_plat3 = {};
-            this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher);
-          }
+            if(mon_affichage.length==0){
+              this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher, "", "");
+            }else{
+              this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher, this.data_equilibrage.plats[mon_affichage[0]], mon_affichage[0]);
+            }
+        }
   }
   GameManager.prototype.jardin = function(key, data, scene){
     var self = this;
@@ -1181,7 +1191,8 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
 
     this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
     this.monCanvas.beginPath();
-    this.ma_meme = new Meme(this.monCanvas, self, this.data_interface.meme, key, data, scene, this.data_equilibrage.ressource, this.data_texte.meme, this.data_equilibrage.meme_algo[String(this.mon_Player.niveau.meme)]);
+    // le niveau de difficulté est choisi en fonction du niveau du joueur au jeu du lonono
+    this.ma_meme = new Meme(this.monCanvas, self, this.data_interface.meme, key, data, scene, this.data_equilibrage.ressource, this.data_texte.meme, this.data_equilibrage.meme_algo[String(this.mon_Player.niveau.lonono)]);
 
     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
 
@@ -1192,10 +1203,11 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     this.affichage_meme(key, data, scene);
 
     this.ma_meme.demarrage_jeu(0);
+    // le temps de rafraichissement dépend aussi du niveau joueur au jeu du lonono
     this.mon_retardateur = setTimeout( function(){
       self.ma_meme.cas = 1;
       self.ma_meme.demarrage_jeu(1)
-    }, this.data_equilibrage.meme_algo[String(this.mon_Player.niveau.meme)].temps_affichage);
+    }, this.data_equilibrage.meme_algo[String(this.mon_Player.niveau.lonono)].temps_affichage);
 
     $("#monCanvas").click(function(e){
       //  $("#monCanvas").off('click');
@@ -1265,14 +1277,17 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     this.stop_animation();
     console.log("nombre d erreur "+nb_erreur);
     if(reussite){
-      var mon_tableau_recette = fonction_tableau_recette(this.data_equilibrage.lonono_algo["3"], this.data_equilibrage.lonono_algo2["3"],this.data_texte.meme, this.data_equilibrage.ressource, this.data_equilibrage.plats);
+      // si le joueur est de niveau 1 ou 2 au jeu du lonono : les recettes données en cas de réussite
+      // sont de niveau 2. Si le joueur est niveau 3 : les recettes données sont de niveau 3
+      // Ces données peuvent être modifiées dans le fichier data_interface.json
+      var mon_tableau_recette = fonction_tableau_recette(this.data_equilibrage.lonono_algo[this.data_interface.meme[String(this.mon_Player.niveau.lonono)]], this.data_equilibrage.lonono_algo2[this.data_interface.meme[String(this.mon_Player.niveau.lonono)]],this.data_texte.meme, this.data_equilibrage.ressource, this.data_equilibrage.plats);
       console.log("28_12_18 3 "+JSON.stringify(mon_tableau_recette));
       var ma_recette = mon_tableau_recette[Math.floor(Math.random()*mon_tableau_recette.length)];
-      this.popup("setup2", ma_recette, "", "meme", "reussite");
+      this.popup("setup2", ma_recette, "", "meme", "reussite", "", "");
     }
     else {
       var mon_texte = String(nb_erreur+" "+pluriel(nb_erreur, this.data_texte.meme.erreur));
-      this.popup("setup2", mon_texte, "", "meme", "echec");
+      this.popup("setup2", mon_texte, "", "meme", "echec", "", "");
     }
 
   }
@@ -1458,17 +1473,17 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
 
     try {
       if(!localStorage.getItem("niveau")){
-        this.popup("setup2", "", "", "sauvegarde", "nonchargement");
+        this.popup("setup2", "", "", "sauvegarde", "nonchargement", "", "");
       }else{
 
         this.mon_Player.pseudo = JSON.parse(localStorage.getItem("pseudo"));
         this.mon_Player.niveau = JSON.parse(localStorage.getItem("niveau"));
         this.mon_Player.ressource = JSON.parse(localStorage.getItem("ressource"));
         this.mon_Player.plat = JSON.parse(localStorage.getItem("plat"));
-        this.popup("setup2", "", "", "sauvegarde", "chargement");
+        this.popup("setup2", "", "", "sauvegarde", "chargement", "", "");
       }
     }catch (exception) {
-      this.popup("setup2", "", "", "sauvegarde", "nonchargement");
+      this.popup("setup2", "", "", "sauvegarde", "nonchargement", "", "");
     }
 
   }

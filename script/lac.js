@@ -171,10 +171,10 @@ Lac.prototype.affichage_score = function(monCanvas){
       this._target.mon_Player.ressource[mon_resultat] += ma_quantite;
       this._target.stop_animation();
       if(mon_resultat == 0){
-        this._target.popup("setup2", "", "", "lac", "echec");
+        this._target.popup("setup2", "", "", "lac", "echec", "", "");
       }else{
         this._target.mon_Player.objet_debloque[mon_resultat] = true;
-        this._target.popup("setup2", mon_resultat, ma_quantite, "lac", "reussite");
+        this._target.popup("setup2", ma_quantite +" "+self.ressources[mon_resultat].nom, "", "lac", "reussite", self.ressources[mon_resultat], mon_resultat);
       }
 
     }
