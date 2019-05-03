@@ -8,7 +8,7 @@ var Intro = function(monCanvas, _target, data_interface){
             console.log(key+" "+data_interface.introduction.elements[key]);
              if(data_interface.introduction.elements[key].nature == "image"){
                self[key] = new Icone(monCanvas, data_interface.introduction.elements[key], key, _target);
-              _target.arrayOfGameObjects.push([key,"image",self[key]]);
+              _target.arrayOfGameObjects.push([key,"image",self[key], key]);
             }
 
         });
@@ -17,7 +17,7 @@ var Intro = function(monCanvas, _target, data_interface){
             console.log(data_interface.introduction.elements[key].reference+" "+data_interface.introduction.elements[data_interface.introduction.elements[key].reference]);
             if(data_interface.introduction.elements[key].nature == "text"){
                 self[key] = new Text_affichage(monCanvas, data_interface.introduction.elements[key], key, data_interface.introduction.maxWidth_text, data_interface.introduction.lineHeight, _target.data_texte.intro, data_interface.introduction.elements[key].reference=="" ? "" : data_interface.introduction.elements[data_interface.introduction.elements[key].reference]);
-                _target.arrayOfGameObjects.push([key,"text",self[key]]);
+                _target.arrayOfGameObjects.push([key,"text",self[key], key]);
             }
         });
 

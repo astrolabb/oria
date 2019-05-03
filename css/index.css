@@ -28,12 +28,17 @@ animation: fadein 2s linear 1s;
 @-webkit-keyframes fadein { from { opacity: 1; } to { opacity: 0; } }
 keyframes fadein { from { opacity: 1; } to { opacity: 0; } }
 
-
 .mon_fadein2 { -webkit-animation: fadein2 4s ease-in 0s;
 animation: fadein2 4s ease-in 0s;
  }
 @-webkit-keyframes fadein2 { from { opacity: 1; } to { opacity: 0; } }
 keyframes fadein2 { from { opacity: 1; } to { opacity: 0; } }
+
+.mon_fadein3 { -webkit-animation: fadein3 10s ease-in 0s;
+animation: fadein3 10s ease-in 0s;
+ }
+@-webkit-keyframes fadein3 { from { opacity: 1; } to { opacity: 0; } }
+keyframes fadein3 { from { opacity: 1; } to { opacity: 0; } }
 
 .style_barre_chargement {
   width: 50%;

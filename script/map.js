@@ -5,14 +5,14 @@ var Map = function(monCanvas, _target, data_interface){
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "image"){
         self[key] = new Icone(monCanvas, data_interface.elements[key], key, _target);
-        _target.arrayOfGameObjects.push([key,"image",self[key]]);
+        _target.arrayOfGameObjects.push([key,"image",self[key], key]);
       }
   });
   Object.keys(data_interface.elements).forEach(function(key) {
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "text"){
           self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.map, data_interface.elements[key].reference=="" ? "" : data_interface.elements[data_interface.elements[key].reference]);
-          _target.arrayOfGameObjects.push([key,"text",self[key]]);
+          _target.arrayOfGameObjects.push([key,"text",self[key], key]);
       }
   });
 
@@ -41,7 +41,8 @@ Icone : object servant à afficher toutes les images
 
 @param myCanvasContext : context sur lequel va être afficher l'image
 @param data_image : object représentant l'image à afficher cela peut être une ressource ou un plat (dispo dans data_equilibrage) ou un élément de décors (data_interface.json)
-@param key
+@param key : string nom de l'objet
+@param _target : object où est affiché l'image
 
 */
 var Icone = function(myCanvasContext, data_image, key, _target){
@@ -172,7 +173,7 @@ var BoutonNiveau = function(monCanvas, _target, bouton_niveau, bareme_niveau, ma
         self[key]._x = map[key]._x+self.choix_decalage(map[key]._x, decalage_x, window.innerWidth, self[key]._width);
         self[key]._y = map[key]._y+self.choix_decalage(map[key]._y, decalage_y, window.innerHeight, self[key]._height);
 
-        _target.arrayOfGameObjects.push(["button"+key,"image", self[key]]);
+        _target.arrayOfGameObjects.push(["button"+key,"image", self[key], "button"+key]);
 
         self.monObject["button"+key] = JSON.parse(JSON.stringify(bouton_niveau));
         console.log("carte object_fusionne "+map[key]._x+" key "+"button"+key);

@@ -42,7 +42,7 @@ var Lac = function(monCanvas, _target, data_interface, key, data, scene, ressour
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "image"){
         self[key] = new Icone(monCanvas, data_interface.elements[key], key, _target);
-        _target.arrayOfGameObjects.push([key,"image",self[key]]);
+        _target.arrayOfGameObjects.push([key,"image",self[key], key]);
       }
   });
   // afffichage du texte : titre
@@ -50,7 +50,7 @@ var Lac = function(monCanvas, _target, data_interface, key, data, scene, ressour
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "text"){
           self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.lac, data_interface.elements[key].reference=="" ? "" : data_interface.elements[data_interface.elements[key].reference]);
-          _target.arrayOfGameObjects.push([key,"text",self[key]]);
+          _target.arrayOfGameObjects.push([key,"text",self[key], key]);
       }
   });
   this.mon_gradient = monCanvas.createLinearGradient(0,0,0, data_interface.hauteur_colonne);
@@ -89,8 +89,8 @@ var Lac = function(monCanvas, _target, data_interface, key, data, scene, ressour
     self["ressource_"+i].ombre = "draw";
 
 
-    _target.arrayOfGameObjects.push(["bouton_"+i,"icone",self["bouton_"+i]]);
-    _target.arrayOfGameObjects.push([ressource_hasard,"image_chute",self["ressource_"+i]]);
+    _target.arrayOfGameObjects.push(["bouton_"+i,"icone",self["bouton_"+i], "bouton_"+i]);
+    _target.arrayOfGameObjects.push([ressource_hasard,"image_chute",self["ressource_"+i], ressource_hasard]);
       mes_couleurs[ma_couleur] = true;
       this.couleur_bouton[i] = ma_couleur;
 

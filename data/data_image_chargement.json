@@ -83,7 +83,8 @@ var data_image_chargement = {
 "maki" : "./image/maki.png",
 "salade_de_fruit" : "./image/salade_de_fruit.png",
 "crevette_sautee" : "./image/crevette_sautee.png",
-"homard_royal" : "./image/homard_royal.png"
-
+"homard_royal" : "./image/homard_royal.png",
+"egal" : "./image/egal.png",
+"plus" : "./image/plus.png"
 
 }

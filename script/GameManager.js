@@ -688,6 +688,30 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     this.setup2(scene, data, scene);
   }
   /**
+  constructor pour les popup lors de victoire
+
+  @param target string : fonction devant être affichée quand le popup est fini
+  @param var1 : string : texte à afficher dans le popup
+  @param var2 : string : texte aussi à afficher dans le popup
+  @param frame : string nom de l'objet présent dans le fichier data_texte où se trouve les amorce de texte
+  @param element : string nom de l'attribut de l'objet frame contenant l'amorce à afficher
+  (@param amorce2 : string nom de la seconde amorce : inutilisé )
+  (@param amorce3 : string nom de la troisième amorce : inutilisé )
+  @param ma_recette : array tableau contenant la recette à afficher en [0] le resultat en [1] les ingrédients
+  */
+  GameManager.prototype.popup_meme_reussite = function(target, var1, var2, frame, element, amorce2, amorce3, ma_recette){
+    this.stop_animation();
+    var self = this;
+    console.log("popup_meme_reussite");
+
+    this.arrayOfGameObjects = [];
+    this.mon_popup = new Popup_meme_reussite(this.monCanvas, self, this.data_equilibrage, this.data_interface.popup, ma_recette);
+    this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
+    this.affichage_popup(var1, var2, frame, element, target,"", "", "mon_fadein3");
+
+  }
+
+  /**
   prototype popup
   contruction des objets du popup
 
@@ -708,7 +732,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     this.arrayOfGameObjects = [];
     this.mon_popup = new Popup(this.monCanvas, self, this.data_equilibrage, this.data_interface.popup, var3_1, var3_2);
     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
-    this.affichage_popup(var1, var2, frame, element, target, var3_1, var3_2);
+    this.affichage_popup(var1, var2, frame, element, target, var3_1, var3_2, "mon_fadein2");
 
 
   }
@@ -722,8 +746,9 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
   @param target canevas où doit s'afficher le popup
   @param var3_1 object représentant l'image à afficher
   @param var3_2 string nom de l'image supplémentaire à afficher
+  @param classe_css string nom de la classe css à utiliser dans l'affichage du popup surtout pour gérer la durée
   */
-  GameManager.prototype.affichage_popup = function(var1, var2, frame, element, target, var3){
+  GameManager.prototype.affichage_popup = function(var1, var2, frame, element, target, var3_1, var3_2, classe_css){
     console.log("fonction affichage_popup");
     self = this;
     for (var i in this.arrayOfGameObjects) {
@@ -734,9 +759,9 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
             this.arrayOfGameObjects[i][2].draw(this.monCanvas);
         }
     }
-    $("#monCanvas").addClass("mon_fadein2");
+    $("#monCanvas").addClass(classe_css);
     $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
-         $("#monCanvas").removeClass("mon_fadein2");
+         $("#monCanvas").removeClass(classe_css);
          self[target](frame,"", frame);
 
     });
@@ -1248,6 +1273,15 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
       }
   }
   /**
+  valid_meme : prototype exécuté lors du click sur le bouton validation du jeu de la Mémé
+  si réussite : renvoie une recette à utiliser dans le jeu du lonono
+
+  déclenchement du prototype popup_meme_reussite
+  si réussite :
+  @return ma_recette : Array recette à utiliser dans le jeu du lonono
+  structure : ["resultat",  [ingredient1, ingredient2, ...]]
+
+  si echec
 
   */
   GameManager.prototype.valid_meme = function(key, data, scene){
@@ -1280,10 +1314,17 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
       // si le joueur est de niveau 1 ou 2 au jeu du lonono : les recettes données en cas de réussite
       // sont de niveau 2. Si le joueur est niveau 3 : les recettes données sont de niveau 3
       // Ces données peuvent être modifiées dans le fichier data_interface.json
-      var mon_tableau_recette = fonction_tableau_recette(this.data_equilibrage.lonono_algo[this.data_interface.meme[String(this.mon_Player.niveau.lonono)]], this.data_equilibrage.lonono_algo2[this.data_interface.meme[String(this.mon_Player.niveau.lonono)]],this.data_texte.meme, this.data_equilibrage.ressource, this.data_equilibrage.plats);
-      console.log("28_12_18 3 "+JSON.stringify(mon_tableau_recette));
+      var mon_tableau_recette = fonction_liste_recette(this.data_equilibrage.lonono_algo[this.data_interface.meme[String(this.mon_Player.niveau.lonono)]], this.data_equilibrage.lonono_algo2[this.data_interface.meme[String(this.mon_Player.niveau.lonono)]]);
+      console.log("mon_tableau_recette "+JSON.stringify(mon_tableau_recette));
       var ma_recette = mon_tableau_recette[Math.floor(Math.random()*mon_tableau_recette.length)];
-      this.popup("setup2", ma_recette, "", "meme", "reussite", "", "");
+      console.log("ma_recette "+JSON.stringify(ma_recette));
+      this.popup_meme_reussite("setup2", String(ma_recette[0]+" ="), JSON.stringify(ma_recette[1]).replace(",", " + ").replace(/[\[\]\"']+/g, ""), "meme", "reussite", "amorce1", "amorce2", ma_recette);
+
+
+//      var mon_tableau_recette = fonction_tableau_recette(this.data_equilibrage.lonono_algo[this.data_interface.meme[String(this.mon_Player.niveau.lonono)]], this.data_equilibrage.lonono_algo2[this.data_interface.meme[String(this.mon_Player.niveau.lonono)]],this.data_texte.meme, this.data_equilibrage.ressource, this.data_equilibrage.plats);
+//      console.log("28_12_18 3 "+JSON.stringify(mon_tableau_recette));
+//      var ma_recette = mon_tableau_recette[Math.floor(Math.random()*mon_tableau_recette.length)];
+//      this.popup("setup2", ma_recette, "", "meme", "reussite", "", "");
     }
     else {
       var mon_texte = String(nb_erreur+" "+pluriel(nb_erreur, this.data_texte.meme.erreur));

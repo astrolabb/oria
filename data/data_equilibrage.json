@@ -4,7 +4,7 @@
   "meme_algo" : {
     "1" : {
       "nb_colonne" : 2,
-      "temps_affichage" : 4000,
+      "temps_affichage" : 8000,
       "choix_ressource_case" : 4
     },
     "2" : {
@@ -1264,7 +1264,9 @@
     "bouton" : 1,
     "bouton2" : 1,
     "bouton3" : 1,
-    "bouton_niveau" : 1
+    "bouton_niveau" : 1,
+    "plus" : 1,
+    "egal" : 1
   },
   "bareme_niveau" : {
       "village" : {

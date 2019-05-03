@@ -60,7 +60,7 @@ var data_texte = {
 
   },
   "meme" : {
-    "reussite" : "Bien joué ! Vous avez découvert une recette :",
+    "reussite" : "Bien joué ! Nouvelle recette",
     "echec" : "Encore Raté ! Vous avez fait : ",
     "erreur" : "erreur",
     "amorce1" : " Pour fabriquer : ",

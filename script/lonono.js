@@ -71,7 +71,7 @@ var Mon_lonono = function(monCanvas, _target, data_plat, data_interface, data_re
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "image"){
         self[key] = new Icone(monCanvas, data_interface.elements[key], key, _target);
-        _target.arrayOfGameObjects.push([key,"image",key]);
+        _target.arrayOfGameObjects.push([key,"image",key, key]);
       }
   });
 
@@ -84,7 +84,7 @@ var Mon_lonono = function(monCanvas, _target, data_plat, data_interface, data_re
         data_ressources3[key].action = "ressource";
         data_ressources3[key].nom2 = key;
         console.log("valeur a afficher42 "+self["g"+key]._x);
-        _target.arrayOfGameObjects.push([key,"image","g"+key]);
+        _target.arrayOfGameObjects.push([key,"image","g"+key, key]);
       }
   });
   // boucle de création des icones du marché représentant les ressources : dans la section "fabrication plat"
@@ -95,7 +95,7 @@ var Mon_lonono = function(monCanvas, _target, data_plat, data_interface, data_re
         data_ressources2[key].action = "plat";
         data_ressources2[key].nom2 = key;
         console.log("valeur a afficher42 "+self["d"+key]._x);
-        _target.arrayOfGameObjects.push([key,"image","d"+key]);
+        _target.arrayOfGameObjects.push([key,"image","d"+key, key]);
       }
   });
 
@@ -105,7 +105,7 @@ var Mon_lonono = function(monCanvas, _target, data_plat, data_interface, data_re
       console.log("ma référence "+data_interface.elements[key].reference+" "+data_interface.elements[data_interface.elements[key].reference]);
       if(data_interface.elements[key].nature == "text"){
         self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.lonono, data_interface.elements[key].reference=="" ? "" : data_interface.elements[data_interface.elements[key].reference]);
-        _target.arrayOfGameObjects.push([key,"text",key]);
+        _target.arrayOfGameObjects.push([key,"text",key, key]);
       }
   });
   // reformatage de l'object data_ressources2 pour prendre en compte le fait qu'une même ressource peut être utilisée plusieurs fois

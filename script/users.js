@@ -53,9 +53,9 @@ Player.prototype.niveau_init = function (arrayOfGameObjects){
   var mon_niveau = {};
   for (var i in arrayOfGameObjects) {
       if(arrayOfGameObjects[i][1]=="image" && !mon_niveau[arrayOfGameObjects[i][0]] || arrayOfGameObjects[i][1]=="image_chute" && !mon_niveau[arrayOfGameObjects[i][0]]){
-        console.log("niveau_init "+arrayOfGameObjects[i][0] );
-        console.log("niveau_init "+String("niv"+self.niveau[arrayOfGameObjects[i][0]]) );
-         mon_niveau[arrayOfGameObjects[i][0]] = String("niv"+self.niveau[arrayOfGameObjects[i][0]]);
+        console.log("niveau_init "+arrayOfGameObjects[i][3] );
+        console.log("niveau_init "+String("niv"+self.niveau[arrayOfGameObjects[i][3]]) );
+         mon_niveau[arrayOfGameObjects[i][0]] = String("niv"+self.niveau[arrayOfGameObjects[i][3]]);
       }
   }
   return mon_niveau;

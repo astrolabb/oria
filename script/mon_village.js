@@ -32,7 +32,7 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface,
         console.log(key+" "+data_interface.elements[key]);
         if(data_interface.elements[key].nature == "image"){
           self[key] = new Icone(monCanvas, data_interface.elements[key], key, _target);
-          _target.arrayOfGameObjects.push([key,"image"]);
+          _target.arrayOfGameObjects.push([key,"image", self[key], key]);
         }
     });
     // boucle de création des icones du marché représentant les plats
@@ -40,7 +40,7 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface,
         console.log(key+" "+data_equilibrage[key]);
         if(data_equilibrage[key].nature == "image"){
           self[key] = new Icone(monCanvas, data_equilibrage[key], key, _target);
-          _target.arrayOfGameObjects.push([key,"image"]);
+          _target.arrayOfGameObjects.push([key,"image", self[key], key]);
         }
     });
     // boucle de création des icones du marché représentant les ressources
@@ -48,7 +48,7 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface,
         console.log(key+" "+data_ressources[key]);
         if(data_ressources[key].nature == "image"){
           self[key] = new Icone(monCanvas, data_ressources[key], key, _target);
-          _target.arrayOfGameObjects.push([key,"image"]);
+          _target.arrayOfGameObjects.push([key,"image", self[key], key]);
         }
     });
 
@@ -56,7 +56,7 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface,
         console.log(key+" "+data_equilibrage[key]);
         if(data_equilibrage[key].nature == "text"){
             self[key] = new Text_affichage(monCanvas, data_equilibrage[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.village);
-            _target.arrayOfGameObjects.push([key,"text"]);
+            _target.arrayOfGameObjects.push([key,"text", self[key], key]);
         }
     });
     Object.keys(data_interface.elements).forEach(function(key) {
@@ -65,7 +65,7 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface,
           data_interface.elements[key].taille_police1 = data_interface.taille_police1;
           data_interface.elements[key].police = data_interface.police;
           self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.village, data_interface.elements[key].reference=="" ? "" : data_interface.elements[data_interface.elements[key].reference]);
-          _target.arrayOfGameObjects.push([key,"text"]);
+          _target.arrayOfGameObjects.push([key,"text", self[key], key]);
         }
     });
 

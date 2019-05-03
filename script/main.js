@@ -611,6 +611,42 @@ function fadein (self, i, nb){
       }
     }
     /**
+    fonction fonction_liste_recette
+    dispose dans un tableau l'ensemble des recettes : ressource et plat pour un niveau
+    et renvoie ce tableau en entier
+
+    @param recette_ressource : Object liste des recettes provenant de lonono_algo (data_equilibrage) pour le niveau du joueur au lonono
+    @param recette_plat : Object  liste des recettes provenant de  lonono_algo2 (data_equilibrage) pour le niveau du joueur sur le lonono
+
+    @return mon_tableau_recette : Array tableau représentant l'ensemble des recette sur lesquelles un random va être effectué afin de n'en choisir qu'une
+    */
+
+    function fonction_liste_recette(recette_ressource, recette_plat){
+      var mon_tableau_recette = [];
+      var mon_tableau;
+      console.log("recette_ressource "+JSON.stringify(recette_ressource));
+      console.log("recette_plat "+JSON.stringify(recette_plat));
+        Object.keys(recette_ressource).forEach(function(key) {
+          mon_tableau = [];
+          mon_tableau.push(key);
+          mon_tableau.push(recette_ressource[key][0]);
+
+          mon_tableau_recette.push(mon_tableau);
+
+        });
+
+        Object.keys(recette_plat).forEach(function(key) {
+          mon_tableau = [];
+          mon_tableau.push(key);
+          mon_tableau.push(recette_plat[key][0]);
+
+          mon_tableau_recette.push(mon_tableau);
+        });
+
+        return mon_tableau_recette;
+
+    }
+    /**
     fonction redimensionnement_image
     permet dans le jeu de la mémé de limiter la taille des cases
     @param nb Number nombre de colonne

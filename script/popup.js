@@ -16,7 +16,7 @@ var Popup = function(monCanvas, _target, data_equilibrage, data_interface, image
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "image"){
         self[key] = new Icone(monCanvas, data_interface.elements[key], key, _target);
-        _target.arrayOfGameObjects.push([key,"image",self[key]]);
+        _target.arrayOfGameObjects.push([key,"image",self[key], key]);
 
       }
   });
@@ -24,7 +24,7 @@ var Popup = function(monCanvas, _target, data_equilibrage, data_interface, image
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "text"){
           self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.map, data_interface.elements[key].reference=="" ? "" : data_interface.elements[data_interface.elements[key].reference]);
-          _target.arrayOfGameObjects.push([key,"text",self[key]]);
+          _target.arrayOfGameObjects.push([key,"text",self[key], key]);
       }
   });
   // si il y a une image à afficher, on crée un nouvel objet
@@ -36,7 +36,7 @@ var Popup = function(monCanvas, _target, data_equilibrage, data_interface, image
     self[nom_image]._x =  window.innerWidth/2 - self[nom_image]._width/2;
     self[nom_image]._y =  window.innerHeight/3;
 
-    _target.arrayOfGameObjects.push([nom_image, "image", self[nom_image]]);
+    _target.arrayOfGameObjects.push([nom_image, "image", self[nom_image], nom_image]);
   }
 
 }
