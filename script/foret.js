@@ -37,9 +37,10 @@ classe de création du carrelage du jeu ainsi que ses prototypes commandant les 
 @param data_interface Object : Object foret présent dans le fichier data_interface.json et dont les propriétés sont les constantes du jeu de carrelage
 @param images Object : Object data_image_chargement présent dans le fichier data_image_chargement.json et représentant les images chargées au démarrage
 @param jardin_algo Object : algorithme de gestion des gains du jeu de carrelage
+@param data_son_charge Object contenant tous les contextes des sons chargés
 
 */
-var Carrelage = function(monCanvas, _target, color_array, ressource, data_interface, images, foret_algo){
+var Carrelage = function(monCanvas, _target, color_array, ressource, data_interface, images, foret_algo, data_son_charge){
 
   this._target = _target;
   this.monCanvas = monCanvas;
@@ -90,6 +91,9 @@ var Carrelage = function(monCanvas, _target, color_array, ressource, data_interf
   this.case_height = case_height;
   // affichage du décors du jeu
   this.decors();
+  this.data_son_charge = data_son_charge;
+  this.son_liste = data_interface.musique_click;
+  this.son_victoire = data_interface.son_victoire;
 
 
 }
@@ -223,9 +227,10 @@ Carrelage.prototype.affiche_score = function(){
     this._target.mon_Player.ressource[mon_resultat] += ma_quantite;
     this._target.stop_animation();
     if(mon_resultat == 0){
-
+      this.data_son_charge[this.data_interface.son_final_echec].play();
       this._target.popup("setup2", "", "", "foret", "echec", "", "");
     }else{
+      this.data_son_charge[this.data_interface.son_final_victoire].play();
       this._target.mon_Player.objet_debloque[mon_resultat] = true;
       this._target.popup("setup2", ma_quantite + " " + self.ressource[mon_resultat].nom, "", "foret", "reussite", self.ressource[mon_resultat], mon_resultat);
 
@@ -424,6 +429,8 @@ Carrelage.prototype.click = function(_x, _y){
         this.cases[i][j].decalage=-1;
         this.calcul_decalage();
         this.affichage_carrelage();
+        this.data_son_charge[this.son_liste[Math.floor(this.son_liste.length*Math.random())]].play();
+
       }
 }
 /**
@@ -695,6 +702,8 @@ var couleur_a_rechercher;
           this.cases[groupes[i][0]-j][groupes[i][1]].couleur=this.couleur_click;
           this.cases[groupes[i][0]-j][groupes[i][1]].decalage=-1;
           this.score += this.point_par_case;
+          this.data_son_charge[this.son_victoire].play();
+
           console.log("les groupes3- i "+Number(groupes[i][0]-j)+" j "+groupes[i][1]);
           this.complement_groupe(groupes[i][0]-j, groupes[i][1], 1, couleur_a_rechercher, 0);
       }else if(groupes[i][3]==0){
@@ -702,6 +711,7 @@ var couleur_a_rechercher;
           this.cases[groupes[i][0]][groupes[i][1]-j].couleur=this.couleur_click;
           this.cases[groupes[i][0]][groupes[i][1]-j].decalage=-1;
           this.score += this.point_par_case;
+          this.data_son_charge[this.son_victoire].play();
           console.log("les groupes3- i "+groupes[i][0]+" j "+Number(groupes[i][1]-j));
             this.complement_groupe(groupes[i][0], groupes[i][1]-j, 0, couleur_a_rechercher, 0);
       }

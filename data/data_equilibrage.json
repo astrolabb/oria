@@ -210,6 +210,7 @@
           "niv2" :["herbe","herbe"],
           "niv3" :["herbe","herbe"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -233,6 +234,7 @@
           "niv2" :["branche","branche"],
           "niv3" :["branche","branche"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -256,6 +258,7 @@
           "niv2" :["buche","buche"],
           "niv3" :["buche","buche"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -279,6 +282,7 @@
           "niv2" :["rondin","rondin"],
           "niv3" :["rondin","rondin"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -303,6 +307,7 @@
           "niv2" :["planche","planche"],
           "niv3" :["planche","planche"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -326,6 +331,7 @@
           "niv2" :["sceau","sceau"],
           "niv3" :["sceau","sceau"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -350,6 +356,7 @@
           "niv2" :["bois_sculpte","bois_sculpte"],
           "niv3" :["bois_sculpte","bois_sculpte"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -373,6 +380,7 @@
           "niv2" :["licorne","licorne"],
           "niv3" :["licorne","licorne"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -396,6 +404,7 @@
           "niv2" :["plante","plante"],
           "niv3" :["plante","plante"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -419,6 +428,7 @@
           "niv2" :["limace","limace"],
           "niv3" :["limace","limace"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -442,6 +452,7 @@
           "niv2" :["cereales","cereales"],
           "niv3" :["cereales","cereales"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -465,6 +476,7 @@
           "niv2" :["fleur","fleur"],
           "niv3" :["fleur","fleur"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -488,6 +500,7 @@
           "niv2" :["legumes","legumes"],
           "niv3" :["legumes","legumes"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -511,6 +524,7 @@
           "niv2" :["fruit","fruit"],
           "niv3" :["fruit","fruit"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -534,6 +548,7 @@
           "niv2" :["graine_magique","graine_magique"],
           "niv3" :["graine_magique","graine_magique"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -557,6 +572,7 @@
           "niv2" :["eau","eau"],
           "niv3" :["eau","eau"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -580,6 +596,7 @@
           "niv2" :["poisson","poisson"],
           "niv3" :["poisson","poisson"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -603,6 +620,7 @@
           "niv2" :["crevette","crevette"],
           "niv3" :["crevette","crevette"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -626,6 +644,7 @@
           "niv2" :["crabe","crabe"],
           "niv3" :["crabe","crabe"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -649,6 +668,7 @@
           "niv2" :["homard","homard"],
           "niv3" :["homard","homard"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -672,6 +692,7 @@
           "niv2" :["pieuvre","pieuvre"],
           "niv3" :["pieuvre","pieuvre"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -695,6 +716,7 @@
           "niv2" :["sirene","sirene"],
           "niv3" :["sirene","sirene"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -718,6 +740,7 @@
           "niv2" :["paille","paille"],
           "niv3" :["paille","paille"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -741,6 +764,7 @@
           "niv2" :["ver_de_terre","ver_de_terre"],
           "niv3" :["ver_de_terre","ver_de_terre"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -749,7 +773,7 @@
         "origin" : {
           "lonono" : 1
           },
-        "nom" : "ex______",
+        "nom" : "excrément",
         "niv" : 3,
         "_x" : 0,
         "_y" : 0,
@@ -764,6 +788,7 @@
           "niv2" :["ex______","ex______"],
           "niv3" :["ex______","ex______"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -787,6 +812,7 @@
           "niv2" :["carrot","carrot"],
           "niv3" :["carrot","carrot"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -810,6 +836,7 @@
           "niv2" :["engrais","engrais"],
           "niv3" :["engrais","engrais"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -833,6 +860,7 @@
           "niv2" :["carrot","carrot"],
           "niv3" :["carrot","carrot"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -856,6 +884,7 @@
           "niv2" :["corde","corde"],
           "niv3" :["corde","corde"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -879,6 +908,7 @@
           "niv2" :["metal","metal"],
           "niv3" :["metal","metal"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -902,6 +932,7 @@
           "niv2" :["fil","fil"],
           "niv3" :["fil","fil"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -925,6 +956,7 @@
           "niv2" :["roue","roue"],
           "niv3" :["roue","roue"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -948,6 +980,7 @@
           "niv2" :["scie","scie"],
           "niv3" :["scie","scie"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -971,6 +1004,7 @@
           "niv2" :["sable","sable"],
           "niv3" :["sable","sable"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -994,6 +1028,7 @@
           "niv2" :["haricot_magique","haricot_magique"],
           "niv3" :["haricot_magique","haricot_magique"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -1017,6 +1052,7 @@
           "niv2" :["verre","verre"],
           "niv3" :["verre","verre"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -1040,6 +1076,7 @@
           "niv2" :["appat","appat"],
           "niv3" :["appat","appat"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -1063,6 +1100,7 @@
           "niv2" :["femme","femme"],
           "niv3" :["femme","femme"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -1086,6 +1124,7 @@
           "niv2" :["arc_en_ciel","arc_en_ciel"],
           "niv3" :["arc_en_ciel","arc_en_ciel"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -1109,6 +1148,7 @@
           "niv2" :["pays_imaginaire","pays_imaginaire"],
           "niv3" :["pays_imaginaire","pays_imaginaire"]
           },
+        "son" : "menu2",
         "dir" : "vente",
         "or" : -1,
         "cat" : "ressource"
@@ -1159,9 +1199,9 @@
     "nb_objet" : 0
   },
   "plat_demarrage" : {
-    "cereale_soufflee" : 0,
-    "caviar" : 0,
-    "huile" : 0,
+    "cereale_soufflee" : 2,
+    "caviar" : 5,
+    "huile" : 3,
     "jus_de_fruit" : 0,
     "riz" : 0,
     "bouillon" : 0,
@@ -1343,6 +1383,7 @@
         "niv2" :["cereale_soufflee","cereale_soufflee"],
         "niv3" :["cereale_soufflee","cereale_soufflee"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 1,
       "cat" : "plat"
@@ -1362,6 +1403,7 @@
         "niv2" :["caviar","caviar"],
         "niv3" :["caviar","caviar"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 1,
       "cat" : "plat"
@@ -1381,6 +1423,7 @@
         "niv2" :["huile","huile"],
         "niv3" :["huile","huile"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 2,
       "cat" : "plat"
@@ -1400,6 +1443,7 @@
         "niv2" :["jus_de_fruit","jus_de_fruit"],
         "niv3" :["jus_de_fruit","jus_de_fruit"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 3,
       "cat" : "plat"
@@ -1419,6 +1463,7 @@
         "niv2" :["riz","riz"],
         "niv3" :["riz","riz"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 2,
       "cat" : "plat"
@@ -1438,6 +1483,7 @@
         "niv2" :["bouillon","bouillon"],
         "niv3" :["bouillon","bouillon"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 2,
       "cat" : "plat"
@@ -1457,6 +1503,7 @@
         "niv2" :["sushi","sushi"],
         "niv3" :["sushi","sushi"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 3,
       "cat" : "plat"
@@ -1476,6 +1523,7 @@
         "niv2" :["frite","frite"],
         "niv3" :["frite","frite"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 3,
       "cat" : "plat"
@@ -1495,6 +1543,7 @@
         "niv2" :["saumon_citronne","saumon_citronne"],
         "niv3" :["saumon_citronne","saumon_citronne"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 3,
       "cat" : "plat"
@@ -1514,6 +1563,7 @@
         "niv2" :["miel","miel"],
         "niv3" :["miel","miel"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 2,
       "cat" : "plat"
@@ -1533,6 +1583,7 @@
         "niv2" :["pop_corn_caramelise","pop_corn_caramelise"],
         "niv3" :["pop_corn_caramelise","pop_corn_caramelise"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 3,
       "cat" : "plat"
@@ -1552,6 +1603,7 @@
         "niv2" :["crabe_marine","crabe_marine"],
         "niv3" :["crabe_marine","crabe_marine"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 3,
       "cat" : "plat"
@@ -1571,6 +1623,7 @@
         "niv2" :["sauce","sauce"],
         "niv3" :["sauce","sauce"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 3,
       "cat" : "plat"
@@ -1590,6 +1643,7 @@
         "niv2" :["the","the"],
         "niv3" :["the","the"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 4,
       "cat" : "plat"
@@ -1609,6 +1663,7 @@
         "niv2" :["maki","maki"],
         "niv3" :["maki","maki"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 5,
       "cat" : "plat"
@@ -1628,6 +1683,7 @@
         "niv2" :["salade_de_fruit","salade_de_fruit"],
         "niv3" :["salade_de_fruit","salade_de_fruit"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 5,
       "cat" : "plat"
@@ -1647,6 +1703,7 @@
         "niv2" :["crevette_sautee","crevette_sautee"],
         "niv3" :["crevette_sautee","crevette_sautee"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 10,
       "cat" : "plat"
@@ -1666,6 +1723,7 @@
         "niv2" :["homard_royal","homard_royal"],
         "niv3" :["homard_royal","homard_royal"]
         },
+      "son" : "menu2",
       "dir" : "vente",
       "or" : 5,
       "cat" : "plat"

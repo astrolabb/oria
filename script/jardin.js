@@ -36,10 +36,11 @@ constructor Roue
 @param data_interface Object : jardin présent dans le fichier sta_interface.json
 @param images Object : ensemble des images du jeu stockées dans data_image_chargement.json
 @param jardin_algo Object : ensemble des lots possibles classés par niveau dans le fichier data_interface.json
+@param data_son_charge Object contenant tous les contextes des sons chargés
 
 
 */
-var Roue = function(monCanvas, _target, color_array, ressource, data_interface, images, jardin_algo){
+var Roue = function(monCanvas, _target, color_array, ressource, data_interface, images, jardin_algo, data_son_charge){
   self = this;
   this._target = _target;
   this.canvas = monCanvas;
@@ -65,6 +66,7 @@ var Roue = function(monCanvas, _target, color_array, ressource, data_interface, 
   this.resultat = "";
   // clé du lot gagné
   this.resultat_key = data_interface.lot_poubelle;
+  this.data_son_charge = data_son_charge;
 
 
   this.dessin_repere(images);
@@ -211,6 +213,7 @@ ressource par rapport à l'horizontale
 */
 
 Roue.prototype.tourne = function(mon_heure, duree, rotation, images){
+  this.data_son_charge[this.data_interface.musique_click[Math.floor(this.data_interface.musique_click.length*Math.random())]].play();
  var nouvelle_heure = new Date().getTime();
   if(nouvelle_heure>mon_heure+((this.data_interface.duree_acceleration+duree)*1000)){
     var temps_passe = (nouvelle_heure-mon_heure)/1000;
@@ -228,6 +231,7 @@ Roue.prototype.tourne = function(mon_heure, duree, rotation, images){
         this._target.mon_Player.jardin_poubelle += 100;
         this._target.mon_Player.ressource[this.resultat_key] +=1;
         this._target.mon_Player.objet_debloque[this.resultat_key] = true;
+        this.data_son_charge[this.data_interface.son_final_victoire].play();
         this._target.popup("setup2", this.resultat, "", "map", "jardin_fin", this.ressource[this.resultat_key], this.resultat_key);
       }
   }else{

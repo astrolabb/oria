@@ -9,8 +9,10 @@ Constructor Meme
 @param ressources Object toutes les ressources du jeu
 @param texte Object texte à afficher et correspondant à this.data_texte.lac
 @param algo Object algo d'attribution des ressource et d'équilibrage par niveau correspndant à this.data_equilibrage.lac_algo[String(this.mon_Player.niveau.lac)]
+@param data_son_charge Object contenant tous les contextes des sons chargés
+
 */
-var Meme = function(monCanvas, _target, data_interface, key, data, scene, ressources, texte, algo){
+var Meme = function(monCanvas, _target, data_interface, key, data, scene, ressources, texte, algo, data_son_charge){
   var self = this;
   this._target = _target;
   this.monCanvas = monCanvas;
@@ -25,7 +27,7 @@ var Meme = function(monCanvas, _target, data_interface, key, data, scene, ressou
   this.melange_ressource = [];
 
   this.tableau_click = [];
-
+  this.data_son_charge = data_son_charge;
 
   _target.arrayOfGameObjects = [];
   // affichage des élement fiche de l'image : image de fond, bouton retour
@@ -54,7 +56,9 @@ permet de lancer le jeu dans le gameManager
 
 */
 Meme.prototype.demarrage_jeu = function(cas){
-
+  if(cas == 1){
+    this.data_son_charge[this.data_interface.son_debut].play();
+  }
   var tableau_ressource = fonction_tableau_ressource(this.data_ressource);
   this.affichage_tableau(tableau_ressource, cas);
   this.melanger_ressource(tableau_ressource);
@@ -177,6 +181,7 @@ comportement lors d'un click
 */
 Meme.prototype.click = function(abs, ord){
   if(this.cas == 1){
+    this.data_son_charge[this.data_interface.son_clic].play();
     var taille_case = trouve_taille_case(this.algo.nb_colonne, this.data_interface.marge_gauche, this.data_interface.marge_haut);
     // détermine les coordonnées de la première case : Array
     var coord_premiere_case = fonction_coord_prem_case(taille_case, this.algo.nb_colonne);

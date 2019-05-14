@@ -73,7 +73,7 @@ var data_interface = {
           "niv2" :["panneau","panneau"],
           "niv3" :["panneau","panneau"]
         },
-        "son" : "papier",
+        "son" : "menu1",
         "dir" : "saisie_nom"
       },
       "texte_bouton2" : {
@@ -102,7 +102,7 @@ var data_interface = {
           "niv2" :["panneau","panneau"],
           "niv3" :["panneau","panneau"]
         },
-        "son" : "papier",
+        "son" : "menu1",
         "dir" : "credit"
       },
       "texte_bouton3" : {
@@ -131,7 +131,7 @@ var data_interface = {
           "niv2" :["panneau","panneau"],
           "niv3" :["panneau","panneau"]
         },
-        "son" : "papier",
+        "son" : "menu1",
         "dir" : "charger"
       }
     }
@@ -210,7 +210,7 @@ var data_interface = {
           "niv2" :["panneau","panneau"],
           "niv3" :["panneau","panneau"]
         },
-        "son" : "papier",
+        "son" : "menu1",
         "dir" : "enregistrement_nom"
       }
     }
@@ -299,7 +299,7 @@ var data_interface = {
           "niv2" :["lac2","lac2"],
           "niv3" :["lac3","lac3"]
         },
-        "son" : "papier",
+        "son" : "menu2",
         "dir" : "setup5"
                 },
       "foret" : {
@@ -317,7 +317,7 @@ var data_interface = {
           "niv2" :["foret2","foret2"],
           "niv3" :["foret3","foret3"]
         },
-        "son" : "papier",
+        "son" : "menu2",
         "dir" : "setup6"
                   },
       "jardin" : {
@@ -335,7 +335,7 @@ var data_interface = {
           "niv2" :["jardin2","jardin2"],
           "niv3" :["jardin3","jardin3"]
         },
-        "son" : "papier",
+        "son" : "menu2",
         "dir" : "setup7"
                     },
       "meme" : {
@@ -353,7 +353,7 @@ var data_interface = {
         "niv2" :["kiwi","mango"],
         "niv3" :["kiwi","mango"]
             },
-        "son" : "papier",
+        "son" : "menu2",
         "dir" : "setup8"
                 },
       "or_icone" : {
@@ -371,6 +371,7 @@ var data_interface = {
           "niv2" :["acorn","acorn"],
           "niv3" :["acorn","acorn"]
         },
+        "son" : "menu2",
         "dir" : "setup9"
             },
       "or_text" : {
@@ -413,6 +414,7 @@ var data_interface = {
           "niv2" :["panneau","panneau"],
           "niv3" :["panneau","panneau"]
         },
+        "son" : "menu2",
         "dir" : "setup11"
               }
             }
@@ -545,6 +547,7 @@ var data_interface = {
           "niv2" :["panneau","panneau"],
           "niv3" :["panneau","panneau"]
                 },
+          "son" : "menu2",
           "dir" : "setup2"
               }
         }
@@ -640,6 +643,7 @@ var data_interface = {
           "niv2" :["up","up"],
           "niv3" :["up","up"]
           },
+          "son" : "cri",
           "dir" : "niveau_up"
         }
     },
@@ -650,6 +654,8 @@ var data_interface = {
       "marge_haut" : window.innerHeight/5,
       "couleur_selection" : "blue",
       "alpha_" : 0.5,
+      "son_final_victoire" : "sous",
+      "son_final_echec" : "vache",
       "elements" : {
           "fond" : {
             "_x" : 0,
@@ -754,6 +760,7 @@ var data_interface = {
             "niv2" :["panneau","panneau"],
             "niv3" :["panneau","panneau"]
                   },
+            "son" : "menu1",
             "dir" : "valid_lonono"
               },
               "texte_recette_zero" : {
@@ -783,6 +790,7 @@ var data_interface = {
             "niv2" :["panneau","panneau"],
             "niv3" :["panneau","panneau"]
                   },
+            "son" : "menu2",
             "dir" : "recette_zero"
               },
             "texte_retour_lonono" : {
@@ -812,6 +820,7 @@ var data_interface = {
             "niv2" :["panneau","panneau"],
             "niv3" :["panneau","panneau"]
                   },
+            "son" : "menu2",
             "dir" : "retour_lonono"
             },
             "lonono_icone" : {
@@ -881,6 +890,9 @@ var data_interface = {
           "lot_poubelle" : "ex______",
           // malus maximal atteint dans le jeu de la roue de lfortune par le joueur
           "malus_max" : 1000,
+          "musique_click" : ["foret1", "foret2", "foret3", "foret4", "foret5", "foret6", "foret7"],
+          "son_final_victoire" : "sous",
+          "son_final_echec" : "vache",
           "elements" : {
               "fond" : {
                 "_x" : 0,
@@ -937,6 +949,10 @@ var data_interface = {
       "couleur_legende" : "yellow",
       "police" : "Arial",
       "taille_police1" : "20",
+      "musique_click" : ["foret1", "foret2", "foret3", "foret4", "foret5", "foret6", "foret7"],
+      "son_victoire" : "lac1",
+      "son_final_victoire" : "sous",
+      "son_final_echec" : "vache",
       "elements" : {
           "fond_foret" : {
             "_x" : 0,
@@ -993,6 +1009,7 @@ var data_interface = {
               "niv2" :["panneau","panneau"],
               "niv3" :["panneau","panneau"]
                     },
+              "son" : "menu2",
               "dir" : "foret_supr"
               }
       }
@@ -1023,6 +1040,11 @@ var data_interface = {
             "couleur_legende" : "yellow",
             "police" : "Arial",
             "taille_police1" : "20",
+            "son_debut_chute" : "lac1",
+            "son_reussite" : "lac2",
+            "son_echec" : "lac2",
+            "son_final_victoire" : "sous",
+            "son_final_echec" : "vache",
             "elements" : {
                 "fond" : {
                   "_x" : 0,
@@ -1079,6 +1101,7 @@ var data_interface = {
                     "niv2" :["panneau","panneau"],
                     "niv3" :["panneau","panneau"]
                           },
+                    "son" : "menu2",
                     "dir" : "foret_supr"
                   },
                   "bouton_lac" :{
@@ -1096,6 +1119,7 @@ var data_interface = {
                     "niv2" :["kiwi","kiwi"],
                     "niv3" :["kiwi","kiwi"]
                           },
+                    "son" : "menu2",
                     "dir" : "setup2"
                   }
             }
@@ -1111,6 +1135,10 @@ var data_interface = {
               "1" : 3,
               "2" : 2,
               "3" : 3,
+              "son_clic" : "menu1",
+              "son_debut" : "menu3",
+              "son_final_victoire" : "sous",
+              "son_final_echec" : "vache",
               "elements" : {
                   "fond" : {
                     "_x" : 0,
@@ -1167,6 +1195,7 @@ var data_interface = {
                         "niv2" :["panneau","panneau"],
                         "niv3" :["panneau","panneau"]
                             },
+                      "son" : "menu2",
                       "dir" : "setup2"
                     },
                     "bouton_meme" :{
@@ -1184,6 +1213,7 @@ var data_interface = {
                       "niv2" :["kiwi","kiwi"],
                       "niv3" :["kiwi","kiwi"]
                             },
+                      "son" : "menu2",
                       "dir" : "setup2"
                     },
                     "texte_validation" : {
@@ -1213,6 +1243,7 @@ var data_interface = {
                       "niv2" :["panneau","panneau"],
                       "niv3" :["panneau","panneau"]
                             },
+                      "son" : "menu3",
                       "dir" : "valid_meme"
                     }
               }
@@ -1277,6 +1308,7 @@ var data_interface = {
                       "niv2" :["kiwi","kiwi"],
                       "niv3" :["kiwi","kiwi"]
                             },
+                      "son" : "menu2",
                       "dir" : "setup2"
                     },
                     "soustitre1" : {
@@ -1367,6 +1399,7 @@ var data_interface = {
                         "niv2" :["kiwi","kiwi"],
                         "niv3" :["kiwi","kiwi"]
                               },
+                        "son" : "menu2",
                         "dir" : "setup"
                       }
                 }
@@ -1420,6 +1453,7 @@ var data_interface = {
                           "niv2" :["kiwi","kiwi"],
                           "niv3" :["kiwi","kiwi"]
                                 },
+                          "son" : "menu2",
                           "dir" : "setup"
                         }
                   }

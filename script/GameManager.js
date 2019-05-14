@@ -889,6 +889,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
                 var mon_affichage = mix_reussite(mix_ressources, this.data_equilibrage.lonono_algo, this.mon_Player.niveau.lonono);
                 // si echec
                 if(mon_affichage.length==0){
+                   this.data_son_charge[this.data_interface.lonono.son_final_echec].play();
                     this.mon_Player.echange2(mix_ressources, cat_ressource, poub, 1, "ressource", this.mon_lonono);
                     var a_afficher = "echec_recette";
                     var a_afficher2 = "";
@@ -898,6 +899,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
                     this.mon_Player.objet_debloque[poub] = this.mon_Player.ressource[poub];
                 // si réussite
                 }else{
+                    this.data_son_charge[this.data_interface.lonono.son_final_victoire].play();
                     this.mon_Player.echange2(mix_ressources, cat_ressource, mon_affichage[0], mon_affichage[1], "ressource", this.mon_lonono);
                     var a_afficher = "reussite";
                     var a_afficher2 = mon_affichage[1];
@@ -975,7 +977,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     this.click_canvas();
     this.monCanvas.closePath();
 
-    this.ma_roue = new Roue(this.monCanvas, self, this.data_interface.couleur_roue, this.data_equilibrage.ressource, this.data_interface.jardin, this.data_image_chargee, this.data_equilibrage.jardin_algo);
+    this.ma_roue = new Roue(this.monCanvas, self, this.data_interface.couleur_roue, this.data_equilibrage.ressource, this.data_interface.jardin, this.data_image_chargee, this.data_equilibrage.jardin_algo, this.data_son_charge);
 
     $("#monCanvas").click(function(e){
         $("#monCanvas").off('click');
@@ -1034,7 +1036,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     this.click_canvas();
     this.monCanvas.closePath();
 
-    this.mon_carrelage = new Carrelage(this.monCanvas, self, this.data_interface.couleur_carrelage, this.data_equilibrage.ressource, this.data_interface.foret, this.data_image_chargee, this.data_equilibrage.foret_algo);
+    this.mon_carrelage = new Carrelage(this.monCanvas, self, this.data_interface.couleur_carrelage, this.data_equilibrage.ressource, this.data_interface.foret, this.data_image_chargee, this.data_equilibrage.foret_algo, this.data_son_charge);
     // la fonction refresh permet d'afficher les lignes représentant les groupes de cases de la même couleur_roue
     // ainsi que de synchroniser l'animation de chute des cases et le remplacement des cases disparues
     this.mon_carrelage.refresh();
@@ -1139,7 +1141,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
 
     this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
     this.monCanvas.beginPath();
-    this.mon_lac = new Lac(this.monCanvas, self, this.data_interface.lac, key, data, scene, this.data_equilibrage.ressource, this.data_texte.lac, this.data_equilibrage.lac_algo[String(this.mon_Player.niveau.lac)]);
+    this.mon_lac = new Lac(this.monCanvas, self, this.data_interface.lac, key, data, scene, this.data_equilibrage.ressource, this.data_texte.lac, this.data_equilibrage.lac_algo[String(this.mon_Player.niveau.lac)], this.data_son_charge);
 
     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
 
@@ -1217,7 +1219,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
     this.monCanvas.beginPath();
     // le niveau de difficulté est choisi en fonction du niveau du joueur au jeu du lonono
-    this.ma_meme = new Meme(this.monCanvas, self, this.data_interface.meme, key, data, scene, this.data_equilibrage.ressource, this.data_texte.meme, this.data_equilibrage.meme_algo[String(this.mon_Player.niveau.lonono)]);
+    this.ma_meme = new Meme(this.monCanvas, self, this.data_interface.meme, key, data, scene, this.data_equilibrage.ressource, this.data_texte.meme, this.data_equilibrage.meme_algo[String(this.mon_Player.niveau.lonono)], this.data_son_charge);
 
     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
 
@@ -1311,6 +1313,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     this.stop_animation();
     console.log("nombre d erreur "+nb_erreur);
     if(reussite){
+      this.data_son_charge[this.data_interface.meme.son_final_victoire].play();
       // si le joueur est de niveau 1 ou 2 au jeu du lonono : les recettes données en cas de réussite
       // sont de niveau 2. Si le joueur est niveau 3 : les recettes données sont de niveau 3
       // Ces données peuvent être modifiées dans le fichier data_interface.json
@@ -1327,6 +1330,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
 //      this.popup("setup2", ma_recette, "", "meme", "reussite", "", "");
     }
     else {
+      this.data_son_charge[this.data_interface.meme.son_final_echec].play();
       var mon_texte = String(nb_erreur+" "+pluriel(nb_erreur, this.data_texte.meme.erreur));
       this.popup("setup2", mon_texte, "", "meme", "echec", "", "");
     }

@@ -9,9 +9,11 @@ Constructor lac
 @param ressources Object toutes les ressources du jeu
 @param texte Object texte à afficher et correspondant à this.data_texte.lac
 @param algo Object algo d'attribution des ressource et d'équilibrage par niveau correspndant à this.data_equilibrage.lac_algo[String(this.mon_Player.niveau.lac)]
+@param data_son_charge Object contenant tous les contextes des sons chargés
+
 */
 
-var Lac = function(monCanvas, _target, data_interface, key, data, scene, ressources, texte, algo){
+var Lac = function(monCanvas, _target, data_interface, key, data, scene, ressources, texte, algo, data_son_charge){
   var self = this;
   this._target = _target;
   this.monCanvas = monCanvas;
@@ -33,6 +35,7 @@ var Lac = function(monCanvas, _target, data_interface, key, data, scene, ressour
   this.score = 0;
   this.texte = texte;
   this.algo = algo;
+  this.data_son_charge = data_son_charge;
   console.log("30_12_18 3 "+JSON.stringify(this.algo));
 
 
@@ -171,8 +174,10 @@ Lac.prototype.affichage_score = function(monCanvas){
       this._target.mon_Player.ressource[mon_resultat] += ma_quantite;
       this._target.stop_animation();
       if(mon_resultat == 0){
+        this.data_son_charge[this.interface.son_final_echec].play();
         this._target.popup("setup2", "", "", "lac", "echec", "", "");
       }else{
+        this.data_son_charge[this.interface.son_final_victoire].play();
         this._target.mon_Player.objet_debloque[mon_resultat] = true;
         this._target.popup("setup2", ma_quantite +" "+self.ressources[mon_resultat].nom, "", "lac", "reussite", self.ressources[mon_resultat], mon_resultat);
       }
@@ -242,6 +247,7 @@ timer contenant requestAnimationFrame
 
   // si le temps d'activation du bouton est depassé, il faut en choisir un autre
   if(temps_actu>this.temps_ecoule+this.mon_intervalle){
+    this.data_son_charge[this.interface.son_debut_chute].play();
     this.temps_ecoule = temps_actu;
     this.temps_dernier_refresh = temps_actu;
     this.mon_intervalle = 0;
@@ -294,9 +300,12 @@ Lac.prototype.click = function(_x, _y){
         if(this["bouton_"+i].couleur == this.interface.couleur_bouton_actif){
           this.score+=this.algo.bonus;
           this["bouton_"+i].couleur = this.couleur_bouton[i];
+          this.data_son_charge[this.interface.son_reussite].play();
         // si le bouton n'est pas activé
         }else{
+          this.interface
           this.score-=this.algo.bonus;
+          this.data_son_charge[this.interface.son_echec].play();
         }
       }
 

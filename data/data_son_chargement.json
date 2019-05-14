@@ -1,5 +1,20 @@
 var data_son_chargement = {
-  "papier" : "./son/papier.mp3",
-  "coq" : "./son/coq.mp3",
+  "cri" : "./son/cri1_a.mp3",
+  "coq" : "./son/coq_a.mp3",
   "sous" : "./son/sous.mp3",
+  "menu1" : "./son/buzz_1_a.mp3",
+  "menu2" : "./son/validation_2_a.mp3",
+  "foret1" : "./son/cassebrique_1_a.mp3",
+  "foret2" : "./son/cassebrique_2_a.mp3",
+  "foret3" : "./son/cassebrique_3_a.mp3",
+  "foret4" : "./son/cassebrique_4_a.mp3",
+  "foret5" : "./son/cassebrique_5_a.mp3",
+  "foret6" : "./son/cassebrique_6_a.mp3",
+  "foret7" : "./son/cassebrique_7_a.mp3",
+  "lac1" : "./son/lac_1_a.mp3",
+  "lac2" : "./son/lac_2_a.mp3",
+  "lac3" : "./son/validation_1_a.mp3",
+  "vache" : "./son/vache_a.mp3",
+  "menu3" : "./son/menu1_a.mp3"
+
 }
