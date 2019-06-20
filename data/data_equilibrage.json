@@ -133,7 +133,7 @@
       "bois_sculpte" : [["billette", "billette"], 1],
       "engrais" : [["ex______", "plante"], 1],
       "pierre" : [["herbe", "plante"], 1],
-      "paille" : [["paille", "paille"], 1],
+      "corde" : [["paille", "paille"], 1],
       "sceau" : [["bois_sculpte", "corde"], 1],
       "metal" : [["pierre", "pierre"], 1],
       "fil" : [["fleur", "fleur"], 1],
@@ -1193,7 +1193,7 @@
     "haricot_magique" : 0,
     "verre" : 101,
     "appat" : 0,
-    "femme" : 0,
+    "femme" : 1,
     "arc_en_ciel" : 0,
     "pays_imaginaire" : 0,
     "nb_objet" : 0
@@ -1300,13 +1300,18 @@
     "retour_synthese" : 1,
     "retour_victoire" : 1,
     "retour_credit" : 1,
+    "retour_synthese" : 1,
     "sauvegarde" : 1,
     "bouton" : 1,
     "bouton2" : 1,
     "bouton3" : 1,
     "bouton_niveau" : 1,
     "plus" : 1,
-    "egal" : 1
+    "egal" : 1,
+    "logo" : 1,
+    "couleur_fond" : 1,
+    "aide_popup" : 1,
+    "remerciements" : 1
   },
   "bareme_niveau" : {
       "village" : {

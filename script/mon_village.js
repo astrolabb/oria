@@ -13,12 +13,19 @@ var Mon_Village = function(monCanvas, _target, data_equilibrage, data_interface,
 {
     var self = this;
     _target.arrayOfGameObjects = [];
+    // disposition des images du marché en fonction de l'orientation de l'écran
+    if(window.innerWidth > window.innerHeight){
+      // mise à l'échelle des images pour les disposer à l'ecran
 
+      data_equilibrage = mise_echelle(data_equilibrage, data_interface.marge_gauche, data_interface.marge_haut, 0, window.innerWidth/2, window.innerHeight,1);
+      data_ressources = mise_echelle(data_ressources, data_interface.marge_gauche, data_interface.marge_haut, window.innerWidth/2, window.innerWidth/2, window.innerHeight,1);
+    }else{
+      data_interface.elements.sous_titre_droit._y =  window.innerHeight/2;
+      data_interface.elements.sous_titre_droit.alignement =  "left";
+      data_equilibrage = mise_echelle(data_equilibrage, data_interface.marge_gauche, data_interface.marge_haut, 0, window.innerWidth, window.innerHeight/2-data_interface.marge_haut,1);
+      data_ressources = mise_echelle(data_ressources, data_interface.marge_gauche, window.innerHeight/2+data_interface.marge_haut/2, 0, window.innerWidth, window.innerHeight/2-data_interface.marge_haut,1);
 
-    // mise à l'échelle des images pour les disposer à l'ecran
-    data_equilibrage = mise_echelle(data_equilibrage, data_interface.marge_gauche, data_interface.marge_haut, 0, window.innerWidth/2);
-    data_ressources = mise_echelle(data_ressources, data_interface.marge_gauche, data_interface.marge_haut, window.innerWidth/2, window.innerWidth/2);
-
+    }
     console.log("data_ressources "+JSON.stringify(data_equilibrage));
 
     this.data_equilibrage = data_equilibrage;

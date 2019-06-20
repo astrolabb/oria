@@ -53,13 +53,11 @@ var Mon_lonono = function(monCanvas, _target, data_plat, data_interface, data_re
   console.log("av_data_ressources2 "+JSON.stringify(object_trie2));
 
   // mise à l'échelle des images pour les disposer à l'ecran
-  var data_ressources2 = mise_echelle(JSON.parse(JSON.stringify(object_trie2)), data_interface.marge_gauche, data_interface.marge_haut, 2*window.innerWidth/3, window.innerWidth/3);
-  var data_ressources3 = mise_echelle(JSON.parse(JSON.stringify(object_trie)), data_interface.marge_gauche, data_interface.marge_haut, 0, window.innerWidth/3);
+  var data_ressources2 = mise_echelle(JSON.parse(JSON.stringify(object_trie2)), data_interface.marge_gauche, data_interface.marge_haut, 2*window.innerWidth/3, window.innerWidth/3,2*window.innerHeight/3, 1);
+  var data_ressources3 = mise_echelle(JSON.parse(JSON.stringify(object_trie)), data_interface.marge_gauche, data_interface.marge_haut, 0, window.innerWidth/3,2*window.innerHeight/3 ,1);
 
   console.log("data_ressources3 "+JSON.stringify(data_ressources3));
   console.log("data_ressources2 "+JSON.stringify(data_ressources2));
-
-
 
 
   this.data_plat = data_plat;

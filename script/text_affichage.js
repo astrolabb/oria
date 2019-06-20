@@ -1,7 +1,12 @@
 /**
 Text_affichage : classe d'affichage du texte
-@param monCanvas : Canevas où afficher le texte
-
+@param monCanvas : context du Canevas où afficher le texte
+@param data_texte : Objet représentant le texte et présent dans le fichier data_interface.json
+@param nom : String attibut du champ de texte dans le fichier data_interface.json
+@param maxWidth : Number largeur maximale du texte
+@param lineHeight : Number distance entre les lignes de texte
+@param mon_texte : Object contenant les textes de la scène et présent dans le fichier data_texte.json
+@param reference : attribut d'un image où le texte doit être placé dessus.
 @param reference : référence de l'éléement sur lequel aligner le texte
 */
 
@@ -55,8 +60,9 @@ Text_affichage.prototype.setup = function(text){
     this.centrage(text);
   }else if(this.alignement=="ref"){
     var _x = ma_ref_x + ma_ref_width/2;
-    var _y = ma_ref_y + ma_ref_height/2;;
+    var _y = ma_ref_y + ma_ref_height/3;;
     this.monCanvas.textAlign="center";
+    this.monCanvas.textBaseline = "middle";
     this.affichage(text, _x, _y);
   }else{
     this.affichage(text, this._x, this._y);
@@ -100,17 +106,33 @@ Text_affichage.prototype.centrage = function(text){
         var mon_texte = text=="" ? this.text : text;
         //var _x = (window.innerWidth - this.maxWidth) / 2;
         var _x;
+        // on découpe la phrase en mot
         var words = mon_texte.split(' ');
         var line = '';
+        var testWidth_avant = 0;
+        var ancien_line="";
+        // on boucle sur chaque mot
         for(var n = 0; n < words.length; n++) {
+          // on calcule la largeur de la ligne avant l'ajout du mot
+          testWidth_avant = this.monCanvas.measureText(line).width;
+
+          // on concatene le mot au reste de la ligne
           var testLine = line + words[n] + ' ';
           var metrics = this.monCanvas.measureText(testLine);
+          // et on calcule la largeur de la nouvelle ligne
           var testWidth = metrics.width;
+
+          ancien_line = line;
           line += words[n] + ' ';
+          // si la largeur dépasse la taille voulue, la ligne s'arrête
           if (testWidth > this.maxWidth) {
-            _x = (window.innerWidth - testWidth) / 2;
-            this.affichage(line, _x, this._y);
-            line = '';
+          //  _x = (window.innerWidth - testWidth) / 2;
+          //  this.affichage(line, _x, this._y);
+          //  line = '';
+          //  this._y += this.lineHeight;
+            _x = (window.innerWidth - testWidth_avant) / 2;
+            this.affichage(ancien_line, _x, this._y);
+            line = words[n] + ' ';
             this._y += this.lineHeight;
           }
           if (n == words.length-1) {

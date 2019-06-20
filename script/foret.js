@@ -188,12 +188,32 @@ Carrelage.prototype.decors = function(){
   this.monCanvas.fillRect(this.centrage_x-(this.case_width*this.colonne/2)-this.data_interface.epaisseur_trait, this.top_y-this.data_interface.epaisseur_trait, (this.case_width*this.colonne)+2*this.data_interface.epaisseur_trait, (this.case_height*this.ligne)+2*this.data_interface.epaisseur_trait);
   this.monCanvas.closePath();
 
+
   // légende timer
-  var largeur_panneau = this.centrage_x-(this.case_width*this.colonne/2)-this.data_interface.epaisseur_trait - 2* this.data_interface._x_score;
-  var hauteur_panneau = this.data_interface._height_score;
+
+
+  // on dispose le score en fonction de la largeur de l'écran soit à gauche et à droite soit en bas
+  if(window.innerWidth > window.innerHeight){
+    var hauteur_panneau = this.data_interface._height_score;
+    var largeur_panneau = this.centrage_x-(this.case_width*this.colonne/2)-this.data_interface.epaisseur_trait - 2* this.data_interface._x_score;
+  }else{
+    var hauteur_panneau = this.data_interface._height_score2;
+    var largeur_panneau = this.case_width*this.colonne/3;
+    this.data_interface._x_score =  this.centrage_x-(this.case_width*this.colonne/2);
+    this.data_interface._y_score =  this.top_y-this.data_interface.epaisseur_trait + (this.case_height*this.ligne)+2*this.data_interface.epaisseur_trait + hauteur_panneau;
+  }
+
   texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, "Timer", this.data_interface._x_score,  this.data_interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_legende, this.data_interface.police, this.data_interface.taille_police1);
   // légende score
-  var position_x_panneau_score = 3*this.data_interface._x_score + largeur_panneau + this.case_width*this.colonne + 2*this.data_interface.epaisseur_trait;
+
+
+  // on dispose le score en fonction de la largeur de l'écran soit à gauche et à droite soit en bas
+  if(window.innerWidth > window.innerHeight){
+    var position_x_panneau_score = 3*this.data_interface._x_score + largeur_panneau + this.case_width*this.colonne + 2*this.data_interface.epaisseur_trait;
+  }else{
+    var position_x_panneau_score = this.centrage_x+(this.case_width*this.colonne/2)-largeur_panneau;
+  }
+
   texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, "Score", position_x_panneau_score,  this.data_interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_legende, this.data_interface.police, this.data_interface.taille_police1);
 
 }
@@ -206,10 +226,27 @@ Carrelage.prototype.affiche_score = function(){
   var mon_timer = new Date().getTime();
   if(mon_timer - this.date_debut < this.duree*1000){
     var texte_afficher = Math.floor(this.duree-(mon_timer - this.date_debut)/1000);
-    var largeur_panneau = this.centrage_x-(this.case_width*this.colonne/2)-this.data_interface.epaisseur_trait - 2* this.data_interface._x_score;
-    var hauteur_panneau = this.data_interface._height_score;
+
+    if(window.innerWidth > window.innerHeight){
+      var hauteur_panneau = this.data_interface._height_score;
+      var largeur_panneau = this.centrage_x-(this.case_width*this.colonne/2)-this.data_interface.epaisseur_trait - 2* this.data_interface._x_score;
+    }else{
+      var hauteur_panneau = this.data_interface._height_score2;
+      var largeur_panneau = this.case_width*this.colonne/3;
+      this.data_interface._x_score =  this.centrage_x-(this.case_width*this.colonne/2);
+      this.data_interface._y_score =  this.top_y-this.data_interface.epaisseur_trait + (this.case_height*this.ligne)+2*this.data_interface.epaisseur_trait + hauteur_panneau;
+
+    }
     texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, texte_afficher, this.data_interface._x_score,  this.data_interface._y_score, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_cartouche, this.data_interface.police, this.data_interface.taille_police1);
-    var position_x_panneau_score = 3*this.data_interface._x_score + largeur_panneau + this.case_width*this.colonne + 2*this.data_interface.epaisseur_trait;
+    // on dispose le score en fonction de la largeur de l'écran soit à gauche et à droite soit en bas
+
+    if(window.innerWidth > window.innerHeight){
+      var position_x_panneau_score = 3*this.data_interface._x_score + largeur_panneau + this.case_width*this.colonne + 2*this.data_interface.epaisseur_trait;
+    }else{
+      var position_x_panneau_score = this.centrage_x+(this.case_width*this.colonne/2)-largeur_panneau;
+    }
+
+
     texte_sur_panneau(this.monCanvas, this.data_interface.couleur_texte, this.score, position_x_panneau_score,  this.data_interface._y_score, largeur_panneau, hauteur_panneau,  this.data_interface.couleur_cartouche, this.data_interface.police, this.data_interface.taille_police1);
 
   }else{
@@ -228,11 +265,11 @@ Carrelage.prototype.affiche_score = function(){
     this._target.stop_animation();
     if(mon_resultat == 0){
       this.data_son_charge[this.data_interface.son_final_echec].play();
-      this._target.popup("setup2", "", "", "foret", "echec", "", "");
+      this._target.popup("setup2", "", "", "foret", "echec", "", "", "mon_fadein2");
     }else{
       this.data_son_charge[this.data_interface.son_final_victoire].play();
       this._target.mon_Player.objet_debloque[mon_resultat] = true;
-      this._target.popup("setup2", ma_quantite + " " + self.ressource[mon_resultat].nom, "", "foret", "reussite", self.ressource[mon_resultat], mon_resultat);
+      this._target.popup("setup2", ma_quantite + " " + self.ressource[mon_resultat].nom, "", "foret", "reussite", self.ressource[mon_resultat], mon_resultat, "mon_fadein2");
 
       }
 

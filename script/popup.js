@@ -23,7 +23,22 @@ var Popup = function(monCanvas, _target, data_equilibrage, data_interface, image
   Object.keys(data_interface.elements).forEach(function(key) {
       console.log(key+" "+data_interface.elements[key]);
       if(data_interface.elements[key].nature == "text"){
-          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, data_interface.lineHeight, _target.data_texte.map, data_interface.elements[key].reference=="" ? "" : data_interface.elements[data_interface.elements[key].reference]);
+
+          // si une image n'est pas présente, on place le texte en haut
+          // sinon on le place comme précesé dans le fichier data_interface.json
+          if(image_a_afficher!=""){
+            data_interface.elements[key]._y = data_interface.position_texte_si_image_y;
+          }else{
+            data_interface.elements[key]._y = data_interface.position_texte_pas_image_y;
+          }
+
+          // on paramètre l'espace entre les lignes en fonction de l'orientation de l'écran
+          if(window.innerWidth > window.innerHeight){
+            var espace_entre_ligne = data_interface.lineHeight;
+          }else{
+            var espace_entre_ligne = data_interface.lineHeight2;
+          }
+          self[key] = new Text_affichage(monCanvas, data_interface.elements[key], key, data_interface.maxWidth_text, espace_entre_ligne, _target.data_texte.popup, data_interface.elements[key].reference=="" ? "" : data_interface.elements[data_interface.elements[key].reference]);
           _target.arrayOfGameObjects.push([key,"text",self[key], key]);
       }
   });
@@ -34,7 +49,7 @@ var Popup = function(monCanvas, _target, data_equilibrage, data_interface, image
     self[nom_image]._width = data_interface.icone_width;
     self[nom_image]._height = data_interface.icone_height;
     self[nom_image]._x =  window.innerWidth/2 - self[nom_image]._width/2;
-    self[nom_image]._y =  window.innerHeight/3;
+    self[nom_image]._y =  data_interface.position_image;
 
     _target.arrayOfGameObjects.push([nom_image, "image", self[nom_image], nom_image]);
   }

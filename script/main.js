@@ -5,9 +5,9 @@ fonction de lancement du jeu
 @param data_equilibrage : Object : toutes les données d'équilibrage provenant de equilibrage_url
 @param data_image_chargee : Object : object contenant les contextes des images chargées
 @param data_son_charge : Object : object  contenant les contextes des sons chargés
-
+@param data_general : Object : toutes les donnees concernant le jeu en général : adresse web, adresse des liens...
 */
-function Main(data_interface, data_equilibrage, data_image_chargee, data_son_charge){
+function Main(data_interface, data_equilibrage, data_image_chargee, data_son_charge, data_general){
 
   console.log("fonction Main");
 
@@ -29,7 +29,7 @@ function Main(data_interface, data_equilibrage, data_image_chargee, data_son_cha
   // initialisation du joueur
   mon_Player.setup(data_equilibrage);
   // démarrage du gestionnaire de jeu : images/click
-  var mon_GameManager = new GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player, data_texte, data_son_charge);
+  var mon_GameManager = new GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player, data_texte, data_son_charge, data_general);
   // lancement du menu d'accueil : prototype : setup
   mon_GameManager.setup("", "{}", "demarrage");
 
@@ -96,25 +96,37 @@ function fadein (self, i, nb){
     @param left number marge à marge_gauche
     @param up number marge en haut
     @param ref number alignement vertical
+    @param hauteur_max number hauteur maximale que peuvent les images (en les additionnant)
+    @param cas number permet de choisir entre une répartition des images en carré : 1 ou en rectangle : 2
 
     @return data_equilibrage Object nouvelles données des icones à afficher
     */
 
-    function mise_echelle(data_equilibrage, left, up, ref, largeur){
+    function mise_echelle(data_equilibrage, left, up, ref, largeur, hauteur_max, cas){
 
       var marge_gauche = left;
       var marge_haut = up;
-      var nb_image_ligne = Math.ceil(Math.sqrt(Object.keys(data_equilibrage).length));
+      if(cas == 1){
+        var nb_image_ligne = Math.ceil(Math.sqrt(Object.keys(data_equilibrage).length));
+      }else if(cas == 2){
+        var nb_image_ligne = Math.ceil(Math.sqrt(Object.keys(data_equilibrage).length*largeur/hauteur_max));
+      }
+
       console.log("data_equilibrage longueur "+Object.keys(data_equilibrage).length);
       console.log("nb_image_ligne "+nb_image_ligne);
       console.log("largeur ecran "+largeur);
       console.log("hauteur ecran "+window.innerHeight);
       var largeur_image = (largeur - 2*marge_gauche - (nb_image_ligne*5))/nb_image_ligne;
       console.log("largeur_image "+largeur_image);
-      var hauteur_image = (window.innerHeight - 1.2*marge_haut - (nb_image_ligne*5))/nb_image_ligne;
+      var nb_ligne = Math.floor(Object.keys(data_equilibrage).length/nb_image_ligne);
+      if(cas == 1){
+        var hauteur_image = (hauteur_max - (nb_image_ligne*5))/nb_image_ligne;
+      }else if(cas == 2){
+        var hauteur_image = (hauteur_max - (nb_ligne*5))/nb_ligne;
+      }
       console.log("hauteur_image "+hauteur_image);
       largeur_image = largeur_image>hauteur_image ? hauteur_image : largeur_image;
-      hauteur_image = largeur_image>hauteur_image ? hauteur_image : largeur_image;
+      hauteur_image = largeur_image>=hauteur_image ? hauteur_image : largeur_image;
       var compteur = 0;
       var compteur2 = 0;
       Object.keys(data_equilibrage).forEach(function(key) {
@@ -460,10 +472,11 @@ function fadein (self, i, nb){
       monCanvas.fillStyle = panneau_color;
       monCanvas.fillRect(panneau_x, panneau_y, panneau_width, panneau_heigth);
       monCanvas.closePath();
+      monCanvas.textBaseline = "middle";
       monCanvas.font = format_police(police, taille);
       monCanvas.fillStyle = texte_color;
       monCanvas.fillText(texte, panneau_x + panneau_width/2, panneau_y + panneau_heigth/2 );
-
+      monCanvas.textBaseline = "alphabetic";
 
     }
     /**

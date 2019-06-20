@@ -184,21 +184,41 @@ Roue.prototype.dessin_repere = function(images){
   if(Width_cle > this.largeur_texte){
     this.largeur_texte = Width_cle;
   }
-  this.canvas.beginPath();
-  this.canvas.fillStyle = this.data_interface.couleur_cartouche;
-  this.canvas.fillRect((2*this.epaisseur_trait) + this.centre_x+this.rayon, this.centre_y+this.hauteur_triangle+this.separation_fleche_cartouche, this.largeur_texte, window.innerHeight/this.data_interface.taille_police1);
-  this.canvas.closePath();
+
+  if(window.innerWidth>window.innerHeight){
+    this.canvas.beginPath();
+    this.canvas.fillStyle = this.data_interface.couleur_cartouche;
+    this.canvas.fillRect((2*this.epaisseur_trait) + this.centre_x+this.rayon, this.centre_y+this.hauteur_triangle+this.separation_fleche_cartouche, this.largeur_texte, window.innerHeight/this.data_interface.taille_police1);
+    this.canvas.closePath();
 
 
-  this.canvas.textAlign = "left";
-  this.canvas.textBaseline = "middle";
-  this.canvas.fillStyle = this.data_interface.couleur_texte;
-  var texte_afficher = this.ressource[this.liste_camenbert[cle]].nom;
-  this.resultat = texte_afficher;
-  this.resultat_key = this.liste_camenbert[cle];
-  this.canvas.font = format_police(this.data_interface.taille_police1, this.data_interface.police);
-  this.canvas.fillText(texte_afficher, (2*this.epaisseur_trait) + this.centre_x+this.rayon, this.centre_y+this.hauteur_triangle/2+this.separation_fleche_cartouche+window.innerHeight/this.data_interface.taille_police1)
-  this.canvas.textBaseline = "alphabetic";
+    this.canvas.textAlign = "left";
+    this.canvas.textBaseline = "middle";
+    this.canvas.fillStyle = this.data_interface.couleur_texte;
+    var texte_afficher = this.ressource[this.liste_camenbert[cle]].nom;
+    this.resultat = texte_afficher;
+    this.resultat_key = this.liste_camenbert[cle];
+    this.canvas.font = format_police(this.data_interface.taille_police1, this.data_interface.police);
+    this.canvas.fillText(texte_afficher, (2*this.epaisseur_trait) + this.centre_x+this.rayon, this.centre_y+this.hauteur_triangle/2+this.separation_fleche_cartouche+window.innerHeight/this.data_interface.taille_police1)
+    this.canvas.textBaseline = "alphabetic";
+  }else{
+    this.canvas.beginPath();
+    this.canvas.fillStyle = this.data_interface.couleur_cartouche;
+    this.canvas.fillRect(this.centre_x - this.largeur_texte/2, window.innerHeight - this.data_interface.marge_haut - window.innerHeight/this.data_interface.taille_police1, this.largeur_texte, window.innerHeight/this.data_interface.taille_police1);
+    this.canvas.closePath();
+
+
+    this.canvas.textAlign = "middle";
+    this.canvas.textBaseline = "middle";
+    this.canvas.fillStyle = this.data_interface.couleur_texte;
+    var texte_afficher = this.ressource[this.liste_camenbert[cle]].nom;
+    this.resultat = texte_afficher;
+    this.resultat_key = this.liste_camenbert[cle];
+    this.canvas.font = format_police(this.data_interface.taille_police1, this.data_interface.police);
+    this.canvas.fillText(texte_afficher, this.centre_x, window.innerHeight- this.data_interface.marge_haut - 0.5*window.innerHeight/this.data_interface.taille_police1)
+    this.canvas.textBaseline = "alphabetic";
+
+  }
 }
 /**
 prototype tourne
@@ -232,7 +252,7 @@ Roue.prototype.tourne = function(mon_heure, duree, rotation, images){
         this._target.mon_Player.ressource[this.resultat_key] +=1;
         this._target.mon_Player.objet_debloque[this.resultat_key] = true;
         this.data_son_charge[this.data_interface.son_final_victoire].play();
-        this._target.popup("setup2", this.resultat, "", "map", "jardin_fin", this.ressource[this.resultat_key], this.resultat_key);
+        this._target.popup("setup2", this.resultat, "", "map", "jardin_fin", this.ressource[this.resultat_key], this.resultat_key, "mon_fadein2");
       }
   }else{
     var temps_passe = (nouvelle_heure-mon_heure)/1000;

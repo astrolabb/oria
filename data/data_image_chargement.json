@@ -10,7 +10,7 @@ var data_image_chargement = {
 "acorn" : "./image/047-acorn.png",
 "onion" : "./image/005-onion.png",
 "fond_gris" : "./image/fond_gris.jpg",
-"fond_vert" : "./image/fond_vert.jpg",
+"fond_vert" : "./image/fond.jpeg",
 "village1" : "./image/village1.png",
 "village2" : "./image/village2.png",
 "village3" : "./image/village3.png",
@@ -85,6 +85,7 @@ var data_image_chargement = {
 "crevette_sautee" : "./image/crevette_sautee.png",
 "homard_royal" : "./image/homard_royal.png",
 "egal" : "./image/egal.png",
-"plus" : "./image/plus.png"
-
+"plus" : "./image/plus.png",
+"logo" : "./image/logo.png",
+"aide" : "./image/aide.png"
 }

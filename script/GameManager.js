@@ -11,9 +11,11 @@ exemple : positionnement image / écouteurs des clicks /
 @param mon_Player Object classe contenant les paramètres du joueur : score, ressources
 @param data_texte Object contenant les textes à afficher dans les popups
 @param data_son_charge Object contenant tous les contextes des sons chargés
+@param data_general : Object : toutes les donnees concernant le jeu en général : adresse web, adresse des liens...
+
 */
 
-function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player, data_texte, data_son_charge)
+function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic, data_image_chargee, mon_Player, data_texte, data_son_charge, data_general)
 {
     console.log("fonction GameManager");
     console.log("test chargement : or "+mon_Player.or);
@@ -31,6 +33,8 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
     this.mon_Player = mon_Player;
     this.data_equilibrage = data_equilibrage;
     this.data_texte = data_texte;
+    // enregistrement des données générales du jeu
+    this.data_general = data_general;
 
     // iinitialisation des variables utilisées dans la partie lonono
     // tableau représentant l'association des ressources ---> synthèse nouvelle ressource
@@ -101,7 +105,7 @@ function GameManager(monCanvas, data_interface, data_equilibrage, monCanvas_clic
          console.log("object_fusionne2 "+this.arrayOfGameObjects2[i]);
          this.canvas_hit[this.arrayOfGameObjects2[i]].draw(this.monCanvas_click);
 
-    // this.canvas_hit[this.arrayOfGameObjects2[i]].draw(this.monCanvas);
+  //   this.canvas_hit[this.arrayOfGameObjects2[i]].draw(this.monCanvas);
 
        }
    }
@@ -474,10 +478,10 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
         localStorage.setItem("plat",JSON.stringify(this.mon_Player.plat));
         //ferme toutes les animations, les retardateurs et les timers
 
-        this.popup("setup2", "", "", "sauvegarde", "reussie", "", "");
+        this.popup("setup2", "", "", "sauvegarde", "reussie", "", "", "mon_fadein2");
         }catch (exception) {
           this.stop_animation();
-          this.popup("setup2", "", "", "sauvegarde", "nonsauvegarde", "", "");
+          this.popup("setup2", "", "", "sauvegarde", "nonsauvegarde", "", "", "mon_fadein2");
         }
       }
     /**
@@ -637,9 +641,9 @@ console.log("carte object_fusionne "+JSON.stringify(this.bouton_niveau.monObject
         console.log("debut de la vente");
         if(this.mon_Player.echange(key, data.or, "or", data)){
           if(data.or>0){
-              this.popup("contructor_village", this.data_equilibrage.plats[key].nom, "", "village", "plat", this.data_equilibrage.plats[key], key);
+              this.popup("contructor_village", this.data_equilibrage.plats[key].nom, "", "village", "plat", this.data_equilibrage.plats[key], key, "mon_fadein2");
           }else{
-              this.popup("contructor_village", this.data_equilibrage.ressource[key].nom, "", "village", "achat", this.data_equilibrage.ressource[key], key);
+              this.popup("contructor_village", this.data_equilibrage.ressource[key].nom, "", "village", "achat", this.data_equilibrage.ressource[key], key, "mon_fadein2");
           }
 
         }else{
@@ -715,16 +719,17 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
   prototype popup
   contruction des objets du popup
 
-  @param target canevas où doit s'afficher le popup
+  @param target prototype ou fonction à lancer après la fin du popup
   @param var1 string : variable complémentaire à afficher en fin de texte
   @param var2 string variable complémentaire à afficher en fin de texte
   @param frame string scène où est affiché le popup : va servir d'attribut à rechercher le texte dans le fichier data_texte
   @param element string attribu de frame dans le fichier texte_data
   @param var3_1 object object représentant les données de l'image à afficher cela peut être une ressource ou un plat
   @param var3_2 string chaine représentant le nom de l'image à afficher
+  @param css attribut css à utiliser pour les paramètres du popup
 
   */
-  GameManager.prototype.popup = function(target, var1, var2, frame, element, var3_1, var3_2){
+  GameManager.prototype.popup = function(target, var1, var2, frame, element, var3_1, var3_2, css){
     this.stop_animation();
     var self = this;
     console.log("popup ");
@@ -732,7 +737,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     this.arrayOfGameObjects = [];
     this.mon_popup = new Popup(this.monCanvas, self, this.data_equilibrage, this.data_interface.popup, var3_1, var3_2);
     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
-    this.affichage_popup(var1, var2, frame, element, target, var3_1, var3_2, "mon_fadein2");
+    this.affichage_popup(var1, var2, frame, element, target, var3_1, var3_2, css);
 
 
   }
@@ -753,18 +758,30 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     self = this;
     for (var i in this.arrayOfGameObjects) {
         if(this.arrayOfGameObjects[i][1]=="text"){
-            this.arrayOfGameObjects[i][2].setup(this.data_texte[frame][element]+": "+var1+" "+var2);
+            if(var1!="" || var2!=""){
+              var separateur = ": ";
+            }else{
+              var separateur = "";
+            }
+            this.arrayOfGameObjects[i][2].setup(this.data_texte[frame][element]+separateur+var1+" "+var2);
         }else if(this.arrayOfGameObjects[i][1]=="image"){
           console.log("affichage_popup "+this.arrayOfGameObjects[i][0]);
             this.arrayOfGameObjects[i][2].draw(this.monCanvas);
         }
     }
-    $("#monCanvas").addClass(classe_css);
-    $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
-         $("#monCanvas").removeClass(classe_css);
+    if(classe_css == "pas_animation"){
+      $("#monCanvas").click(function(){
+         $("#monCanvas").off("click");
          self[target](frame,"", frame);
+      });
+    }else{
+      $("#monCanvas").addClass(classe_css);
+      $("#monCanvas").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+           $("#monCanvas").removeClass(classe_css);
+           self[target](frame,"", frame);
 
-    });
+      });
+    }
 
   }
   GameManager.prototype.niveau_up = function(key, data, scene){
@@ -779,7 +796,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
           self.mon_Player.ressource[e[0]] = e[1] - e[2];
         console.log("valeur ressource avant "+self.mon_Player.ressource[e[0]]);
       });
-      self.popup("setup2", data.key, this.mon_Player.niveau[data.key], "map", "niveau",self.data_interface.bouton_niveau.elements, "bouton_niveau");
+      self.popup("setup2", data.key, this.mon_Player.niveau[data.key], "map", "niveau",self.data_interface.bouton_niveau.elements, "bouton_niveau", "mon_fadein2");
   }
   /**
   classe de gestion du lonono
@@ -817,6 +834,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
       this.arrayOfGameObjects3["retour_lonono"]= this.data_interface.lonono.elements.retour_lonono;
       this.arrayOfGameObjects3["validation_recette"]= this.data_interface.lonono.elements.validation_recette;
       this.arrayOfGameObjects3["recette_zero"]= this.data_interface.lonono.elements.recette_zero;
+      this.arrayOfGameObjects3["aide_popup"]= this.data_interface.lonono.elements.aide_popup;
       console.log("object_fusionne2 "+JSON.stringify(object_fusionne));
       // mise en place des zones à cliquer
       this.canvas_hit = new Gameplay(this.monCanvas_click, this, this.arrayOfGameObjects3, "lonono");
@@ -882,7 +900,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     var poub = this.data_equilibrage.ressource_poubelle;
             // si pas de ressource de plat selectionné
             if(mix_ressources.length==0 && mix_plat.length==0){
-              this.popup("lonono", "", "", "lonono", "pas_de_selection", "", "");
+              this.popup("lonono", "", "", "lonono", "pas_de_selection", "", "", "mon_fadein2");
               // si des ressources sont sélectionnées
             }else if(mix_ressources.length!=0){
                 // mix_reussite permet de savoir si un objet est gagné par le joueur retourne un tableau de la forme : [clee, nombre]
@@ -918,9 +936,9 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
                 this.array_mix_ressource2 = [];
                 this.array_mix_ressource3 = {};
                 if(mon_affichage.length==0){
-                  this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher, "", "");
+                  this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher, "", "", "mon_fadein2");
                 }else{
-                  this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher, this.data_equilibrage.ressource[mon_affichage[0]], mon_affichage[0]);
+                  this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher, this.data_equilibrage.ressource[mon_affichage[0]], mon_affichage[0], "mon_fadein2");
                 }
             // si des ressources sont sélectionnées pour la création de plat
             }else if(mix_plat.length!=0){
@@ -951,9 +969,9 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
             this.array_mix_plat2 = [];
             this.array_mix_plat3 = {};
             if(mon_affichage.length==0){
-              this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher, "", "");
+              this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher, "", "", "mon_fadein2");
             }else{
-              this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher, this.data_equilibrage.plats[mon_affichage[0]], mon_affichage[0]);
+              this.popup("lonono", a_afficher2 , a_afficher3, "lonono", a_afficher, this.data_equilibrage.plats[mon_affichage[0]], mon_affichage[0], "mon_fadein2");
             }
         }
   }
@@ -1332,12 +1350,15 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
     else {
       this.data_son_charge[this.data_interface.meme.son_final_echec].play();
       var mon_texte = String(nb_erreur+" "+pluriel(nb_erreur, this.data_texte.meme.erreur));
-      this.popup("setup2", mon_texte, "", "meme", "echec", "", "");
+      this.popup("setup2", mon_texte, "", "meme", "echec", "", "", "mon_fadein2");
     }
 
   }
   /**
-
+  synthese : prototype permettant au joueur de voir les objets qui lui restent à découvrir
+  @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+  @param data : propriété du object-bouton cliqué
+  @param scene : frame dans lequel le bouton est cliqué
   */
   GameManager.prototype.synthese = function(key, data, scene){
     var self = this;
@@ -1351,7 +1372,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
 
     this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
     this.monCanvas.beginPath();
-    this.ma_synthese = new Synthese(this.monCanvas, self, this.data_interface.synthese, key, data, scene, this.data_texte.synthese, this.data_equilibrage.ressource, this.data_equilibrage.plats);
+    this.ma_synthese = new Synthese(this.monCanvas, self, this.data_interface.synthese, key, data, scene, this.data_texte.synthese, this.data_equilibrage.ressource, this.data_equilibrage.plats, this.data_interface.carte.elements);
 
     this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
 
@@ -1371,6 +1392,9 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
 
     var object_fusionne = {};
     $.extend( object_fusionne, this.data_interface.synthese.elements);
+    $.extend( object_fusionne, this.ma_synthese.data_ressource);
+    $.extend( object_fusionne, this.ma_synthese.data_plat);
+    $.extend( object_fusionne, this.ma_synthese.carte);
     console.log("carte object_fusionne "+JSON.stringify(object_fusionne));
     // mise en place des zones à cliquer
     this.canvas_hit = new Gameplay(this.monCanvas_click, this, object_fusionne, "synthese");
@@ -1487,7 +1511,7 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
       console.log("affichage nombre objets découverts "+this.mon_Player.ressource.nb_objet);
       this.monCanvas.clearRect(0, 0, window.innerWidth, window.innerHeight);
       this.monCanvas.beginPath();
-      this.mes_credits = new Victoire(this.monCanvas, self, this.data_interface.credit);
+      this.mes_credits = new Credit(this.monCanvas, self, this.data_interface.credit);
 
       this.niveau = this.mon_Player.niveau_init(this.arrayOfGameObjects);
 
@@ -1518,17 +1542,17 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
 
     try {
       if(!localStorage.getItem("niveau")){
-        this.popup("setup2", "", "", "sauvegarde", "nonchargement", "", "");
+        this.popup("setup2", "", "", "sauvegarde", "nonchargement", "", "", "mon_fadein2");
       }else{
 
         this.mon_Player.pseudo = JSON.parse(localStorage.getItem("pseudo"));
         this.mon_Player.niveau = JSON.parse(localStorage.getItem("niveau"));
         this.mon_Player.ressource = JSON.parse(localStorage.getItem("ressource"));
         this.mon_Player.plat = JSON.parse(localStorage.getItem("plat"));
-        this.popup("setup2", "", "", "sauvegarde", "chargement", "", "");
+        this.popup("setup2", "", "", "sauvegarde", "chargement", "", "", "mon_fadein2");
       }
     }catch (exception) {
-      this.popup("setup2", "", "", "sauvegarde", "nonchargement", "", "");
+      this.popup("setup2", "", "", "sauvegarde", "nonchargement", "", "", "mon_fadein2");
     }
 
   }
@@ -1600,4 +1624,61 @@ remet à 0 les différents sélections du joueur dans le jeu du lonono
 
           }
       }
+  }
+  /**
+  Prototype logo
+  permet de faire un lien vers l'univers de Nat
+
+  */
+  GameManager.prototype.logo = function(key, data, scene){
+    console.log(" Click pour un lien vers le monde d'oria");
+    document.location.href=this.data_general.lien_mondeoria;
+  }
+  /**
+  Prototype aide
+  permet d'afficher un popup d'aide sur chaque frame
+
+  */
+  GameManager.prototype.aide_popup = function(key, data, scene){
+    console.log(" Click pour affichage aide "+scene+" "+data+" "+key);
+    this.popup(scene, "", "", scene, "aide", "", "", "pas_animation");
+  }
+  /**
+  Prototype aide_synthese_popup
+  permet d'afficher un popup lors du click sur une icone dans le cas où la ressource n'a pas encore été trouvé, d'afficher le texte présent sur data_texte.json : scene --> key
+
+  @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+  @param data : propriété du object-bouton cliqué
+  @param scene : frame dans lequel le bouton est cliqué
+
+  */
+  GameManager.prototype.aide_synthese_popup = function(key, data, scene){
+    console.log("click sur une icone pour afficher l'aide de cette ressource encore pas découverte");
+    this.popup(scene, "", "", scene, key, "", "", "pas_animation");
+  }
+  /**
+  Prototype aide_synthese_popup2
+  permet d'afficher un popup lors du click sur une icone dans le cas où la ressource a déjà été trouvée, d'afficher le texte présent sur data_texte.json : scene --> key
+
+  @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+  @param data : propriété du object-bouton cliqué
+  @param scene : frame dans lequel le bouton est cliqué
+
+  */
+  GameManager.prototype.aide_synthese_popup2 = function(key, data, scene){
+    console.log("click sur une icone pour afficher l'aide de cette ressource déjà trouvée");
+    this.popup(scene, "", "", scene, String(key+"_s"), "", "", "pas_animation");
+  }
+  /**
+  Prototype aide_synthese_popup3
+  permet d'afficher un popup lors du click sur une icone dans le cas où la ressource n'a pas été découverte et d'afficher une réponse générique présente sur data_texte.json : scene --> generique
+
+  @param key : String nom de la propriété de l'object this.arrayOfGameObjects3 (commençant par g pour la colonne de gauche, droite, et _ dans le cas d'une ressource déjà utilisée)
+  @param data : propriété du object-bouton cliqué
+  @param scene : frame dans lequel le bouton est cliqué
+
+  */
+  GameManager.prototype.aide_synthese_popup3 = function(key, data, scene){
+    console.log("click sur une icone pour afficher l'aide de cette ressource déjà trouvée");
+    this.popup(scene, "", "", scene, "generique", "", "", "pas_animation");
   }

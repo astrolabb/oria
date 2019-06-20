@@ -1,14 +1,15 @@
 var data_texte = {
   "intro" : {
-    "titre" : "lonnono warrior challenge maxi troll 2",
-    "texte" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+    "titre" : "The Giant Lonono",
+    "titre2" : "un jeu issu de l'univers :",
+    "texte" : "Les lononos sont de gros moutons à la laine violette. Ils ont la capacité de transformer les aliments qu'on le donne. Débloquez toutes les ressources pour devenir le meilleur des Aliorans",
     "bouton" : "start",
     "bouton2" : "crédit",
-    "bouton3" : "charger partie"
+    "bouton3" : "load"
   },
   "saisie_nom" : {
-        "titre" : "Entrez votre pseudo",
-        "sous_titre" : "Tapez directement sur le clavier",
+        "titre" : "Votre pseudo",
+        "sous_titre" : "Saisissez un nom, jeune berger!",
         "bouton" : "Valider"
         },
   "map" : {
@@ -34,9 +35,10 @@ var data_texte = {
     "retour" : "Retour",
     "recette_zero" : "désectionner",
     "validation_recette" : "Utiliser",
-    "titre2" : "Choisir des ressources à donner au lonono",
-    "soustitreg" : "Pour trouver de nouvelles ressources",
-    "soustitred" : "Pour la fabrication de plats"
+    "titre2" : "Ressource à donner",
+    "soustitreg" : "Ressources",
+    "soustitred" : "Plats",
+    "aide" : "Le lonono transforme les ressources qu'on lui donne à manger soit en nouvelles ressources soit en plat que l'on peut vendre au marché. Trouvez les bonnes recettes pour obtenir toutes les ressources du jeu et débloquer les niveaux."
     },
   "jardin" : {
     "titre" : "Le jardin"
@@ -56,8 +58,8 @@ var data_texte = {
     "echec" : "Votre score ne vous permet pas d'obtenir une ressource",
     "reussite" : "Félicitations : Vous avez obtenu ",
     "titre" : "Le lac",
-    "retour_lac" : "retour"
-
+    "retour_lac" : "retour",
+    "aide" : "Cliquez sur le boutonde de la colonne correspondante à la ressource qui chute. Les points obtenus conditionnerons le gain obtenu."
   },
   "meme" : {
     "reussite" : "Bien joué ! Nouvelle recette",
@@ -73,7 +75,92 @@ var data_texte = {
     "titre" : "Synthèse des niveaux",
     "soustitre1" : "Niveaux concernant les jeux",
     "soustitre2" : "Ressources découvertes",
-    "soustitre3" : "Recettes découvertes"
+    "soustitre3" : "Recettes découvertes",
+    "retour" : "Retour",
+    "herbe" : "L'herbe se trouve dans la forêt",
+    "branche" : "Les branches se trouve dans la forêt.(y a vraiment des banalités dans ce jeu...pfffff)",
+    "paille" : "C'est le lonono qui fabrique la paille",
+    "ex______" : "Le lonono nous fais tous les jours de magnifiques excréments",
+    "billette" : "Les billettes sont fabriquées dans la cabane.",
+    "rondin" : "Les rondins sont fabriqués dans la cabane.",
+    "planche" : "Les planches sont fabriquées à la scierie ou par le lonono.",
+    "plante" : "Les plantes sont cultivées au jardin.",
+    "limace" : "Les limaces se trouvent dans le jardin et j'en sais quelque chose...",
+    "ver_de_terre" : "Les vers de terre se trouvent dans le jardin (pas assez à mon goût mais c'est une autre histoire)",
+    "cereales" : "Les céréales sont cultivées dans le champ et servent à fabriquer les biscottes du développeur .",
+    "graine" : "Les graines sont crées par le lonono.",
+    "fleur" : "Les fleurs se trouvent dans les champs ou par hasard d'une rue.",
+    "bois_sculpte" : "Les scultures en bois sont crées par le lonono ou dans la scierie.",
+    "licorne" : "La licorne se trouve à la scierie et ne me demandez pas ce qu'elle fait là!",
+    "engrais" : "C'est le lonono qui fabrique l'engrais.",
+    "pierre" : "C'est le lonono qui fabrique les pierres.",
+    "corde" : "C'est le lonono qui fabrique la corde.",
+    "metal" : "C'est le lonono qui fabrique le métal, d'ailleurs il a un moral en acier.",
+    "fil" : "C'est le lonono qui fabrique le fil.",
+    "roue" : "C'est le lonono qui fabrique la roue.",
+    "scie" : "C'est le lonono qui fabrique la scie.",
+    "sable" : "C'est le lonono qui fabrique le sable.",
+    "eau" : "L'eau, ça mouille et ça se trouve dans le lac.",
+    "poisson" : "Les poissons se pêchent dans le lac.",
+    "crevette" : "Les crevettes se pêchent près du ponton.",
+    "crabe" : "Le crabe se trouve avec les crevettes près du ponton",
+    "verre" : "le lonono est un merveilleux souffleur de verre, mais nous ne rentrerons pas dans les détails anatomiques qui permettent cet exploit.",
+    "appat" : "Le lonono a faim.",
+    "legumes" : "Les légumes poussent dans la serre.",
+    "fruit" : "Les fruits se récoltent dans la serre.",
+    "graine_magique" : "Cherchez dans serre pour voir si graine magique s'y trouve.",
+    "homard" : "le homard batifole gaiement dans le port",
+    "pieuvre" : "A chercher dans le port",
+    "sirene" : "les sirenes chantent dans le port pour attirer les marins...",
+    "haricot_magique" : "un petit garçon a laissé tombé sa graine magique devant un gros lonono",
+    "femme" : "Le Lonono est un fan de Patrick Juvet.",
+    "arc_en_ciel" : "Le lonono comme astrolabb est un bisounours.",
+    "pays_imaginaire" : "Le lonono est un fan de Peter Pan",
+    "paille_s" : "ressources à proposer au lonono: herbe",
+    "planche_s" : "ressources à proposer au lonono: rondin",
+    "limace_s" : "ressources à proposer au lonono: ver de terre",
+    "cereales_s" : "ressources à proposer au lonono: graine",
+    "bois_sculpte_s" : "ressources à proposer au lonono: 2 billettes",
+    "engrais_s" : "ressources à proposer au lonono: excrement + plante",
+    "pierre_s" : "ressources à proposer au lonono: herbe + plante",
+    "corde_s" : "ressources à proposer au lonono: paille + paille",
+    "sceau_s" : "ressources à proposer au lonono: bois_sculpte + corde",
+    "metal_s" : "ressources à proposer au lonono: pierre + pierre",
+    "fil_s" : "ressources à proposer au lonono: fleur + fleur",
+    "roue_s" : "ressources à proposer au lonono: planche + bois_sculpte",
+    "scie_s" : "recette à proposer au lonono: roue + metal",
+    "sable_s" : "recette à proposer au lonono: pierre + eau",
+    "haricot_magique_s" : "recette à proposer au lonono: légumes + graine magique",
+    "verre_s" : "recette à proposer au lonono: sable + eau + metal",
+    "appat_s" : "recette à proposer au lonono: limace + cereales + poisson",
+    "femme_s" : "recette à proposer au lonono: sirene + pieuvre + graine magique",
+    "arc_en_ciel_s" : "recette à proposer au lonono: licorne + graine magique + fruit",
+    "pays imaginaire_s" : "recette à proposer au lonono: licorne + sirene + graine magique",
+    "cereale_soufflee" : "recette à proposer au lonono: rondin",
+    "caviar" : "recette à proposer au lonono: poisson",
+    "huile" : "recette à proposer au lonono: eau + fleur",
+    "jus_de_fruit" : "recette à proposer au lonono: eau + fruit",
+    "riz" : "recette à proposer au lonono: eau + cereales",
+    "bouillon" : "recette à proposer au lonono: eau + legumes",
+    "sushi" : "recette à proposer au lonono: riz + poisson",
+    "frite" : "recette à proposer au lonono: huile + legumes",
+    "saumon_citronne" : "recette à proposer au lonono: poisson + fruit",
+    "miel" : "recette à proposer au lonono: fleur + fruit",
+    "pop_corn_caramelise" : "recette à proposer au lonono: cereale_soufflee + miel",
+    "crabe_marine" : "recette à proposer au lonono: crabe + bouillon",
+    "sauce" : "recette à proposer au lonono: bouillon + poisson",
+    "the" : "recette à proposer au lonono: eau + fleur + fruit",
+    "maki" : "recette à proposer au lonono: riz + legumes + poisson",
+    "salade_de_fruit" : "recette à proposer au lonono: fruit + fruit + fruit",
+    "crevette_sautee" : "recette à proposer au lonono: crevette + huile + sauce",
+    "homard_royal" : "recette à proposer au lonono: homard + legumes + caviar",
+    "cereale_soufflee" : "recette à proposer au lonono: rondin",
+    "lac" : "Pour disposer d'un ponton, il faut 50 planches et 10 vers de terre. Pour construire un port, il faut 100 sculptures sur bois, 20 rondins, 100 fils et 20 appats.",
+    "foret" : "Pour construire une cabane, il faut 50 branches et 10 pailles. Pour construire une scierie, il faut 150 planches, 10 rondins, 2 scies et 8 roues.",
+    "lonono" : "Pour transformer le lonono, il faut découvrir 10 puis 20 objets.",
+    "village" : "Pour évoluer en ville, il faut 50 planches et 10 rondins. Pour accéder au statut de capitale, il faut 100 pierres, 1 sceau, 6 sculptures sur bois et 100 planches.",
+    "jardin" : "Pour avoir un champs, il faut 50 excréments et 10 pailles. Pour construire une serre, il faut 100 sac d'engrais, 50 verres, 50 graines et 10 planches.",
+    "generique" : "Vous n'avez pas encore trouvé ce plat. Quand ce sera fait, la recette vous sera rappelée ici."
   },
   "sauvegarde" : {
     "reussie" : "Sauvegarde réussie",
@@ -84,8 +171,14 @@ var data_texte = {
   },
   "victoire" : {
     "titre" : "Victoire, Vous avez terminé le jeu.",
-    "titre2" : "Présentation du jeu, biographie de Nathalie, la vie et l'oeuvre d'Astrolabb. Sans compter les remerciements."
+    "retour" : "Retour"
 
+  },
+  "credit" : {
+    "titre2" : "Nathalie est la créatrice du monde d'Oria. Depuis 2016, elle forge cet univers médiéval-fantastique à l'aide de romans et d'illustrations. Nathalie anime aussi une chaîne sur TwitchTV tous les jours de 18h à 20h où elle partage avec sa communauté la création des illustration pour son univers.",
+    "retour" : "Retour",
+    "remerciements" : "Remerciements",
+    "aide" : "Je tiens à remercier pour leur participation au succès de ce jeu : Melkpat, Zh0nd, Syanoks, DieOrDev. Encore merci !"
   }
 
 }

@@ -3,7 +3,7 @@ var data_interface = {
   "hauteur" : 600,
   "largeuricone" : 50,
   "introduction" : {
-    "maxWidth_text" : 2*window.innerWidth/3,
+    "maxWidth_text" : 9*window.innerWidth/10,
     "lineHeight" : window.innerHeight/23,
     "elements" : {
         "titre" : {
@@ -18,9 +18,21 @@ var data_interface = {
         "alignement" : "centrage2",
         "reference" : ""
       },
+      "titre2" : {
+      "_x" : window.innerWidth/20,
+      "_y" : window.innerHeight/7,
+      "nature" : "text",
+      "couleur" : "#F4A402",
+      "police" : "Arial",
+      "taille_police1" : "20",
+      "text" : "titre2",
+      "valeur_a_afficher" : "",
+      "alignement" : "left",
+      "reference" : ""
+    },
       "texte" : {
         "_x" : 20,
-        "_y" : window.innerHeight/3,
+        "_y" : window.innerHeight/2.8,
         "nature" : "text",
         "couleur" : "#F4A402",
         "police" : "Arial",
@@ -29,6 +41,22 @@ var data_interface = {
         "valeur_a_afficher" : "",
         "alignement" : "centrage",
         "reference" : ""
+      },
+      "couleur_fond" : {
+        "_x" : 0,
+        "_y" : 0,
+        "_width" : window.innerWidth,
+        "_height" : window.innerHeight,
+        "ombre" : "draw",
+        "couleur" : "grey",
+        "nature" : "image",
+        "lien" : "non",
+        "ordre" : 1,
+        "loc" : {
+          "niv1" :["fond_vert","fond_vert"],
+          "niv2" :["fond_vert","fond_vert"],
+          "niv3" :["fond_vert","fond_vert"]
+        }
       },
       "fond" : {
         "_x" : 0,
@@ -45,9 +73,25 @@ var data_interface = {
           "niv2" :["lonono3","lonono3"],
           "niv3" :["lonono3","lonono3"]
         }
-
       },
-      "texte_bouton" : {
+      "logo" : {
+        "_x" : window.innerWidth/2 - (window.innerWidth/8),
+        "_y" : window.innerHeight/4,
+        "_width" : (window.innerWidth/4),
+        "_height" : window.innerHeight/10,
+        "ombre" : "draw",
+        "nature" : "image",
+        "lien" : "oui",
+        "ordre" : 2,
+        "loc" : {
+          "niv1" :["logo","logo"],
+          "niv2" :["logo","logo"],
+          "niv3" :["logo","logo"]
+        },
+        "son" : "menu1",
+        "dir" : "logo"
+      },
+    "texte_bouton" : {
         "_x" : 0,
         "_y" : window.innerHeight- window.innerHeight/8,
         "nature" : "text",
@@ -61,7 +105,7 @@ var data_interface = {
         },
       "bouton" : {
         "_x" : (window.innerWidth/2)-(window.innerWidth/8),
-        "_y" : 3*window.innerHeight/4,
+        "_y" : 5*window.innerHeight/6,
         "_width" : (window.innerWidth/4),
         "_height" : window.innerHeight/10,
         "ombre" : "draw",
@@ -90,7 +134,7 @@ var data_interface = {
         },
       "bouton2" : {
         "_x" : window.innerWidth/10,
-        "_y" : 3*window.innerHeight/4,
+        "_y" : 5*window.innerHeight/6,
         "_width" : (window.innerWidth/4),
         "_height" : window.innerHeight/10,
         "ombre" : "draw",
@@ -119,7 +163,7 @@ var data_interface = {
         },
       "bouton3" : {
         "_x" : window.innerWidth- (window.innerWidth/4) - window.innerWidth/10,
-        "_y" : 3*window.innerHeight/4,
+        "_y" : 5*window.innerHeight/6,
         "_width" : (window.innerWidth/4),
         "_height" : window.innerHeight/10,
         "ombre" : "draw",
@@ -137,10 +181,10 @@ var data_interface = {
     }
   },
   "saisie_nom" : {
-    "maxWidth_text" : 2*window.innerWidth/3,
+    "maxWidth_text" : 9*window.innerWidth/10,
     "lineHeight" : window.innerHeight/23,
     "classe_champ_saisie" : "style_champ_saisie_pseudo",
-    "taille_police_champ_saisie" : 5,
+    "taille_police_champ_saisie" : 8,
     "police_champ_saisie" : "arial",
     "elements" : {
         "titre" : {
@@ -161,7 +205,7 @@ var data_interface = {
         "nature" : "text",
         "couleur" : "#F4A402",
         "police" : "Arial",
-        "taille_police1" : "18",
+        "taille_police1" : "20",
         "text" : "sous_titre",
         "valeur_a_afficher" : "",
         "alignement" : "centrage",
@@ -238,7 +282,7 @@ var data_interface = {
       "lonono" : {
         "_x" : window.innerWidth/2-window.innerWidth/10,
         "_y" : window.innerHeight/2-window.innerHeight/6,
-        "_width" : window.innerWidth/5,
+        "_width" : window.innerWidth/4,
         "_height" : window.innerHeight/3,
         "ombre" : "draw",
         "couleur" : "green",
@@ -286,9 +330,9 @@ var data_interface = {
       },
       "lac" : {
         "_x" : 0,
-        "_y" :  window.innerHeight- window.innerHeight/2,
+        "_y" :  window.innerHeight- window.innerHeight/3,
         "_width" : window.innerWidth/3,
-        "_height" : window.innerHeight/2,
+        "_height" : window.innerHeight/3,
         "ombre" : "draw",
         "couleur" : "yellow",
         "nature" : "image",
@@ -306,7 +350,7 @@ var data_interface = {
         "_x" : 0,
         "_y" : 0,
         "_width" : window.innerWidth/3,
-        "_height" : window.innerHeight/2,
+        "_height" : window.innerHeight/3,
         "ombre" : "draw",
         "couleur" : "orange",
         "nature" : "image",
@@ -322,9 +366,9 @@ var data_interface = {
                   },
       "jardin" : {
         "_x" : window.innerWidth-window.innerWidth/3,
-        "_y" : window.innerHeight- window.innerHeight/2,
+        "_y" : window.innerHeight- window.innerHeight/3,
         "_width" : window.innerWidth/3,
-        "_height" : window.innerHeight/2,
+        "_height" : window.innerHeight/3,
         "ombre" : "draw",
         "couleur" : "pink",
         "nature" : "image",
@@ -423,7 +467,7 @@ var data_interface = {
           "maxWidth_text" : 2*window.innerWidth/3,
           "lineHeight" : window.innerHeight/30,
           "marge_gauche" : window.innerWidth/20,
-          "marge_haut" : window.innerHeight/5,
+          "marge_haut" : window.innerHeight/6,
           "alpha_" : 0.5,
           "police" : "Arial",
           "taille_police1" : "20",
@@ -458,7 +502,7 @@ var data_interface = {
             },
             "sous_titre_gauche" : {
             "_x" : window.innerWidth/20,
-            "_y" : window.innerHeight/13,
+            "_y" : window.innerHeight/10,
             "nature" : "text",
             "couleur" : "#333",
             "police" : "Arial",
@@ -469,8 +513,8 @@ var data_interface = {
             "reference" : ""
           },
           "sous_titre_droit" : {
-          "_x" : 20,
-          "_y" : window.innerHeight/15,
+          "_x" : window.innerWidth/20,
+          "_y" : window.innerHeight/10,
           "nature" : "text",
           "couleur" : "#333",
           "police" : "Arial",
@@ -553,19 +597,24 @@ var data_interface = {
         }
     },
     "popup" : {
-      "maxWidth_text" : 2*window.innerWidth/3,
+      "maxWidth_text" : 3*window.innerWidth/4,
       "lineHeight" : window.innerHeight/10,
+      "lineHeight2" : window.innerWidth/15,
       "marge_gauche" : window.innerWidth/20,
       "marge_haut" : window.innerHeight/5,
       "icone_width" : window.innerWidth/7,
       "icone_height" : window.innerHeight/7,
+      "position_image" : window.innerHeight/3,
+      "position_texte_si_image_y" : 2*window.innerHeight/3,
+      "position_texte_pas_image_y" : window.innerHeight/6,
       "alpha_" : 0.5,
+
       "elements" : {
           "fond" : {
-            "_x" : window.innerWidth*0.2,
-            "_y" : window.innerHeight*0.2,
-            "_width" : window.innerWidth*0.6,
-            "_height" : window.innerHeight*0.6,
+            "_x" : window.innerWidth*0.1,
+            "_y" : window.innerHeight*0.1,
+            "_width" : window.innerWidth*0.8,
+            "_height" : window.innerHeight*0.8,
             "ombre" : "draw",
             "couleur" : "grey",
             "nature" : "image",
@@ -579,7 +628,6 @@ var data_interface = {
            },
          "titre" : {
              "_x" : window.innerWidth/3,
-             "_y" : 2*window.innerHeight/3,
              "nature" : "text",
              "couleur" : "#333",
              "police" : "Arial",
@@ -733,7 +781,7 @@ var data_interface = {
             "alignement" : "centrage3",
             "reference" : ""
               },
-              "texte_validation_recette" : {
+            "texte_validation_recette" : {
                   "_x" : 0,
                   "_y" : window.innerHeight- window.innerHeight/8,
                   "nature" : "text",
@@ -746,24 +794,24 @@ var data_interface = {
                   "reference" : "validation_recette"
                       },
             "validation_recette" : {
-            "_x" : window.innerWidth/2-window.innerWidth/6,
-            "_y" : (window.innerHeight*7/8)-window.innerHeight/6,
-            "_width" : window.innerWidth/3,
-            "_height" : window.innerHeight/6,
-            "ombre" : "draw",
-            "couleur" : "blue",
-            "nature" : "image",
-            "lien" : "oui",
-            "ordre" : 2,
-            "loc" : {
-            "niv1" :["panneau","panneau"],
-            "niv2" :["panneau","panneau"],
-            "niv3" :["panneau","panneau"]
-                  },
-            "son" : "menu1",
-            "dir" : "valid_lonono"
+              "_x" : window.innerWidth/2-window.innerWidth/6,
+              "_y" : (window.innerHeight*7/8)-window.innerHeight/6,
+              "_width" : window.innerWidth/3,
+              "_height" : window.innerHeight/6,
+              "ombre" : "draw",
+              "couleur" : "blue",
+              "nature" : "image",
+              "lien" : "oui",
+              "ordre" : 2,
+              "loc" : {
+              "niv1" :["panneau","panneau"],
+              "niv2" :["panneau","panneau"],
+              "niv3" :["panneau","panneau"]
+                    },
+              "son" : "menu1",
+              "dir" : "valid_lonono"
               },
-              "texte_recette_zero" : {
+            "texte_recette_zero" : {
                   "_x" : 0,
                   "_y" : window.innerHeight- window.innerHeight/8,
                   "nature" : "text",
@@ -822,6 +870,24 @@ var data_interface = {
                   },
             "son" : "menu2",
             "dir" : "retour_lonono"
+            },
+            "aide_popup" : {
+            "_x" : window.innerWidth/2-window.innerWidth/20,
+            "_y" : window.innerHeight/2 - window.innerHeight/6 - 2*window.innerHeight/10,
+            "_width" : window.innerWidth/10,
+            "_height" : window.innerHeight/10,
+            "ombre" : "draw",
+            "couleur" : "red",
+            "nature" : "image",
+            "lien" : "oui",
+            "ordre" : 2,
+            "loc" : {
+            "niv1" :["aide","aide"],
+            "niv2" :["aide","aide"],
+            "niv3" :["aide","aide"]
+                  },
+            "son" : "menu2",
+            "dir" : "aide_popup"
             },
             "lonono_icone" : {
               "_x" : window.innerWidth/2-window.innerWidth/6,
@@ -942,6 +1008,7 @@ var data_interface = {
       "_x_score" : window.innerWidth/10,
       "_width_score" : window.innerWidth/4,
       "_height_score" : window.innerWidth/20,
+      "_height_score2" : window.innerHeight/20,
       "_y_score" : window.innerHeight/2,
       "couleur_trait" : "#FFFFFF",
       "couleur_texte" : "green",
@@ -1023,6 +1090,7 @@ var data_interface = {
             "nombre_colonne" : 5,
             "ressource_a_afficher" : ["eau", "poisson", "crevette", "crabe", "homard", "pieuvre", "sirene"],
             "largeur_colonne" : window.innerWidth/15,
+            "largeur_colonne2" : window.innerHeight/12,
             "hauteur_colonne" : window.innerHeight*4/7,
             "hauteur_bouton" : window.innerWidth/10,
             "couleur_colonne" : ["#0F4306","#0F4306","#28C710","#3BC037","#EDED06"],
@@ -1088,7 +1156,7 @@ var data_interface = {
                           },
                   "retour_lac" : {
                     "_x" : 0,
-                    "_y" : window.innerHeight- window.innerHeight/10,
+                    "_y" : window.innerHeight- window.innerHeight/8,
                     "_width" : window.innerWidth/5,
                     "_height" : window.innerHeight/8,
                     "ombre" : "draw",
@@ -1103,6 +1171,24 @@ var data_interface = {
                           },
                     "son" : "menu2",
                     "dir" : "foret_supr"
+                  },
+                  "aide_popup" : {
+                  "_x" : window.innerWidth/2-window.innerWidth/20,
+                  "_y" : window.innerHeight - window.innerHeight/8,
+                  "_width" : window.innerWidth/10,
+                  "_height" : window.innerHeight/10,
+                  "ombre" : "draw",
+                  "couleur" : "red",
+                  "nature" : "image",
+                  "lien" : "oui",
+                  "ordre" : 2,
+                  "loc" : {
+                  "niv1" :["aide","aide"],
+                  "niv2" :["aide","aide"],
+                  "niv3" :["aide","aide"]
+                        },
+                  "son" : "menu2",
+                  "dir" : "aide_popup"
                   },
                   "bouton_lac" :{
                     "_x" : 0,
@@ -1261,9 +1347,11 @@ var data_interface = {
               "police" : "Arial",
               "taille_police1" : "10",
               "max_hauteur1" : window.innerHeight/4,
-              "max_hauteur2" : window.innerHeight/6,
-              "icone_ressource_y" : window.innerHeight/2,
-              "icone_plat_y" : 11*window.innerHeight/16,
+              "max_hauteur2" : window.innerHeight/4,
+              "icone_ressource_y" : 7*window.innerHeight/16 + window.innerHeight/16,
+              "icone_plat_y" : 9*window.innerHeight/16 + window.innerHeight/16,
+              "icone_ressource_y2" : window.innerHeight/3.3,
+              "icone_plat_y2" : 2*window.innerHeight/3.3,
               "elements" : {
                   "fond" : {
                     "_x" : 0,
@@ -1293,6 +1381,18 @@ var data_interface = {
                       "alignement" : "centrage2",
                       "reference" : ""
                     },
+                    "texte_bouton" : {
+                        "_x" : 0,
+                        "_y" : window.innerHeight- window.innerHeight/8,
+                        "nature" : "text",
+                        "couleur" : "#333",
+                        "police" : "Arial",
+                        "taille_police1" : "20",
+                        "text" : "retour",
+                        "valeur_a_afficher" : "",
+                        "alignement" : "ref",
+                        "reference" : "retour_synthese"
+                        },
                     "retour_synthese" : {
                       "_x" : 0,
                       "_y" : window.innerHeight- window.innerHeight/10,
@@ -1304,16 +1404,16 @@ var data_interface = {
                       "lien" : "oui",
                       "ordre" : 2,
                       "loc" : {
-                      "niv1" :["kiwi","kiwi"],
-                      "niv2" :["kiwi","kiwi"],
-                      "niv3" :["kiwi","kiwi"]
+                      "niv1" :["panneau","panneau"],
+                      "niv2" :["panneau","panneau"],
+                      "niv3" :["panneau","panneau"]
                             },
                       "son" : "menu2",
                       "dir" : "setup2"
                     },
                     "soustitre1" : {
                       "_x" : 20,
-                      "_y" : window.innerHeight/10,
+                      "_y" : window.innerHeight/11,
                       "nature" : "text",
                       "couleur" : "#333",
                       "police" : "Arial",
@@ -1326,6 +1426,7 @@ var data_interface = {
                     "soustitre2" : {
                       "_x" : 20,
                       "_y" : 7*window.innerHeight/16,
+                      "_y2" : window.innerHeight/3.3,
                       "nature" : "text",
                       "couleur" : "#333",
                       "police" : "Arial",
@@ -1338,6 +1439,7 @@ var data_interface = {
                     "soustitre3" : {
                       "_x" : 20,
                       "_y" : 9*window.innerHeight/16,
+                      "_y2" : 2*window.innerHeight/3.3,
                       "nature" : "text",
                       "couleur" : "#333",
                       "police" : "Arial",
@@ -1405,8 +1507,9 @@ var data_interface = {
                 }
           },
             "credit" : {
-                  "maxWidth_text" : 2*window.innerWidth/3,
-                  "lineHeight" : window.innerHeight/30,
+                  "maxWidth_text" : 9*window.innerWidth/10,
+                  "lineHeight" : window.innerWidth/25,
+                  "lineHeight2" : window.innerHeight/25,
                   "marge_gauche" : window.innerWidth/20,
                   "marge_haut" : window.innerHeight/8,
                   "elements" : {
@@ -1428,7 +1531,7 @@ var data_interface = {
                         },
                         "titre" : {
                           "_x" : 20,
-                          "_y" : window.innerHeight/4,
+                          "_y" : 2*window.innerHeight/10,
                           "nature" : "text",
                           "couleur" : "#333",
                           "police" : "Arial",
@@ -1438,6 +1541,35 @@ var data_interface = {
                           "alignement" : "centrage",
                           "reference" : ""
                         },
+                          "logo" : {
+                            "_x" : window.innerWidth/2 - (window.innerWidth/8),
+                            "_y" : window.innerHeight/10,
+                            "_width" : (window.innerWidth/4),
+                            "_height" : window.innerHeight/10,
+                            "ombre" : "draw",
+                            "nature" : "image",
+                            "lien" : "oui",
+                            "ordre" : 2,
+                            "loc" : {
+                              "niv1" :["logo","logo"],
+                              "niv2" :["logo","logo"],
+                              "niv3" :["logo","logo"]
+                            },
+                            "son" : "menu1",
+                            "dir" : "logo"
+                          },
+                        "texte_bouton" : {
+                            "_x" : 0,
+                            "_y" : window.innerHeight- window.innerHeight/8,
+                            "nature" : "text",
+                            "couleur" : "#333",
+                            "police" : "Arial",
+                            "taille_police1" : "20",
+                            "text" : "retour",
+                            "valeur_a_afficher" : "",
+                            "alignement" : "ref",
+                            "reference" : "retour_credit"
+                            },
                         "retour_credit" : {
                           "_x" : 0,
                           "_y" : window.innerHeight- window.innerHeight/10,
@@ -1449,13 +1581,43 @@ var data_interface = {
                           "lien" : "oui",
                           "ordre" : 2,
                           "loc" : {
-                          "niv1" :["kiwi","kiwi"],
-                          "niv2" :["kiwi","kiwi"],
-                          "niv3" :["kiwi","kiwi"]
+                          "niv1" :["panneau","panneau"],
+                          "niv2" :["panneau","panneau"],
+                          "niv3" :["panneau","panneau"]
                                 },
                           "son" : "menu2",
                           "dir" : "setup"
-                        }
+                        },
+                      "texte_remerciements" : {
+                          "_x" : window.innerWidth-window.innerWidth/3,
+                          "_y" : window.innerHeight- window.innerHeight/10,
+                          "nature" : "text",
+                          "couleur" : "#333",
+                          "police" : "Arial",
+                          "taille_police1" : "20",
+                          "text" : "remerciements",
+                          "valeur_a_afficher" : "",
+                          "alignement" : "ref",
+                          "reference" : "remerciements"
+                          },
+                      "remerciements" : {
+                        "_x" : window.innerWidth-window.innerWidth/3,
+                        "_y" : window.innerHeight- window.innerHeight/10,
+                        "_width" : window.innerWidth/3,
+                        "_height" : window.innerHeight/10,
+                        "ombre" : "draw",
+                        "couleur" : "red",
+                        "nature" : "image",
+                        "lien" : "oui",
+                        "ordre" : 2,
+                        "loc" : {
+                        "niv1" :["panneau","panneau"],
+                        "niv2" :["panneau","panneau"],
+                        "niv3" :["panneau","panneau"]
+                              },
+                        "son" : "menu2",
+                        "dir" : "aide_popup"
+                      }
                   }
             },
     "couleur_roue" : ["#0015D5", "#00D52B", "#D500B9", "#ED0037", "#E5ED00", "#00EDE5"],

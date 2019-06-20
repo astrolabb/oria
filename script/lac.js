@@ -36,6 +36,11 @@ var Lac = function(monCanvas, _target, data_interface, key, data, scene, ressour
   this.texte = texte;
   this.algo = algo;
   this.data_son_charge = data_son_charge;
+  if(window.innerWidth > window.innerHeight){
+
+  }else{
+    this.interface.largeur_colonne = this.interface.largeur_colonne2;
+  }
   console.log("30_12_18 3 "+JSON.stringify(this.algo));
 
 
@@ -153,10 +158,22 @@ Lac.prototype.affichage_score = function(monCanvas){
    var mon_timer = new Date().getTime();
    var texte_afficher = Math.floor(this.algo.duree-(mon_timer - this.temps_debut)/1000);
 
-    var largeur_panneau = window.innerWidth/2-(this.interface.largeur_colonne*this.interface.nombre_colonne/2) - 2* this.interface._x_score;
-    var hauteur_panneau = this.interface._height_score;
+    if(window.innerWidth > window.innerHeight){
+      var largeur_panneau = window.innerWidth/2-(this.interface.largeur_colonne*this.interface.nombre_colonne/2) - 2* this.interface._x_score;
+      var hauteur_panneau = this.interface._height_score;
+    }else{
+      var hauteur_panneau = this.interface._height_score;
+      var largeur_panneau = this.interface.largeur_colonne*this.interface.nombre_colonne/3;
+      this.interface._x_score =  window.innerWidth/2-(this.interface.largeur_colonne*this.interface.nombre_colonne/2);
+      this.interface._y_score =  this.interface.marge_haut + this.interface.hauteur_colonne + 2*this.interface.hauteur_bouton + hauteur_panneau;
+    }
+
     texte_sur_panneau(monCanvas, this.interface.couleur_texte, texte_afficher, this.interface._x_score,  this.interface._y_score, largeur_panneau, hauteur_panneau,  this.interface.couleur_cartouche, this.interface.police, this.interface.taille_police1);
-    var position_x_panneau_score = 3*this.interface._x_score + largeur_panneau + this.interface.largeur_colonne*this.interface.nombre_colonne;
+    if(window.innerWidth > window.innerHeight){
+      var position_x_panneau_score = 3*this.interface._x_score + largeur_panneau + this.interface.largeur_colonne*this.interface.nombre_colonne;
+    }else{
+      var position_x_panneau_score = window.innerWidth/2+(this.interface.largeur_colonne*this.interface.nombre_colonne/2)-largeur_panneau;
+    }
     texte_sur_panneau(monCanvas, this.interface.couleur_texte, this.score, position_x_panneau_score,  this.interface._y_score, largeur_panneau, hauteur_panneau,  this.interface.couleur_cartouche, this.interface.police, this.interface.taille_police1);
 
     if(texte_afficher <= 0){
@@ -175,11 +192,11 @@ Lac.prototype.affichage_score = function(monCanvas){
       this._target.stop_animation();
       if(mon_resultat == 0){
         this.data_son_charge[this.interface.son_final_echec].play();
-        this._target.popup("setup2", "", "", "lac", "echec", "", "");
+        this._target.popup("setup2", "", "", "lac", "echec", "", "", "mon_fadein2");
       }else{
         this.data_son_charge[this.interface.son_final_victoire].play();
         this._target.mon_Player.objet_debloque[mon_resultat] = true;
-        this._target.popup("setup2", ma_quantite +" "+self.ressources[mon_resultat].nom, "", "lac", "reussite", self.ressources[mon_resultat], mon_resultat);
+        this._target.popup("setup2", ma_quantite +" "+self.ressources[mon_resultat].nom, "", "lac", "reussite", self.ressources[mon_resultat], mon_resultat, "mon_fadein2");
       }
 
     }
@@ -195,11 +212,24 @@ affiche 2 panneaux de chaque coté du tableau pour identifier les valeurs du tim
 Lac.prototype.affichage_decor = function(monCanvas){
   // légende timer
 
-  var largeur_panneau = window.innerWidth/2-(this.interface.largeur_colonne*this.interface.nombre_colonne/2) - 2* this.interface._x_score;
-  var hauteur_panneau = this.interface._height_score;
+
+  if(window.innerWidth > window.innerHeight){
+    var largeur_panneau = window.innerWidth/2-(this.interface.largeur_colonne*this.interface.nombre_colonne/2) - 2* this.interface._x_score;
+    var hauteur_panneau = this.interface._height_score;
+  }else{
+    var hauteur_panneau = this.interface._height_score;
+    var largeur_panneau = this.interface.largeur_colonne*this.interface.nombre_colonne/3;
+    this.interface._x_score =  window.innerWidth/2-(this.interface.largeur_colonne*this.interface.nombre_colonne/2);
+    this.interface._y_score =  this.interface.marge_haut + this.interface.hauteur_colonne + 2*this.interface.hauteur_bouton + hauteur_panneau;
+  }
+
   texte_sur_panneau(monCanvas, this.interface.couleur_texte, this.texte["timer"], this.interface._x_score,  this.interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.interface.couleur_legende, this.interface.police, this.interface.taille_police1);
   // légende score
-  var position_x_panneau_score = 3*this.interface._x_score + largeur_panneau + this.interface.largeur_colonne*this.interface.nombre_colonne;
+  if(window.innerWidth > window.innerHeight){
+    var position_x_panneau_score = 3*this.interface._x_score + largeur_panneau + this.interface.largeur_colonne*this.interface.nombre_colonne;
+  }else{
+    var position_x_panneau_score = window.innerWidth/2+(this.interface.largeur_colonne*this.interface.nombre_colonne/2)-largeur_panneau;
+  }
   texte_sur_panneau(monCanvas, this.interface.couleur_texte, this.texte["score"], position_x_panneau_score,  this.interface._y_score-hauteur_panneau, largeur_panneau, hauteur_panneau,  this.interface.couleur_legende, this.interface.police, this.interface.taille_police1);
 
 }

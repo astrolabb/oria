@@ -10,7 +10,7 @@ html, body {
   height: 30%;
   background: rgba(255, 255, 255, 0.4);
   border: none;
-  top : 30%;
+  top : 40%;
   text-align: center;
   margin-left: 15%;
   margin-right: 15%;
@@ -42,6 +42,9 @@ keyframes fadein3 { from { opacity: 1; } to { opacity: 0; } }
 
 .style_barre_chargement {
   width: 50%;
+  position : fixed;
+  left : 25%;
+  top : 50%;
   margin: auto;
   text-align: center;
   color: #fff;

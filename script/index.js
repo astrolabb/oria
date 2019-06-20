@@ -24,7 +24,7 @@ utilisation d'un HttpRequest pour laisser choix entre local et distant
               // quand les images sont chargées, on charge les sons
               loadSound(data_son_chargement, function(sons){
                   // quand les sons sont chargés, on lance le jeu
-                  Main(data_interface,JSON.parse(data_equilibrage),images,sons);
+                  Main(data_interface,JSON.parse(data_equilibrage),images,sons, data_general);
               });
           });
 
